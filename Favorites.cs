@@ -44,6 +44,15 @@ namespace BorderlessGaming
             Save(path);
         }
 
+        public static bool canAdd(string item)
+        {
+            if (_favoriteGames.Contains(item))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static List<string> List
         {
             get { return _favoriteGames; }

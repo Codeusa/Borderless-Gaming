@@ -214,7 +214,7 @@ namespace BorderlessGaming
 
                 if (proc.ProcessName.Equals(procName))
                 {
-                    Console.WriteLine(proc.ProcessName);
+                 
                     var pFoundWindow = proc.MainWindowHandle;
                     var style = GetWindowLong(pFoundWindow, GWL_STYLE);
 
@@ -306,11 +306,19 @@ namespace BorderlessGaming
 
         private void sendGameName(object sender, EventArgs e)
         {
-            if (selectedProcessName != null)
+            if (selectedProcessName != null && Favorites.canAdd(selectedProcessName))
+            {
                 Favorites.AddGame(selectedProcessName);
-            Favorites.Save("./Favorites.json");
-            MessageBox.Show(processList.GetItemText(processList.SelectedItem) + " added to favorites", "Victory!",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Favorites.Save("./Favorites.json");
+                MessageBox.Show(selectedProcessName + " added to favorites", "Victory!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show("Unable to add " + selectedProcessName + " already added!", "Uh oh!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
     }
 }
