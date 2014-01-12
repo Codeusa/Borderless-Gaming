@@ -17,7 +17,7 @@ namespace BorderlessGaming
         #region Delegates
 
         public delegate bool WindowEnumCallback(int hwnd, int lparam);
-
+     
         #endregion
 
         private const int SW_HIDE = 0x00;
@@ -101,11 +101,11 @@ namespace BorderlessGaming
             PopulateList();
             ListenForGameLaunch();
 
-            /*AppDomain.CurrentDomain.FirstChanceException += (sender, args) =>
+            AppDomain.CurrentDomain.FirstChanceException += (sender, args) =>
             {
                 MessageBox.Show(args.Exception.Message, "FirstChanceException");
                 throw args.Exception;
-            };*/
+            };
         }
 
 
@@ -137,9 +137,19 @@ namespace BorderlessGaming
             IntPtr handle;
             var breakLoop = false;
             var windowText = "";
-
             while (true)
-            {
+            
+           {
+               processList.Invoke((MethodInvoker)delegate
+               {
+                   //Code to modify control will go here
+                   processList.DataSource = null;
+                   processList.Items.Clear();
+                   processDataList.Clear();
+                   PopulateList();
+               });   
+              
+              
                 Favorites.List.ForEach(wndName =>
                 {
                     handle = FindWindowHandle(wndName, formHandle);
@@ -159,6 +169,8 @@ namespace BorderlessGaming
                 }
 
                 Thread.Sleep(1000);
+              
+         
             }
         }
 
@@ -166,7 +178,7 @@ namespace BorderlessGaming
         {
             if (!IsDisposed)
             {
-                // handle
+              
             }
         }
 
@@ -203,6 +215,7 @@ namespace BorderlessGaming
 
         private void RemoveBorder(String procName) //actually make it frameless
         {
+          
             var Procs = Process.GetProcesses();
             foreach (var proc in Procs)
             {
@@ -263,6 +276,14 @@ namespace BorderlessGaming
             PopulateList();
         }
 
+        private void refreshProcessList()
+        {
+            processList.DataSource = null;
+            processList.Items.Clear();
+            processDataList.Clear();
+            PopulateList();   
+        }
+
         private void processList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (e == null) throw new ArgumentNullException("e");
@@ -318,6 +339,16 @@ namespace BorderlessGaming
                 MessageBox.Show("Unable to add " + selectedProcessName + " already added!", "Uh oh!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
+        }
+
+        private void donateButton_Click(object sender, EventArgs e)
+        {
+            GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
         }
 
     }
