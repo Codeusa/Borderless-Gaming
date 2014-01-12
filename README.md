@@ -11,3 +11,5 @@ Download and extract the zip found under release, run it and launch your game. M
 Refresh the list if needed, selected your game and click "Make Borderless"
 
 The game should fit to your main monitor and be Boredless-Fullscreen now.
+
+Enjoy
