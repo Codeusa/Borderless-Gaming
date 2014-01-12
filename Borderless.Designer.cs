@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Borderless));
             this.makeBorderlessButton = new System.Windows.Forms.Button();
             this.selectedProcess = new System.Windows.Forms.Label();
@@ -35,11 +36,13 @@
             this.refreshList = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.workerTimer = new System.Windows.Forms.Timer(this.components);
+            this.addSelectedItem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // makeBorderlessButton
             // 
-            this.makeBorderlessButton.Location = new System.Drawing.Point(224, 67);
+            this.makeBorderlessButton.Location = new System.Drawing.Point(223, 50);
             this.makeBorderlessButton.Name = "makeBorderlessButton";
             this.makeBorderlessButton.Size = new System.Drawing.Size(129, 36);
             this.makeBorderlessButton.TabIndex = 1;
@@ -99,11 +102,27 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // workerTimer
+            // 
+            this.workerTimer.Interval = 3000;
+            this.workerTimer.Tick += new System.EventHandler(this.workerTimer_Tick);
+            // 
+            // addSelectedItem
+            // 
+            this.addSelectedItem.Location = new System.Drawing.Point(223, 92);
+            this.addSelectedItem.Name = "addSelectedItem";
+            this.addSelectedItem.Size = new System.Drawing.Size(129, 34);
+            this.addSelectedItem.TabIndex = 7;
+            this.addSelectedItem.Text = "Add Selected Item To Favorites";
+            this.addSelectedItem.UseVisualStyleBackColor = true;
+            this.addSelectedItem.Click += new System.EventHandler(this.sendGameName);
+            // 
             // Borderless
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 195);
+            this.Controls.Add(this.addSelectedItem);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.refreshList);
@@ -130,6 +149,8 @@
         private System.Windows.Forms.Button refreshList;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer workerTimer;
+        private System.Windows.Forms.Button addSelectedItem;
     }
 }
 

@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace BorderlessGaming
 {
     public partial class Borderless : Form
     {
+        #region SHIT CODE
+
+        #region Delegates
+
         public delegate bool WindowEnumCallback(int hwnd, int lparam);
+
+        #endregion
 
         private const int SW_HIDE = 0x00;
         private const int SW_SHOW = 0x05;
@@ -32,14 +41,10 @@ namespace BorderlessGaming
         public static int WS_SYSMENU = 0x00080000; //window menu
         private readonly List<string> processDataList = new List<string>();
         private readonly List<string> tempList = new List<string>();
+        private BackgroundWorker _worker;
+        private IntPtr formHandle;
         private bool gameFound;
         private string selectedProcessName;
-
-        public Borderless()
-        {
-            InitializeComponent();
-            PopulateList();
-        }
 
         [DllImport("USER32.DLL")]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -88,8 +93,82 @@ namespace BorderlessGaming
         [DllImport("user32.dll")]
         private static extern int SetWindowText(IntPtr hWnd, string text);
 
-        //assorted constants needed
+        #endregion
 
+        public Borderless()
+        {
+            InitializeComponent();
+            PopulateList();
+            ListenForGameLaunch();
+
+            /*AppDomain.CurrentDomain.FirstChanceException += (sender, args) =>
+            {
+                MessageBox.Show(args.Exception.Message, "FirstChanceException");
+                throw args.Exception;
+            };*/
+        }
+
+
+        private void ListenForGameLaunch()
+        {
+            formHandle = Handle;
+
+            _worker = new BackgroundWorker();
+            _worker.DoWork += bw_DoWork;
+            _worker.RunWorkerCompleted += bw_RunWorkerCompleted;
+
+            workerTimer.Start();
+        }
+
+        public static IntPtr FindWindowHandle(string processName, IntPtr ignoreHandle)
+        {
+            Process process = Process.GetProcesses().FirstOrDefault(p => p != null && p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) && p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != ignoreHandle && !string.IsNullOrEmpty(p.MainWindowTitle));
+
+            if (process != null)
+            {
+                return process.MainWindowHandle;
+            }
+
+            return IntPtr.Zero;
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            IntPtr handle;
+            var breakLoop = false;
+            var windowText = "";
+
+            while (true)
+            {
+                Favorites.List.ForEach(wndName =>
+                {
+                    handle = FindWindowHandle(wndName, formHandle);
+
+                    if (handle != IntPtr.Zero)
+                    {
+                        windowText = wndName;
+                        breakLoop = true;
+                    }
+                });
+
+                if (breakLoop)
+                {
+                    Thread.Sleep(2000);
+                    RemoveBorder(windowText);
+                    break;
+                }
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!IsDisposed)
+            {
+                // handle
+            }
+        }
 
         private void PopulateList() //Adds active windows to the processDataList
         {
@@ -133,8 +212,9 @@ namespace BorderlessGaming
                     return;
                 }
 
-                if (proc.ProcessName.StartsWith(selectedProcessName))
+                if (proc.ProcessName.Equals(procName))
                 {
+                    Console.WriteLine(proc.ProcessName);
                     var pFoundWindow = proc.MainWindowHandle;
                     var style = GetWindowLong(pFoundWindow, GWL_STYLE);
 
@@ -162,17 +242,21 @@ namespace BorderlessGaming
                     gameFound = true;
                 }
             }
-            if (gameFound.Equals(false))
-            {
-                MessageBox.Show("I was unable to find that application! But what do I know I'm just a robot.",
-                    "Hey, listen!", MessageBoxButtons.OK, MessageBoxIcon.Error); //just in case
-            }
+
             gameFound = false;
         }
+
+        //   private void SayHello(string name = "Andrew", int age = 25)
+        //   {
+        //      Console.WriteLine("Hello, " + name + " you are " + age + " years old.");
+        // }
 
 
         private void refreshList_Click(object sender, EventArgs e) //handles refresh button
         {
+            //  SayHello();
+            //  SayHello("Alex");
+            //   SayHello(age: 100);
             processList.DataSource = null;
             processList.Items.Clear();
             processDataList.Clear();
@@ -210,6 +294,23 @@ namespace BorderlessGaming
         private void UpdateList() // sets data sources
         {
             processList.DataSource = processDataList;
+        }
+
+        private void workerTimer_Tick(object sender, EventArgs e)
+        {
+            if (!_worker.IsBusy)
+            {
+                _worker.RunWorkerAsync();
+            }
+        }
+
+        private void sendGameName(object sender, EventArgs e)
+        {
+            if (selectedProcessName != null)
+                Favorites.AddGame(selectedProcessName);
+            Favorites.Save("./Favorites.json");
+            MessageBox.Show(processList.GetItemText(processList.SelectedItem) + " added to favorites", "Victory!",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
