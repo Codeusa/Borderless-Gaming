@@ -6,10 +6,17 @@ Play your favorite games in a borderless window; no more time consuming alt-tabs
 How to use
 =================
 
-Download and extract the zip found under release, run it and launch your game. Make sure it is in windowed mode.
+Download the compiled version from here
+https://github.com/Codeusa/Borderless-Gaming/raw/master/Latest/BorderlessGaming.zip
 
-Refresh the list if needed, selected your game and click "Make Borderless"
+Extra it to your desired folder
 
-The game should fit to your main monitor and be Boredless-Fullscreen now.
+Run the application
+
+Open your game; make sure its windowed.
+
+Refresh the program if needed, select your game from the list and click "Make Borderless"
 
 Enjoy
+
+
