@@ -15,6 +15,8 @@ namespace BorderlessGaming
     [Flags]
     public enum WindowStyleFlags : uint
     {
+
+
         Overlapped = 0x00000000,
         Popup = 0x80000000,
         Child = 0x40000000,

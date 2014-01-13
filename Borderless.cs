@@ -2,24 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace BorderlessGaming
 {
-
     public partial class Borderless : Form
     {
         #region SHIT CODE
 
         #region Delegates
 
-
-        
         #endregion
 
         public static readonly Int32
@@ -73,20 +68,27 @@ namespace BorderlessGaming
         private string _selectedFavoriteProcess;
 
         /// <summary>
-       /// The MoveWindow function changes the position and dimensions of the specified window. For a top-level window, the position and dimensions are relative to the upper-left corner of the screen. For a child window, they are relative to the upper-left corner of the parent window's client area.
-       /// </summary>
-       /// <param name="hWnd">Handle to the window.</param>
-       /// <param name="X">Specifies the new position of the left side of the window.</param>
-       /// <param name="Y">Specifies the new position of the top of the window.</param>
-       /// <param name="nWidth">Specifies the new width of the window.</param>
-       /// <param name="nHeight">Specifies the new height of the window.</param>
-       /// <param name="bRepaint">Specifies whether the window is to be repainted. If this parameter is TRUE, the window receives a message. If the parameter is FALSE, no repainting of any kind occurs. This applies to the client area, the nonclient area (including the title bar and scroll bars), and any part of the parent window uncovered as a result of moving a child window.</param>
-       /// <returns>If the function succeeds, the return value is nonzero.
-       /// <para>If the function fails, the return value is zero. To get extended error information, call GetLastError.</para></returns>
-      
+        ///     The MoveWindow function changes the position and dimensions of the specified window. For a top-level window, the
+        ///     position and dimensions are relative to the upper-left corner of the screen. For a child window, they are relative
+        ///     to the upper-left corner of the parent window's client area.
+        /// </summary>
+        /// <param name="hWnd">Handle to the window.</param>
+        /// <param name="X">Specifies the new position of the left side of the window.</param>
+        /// <param name="Y">Specifies the new position of the top of the window.</param>
+        /// <param name="nWidth">Specifies the new width of the window.</param>
+        /// <param name="nHeight">Specifies the new height of the window.</param>
+        /// <param name="bRepaint">
+        ///     Specifies whether the window is to be repainted. If this parameter is TRUE, the window receives
+        ///     a message. If the parameter is FALSE, no repainting of any kind occurs. This applies to the client area, the
+        ///     nonclient area (including the title bar and scroll bars), and any part of the parent window uncovered as a result
+        ///     of moving a child window.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the return value is nonzero.
+        ///     <para>If the function fails, the return value is zero. To get extended error information, call GetLastError.</para>
+        /// </returns>
 
         #endregion
-
         public Borderless()
         {
             InitializeComponent();
@@ -224,21 +226,22 @@ namespace BorderlessGaming
                 Native.SetWindowLong(pFoundWindow, GWL_STYLE,
                     (style &
                      ~(WindowStyleFlags.ExtendedDlgmodalframe
-                     | WindowStyleFlags.Caption 
-                     | WindowStyleFlags.ThickFrame
-                     | WindowStyleFlags.Minimize
-                     | WindowStyleFlags.Maximize
-                     | WindowStyleFlags.SystemMenu
-                     | WindowStyleFlags.MaximizeBox
-                     | WindowStyleFlags.MinimizeBox
-                     | WindowStyleFlags.Border
-                     | WindowStyleFlags.ExtendedComposited)));
+                       | WindowStyleFlags.Caption
+                       | WindowStyleFlags.ThickFrame
+                       | WindowStyleFlags.Minimize
+                       | WindowStyleFlags.Maximize
+                       | WindowStyleFlags.SystemMenu
+                       | WindowStyleFlags.MaximizeBox
+                       | WindowStyleFlags.MinimizeBox
+                       | WindowStyleFlags.Border
+                       | WindowStyleFlags.ExtendedComposited)));
 
 
                 var bounds = Screen.PrimaryScreen.Bounds;
-                Native.SetWindowPos(pFoundWindow, 0, 0, 0, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW); //no more outside window
-            //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
-                //resets window to main monitor 
+                Native.SetWindowPos(pFoundWindow, 0, 0, 0, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW);
+                    //no more outside window
+                //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
+                //resets window to main monito
                 _gameFound = true;
             }
 
@@ -315,7 +318,6 @@ namespace BorderlessGaming
             GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
         }
 
-  
 
         private void RemoveFavoriteButton(object sender, EventArgs e)
         {
@@ -342,15 +344,16 @@ namespace BorderlessGaming
         {
             GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
         }
+
         protected override void OnResize(EventArgs e)
         {
-           base.OnResize(e);
+            base.OnResize(e);
             //determine whether the cursor is in the taskbar because Microsoft 
             var cursorNotInBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
             if (WindowState != FormWindowState.Minimized || !cursorNotInBar) return;
             ShowInTaskbar = false;
             notifyIcon.Visible = true;
-          //  notifyIcon.Icon = SystemIcons.Application;
+            //  notifyIcon.Icon = SystemIcons.Application;
             notifyIcon.BalloonTipText = "Borderless Gaming Minimized";
             notifyIcon.ShowBalloonTip(2000);
             Hide();
@@ -360,15 +363,13 @@ namespace BorderlessGaming
 
         {
             Show();
-           WindowState = FormWindowState.Normal;
-           ShowInTaskbar = true;
-         
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
         }
 
         private void TrayIconExit(object sender, EventArgs e)
         {
-           Environment.Exit(0);
+            Environment.Exit(0);
         }
-      
     }
 }
