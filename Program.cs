@@ -19,6 +19,13 @@ namespace BorderlessGaming
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Borderless());
+         /*   AppDomain.CurrentDomain.FirstChanceException += (sender, args) =>
+            {
+
+                MessageBox.Show(args.Exception.Message, "FirstChanceException");
+                throw args.Exception;
+
+            };*/
         }
     }
 }

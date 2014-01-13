@@ -366,8 +366,6 @@ namespace BorderlessGaming
                     }
                 }
             }
-            /// <summary>
-            ///     XML PARSER - WILL BE REMOVED FOR SOMETHING BETTER
         }
     }
 }
