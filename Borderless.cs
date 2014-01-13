@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using BorderlessGaming.WindowsApi;
 
 namespace BorderlessGaming
 {
@@ -216,7 +217,7 @@ namespace BorderlessGaming
 
 
                 var bounds = Screen.PrimaryScreen.Bounds;
-                Native.SetWindowPos(pFoundWindow, 0, 0, 0, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW);
+                Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
                 //no more outside window
                 //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
                 //resets window to main monito
