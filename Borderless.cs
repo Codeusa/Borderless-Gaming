@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,34 +18,58 @@ namespace BorderlessGaming
         #region Delegates
 
         public delegate bool WindowEnumCallback(int hwnd, int lparam);
-     
+
         #endregion
 
-        private const int SW_HIDE = 0x00;
+        public static readonly Int32
+            WS_BORDER = 0x00800000,
+            WS_CAPTION = 0x00C00000,
+            WS_CHILD = 0x40000000,
+            WS_CHILDWINDOW = 0x40000000,
+            WS_CLIPCHILDREN = 0x02000000,
+            WS_CLIPSIBLINGS = 0x04000000,
+            WS_DISABLED = 0x08000000,
+            WS_DLGFRAME = 0x00400000,
+            WS_GROUP = 0x00020000,
+            WS_HSCROLL = 0x00100000,
+            WS_ICONIC = 0x20000000,
+            WS_MAXIMIZE = 0x01000000,
+            WS_MAXIMIZEBOX = 0x00010000,
+            WS_MINIMIZE = 0x20000000,
+            WS_MINIMIZEBOX = 0x00020000,
+            WS_OVERLAPPED = 0x00000000,
+            WS_OVERLAPPEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX |
+                                  WS_MAXIMIZEBOX,
+            WS_POPUP = unchecked((int) 0x80000000),
+            WS_POPUPWINDOW = WS_POPUP | WS_BORDER | WS_SYSMENU,
+            WS_SIZEBOX = 0x00040000,
+            WS_SYSMENU = 0x00080000,
+            WS_TABSTOP = 0x00010000,
+            WS_THICKFRAME = 0x00040000,
+            WS_TILED = 0x00000000,
+            WS_TILEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
+            WS_VISIBLE = 0x10000000,
+            WS_VSCROLL = 0x00200000;
+
+        public static uint MF_BYPOSITION = 0x400;
+        public static uint MF_REMOVE = 0x1000;
         private const int SW_SHOW = 0x05;
         private const int WS_EX_APPWINDOW = 0x40000;
         private const int GWL_EXSTYLE = -0x14; //never want to hunt this down again
         private const int WS_EX_DLGMODALFRAME = 0x0001;
-        private const int WS_THICKFRAME = 0x00040000;
         private const int WS_EX_TOOLWINDOW = 0x0080;
         private const short SWP_NOMOVE = 0X2;
         private const short SWP_NOSIZE = 1;
         private const short SWP_NOZORDER = 0X4;
         private const int SWP_SHOWWINDOW = 0x0040;
-        public static uint MF_BYPOSITION = 0x400;
-        public static uint MF_REMOVE = 0x1000;
         public static int GWL_STYLE = -16;
-        public static int WS_CHILD = 0x40000000; //child window
-        public static int WS_BORDER = 0x00800000; //window with border
-        public static int WS_DLGFRAME = 0x00400000; //window with double border but no title
-        public static int WS_CAPTION = WS_BORDER | WS_DLGFRAME; //window with a title bar 
-        public static int WS_SYSMENU = 0x00080000; //window menu
-        private readonly List<string> processDataList = new List<string>();
-        private readonly List<string> tempList = new List<string>();
+        private readonly List<string> _processDataList = new List<string>();
+        private readonly List<string> _tempList = new List<string>();
         private BackgroundWorker _worker;
-        private IntPtr formHandle;
-        private bool gameFound;
-        private string selectedProcessName;
+        private IntPtr _formHandle;
+        private bool _gameFound;
+        private string _selectedProcessName;
+        private string _selectedFavoriteProcess;
 
         [DllImport("USER32.DLL")]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -100,59 +125,57 @@ namespace BorderlessGaming
             InitializeComponent();
             PopulateList();
             ListenForGameLaunch();
-
-            AppDomain.CurrentDomain.FirstChanceException += (sender, args) =>
-            {
-                MessageBox.Show(args.Exception.Message, "FirstChanceException");
-                throw args.Exception;
-            };
+            if (favoritesList == null) return;
+            favoritesList.DataSource = Favorites.List;
         }
 
 
         private void ListenForGameLaunch()
         {
-            formHandle = Handle;
+            _formHandle = Handle;
 
             _worker = new BackgroundWorker();
-            _worker.DoWork += bw_DoWork;
-            _worker.RunWorkerCompleted += bw_RunWorkerCompleted;
+            _worker.DoWork += _BackgroundWork;
+            _worker.RunWorkerCompleted += _BackgroundWorkCompleted;
 
-            workerTimer.Start();
+            if (workerTimer != null)
+                workerTimer.Start();
         }
 
         public static IntPtr FindWindowHandle(string processName, IntPtr ignoreHandle)
         {
-            Process process = Process.GetProcesses().FirstOrDefault(p => p != null && p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) && p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != ignoreHandle && !string.IsNullOrEmpty(p.MainWindowTitle));
+            var process =
+                Process.GetProcesses()
+                    .FirstOrDefault(
+                        p =>
+                            p != null && p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) &&
+                            p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != ignoreHandle &&
+                            !string.IsNullOrEmpty(p.MainWindowTitle));
 
-            if (process != null)
-            {
-                return process.MainWindowHandle;
-            }
-
-            return IntPtr.Zero;
+            return process != null ? process.MainWindowHandle : IntPtr.Zero;
         }
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void _BackgroundWork(object sender, DoWorkEventArgs e)
         {
             IntPtr handle;
             var breakLoop = false;
             var windowText = "";
             while (true)
-            
-           {
-               processList.Invoke((MethodInvoker)delegate
-               {
-                   //Code to modify control will go here
-                   processList.DataSource = null;
-                   processList.Items.Clear();
-                   processDataList.Clear();
-                   PopulateList();
-               });   
-              
-              
+
+            {
+                processList.Invoke((MethodInvoker) delegate
+                {
+                    //Code to modify control will go here
+                    processList.DataSource = null;
+                    processList.Items.Clear();
+                    _processDataList.Clear();
+                    PopulateList();
+                });
+
+
                 Favorites.List.ForEach(wndName =>
                 {
-                    handle = FindWindowHandle(wndName, formHandle);
+                    handle = FindWindowHandle(wndName, _formHandle);
 
                     if (handle != IntPtr.Zero)
                     {
@@ -168,44 +191,34 @@ namespace BorderlessGaming
                     break;
                 }
 
-                Thread.Sleep(1000);
-              
-         
+                Thread.Sleep(9000);
             }
         }
 
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void _BackgroundWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (!IsDisposed)
             {
-              
             }
         }
 
         private void PopulateList() //Adds active windows to the processDataList
         {
-            tempList.Add("Refreshing...");
-            processList.DataSource = tempList;
+            _tempList.Add("Refreshing...");
+            processList.DataSource = _tempList;
             var processlist = Process.GetProcesses();
 
-            foreach (var process in processlist)
+            foreach (
+                var process in
+                    processlist.Where(process => process != null)
+                        .Where(process => !process.ProcessName.Equals("explorer")))
             {
-                if (process == null)
-                {
-                    continue;
-                }
-                if (process.ProcessName.Equals("explorer"))
-                {
-                    continue;
-                }
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
                     SetWindowText(process.MainWindowHandle, process.ProcessName);
                 }
-                if (process.MainWindowTitle.Length > 0)
-                {
-                    processDataList.Add(process.ProcessName);
-                }
+                if (process.MainWindowTitle.Length <= 0) continue;
+                _processDataList.Add(process.ProcessName);
             }
 
 
@@ -215,94 +228,68 @@ namespace BorderlessGaming
 
         private void RemoveBorder(String procName) //actually make it frameless
         {
-          
             var Procs = Process.GetProcesses();
             foreach (var proc in Procs)
             {
-                if (gameFound.Equals(true))
+                if (_gameFound.Equals(true))
                 {
-                    gameFound = false;
+                    _gameFound = false;
                     return;
                 }
 
-                if (proc.ProcessName.Equals(procName))
+                if (!proc.ProcessName.Equals(procName)) continue;
+                var pFoundWindow = proc.MainWindowHandle;
+                var style = GetWindowLong(pFoundWindow, GWL_STYLE);
+
+                //get menu
+                var HMENU = GetMenu(proc.MainWindowHandle);
+                //get item count
+                var count = GetMenuItemCount(HMENU);
+                //loop & remove
+                for (var i = 0; i < count; i++)
                 {
-                 
-                    var pFoundWindow = proc.MainWindowHandle;
-                    var style = GetWindowLong(pFoundWindow, GWL_STYLE);
-
-                    //get menu
-                    var HMENU = GetMenu(proc.MainWindowHandle);
-                    //get item count
-                    var count = GetMenuItemCount(HMENU);
-                    //loop & remove
-                    for (var i = 0; i < count; i++)
-                    {
-                        RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-                        RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-                    }
-
-                    //force a redraw
-                    DrawMenuBar(proc.MainWindowHandle);
-                    SetWindowLong(pFoundWindow, GWL_STYLE, (style & ~WS_SYSMENU));
-                    SetWindowLong(pFoundWindow, GWL_STYLE, (style & ~WS_CAPTION));
-                    SetWindowLong(pFoundWindow, GWL_STYLE,
-                        GetWindowLong(pFoundWindow, GWL_STYLE) & ~(WS_BORDER | WS_DLGFRAME | WS_THICKFRAME));
-                    SetWindowLong(pFoundWindow, GWL_EXSTYLE,
-                        GetWindowLong(pFoundWindow, GWL_EXSTYLE) & ~WS_EX_DLGMODALFRAME);
-                    SetWindowPos(pFoundWindow, 0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
-                    //resets window to main monitor 
-                    gameFound = true;
+                    RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
+                    RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
                 }
+
+                //force a redraw
+                DrawMenuBar(proc.MainWindowHandle);
+                SetWindowLong(pFoundWindow, GWL_STYLE,
+                    (style &
+                     ~(WS_EX_DLGMODALFRAME | WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU |
+                       WS_MAXIMIZEBOX |
+                       WS_MINIMIZEBOX))); //thanks http://www.reddit.com/user/randomName412
+
+
+                //   GetWindowLong(pFoundWindow, GWL_EXSTYLE) & ~WS_EX_DLGMODALFRAME);
+
+                SetWindowPos(pFoundWindow, 0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
+                //resets window to main monitor 
+                _gameFound = true;
             }
 
-            gameFound = false;
+            _gameFound = false;
         }
 
-        //   private void SayHello(string name = "Andrew", int age = 25)
-        //   {
-        //      Console.WriteLine("Hello, " + name + " you are " + age + " years old.");
-        // }
-
-
-        private void refreshList_Click(object sender, EventArgs e) //handles refresh button
-        {
-            //  SayHello();
-            //  SayHello("Alex");
-            //   SayHello(age: 100);
-            processList.DataSource = null;
-            processList.Items.Clear();
-            processDataList.Clear();
-            PopulateList();
-        }
-
-        private void refreshProcessList()
-        {
-            processList.DataSource = null;
-            processList.Items.Clear();
-            processDataList.Clear();
-            PopulateList();   
-        }
-
-        private void processList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProcessListSelectedIndexChanged(object sender, EventArgs e)
         {
             if (e == null) throw new ArgumentNullException("e");
-            selectedProcessName = processList.GetItemText(processList.SelectedItem);
-            selectedProcess.Text = selectedProcessName + " is selected!";
+            _selectedProcessName = processList.GetItemText(processList.SelectedItem);
+            selectedProcess.Text = _selectedProcessName + " is selected!";
         }
 
         private void MakeBorderless(object sender, EventArgs e)
         {
-            RemoveBorder(selectedProcessName);
+            RemoveBorder(_selectedProcessName);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BlogButtonClick(object sender, EventArgs e)
         {
             GotoSite("http://andrew.codeusa.net/");
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void GitHubButtonClick(object sender, EventArgs e)
         {
             GotoSite("https://github.com/Codeusa/Borderless-Gaming");
         }
@@ -314,42 +301,92 @@ namespace BorderlessGaming
 
         private void UpdateList() // sets data sources
         {
-            processList.DataSource = processDataList;
+            processList.DataSource = _processDataList;
         }
 
         private void workerTimer_Tick(object sender, EventArgs e)
         {
-            if (!_worker.IsBusy)
-            {
-                _worker.RunWorkerAsync();
-            }
+            if (_worker.IsBusy) return;
+            _worker.RunWorkerAsync();
         }
 
-        private void sendGameName(object sender, EventArgs e)
+        private void SendToFavorites(object sender, EventArgs e)
         {
-            if (selectedProcessName != null && Favorites.canAdd(selectedProcessName))
+            if (_selectedProcessName == null || !Favorites.CanAdd(_selectedProcessName))
             {
-                Favorites.AddGame(selectedProcessName);
-                Favorites.Save("./Favorites.json");
-                MessageBox.Show(selectedProcessName + " added to favorites", "Victory!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Unable to add " + _selectedProcessName + " already added!", "Uh oh!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Unable to add " + selectedProcessName + " already added!", "Uh oh!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Favorites.AddGame(_selectedProcessName);
+                Favorites.Save("./Favorites.json");
+                favoritesList.DataSource = null;
+                favoritesList.DataSource = Favorites.List;
+                MessageBox.Show(_selectedProcessName + " added to favorites", "Victory!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BugReportClick(object sender, EventArgs e)
         {
             GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
         }
 
-        private void donateButton_Click(object sender, EventArgs e)
+  
+
+        private void RemoveFavoriteButton(object sender, EventArgs e)
+        {
+            if (_selectedFavoriteProcess == null || !Favorites.CanRemove(_selectedFavoriteProcess))
+            {
+                MessageBox.Show("Unable to remove " + _selectedFavoriteProcess + " does not exist!", "Uh oh!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Favorites.Remove("./Favorites.json", _selectedFavoriteProcess);
+                favoritesList.DataSource = null;
+                favoritesList.DataSource = Favorites.List;
+            }
+        }
+
+        private void FavoritesListSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (e == null) throw new ArgumentNullException("e");
+            _selectedFavoriteProcess = favoritesList.GetItemText(favoritesList.SelectedItem);
+        }
+
+        private void SupportButtonClick(object sender, EventArgs e)
         {
             GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
         }
+        protected override void OnResize(EventArgs e)
+        {
+           base.OnResize(e);
+            //determine whether the cursor is in the taskbar because Microsoft 
+            var cursorNotInBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
+            if (WindowState != FormWindowState.Minimized || !cursorNotInBar) return;
+            ShowInTaskbar = false;
+            notifyIcon.Visible = true;
+          //  notifyIcon.Icon = SystemIcons.Application;
+            notifyIcon.BalloonTipText = "Borderless Gaming Minimized";
+            notifyIcon.ShowBalloonTip(2000);
+            Hide();
+        }
 
+        private void TrayIconOpen(object sender, EventArgs e)
+
+        {
+            Show();
+           WindowState = FormWindowState.Normal;
+           ShowInTaskbar = true;
+         
+        }
+
+        private void TrayIconExit(object sender, EventArgs e)
+        {
+           Environment.Exit(0);
+        }
+      
     }
 }

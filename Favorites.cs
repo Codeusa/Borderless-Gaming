@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace BorderlessGaming
 {
     public static class Favorites
     {
+        private static List<string> _favoriteGames;
+
         static Favorites()
         {
             _favoriteGames = new List<string>();
             Load("./Favorites.json");
+        }
+
+        public static List<string> List
+        {
+            get { return _favoriteGames; }
         }
 
         public static void AddGame(string title)
@@ -24,18 +29,29 @@ namespace BorderlessGaming
         public static void Save(string path)
         {
             var jsonDoc = JsonConvert.SerializeObject(_favoriteGames);
-            File.WriteAllText(path, jsonDoc);
+            try
+            {
+                File.WriteAllText(path, jsonDoc);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Unable to save favorites, do you have permission?" + e.Message, "Uh oh!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public static void Load(string path)
         {
-            if (!File.Exists(path))
+            if (File.Exists(path))
+            {
+                var jsonDoc = File.ReadAllText(path);
+                _favoriteGames = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
+            }
+            else
             {
                 Save(path);
                 return;
             }
-            var jsonDoc = File.ReadAllText(path);
-            _favoriteGames = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
         }
 
         public static void Remove(string path, string item)
@@ -44,20 +60,14 @@ namespace BorderlessGaming
             Save(path);
         }
 
-        public static bool canAdd(string item)
+        public static bool CanAdd(string item)
         {
-            if (_favoriteGames.Contains(item))
-            {
-                return false;
-            }
-            return true;
+            return !_favoriteGames.Contains(item);
         }
 
-        public static List<string> List
+        public static bool CanRemove(string item)
         {
-            get { return _favoriteGames; }
+            return _favoriteGames.Contains(item);
         }
-
-        private static List<string> _favoriteGames;
     }
 }

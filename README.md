@@ -6,7 +6,11 @@ Borderless Gaming is a simple tool that will allow you to turn your windowed vid
 The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github.com/Codeusa/Borderless-Gaming/blob/master/LICENSE).
 
 
-![Image](http://i.imgur.com/5sv2WEM.png)
+![Image](http://i.imgur.com/raYobk3.png)
+
+![Image](http://i.imgur.com/JZ1malK.jpg)
+
+![Image](http://i.imgur.com/kRmOysJ.jpg)
 
 ## How to install and run Borderless-Gaming
 
