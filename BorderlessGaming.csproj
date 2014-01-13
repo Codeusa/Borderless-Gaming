@@ -79,6 +79,7 @@
       <DependentUpon>Borderless.cs</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Borderless.resx">

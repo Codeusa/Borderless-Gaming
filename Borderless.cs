@@ -11,14 +11,15 @@ using System.Windows.Forms;
 
 namespace BorderlessGaming
 {
+
     public partial class Borderless : Form
     {
         #region SHIT CODE
 
         #region Delegates
 
-        public delegate bool WindowEnumCallback(int hwnd, int lparam);
 
+        
         #endregion
 
         public static readonly Int32
@@ -71,52 +72,18 @@ namespace BorderlessGaming
         private string _selectedProcessName;
         private string _selectedFavoriteProcess;
 
-        [DllImport("USER32.DLL")]
-        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        //Sets a window to be a child window of another window
-        [DllImport("USER32.DLL")]
-        public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
-
-        //Sets window attributes
-        [DllImport("USER32.DLL")]
-        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
-        //Gets window attributes
-        [DllImport("USER32.DLL")]
-        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
-        private static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetMenu(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        private static extern int GetMenuItemCount(IntPtr hMenu);
-
-        [DllImport("user32.dll")]
-        private static extern bool DrawMenuBar(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        private static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
-
-        [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
-        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int Y, int cx, int cy,
-            int wFlags);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool EnumWindows(WindowEnumCallback lpEnumFunc, int lParam);
-
-        [DllImport("user32.dll")]
-        public static extern void GetWindowText(int h, StringBuilder s, int nMaxCount);
-
-        [DllImport("user32.dll")]
-        public static extern bool IsWindowVisible(int h);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowText(IntPtr hWnd, string text);
+        /// <summary>
+       /// The MoveWindow function changes the position and dimensions of the specified window. For a top-level window, the position and dimensions are relative to the upper-left corner of the screen. For a child window, they are relative to the upper-left corner of the parent window's client area.
+       /// </summary>
+       /// <param name="hWnd">Handle to the window.</param>
+       /// <param name="X">Specifies the new position of the left side of the window.</param>
+       /// <param name="Y">Specifies the new position of the top of the window.</param>
+       /// <param name="nWidth">Specifies the new width of the window.</param>
+       /// <param name="nHeight">Specifies the new height of the window.</param>
+       /// <param name="bRepaint">Specifies whether the window is to be repainted. If this parameter is TRUE, the window receives a message. If the parameter is FALSE, no repainting of any kind occurs. This applies to the client area, the nonclient area (including the title bar and scroll bars), and any part of the parent window uncovered as a result of moving a child window.</param>
+       /// <returns>If the function succeeds, the return value is nonzero.
+       /// <para>If the function fails, the return value is zero. To get extended error information, call GetLastError.</para></returns>
+      
 
         #endregion
 
@@ -215,7 +182,7 @@ namespace BorderlessGaming
             {
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
-                    SetWindowText(process.MainWindowHandle, process.ProcessName);
+                    Native.SetWindowText(process.MainWindowHandle, process.ProcessName);
                 }
                 if (process.MainWindowTitle.Length <= 0) continue;
                 _processDataList.Add(process.ProcessName);
@@ -239,36 +206,51 @@ namespace BorderlessGaming
 
                 if (!proc.ProcessName.Equals(procName)) continue;
                 var pFoundWindow = proc.MainWindowHandle;
-                var style = GetWindowLong(pFoundWindow, GWL_STYLE);
+                var style = Native.GetWindowLong(pFoundWindow, GWL_STYLE);
 
                 //get menu
-                var HMENU = GetMenu(proc.MainWindowHandle);
+                var HMENU = Native.GetMenu(proc.MainWindowHandle);
                 //get item count
-                var count = GetMenuItemCount(HMENU);
+                var count = Native.GetMenuItemCount(HMENU);
                 //loop & remove
                 for (var i = 0; i < count; i++)
                 {
-                    RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-                    RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
+                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
+                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
                 }
 
                 //force a redraw
-                DrawMenuBar(proc.MainWindowHandle);
-                SetWindowLong(pFoundWindow, GWL_STYLE,
+                Native.DrawMenuBar(proc.MainWindowHandle);
+                Native.SetWindowLong(pFoundWindow, GWL_STYLE,
                     (style &
-                     ~(WS_EX_DLGMODALFRAME | WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU |
-                       WS_MAXIMIZEBOX |
-                       WS_MINIMIZEBOX))); //thanks http://www.reddit.com/user/randomName412
+                     ~(WindowStyleFlags.ExtendedDlgmodalframe
+                     | WindowStyleFlags.Caption 
+                     | WindowStyleFlags.ThickFrame
+                     | WindowStyleFlags.Minimize
+                     | WindowStyleFlags.Maximize
+                     | WindowStyleFlags.SystemMenu
+                     | WindowStyleFlags.MaximizeBox
+                     | WindowStyleFlags.MinimizeBox
+                     | WindowStyleFlags.Border
+                     | WindowStyleFlags.ExtendedComposited)));
 
 
-                //   GetWindowLong(pFoundWindow, GWL_EXSTYLE) & ~WS_EX_DLGMODALFRAME);
-
-                SetWindowPos(pFoundWindow, 0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
+                var bounds = Screen.PrimaryScreen.Bounds;
+                Native.SetWindowPos(pFoundWindow, 0, 0, 0, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW); //no more outside window
+            //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
                 //resets window to main monitor 
                 _gameFound = true;
             }
 
             _gameFound = false;
+        }
+
+        private static void CheckNativeResult(Func<bool> target)
+        {
+            if (!target())
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
         }
 
         private void ProcessListSelectedIndexChanged(object sender, EventArgs e)
