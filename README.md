@@ -50,4 +50,4 @@ Feel free to contact me on my
 
 * **Twitter:** [@CodeusaSoftware](https://twitter.com/codeusasoftware)
 * **Blog:** [andrew.codeusa.net](http://andrew.codeusa.net)
-* **Youtube:** [Youtube Channel](http://www.youtube.com/channel/codeusasoftware)
+* **Youtube:** [Youtube Channel](http://www.youtube.com/codeusasoftware)
