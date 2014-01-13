@@ -1,7 +1,7 @@
 ﻿// ****************************************
 // Assembly : WindowUtility
 // File     : Native.cs
-// Author   : Alex
+// Author   : Alex && Andrew
 // Created  : 12/01/2014
 // Modified : 13/01/2014
 // ****************************************
