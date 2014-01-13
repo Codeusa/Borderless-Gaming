@@ -16,7 +16,7 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 
 #### Install
 
-Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/tag/4.2
+Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/tag/4.3
 
 
 Extract its contents to any desired folder
