@@ -146,11 +146,13 @@ namespace BorderlessGaming.Forms
 
                 //force a redraw
                 Native.DrawMenuBar(proc.MainWindowHandle);
+                
                 Native.SetWindowLong(pFoundWindow, WindowLongIndex.Style, (style & ~(WindowStyleFlags.ExtendedDlgmodalframe | WindowStyleFlags.Caption | WindowStyleFlags.ThickFrame | WindowStyleFlags.Minimize | WindowStyleFlags.Maximize | WindowStyleFlags.SystemMenu | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited)));
                 if (!_borderlessWindows.Contains(pFoundWindow.ToInt32().ToString()))
                 {
                     var bounds = Screen.FromHandle(pFoundWindow).Bounds;
                     Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
+                   _borderlessWindows.Add(pFoundWindow.ToInt32().ToString());
                 }
                 _gameFound = true;
             }
