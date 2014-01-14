@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using BorderlessGaming.WindowsApi;
 
 namespace BorderlessGaming
 {
-    public partial class Borderless : Form
+    public partial class CompactWindow : Form
     {
-        #region SHIT CODE
-
         private const int SW_SHOW = 0x05;
         private const int WS_EX_APPWINDOW = 0x40000;
         private const int GWL_EXSTYLE = -0x14; //never want to hunt this down again
@@ -35,9 +37,7 @@ namespace BorderlessGaming
         private string _selectedProcessName;
         private BackgroundWorker _worker;
 
-        #endregion
-
-        public Borderless()
+        public CompactWindow()
         {
             InitializeComponent();
             CenterToScreen();
@@ -46,6 +46,7 @@ namespace BorderlessGaming
             if (favoritesList == null) return;
             favoritesList.DataSource = Favorites.List;
         }
+
 
 
         private void ListenForGameLaunch()
@@ -80,7 +81,7 @@ namespace BorderlessGaming
             var windowText = "";
             while (true)
             {
-                processList.Invoke((MethodInvoker) delegate
+                processList.Invoke((MethodInvoker)delegate
                 {
                     //Code to modify control will go here
                     processList.DataSource = null;
@@ -207,14 +208,6 @@ namespace BorderlessGaming
             }
 
             _gameFound = false;
-        }
-
-        private static void CheckNativeResult(Func<bool> target)
-        {
-            if (!target())
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
         }
 
         private void ProcessListSelectedIndexChanged(object sender, EventArgs e)

@@ -1,6 +1,6 @@
-﻿namespace BorderlessGaming
+﻿namespace BorderlessGaming.Forms
 {
-    partial class Borderless
+    partial class CompactWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Borderless));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompactWindow));
             this.makeBorderlessButton = new System.Windows.Forms.Button();
             this.selectedProcess = new System.Windows.Forms.Label();
             this.processList = new System.Windows.Forms.ListBox();
@@ -206,7 +206,7 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.TrayIconExit);
             // 
-            // Borderless
+            // CompactWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -223,10 +223,9 @@
             this.Controls.Add(this.selectedProcess);
             this.Controls.Add(this.makeBorderlessButton);
             this.Controls.Add(this.processList);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(351, 234);
-            this.Name = "Borderless";
+            this.Name = "CompactWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Borderless Gaming";
             this.trayIconContextMenu.ResumeLayout(false);
@@ -256,4 +255,3 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
-

@@ -72,19 +72,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Borderless.cs">
+    <Compile Include="CompactWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Borderless.Designer.cs">
-      <DependentUpon>Borderless.cs</DependentUpon>
+    <Compile Include="CompactWindow.Designer.cs">
+      <DependentUpon>CompactWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs" />
-    <Compile Include="NativeMethods.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Borderless.resx">
-      <DependentUpon>Borderless.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <Compile Include="Tools\Tools.cs" />
+    <Compile Include="WindowsApi\Enumerations.cs" />
+    <Compile Include="WindowsApi\Native.cs" />
+    <Compile Include="WindowsApi\WindowWrapper.cs" />
+    <EmbeddedResource Include="CompactWindow.resx">
+      <DependentUpon>CompactWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
