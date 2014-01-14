@@ -14,6 +14,11 @@ namespace BorderlessGaming.Utilities
 {
     public static class Tools
     {
+
+        public static void GotoSite(string url) //open url
+        {
+            Process.Start(url);
+        }
         private static void CheckLastError(Expression<Func<bool>> assertionExpression)
         {
             if (!assertionExpression.Compile()())
