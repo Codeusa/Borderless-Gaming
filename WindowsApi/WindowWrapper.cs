@@ -25,7 +25,7 @@ namespace BorderlessGaming.WindowsApi
                     throw new Win32Exception(Marshal.GetLastWin32Error());
                 }
             }
-        }
+        } //lol
 
         public string Module { get; set; }
 
