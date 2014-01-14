@@ -25,6 +25,7 @@ namespace BorderlessGaming.Forms
             InitializeComponent();
             CenterToScreen();
             PopulateList();
+            
             ListenForGameLaunch();
             if (favoritesList == null)
             {
