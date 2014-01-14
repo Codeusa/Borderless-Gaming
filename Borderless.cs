@@ -185,14 +185,20 @@ namespace BorderlessGaming
                        | WindowStyleFlags.ExtendedComposited)));
 
 
-                var bounds = Screen.PrimaryScreen.Bounds;
+                //Get the screen bounds from the screen the window is currently active on.  
+                //If on multiple screens it will grab bounds from the screen it is most on.  
+                //If not on any screen it grabs bounds from the screen closest
+                var bounds = Screen.FromHandle(pFoundWindow).Bounds;
+                
                 if (!_borderlessWindows.Contains(pFoundWindow.ToInt32().ToString()))
                 {
-                    Native.SetWindowPos(pFoundWindow, 0, 0, 0, bounds.Width, bounds.Height,
-                        SWP_NOZORDER | SWP_SHOWWINDOW);
+                    //Using bounds.X and bounds.Y instead of 0, 0 so it will orient the window 
+                    //on the screen it is currently occupying instead of using the primary screen
+                    Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW);
                     _borderlessWindows.Add(pFoundWindow.ToInt32().ToString());
                 } //today I learn the definition of a hot fix
-
+                
+                
                 //no more outside window
                 //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
                 //resets window to main monito
