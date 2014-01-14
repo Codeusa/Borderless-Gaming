@@ -7,7 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.WindowsApi;
 
-namespace BorderlessGaming
+namespace BorderlessGaming.Forms
 {
     public partial class MainWindow : Form
     {

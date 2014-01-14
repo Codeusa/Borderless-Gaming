@@ -1,6 +1,11 @@
 # Borderless-Gaming
 > "Open source light weight, portable fake fullscreen app"
 
+# Join our Steam Group!
+[Borderless Gaming on Steam](http://steamcommunity.com/groups/borderless-gaming)
+
+
+# What is this?
 Borderless Gaming is a simple tool that will allow you to turn your windowed video games into "fullscreen" applications without all of the negative side effects
 
 The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github.com/Codeusa/Borderless-Gaming/blob/master/LICENSE).
@@ -16,7 +21,7 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 
 #### Install
 
-Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/tag/4.2
+Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/tag/4.3
 
 
 Extract its contents to any desired folder
@@ -44,4 +49,4 @@ Feel free to contact me on my
 
 * **Twitter:** [@CodeusaSoftware](https://twitter.com/codeusasoftware)
 * **Blog:** [andrew.codeusa.net](http://andrew.codeusa.net)
-* **Youtube:** [Youtube Channel](http://www.youtube.com/channel/codeusasoftware)
+* **Youtube:** [Youtube Channel](http://www.youtube.com/codeusasoftware)

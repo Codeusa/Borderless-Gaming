@@ -1,4 +1,4 @@
-﻿namespace BorderlessGaming
+﻿namespace BorderlessGaming.Forms
 {
     partial class CompactWindow
     {

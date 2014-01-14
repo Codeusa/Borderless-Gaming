@@ -1,4 +1,4 @@
-﻿namespace BorderlessGaming
+﻿namespace BorderlessGaming.Forms
 {
     partial class MainWindow
     {
@@ -47,11 +47,11 @@
             this.lblWindowWatch = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabActive = new System.Windows.Forms.TabPage();
-            this.tabFave = new System.Windows.Forms.TabPage();
             this.lstAttributes = new System.Windows.Forms.ListBox();
             this.processLabel = new System.Windows.Forms.Label();
             this.makeBorderlessButton = new System.Windows.Forms.Button();
             this.processList = new System.Windows.Forms.ListBox();
+            this.tabFave = new System.Windows.Forms.TabPage();
             this.favoritesLabel = new System.Windows.Forms.Label();
             this.favoritesList = new System.Windows.Forms.ListBox();
             this.trayIconContextMenu.SuspendLayout();
@@ -107,7 +107,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MinimumSize = new System.Drawing.Size(0, 31);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(584, 31);
+            this.menuStrip.Size = new System.Drawing.Size(514, 31);
             this.menuStrip.TabIndex = 15;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -148,7 +148,7 @@
             this.lblWindowWatch});
             this.statusStrip.Location = new System.Drawing.Point(0, 469);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(584, 22);
+            this.statusStrip.Size = new System.Drawing.Size(514, 22);
             this.statusStrip.TabIndex = 16;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -190,7 +190,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(584, 438);
+            this.tabControl1.Size = new System.Drawing.Size(514, 438);
             this.tabControl1.TabIndex = 18;
             // 
             // tabActive
@@ -202,28 +202,16 @@
             this.tabActive.Location = new System.Drawing.Point(4, 22);
             this.tabActive.Name = "tabActive";
             this.tabActive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabActive.Size = new System.Drawing.Size(576, 412);
+            this.tabActive.Size = new System.Drawing.Size(506, 412);
             this.tabActive.TabIndex = 0;
             this.tabActive.Text = "Active";
             this.tabActive.UseVisualStyleBackColor = true;
-            // 
-            // tabFave
-            // 
-            this.tabFave.Controls.Add(this.favoritesLabel);
-            this.tabFave.Controls.Add(this.favoritesList);
-            this.tabFave.Location = new System.Drawing.Point(4, 22);
-            this.tabFave.Name = "tabFave";
-            this.tabFave.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFave.Size = new System.Drawing.Size(576, 412);
-            this.tabFave.TabIndex = 1;
-            this.tabFave.Text = "Favorites";
-            this.tabFave.UseVisualStyleBackColor = true;
             // 
             // lstAttributes
             // 
             this.lstAttributes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstAttributes.FormattingEnabled = true;
-            this.lstAttributes.Location = new System.Drawing.Point(415, 27);
+            this.lstAttributes.Location = new System.Drawing.Point(345, 27);
             this.lstAttributes.Name = "lstAttributes";
             this.lstAttributes.Size = new System.Drawing.Size(155, 212);
             this.lstAttributes.TabIndex = 22;
@@ -241,7 +229,7 @@
             // makeBorderlessButton
             // 
             this.makeBorderlessButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.makeBorderlessButton.Location = new System.Drawing.Point(415, 245);
+            this.makeBorderlessButton.Location = new System.Drawing.Point(345, 245);
             this.makeBorderlessButton.Name = "makeBorderlessButton";
             this.makeBorderlessButton.Size = new System.Drawing.Size(155, 23);
             this.makeBorderlessButton.TabIndex = 19;
@@ -250,11 +238,26 @@
             // 
             // processList
             // 
+            this.processList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.processList.FormattingEnabled = true;
             this.processList.Location = new System.Drawing.Point(6, 27);
             this.processList.Name = "processList";
-            this.processList.Size = new System.Drawing.Size(403, 368);
+            this.processList.Size = new System.Drawing.Size(333, 368);
             this.processList.TabIndex = 18;
+            // 
+            // tabFave
+            // 
+            this.tabFave.Controls.Add(this.favoritesLabel);
+            this.tabFave.Controls.Add(this.favoritesList);
+            this.tabFave.Location = new System.Drawing.Point(4, 22);
+            this.tabFave.Name = "tabFave";
+            this.tabFave.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFave.Size = new System.Drawing.Size(576, 412);
+            this.tabFave.TabIndex = 1;
+            this.tabFave.Text = "Favorites";
+            this.tabFave.UseVisualStyleBackColor = true;
             // 
             // favoritesLabel
             // 
@@ -274,11 +277,11 @@
             this.favoritesList.Size = new System.Drawing.Size(403, 368);
             this.favoritesList.TabIndex = 14;
             // 
-            // Borderless
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 491);
+            this.ClientSize = new System.Drawing.Size(514, 491);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
@@ -286,7 +289,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(530, 530);
-            this.Name = "Borderless";
+            this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Borderless Gaming";
             this.trayIconContextMenu.ResumeLayout(false);
