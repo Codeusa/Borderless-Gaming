@@ -225,7 +225,8 @@
             this.Controls.Add(this.processList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(351, 234);
+            this.MaximumSize = new System.Drawing.Size(573, 257);
+            this.MinimumSize = new System.Drawing.Size(573, 257);
             this.Name = "CompactWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Borderless Gaming";

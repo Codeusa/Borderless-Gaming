@@ -192,7 +192,10 @@ namespace BorderlessGaming.Forms
 
         private void UpdateList() // sets data sources
         {
-            processList.DataSource = _processDataList;
+
+            processList.DataSource = _processDataList.OrderBy(x => x).ToList();
+          
+
         }
 
         private void workerTimer_Tick(object sender, EventArgs e)
