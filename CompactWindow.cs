@@ -126,17 +126,24 @@ namespace BorderlessGaming
             processList.DataSource = _tempList;
             var processlist = Process.GetProcesses();
 
-            foreach (
-                var process in
-                    processlist.Where(process => process != null)
-                        .Where(process => !process.ProcessName.Equals("explorer")))
+            foreach (var process in processlist)
             {
+                if (process == null)
+                {
+                    continue;
+                }
+                if (process.ProcessName.Equals("explorer"))
+                {
+                    continue;
+                }
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
                     Native.SetWindowText(process.MainWindowHandle, process.ProcessName);
                 }
-                if (process.MainWindowTitle.Length <= 0) continue;
-                _processDataList.Add(process.ProcessName);
+                if (process.MainWindowTitle.Length > 0)
+                {
+                    _processDataList.Add(process.ProcessName);
+                }
             }
 
 
@@ -190,7 +197,7 @@ namespace BorderlessGaming
                 //If on multiple screens it will grab bounds from the screen it is most on.  
                 //If not on any screen it grabs bounds from the screen closest
                 var bounds = Screen.FromHandle(pFoundWindow).Bounds;
-                
+
                 if (!_borderlessWindows.Contains(pFoundWindow.ToInt32().ToString()))
                 {
                     //Using bounds.X and bounds.Y instead of 0, 0 so it will orient the window 
@@ -198,8 +205,8 @@ namespace BorderlessGaming
                     Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SWP_NOZORDER | SWP_SHOWWINDOW);
                     _borderlessWindows.Add(pFoundWindow.ToInt32().ToString());
                 } //today I learn the definition of a hot fix
-                
-                
+
+
                 //no more outside window
                 //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
                 //resets window to main monito
