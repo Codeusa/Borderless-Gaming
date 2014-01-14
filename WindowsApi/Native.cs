@@ -6,7 +6,11 @@ namespace BorderlessGaming.WindowsApi
 {
     public static class Native
     {
+        #region Delegates
+
         public delegate bool EnumWindowsProc(IntPtr hwnd, int lParam);
+
+        #endregion
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder title, int size);
@@ -70,7 +74,6 @@ namespace BorderlessGaming.WindowsApi
         public static extern bool DrawMenuBar(IntPtr hWnd);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
         public static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, MenuFlags uFlags);
 
         [DllImport("user32.dll", SetLastError = true)]

@@ -101,15 +101,21 @@ namespace BorderlessGaming.Forms
         {
             _tempList.Add("Refreshing...");
             processList.DataSource = _tempList;
-            Process.GetProcesses().Where(proc => !proc.ProcessName.Equals("explorer")).ToList().ForEach(process =>
+            var processlist = Process.GetProcesses();
+
+            foreach (var process in
+                processlist.Where(process => process != null && !process.ProcessName.Equals("explorer")))
             {
+                if (String.IsNullOrEmpty(process.MainWindowTitle))
+                {
+                    Native.SetWindowText(process.MainWindowHandle, process.ProcessName);
+                }
                 if (process.MainWindowTitle.Length <= 0)
                 {
-                    return;
+                    continue;
                 }
-
                 _processDataList.Add(process.ProcessName);
-            });
+            }
 
             UpdateList();
         }

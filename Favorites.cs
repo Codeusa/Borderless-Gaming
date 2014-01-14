@@ -35,8 +35,7 @@ namespace BorderlessGaming
             }
             catch (Exception e)
             {
-                MessageBox.Show("Unable to save favorites, do you have permission?" + e.Message, "Uh oh!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to save favorites, do you have permission?" + e.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

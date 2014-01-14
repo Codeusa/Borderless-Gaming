@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BorderlessGaming</RootNamespace>
     <AssemblyName>BorderlessGaming</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -57,11 +57,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,29 +73,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompactWindow.cs">
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Forms\CompactWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompactWindow.Designer.cs">
+    <Compile Include="Forms\CompactWindow.Designer.cs">
       <DependentUpon>CompactWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs" />
-    <Compile Include="MainWindow.cs">
+    <Compile Include="Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Tools.cs" />
+    <Compile Include="Utilities\DynamicMap.cs" />
+    <Compile Include="Utilities\ExceptionHandler.cs" />
+    <Compile Include="Utilities\Settings.cs" />
+    <Compile Include="Utilities\Tools.cs" />
+    <Compile Include="Utilities\Trace.cs" />
     <Compile Include="WindowsApi\Enumerations.cs" />
     <Compile Include="WindowsApi\Native.cs" />
     <Compile Include="WindowsApi\WindowWrapper.cs" />
-    <EmbeddedResource Include="CompactWindow.resx">
+    <EmbeddedResource Include="Forms\CompactWindow.resx">
       <DependentUpon>CompactWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,9 +113,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -11,19 +11,6 @@ namespace BorderlessGaming.Forms
 {
     public partial class CompactWindow : Form
     {
-        private const int SW_SHOW = 0x05;
-        private const int WS_EX_APPWINDOW = 0x40000;
-        private const int GWL_EXSTYLE = -0x14; //never want to hunt this down again
-        private const int WS_EX_DLGMODALFRAME = 0x0001;
-        private const int WS_EX_TOOLWINDOW = 0x0080;
-        private const short SWP_NOMOVE = 0X2;
-        private const short SWP_NOSIZE = 1;
-        private const short SWP_NOZORDER = 0X4;
-        private const int SWP_SHOWWINDOW = 0x0040;
-
-        public static uint MF_BYPOSITION = 0x400;
-        public static uint MF_REMOVE = 0x1000;
-        public static int GWL_STYLE = -16;
         private readonly List<string> _borderlessWindows = new List<string>();
         private readonly List<string> _processDataList = new List<string>();
         private readonly List<string> _tempList = new List<string>();
@@ -149,30 +136,20 @@ namespace BorderlessGaming.Forms
                     continue;
                 }
                 var pFoundWindow = proc.MainWindowHandle;
-                var style = Native.GetWindowLong(pFoundWindow, GWL_STYLE);
-
-                //get menu
+                var style = Native.GetWindowLong(pFoundWindow, WindowLongIndex.Style);
                 var HMENU = Native.GetMenu(proc.MainWindowHandle);
-                //get item count
                 var count = Native.GetMenuItemCount(HMENU);
-                //loop & remove
                 for (var i = 0; i < count; i++)
                 {
-                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
+                    Native.RemoveMenu(HMENU, 0, MenuFlags.ByPosition | MenuFlags.Remove);
                 }
 
                 //force a redraw
                 Native.DrawMenuBar(proc.MainWindowHandle);
-                Native.SetWindowLong(pFoundWindow, GWL_STYLE, (style & ~(WindowStyleFlags.ExtendedDlgmodalframe | WindowStyleFlags.Caption | WindowStyleFlags.ThickFrame | WindowStyleFlags.Minimize | WindowStyleFlags.Maximize | WindowStyleFlags.SystemMenu | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited)));
+                Native.SetWindowLong(pFoundWindow, WindowLongIndex.Style, (style & ~(WindowStyleFlags.ExtendedDlgmodalframe | WindowStyleFlags.Caption | WindowStyleFlags.ThickFrame | WindowStyleFlags.Minimize | WindowStyleFlags.Maximize | WindowStyleFlags.SystemMenu | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited)));
 
                 var bounds = Screen.FromHandle(pFoundWindow).Bounds;
                 Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
-
-                //no more outside window
-                //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
-                //resets window to main monito
-
                 _gameFound = true;
             }
 
