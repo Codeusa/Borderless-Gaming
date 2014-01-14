@@ -79,7 +79,7 @@ namespace BorderlessGaming
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Borderless());
+            Application.Run(new CompactWindow());
         }
     }
 }

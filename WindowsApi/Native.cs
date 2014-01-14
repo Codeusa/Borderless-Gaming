@@ -71,6 +71,7 @@ namespace BorderlessGaming.WindowsApi
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
+        public static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, MenuFlags uFlags);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags wFlags);

@@ -87,6 +87,13 @@ namespace BorderlessGaming.WindowsApi
         ShowWindow = 0x0040
     }
 
+    [Flags]
+    public enum MenuFlags
+    {
+        ByPosition = 0x00000400,
+        Remove = 0x00001000
+    }
+
     public enum WindowLongIndex
     {
         ExtendedStyle = -20,

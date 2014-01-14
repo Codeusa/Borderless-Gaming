@@ -3,60 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.WindowsApi;
 
 namespace BorderlessGaming
 {
-    public partial class Borderless : Form
+    public partial class MainWindow : Form
     {
-        #region SHIT CODE
-
-        private const int SW_SHOW = 0x05;
-        private const int WS_EX_APPWINDOW = 0x40000;
-        private const int GWL_EXSTYLE = -0x14; //never want to hunt this down again
-        private const int WS_EX_DLGMODALFRAME = 0x0001;
-        private const int WS_EX_TOOLWINDOW = 0x0080;
-        private const short SWP_NOMOVE = 0X2;
-        private const short SWP_NOSIZE = 1;
-        private const short SWP_NOZORDER = 0X4;
-        private const int SWP_SHOWWINDOW = 0x0040;
-
-        public static readonly Int32
-            WS_BORDER = 0x00800000,
-            WS_CAPTION = 0x00C00000,
-            WS_CHILD = 0x40000000,
-            WS_CHILDWINDOW = 0x40000000,
-            WS_CLIPCHILDREN = 0x02000000,
-            WS_CLIPSIBLINGS = 0x04000000,
-            WS_DISABLED = 0x08000000,
-            WS_DLGFRAME = 0x00400000,
-            WS_GROUP = 0x00020000,
-            WS_HSCROLL = 0x00100000,
-            WS_ICONIC = 0x20000000,
-            WS_MAXIMIZE = 0x01000000,
-            WS_MAXIMIZEBOX = 0x00010000,
-            WS_MINIMIZE = 0x20000000,
-            WS_MINIMIZEBOX = 0x00020000,
-            WS_OVERLAPPED = 0x00000000,
-            WS_OVERLAPPEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX |
-                                  WS_MAXIMIZEBOX,
-            WS_POPUP = unchecked((int) 0x80000000),
-            WS_POPUPWINDOW = WS_POPUP | WS_BORDER | WS_SYSMENU,
-            WS_SIZEBOX = 0x00040000,
-            WS_SYSMENU = 0x00080000,
-            WS_TABSTOP = 0x00010000,
-            WS_THICKFRAME = 0x00040000,
-            WS_TILED = 0x00000000,
-            WS_TILEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
-            WS_VISIBLE = 0x10000000,
-            WS_VSCROLL = 0x00200000;
-
-        public static uint MF_BYPOSITION = 0x400;
-        public static uint MF_REMOVE = 0x1000;
-        public static int GWL_STYLE = -16;
         private readonly List<string> _processDataList = new List<string>();
         private readonly List<string> _tempList = new List<string>();
         private IntPtr _formHandle;
@@ -65,18 +19,18 @@ namespace BorderlessGaming
         private string _selectedProcessName;
         private BackgroundWorker _worker;
 
-        #endregion
-
-        public Borderless()
+        public MainWindow()
         {
             InitializeComponent();
             CenterToScreen();
             PopulateList();
             ListenForGameLaunch();
-            if (favoritesList == null) return;
+            if (favoritesList == null)
+            {
+                return;
+            }
             favoritesList.DataSource = Favorites.List;
         }
-
 
         private void ListenForGameLaunch()
         {
@@ -87,18 +41,14 @@ namespace BorderlessGaming
             _worker.RunWorkerCompleted += _BackgroundWorkCompleted;
 
             if (workerTimer != null)
+            {
                 workerTimer.Start();
+            }
         }
 
         public static IntPtr FindWindowHandle(string processName, IntPtr ignoreHandle)
         {
-            var process =
-                Process.GetProcesses()
-                    .FirstOrDefault(
-                        p =>
-                            p != null && p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) &&
-                            p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != ignoreHandle &&
-                            !string.IsNullOrEmpty(p.MainWindowTitle));
+            var process = Process.GetProcesses().FirstOrDefault(p => p != null && p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) && p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != ignoreHandle && !string.IsNullOrEmpty(p.MainWindowTitle));
 
             return process != null ? process.MainWindowHandle : IntPtr.Zero;
         }
@@ -119,7 +69,6 @@ namespace BorderlessGaming
                     _processDataList.Clear();
                     PopulateList();
                 });
-
 
                 Favorites.List.ForEach(wndName =>
                 {
@@ -145,34 +94,25 @@ namespace BorderlessGaming
 
         private void _BackgroundWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (!IsDisposed)
-            {
-            }
+            if (!IsDisposed) { }
         }
 
         private void PopulateList() //Adds active windows to the processDataList
         {
             _tempList.Add("Refreshing...");
             processList.DataSource = _tempList;
-            var processlist = Process.GetProcesses();
-
-            foreach (
-                var process in
-                    processlist.Where(process => process != null)
-                        .Where(process => !process.ProcessName.Equals("explorer")))
+            Process.GetProcesses().Where(proc => !proc.ProcessName.Equals("explorer")).ToList().ForEach(process =>
             {
-                if (String.IsNullOrEmpty(process.MainWindowTitle))
+                if (process.MainWindowTitle.Length <= 0)
                 {
-                    Native.SetWindowText(process.MainWindowHandle, process.ProcessName);
+                    return;
                 }
-                if (process.MainWindowTitle.Length <= 0) continue;
-                _processDataList.Add(process.ProcessName);
-            }
 
+                _processDataList.Add(process.ProcessName);
+            });
 
             UpdateList();
         }
-
 
         private void RemoveBorder(String procName) //actually make it frameless
         {
@@ -185,9 +125,12 @@ namespace BorderlessGaming
                     return;
                 }
 
-                if (!proc.ProcessName.Equals(procName)) continue;
+                if (!proc.ProcessName.Equals(procName))
+                {
+                    continue;
+                }
                 var pFoundWindow = proc.MainWindowHandle;
-                var style = Native.GetWindowLong(pFoundWindow, GWL_STYLE);
+                var style = Native.GetWindowLong(pFoundWindow, WindowLongIndex.Style);
 
                 //get menu
                 var HMENU = Native.GetMenu(proc.MainWindowHandle);
@@ -196,50 +139,28 @@ namespace BorderlessGaming
                 //loop & remove
                 for (var i = 0; i < count; i++)
                 {
-                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
-                    Native.RemoveMenu(HMENU, 0, (MF_BYPOSITION | MF_REMOVE));
+                    Native.RemoveMenu(HMENU, 0, MenuFlags.ByPosition | MenuFlags.Remove);
                 }
 
                 //force a redraw
                 Native.DrawMenuBar(proc.MainWindowHandle);
-                Native.SetWindowLong(pFoundWindow, GWL_STYLE,
-                    (style &
-                     ~(WindowStyleFlags.ExtendedDlgmodalframe
-                       | WindowStyleFlags.Caption
-                       | WindowStyleFlags.ThickFrame
-                       | WindowStyleFlags.Minimize
-                       | WindowStyleFlags.Maximize
-                       | WindowStyleFlags.SystemMenu
-                       | WindowStyleFlags.MaximizeBox
-                       | WindowStyleFlags.MinimizeBox
-                       | WindowStyleFlags.Border
-                       | WindowStyleFlags.ExtendedComposited)));
-
+                Native.SetWindowLong(pFoundWindow, WindowLongIndex.Style, (style & ~(WindowStyleFlags.ExtendedDlgmodalframe | WindowStyleFlags.Caption | WindowStyleFlags.ThickFrame | WindowStyleFlags.Minimize | WindowStyleFlags.Maximize | WindowStyleFlags.SystemMenu | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited)));
 
                 var bounds = Screen.PrimaryScreen.Bounds;
                 Native.SetWindowPos(pFoundWindow, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
-                //no more outside window
-                //    CheckNativeResult(() => Native.MoveWindow(pFoundWindow, 0, 0, bounds.Width, bounds.Height, true));
-                //resets window to main monito
                 _gameFound = true;
             }
 
             _gameFound = false;
         }
 
-        private static void CheckNativeResult(Func<bool> target)
-        {
-            if (!target())
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-        }
-
         private void ProcessListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            _selectedProcessName = processList.GetItemText(processList.SelectedItem);
-            selectedProcess.Text = _selectedProcessName + " is selected!";
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
+            Text = string.Format("Borderless Gaming - {0} is selected", processList.GetItemText(processList.SelectedItem));
         }
 
         private void MakeBorderless(object sender, EventArgs e)
@@ -251,7 +172,6 @@ namespace BorderlessGaming
         {
             GotoSite("http://andrew.codeusa.net/");
         }
-
 
         private void GitHubButtonClick(object sender, EventArgs e)
         {
@@ -270,7 +190,10 @@ namespace BorderlessGaming
 
         private void workerTimer_Tick(object sender, EventArgs e)
         {
-            if (_worker.IsBusy) return;
+            if (_worker.IsBusy)
+            {
+                return;
+            }
             _worker.RunWorkerAsync();
         }
 
@@ -278,8 +201,7 @@ namespace BorderlessGaming
         {
             if (_selectedProcessName == null || !Favorites.CanAdd(_selectedProcessName))
             {
-                MessageBox.Show("Unable to add " + _selectedProcessName + " already added!", "Uh oh!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to add " + _selectedProcessName + " already added!", "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -287,8 +209,7 @@ namespace BorderlessGaming
                 Favorites.Save("./Favorites.json");
                 favoritesList.DataSource = null;
                 favoritesList.DataSource = Favorites.List;
-                MessageBox.Show(_selectedProcessName + " added to favorites", "Victory!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(_selectedProcessName + " added to favorites", "Victory!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -297,13 +218,11 @@ namespace BorderlessGaming
             GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
         }
 
-
         private void RemoveFavoriteButton(object sender, EventArgs e)
         {
             if (_selectedFavoriteProcess == null || !Favorites.CanRemove(_selectedFavoriteProcess))
             {
-                MessageBox.Show("Unable to remove " + _selectedFavoriteProcess + " does not exist!", "Uh oh!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to remove " + _selectedFavoriteProcess + " does not exist!", "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -315,7 +234,10 @@ namespace BorderlessGaming
 
         private void FavoritesListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null)
+            {
+                throw new ArgumentNullException("e");
+            }
             _selectedFavoriteProcess = favoritesList.GetItemText(favoritesList.SelectedItem);
         }
 
@@ -329,7 +251,10 @@ namespace BorderlessGaming
             base.OnResize(e);
             //determine whether the cursor is in the taskbar because Microsoft 
             var cursorNotInBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
-            if (WindowState != FormWindowState.Minimized || !cursorNotInBar) return;
+            if (WindowState != FormWindowState.Minimized || !cursorNotInBar)
+            {
+                return;
+            }
             ShowInTaskbar = false;
             notifyIcon.Visible = true;
             //  notifyIcon.Icon = SystemIcons.Application;
