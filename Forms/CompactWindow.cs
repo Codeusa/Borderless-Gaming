@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.WindowsApi;
+using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Forms
 {
@@ -188,10 +189,7 @@ namespace BorderlessGaming.Forms
         }
 
 
-        public void GotoSite(string url) //open url
-        {
-            Process.Start(url);
-        }
+   
 
         private void UpdateList() // sets data sources
         {
@@ -283,7 +281,7 @@ namespace BorderlessGaming.Forms
 
         private void ReportBug(object sender, EventArgs e)
         {
-            GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
+            Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming/issues");
         }
 
 
@@ -302,17 +300,17 @@ namespace BorderlessGaming.Forms
 
         private void OpenPaypal(object sender, EventArgs e)
         {
-            GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
+            Tools.GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
         }
 
         private void OpenContextMenuBlog(object sender, EventArgs e)
         {
-            GotoSite("http://andrew.codeusa.net/");
+            Tools.GotoSite("http://andrew.codeusa.net/");
         }
 
         private void OpenContextMenuSourceCode(object sender, EventArgs e)
         {
-            GotoSite("https://github.com/Codeusa/Borderless-Gaming");
+            Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
         }
     }
 }
