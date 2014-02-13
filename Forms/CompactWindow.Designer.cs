@@ -82,6 +82,7 @@ namespace BorderlessGaming.Forms
             this.processList.Location = new System.Drawing.Point(15, 61);
             this.processList.Name = "processList";
             this.processList.Size = new System.Drawing.Size(200, 199);
+            this.processList.Sorted = true;
             this.processList.TabIndex = 0;
             this.processList.SelectedIndexChanged += new System.EventHandler(this.ProcessListSelectedIndexChanged);
             // 
@@ -106,6 +107,7 @@ namespace BorderlessGaming.Forms
             this.favoritesList.Location = new System.Drawing.Point(343, 61);
             this.favoritesList.Name = "favoritesList";
             this.favoritesList.Size = new System.Drawing.Size(200, 199);
+            this.favoritesList.Sorted = true;
             this.favoritesList.TabIndex = 10;
             this.favoritesList.SelectedIndexChanged += new System.EventHandler(this.FavoritesListSelectedIndexChanged);
             // 
@@ -224,9 +226,8 @@ namespace BorderlessGaming.Forms
             // _startUpCheckBox
             // 
             this._startUpCheckBox.AutoSize = true;
-            this._startUpCheckBox.Location = new System.Drawing.Point(307, 8);
+            this._startUpCheckBox.Location = new System.Drawing.Point(293, 8);
             this._startUpCheckBox.Name = "_startUpCheckBox";
-            this._startUpCheckBox.Checked = AutoStart.CheckShortcut(Environment.SpecialFolder.Startup); 
             this._startUpCheckBox.Size = new System.Drawing.Size(100, 17);
             this._startUpCheckBox.TabIndex = 17;
             this._startUpCheckBox.Text = "Run On Startup";
@@ -237,7 +238,7 @@ namespace BorderlessGaming.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 268);
+            this.ClientSize = new System.Drawing.Size(557, 269);
             this.Controls.Add(this._startUpCheckBox);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.favoritesLabel);
