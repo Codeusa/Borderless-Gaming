@@ -15,7 +15,7 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 
 #### Install
 
-*Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/download/5.2/BorderlessGaming.zip
+*Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases
 
 *Extract its contents to any desired folder
 
