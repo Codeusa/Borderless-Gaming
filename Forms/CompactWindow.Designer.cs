@@ -1,4 +1,6 @@
-﻿namespace BorderlessGaming.Forms
+﻿using System;
+using Utilities;
+namespace BorderlessGaming.Forms
 {
     partial class CompactWindow
     {
@@ -49,6 +51,7 @@
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnBug = new System.Windows.Forms.ToolStripMenuItem();
+            this._startUpCheckBox = new System.Windows.Forms.CheckBox();
             this.trayIconContextMenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -191,14 +194,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OpenAboutForm);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.ExitApplication);
             // 
@@ -218,11 +221,24 @@
             this.btnBug.Text = "Report Bug";
             this.btnBug.Click += new System.EventHandler(this.ReportBug);
             // 
+            // _startUpCheckBox
+            // 
+            this._startUpCheckBox.AutoSize = true;
+            this._startUpCheckBox.Location = new System.Drawing.Point(307, 8);
+            this._startUpCheckBox.Name = "_startUpCheckBox";
+            this._startUpCheckBox.Checked = AutoStart.CheckShortcut(Environment.SpecialFolder.Startup); 
+            this._startUpCheckBox.Size = new System.Drawing.Size(100, 17);
+            this._startUpCheckBox.TabIndex = 17;
+            this._startUpCheckBox.Text = "Run On Startup";
+            this._startUpCheckBox.UseVisualStyleBackColor = true;
+            this._startUpCheckBox.CheckedChanged += new System.EventHandler(this._startUpCheckBox_CheckedChanged);
+            // 
             // CompactWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 268);
+            this.Controls.Add(this._startUpCheckBox);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.favoritesLabel);
             this.Controls.Add(this.processLabel);
@@ -234,9 +250,11 @@
             this.Controls.Add(this.processList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(573, 307);
+            this.MinimumSize = new System.Drawing.Size(573, 307);
             this.Name = "CompactWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Borderless Gaming";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.trayIconContextMenu.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -266,5 +284,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.CheckBox _startUpCheckBox;
     }
 }
