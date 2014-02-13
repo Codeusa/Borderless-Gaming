@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -47,6 +48,7 @@ namespace BorderlessGaming.Utilities
             }
         }
 
+    
         public static string AppFile(string fileName, params string[] folders)
         {
             var folderPath = Application.StartupPath + @"\";

@@ -9,7 +9,8 @@ using Newtonsoft.Json;
 
 namespace BorderlessGaming.Utilities
 {
-    public static class ExceptionHandler
+    public static class 
+        ExceptionHandler
     {
         public static void AddHandlers()
         {

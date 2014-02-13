@@ -7,6 +7,8 @@ using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.WindowsApi;
 using BorderlessGaming.Utilities;
+using Microsoft.Win32;
+using Utilities;
 
 namespace BorderlessGaming.Forms
 {
@@ -25,13 +27,15 @@ namespace BorderlessGaming.Forms
             InitializeComponent();
             CenterToScreen();
             PopulateList();
-            
             ListenForGameLaunch();
+
+
             if (favoritesList == null)
             {
                 return;
             }
-            favoritesList.DataSource = Favorites.List;
+            else
+                favoritesList.DataSource = Favorites.List;
         }
 
         private void ListenForGameLaunch()
@@ -71,9 +75,11 @@ namespace BorderlessGaming.Forms
                 processList.Invoke((MethodInvoker) delegate
                 {
                     //Code to modify control will go here
+
                     processList.DataSource = null;
                     processList.Items.Clear();
                     _processDataList.Clear();
+
                     PopulateList();
                 });
 
@@ -92,6 +98,7 @@ namespace BorderlessGaming.Forms
                 {
                     Thread.Sleep(2000);
                     RemoveBorder(windowText);
+
                     break;
                 }
 
@@ -111,8 +118,11 @@ namespace BorderlessGaming.Forms
             var processlist = Process.GetProcesses();
 
             foreach (var process in
-                processlist.Where(process => process != null).Where(process => !process.ProcessName.Equals("explorer")))
+                processlist.Where(process => process != null)
+                    .Where(process => !process.ProcessName.Equals("explorer"))
+                    .Where(process => !process.ProcessName.Equals("BorderlessGaming")))
             {
+
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
                     Native.SetWindowText(process.MainWindowHandle, process.ProcessName);
@@ -190,7 +200,7 @@ namespace BorderlessGaming.Forms
         }
 
 
-   
+
 
         private void UpdateList() // sets data sources
         {
@@ -253,12 +263,13 @@ namespace BorderlessGaming.Forms
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
+
             //determine whether the cursor is in the taskbar because Microsoft 
             var cursorNotInBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
-            if (WindowState != FormWindowState.Minimized || !cursorNotInBar)
+            /* if (WindowState != FormWindowState.Minimized || !cursorNotInBar)
             {
                 return;
-            }
+            }*/
             ShowInTaskbar = false;
             notifyIcon.Visible = true;
             //  notifyIcon.Icon = SystemIcons.Application;
@@ -266,6 +277,8 @@ namespace BorderlessGaming.Forms
             notifyIcon.ShowBalloonTip(2000);
             Hide();
         }
+
+
 
         private void TrayIconOpen(object sender, EventArgs e)
         {
@@ -313,5 +326,16 @@ namespace BorderlessGaming.Forms
         {
             Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
         }
-    }
+
+
+
+
+        private void _startUpCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+           
+                AutoStart.SetShortcut(_startUpCheckBox.Checked, Environment.SpecialFolder.Startup, "-silent");
+            }
+         
+        }
+
 }
