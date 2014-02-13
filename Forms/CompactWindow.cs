@@ -72,16 +72,7 @@ namespace BorderlessGaming.Forms
             var windowText = "";
             while (true)
             {
-                processList.Invoke((MethodInvoker) delegate
-                {
-                    //Code to modify control will go here
-
-                    processList.DataSource = null;
-                    processList.Items.Clear();
-                    _processDataList.Clear();
-
-                    PopulateList();
-                });
+                processList.Invoke((MethodInvoker) this.PopulateList);
 
                 Favorites.List.ForEach(wndName =>
                 {
@@ -116,6 +107,8 @@ namespace BorderlessGaming.Forms
         private void PopulateList() //Adds active windows to the processDataList
         {
             var processlist = Process.GetProcesses();
+            
+            _processDataList.Clear();
 
             foreach (var process in
                 processlist.Where(process => process != null)
@@ -191,7 +184,15 @@ namespace BorderlessGaming.Forms
                 throw new ArgumentNullException("e");
             }
             _selectedProcessName = processList.GetItemText(processList.SelectedItem);
-            selectedProcess.Text = _selectedProcessName + " is selected!";
+
+            if (string.IsNullOrEmpty(_selectedProcessName))
+            {
+                selectedProcess.Text = string.Empty;
+            }
+            else
+            {
+                selectedProcess.Text = _selectedProcessName + " is selected!";    
+            }
         }
 
         private void MakeBorderless(object sender, EventArgs e)
@@ -199,12 +200,23 @@ namespace BorderlessGaming.Forms
             RemoveBorder(_selectedProcessName);
         }
 
-
-
-
-        private void UpdateList() // sets data sources
+        private void UpdateList()
         {
-            processList.DataSource = _processDataList.OrderBy(x => x).ToList();
+            // prune closed processes
+            for (int i = processList.Items.Count - 1; i > 0; i--)
+            {
+                var process = processList.Items[i] as string;
+                if (!_processDataList.Contains(process)) processList.Items.RemoveAt(i);
+            }
+
+            // add new processes
+            foreach (var process in _processDataList)
+            {
+                if (!processList.Items.Contains(process))
+                {
+                    processList.Items.Add(process);
+                }
+            }
         }
 
         private void workerTimer_Tick(object sender, EventArgs e)
