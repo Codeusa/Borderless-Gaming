@@ -15,11 +15,11 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 
 #### Install
 
-*Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases
+- Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/latest
 
-*Extract its contents to any desired folder
+- Extract its contents to any desired folder
 
-*Run it
+- Run it
 
 #### Usage
 You can simply run the application and manually process games for borderless mode 

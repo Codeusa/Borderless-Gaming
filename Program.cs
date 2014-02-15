@@ -17,7 +17,6 @@ namespace BorderlessGaming
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Tools.CheckForUpdates();
-            //Settings.Initialize("Settings.json");
             Application.Run(new CompactWindow());
         }
     }
