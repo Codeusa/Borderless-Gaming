@@ -26,7 +26,7 @@ namespace Utilities
 
                     return true;
                 }
-                catch (Exception e)
+                catch
                 {
                 }
             }

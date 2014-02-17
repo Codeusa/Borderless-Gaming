@@ -4,21 +4,28 @@ using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Forms
 {
+    using System.Reflection;
+
     public partial class AboutForm : Form
     {
         public AboutForm()
         {
-            CenterToScreen();
             InitializeComponent();
         }
 
+        private void AboutFormLoad(object sender, EventArgs e)
+        {
+            this.versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+        }
 
-        private void OpenBlog(object sender, LinkLabelLinkClickedEventArgs e) 
+        #region Project and Maintainer Links
+
+        private void OpenBlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Tools.GotoSite("http://andrew.codeusa.net/");
         }
 
-        private void OpenSteamGroup(object sender, LinkLabelLinkClickedEventArgs e) 
+        private void OpenSteamGroup(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Tools.GotoSite("http://steamcommunity.com/groups/borderless-gaming/");
         }
@@ -32,6 +39,15 @@ namespace BorderlessGaming.Forms
         {
             Tools.GotoSite("http://steamcommunity.com/id/deathstrokee/");
         }
+
+        private void OpenGithubRepo(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
+        }
+
+        #endregion
+
+        #region Contributers
 
         private void OpenDmxtGithub(object sender, EventArgs e)
         {
@@ -48,9 +64,11 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("https://github.com/Stack-of-Pancakes/");
         }
 
-        private void OpenGithubRepo(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OpenMadpewGithub(object sender, EventArgs e)
         {
-            Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
+            Tools.GotoSite("https://github.com/madpew/");
         }
+
+        #endregion
     }
 }

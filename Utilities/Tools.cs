@@ -15,18 +15,9 @@ namespace BorderlessGaming.Utilities
 {
     public static class Tools
     {
-
-        public static void GotoSite(string url) //open url
+        public static void GotoSite(string url)
         {
             Process.Start(url);
-        }
-        private static void CheckLastError(Expression<Func<bool>> assertionExpression)
-        {
-            if (!assertionExpression.Compile()())
-            {
-                var nativeException = new Win32Exception(Marshal.GetLastWin32Error());
-                throw new Exception(string.Format("Assertion Failed: {0}\r\nGetLastError: {1}", assertionExpression.Body, nativeException.Message), nativeException);
-            }
         }
 
         private static bool HasInternetConnection()
@@ -47,7 +38,6 @@ namespace BorderlessGaming.Utilities
                 return false;
             }
         }
-
     
         public static string AppFile(string fileName, params string[] folders)
         {
@@ -108,19 +98,17 @@ namespace BorderlessGaming.Utilities
                 {
                     _reader.Close();
                 }
+
                 var applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
                 if (applicationVersion.CompareTo(_newVersion) < 0)
                 {
-                    var result = MessageBox.Show("Borderless Gaming has an update, would you like to go to the release page?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                    switch (result)
+                    if (DialogResult.Yes == MessageBox.Show(
+                            "A new version of Borderless Gaming is available. Would you like to go to the release page?",
+                            "Update Available",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information))
                     {
-                        case DialogResult.Yes:
-                            Process.Start(_releasePageURL);
-                            break;
-                        case DialogResult.No:
-                            break;
-                        case DialogResult.Cancel:
-                            break;
+                        GotoSite(_releasePageURL);
                     }
                 }
             }
