@@ -103,8 +103,14 @@
     <Compile Include="Utilities\Tools.cs" />
     <Compile Include="WindowsApi\Enumerations.cs" />
     <Compile Include="WindowsApi\Native.cs" />
+    <EmbeddedResource Include="Forms\AboutForm.de.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CompactWindow.de.resx">
+      <DependentUpon>CompactWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CompactWindow.resx">
       <DependentUpon>CompactWindow.cs</DependentUpon>
@@ -114,6 +120,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de.resx" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

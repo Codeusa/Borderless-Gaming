@@ -12,6 +12,8 @@ using Utilities;
 
 namespace BorderlessGaming.Forms
 {
+    using BorderlessGaming.Properties;
+
     public partial class CompactWindow : Form
     {
         /// <summary>
@@ -248,7 +250,7 @@ namespace BorderlessGaming.Forms
             if (this.WindowState == FormWindowState.Minimized)
             {
                 this.trayIcon.Visible = true;
-                this.trayIcon.BalloonTipText = "Borderless Gaming is minimized";
+                this.trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
                 this.trayIcon.ShowBalloonTip(2000);
                 this.Hide();
             }

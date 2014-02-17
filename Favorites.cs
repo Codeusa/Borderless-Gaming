@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using BorderlessGaming.Properties;
 
 namespace BorderlessGaming
 {
@@ -35,7 +36,7 @@ namespace BorderlessGaming
             }
             catch (Exception e)
             {
-                MessageBox.Show("Unable to save favorites, do you have permission?" + e.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave,  e.Message), Resources.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
