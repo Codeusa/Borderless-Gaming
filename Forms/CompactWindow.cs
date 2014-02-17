@@ -17,7 +17,7 @@ namespace BorderlessGaming.Forms
         /// <summary>
         /// the processblacklist is used to keep processes from showing up in the list
         /// </summary>
-        private readonly string[] processBlacklist = { "explorer", "BorderlessGaming" };
+        private readonly string[] processBlacklist = { "explorer", "BorderlessGaming", "IW4 Console" };
 
         /// <summary>
         /// list of currently running processes
@@ -267,7 +267,7 @@ namespace BorderlessGaming.Forms
 
             if (this.favoritesList != null)
             {
-                this.favoritesList.DataSource = Favorites.List;
+               this.favoritesList.DataSource = Favorites.List;
             }
 
             this.UpdateProcessList();

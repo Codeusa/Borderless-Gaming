@@ -195,6 +195,7 @@ namespace BorderlessGaming.Forms
             this.toolStripRunOnStartup.Size = new System.Drawing.Size(155, 22);
             this.toolStripRunOnStartup.Text = "Run On Startup";
             this.toolStripRunOnStartup.CheckedChanged += new System.EventHandler(this.RunOnStartupChecked);
+            this.toolStripRunOnStartup.Checked = AutoStart.CheckShortcut(Environment.SpecialFolder.Startup); 
             // 
             // toolStripInfo
             // 
