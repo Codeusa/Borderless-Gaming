@@ -204,7 +204,6 @@ namespace BorderlessGaming.Forms
             if (Favorites.CanAdd(process))
             {
                 Favorites.AddGame(process);
-                Favorites.Save("./Favorites.json");
 
                 this.favoritesList.DataSource = null;
                 this.favoritesList.DataSource = Favorites.List;
@@ -222,7 +221,7 @@ namespace BorderlessGaming.Forms
 
             if (Favorites.CanRemove(process))
             {
-                Favorites.Remove("./Favorites.json", process);
+                Favorites.Remove(process);
 
                 this.favoritesList.DataSource = null;
                 this.favoritesList.DataSource = Favorites.List;
