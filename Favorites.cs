@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using BorderlessGaming.Properties;
 
 namespace BorderlessGaming
 {
@@ -10,10 +11,12 @@ namespace BorderlessGaming
     {
         private static List<string> _favoriteGames;
 
+        private const string FavoritesFile = "./Favorites.json";
+
         static Favorites()
         {
             _favoriteGames = new List<string>();
-            Load("./Favorites.json");
+            Load();
         }
 
         public static List<string> List
@@ -24,38 +27,39 @@ namespace BorderlessGaming
         public static void AddGame(string title)
         {
             _favoriteGames.Add(title);
+            Save();
         }
 
-        public static void Save(string path)
+        public static void Save()
         {
             var jsonDoc = JsonConvert.SerializeObject(_favoriteGames);
             try
             {
-                File.WriteAllText(path, jsonDoc);
+                File.WriteAllText(FavoritesFile, jsonDoc);
             }
             catch (Exception e)
             {
-                MessageBox.Show("Unable to save favorites, do you have permission?" + e.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave,  e.Message), Resources.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public static void Load(string path)
+        public static void Load()
         {
-            if (File.Exists(path))
+            if (File.Exists(FavoritesFile))
             {
-                var jsonDoc = File.ReadAllText(path);
+                var jsonDoc = File.ReadAllText(FavoritesFile);
                 _favoriteGames = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
             }
             else
             {
-                Save(path);
+                Save();
             }
         }
 
-        public static void Remove(string path, string item)
+        public static void Remove(string item)
         {
             _favoriteGames.Remove(item);
-            Save(path);
+            Save();
         }
 
         public static bool CanAdd(string item)

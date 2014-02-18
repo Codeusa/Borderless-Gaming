@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BorderlessGaming.Properties;
+using System;
 using Utilities;
 namespace BorderlessGaming.Forms
 {
@@ -62,23 +63,18 @@ namespace BorderlessGaming.Forms
             // 
             // makeBorderlessButton
             // 
+            resources.ApplyResources(this.makeBorderlessButton, "makeBorderlessButton");
             this.makeBorderlessButton.Image = global::BorderlessGaming.Properties.Resources.borderless;
-            this.makeBorderlessButton.Location = new System.Drawing.Point(3, 87);
             this.makeBorderlessButton.Name = "makeBorderlessButton";
-            this.makeBorderlessButton.Size = new System.Drawing.Size(37, 36);
-            this.makeBorderlessButton.TabIndex = 1;
             this.makeBorderlessButton.UseVisualStyleBackColor = true;
             this.makeBorderlessButton.Click += new System.EventHandler(this.MakeBorderlessClick);
             // 
             // processList
             // 
-            this.processList.Dock = System.Windows.Forms.DockStyle.Fill;
+            resources.ApplyResources(this.processList, "processList");
             this.processList.FormattingEnabled = true;
-            this.processList.Location = new System.Drawing.Point(3, 21);
             this.processList.Name = "processList";
-            this.processList.Size = new System.Drawing.Size(205, 214);
             this.processList.Sorted = true;
-            this.processList.TabIndex = 0;
             // 
             // workerTimer
             // 
@@ -87,145 +83,110 @@ namespace BorderlessGaming.Forms
             // 
             // addSelectedItem
             // 
-            this.addSelectedItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addSelectedItem.AutoSize = true;
+            resources.ApplyResources(this.addSelectedItem, "addSelectedItem");
             this.addSelectedItem.Image = global::BorderlessGaming.Properties.Resources.add;
-            this.addSelectedItem.Location = new System.Drawing.Point(3, 3);
             this.addSelectedItem.Name = "addSelectedItem";
-            this.addSelectedItem.Size = new System.Drawing.Size(37, 36);
-            this.addSelectedItem.TabIndex = 7;
             this.addSelectedItem.UseVisualStyleBackColor = true;
             this.addSelectedItem.Click += new System.EventHandler(this.AddFavoriteClick);
             // 
             // favoritesList
             // 
-            this.favoritesList.Dock = System.Windows.Forms.DockStyle.Fill;
+            resources.ApplyResources(this.favoritesList, "favoritesList");
             this.favoritesList.FormattingEnabled = true;
-            this.favoritesList.Location = new System.Drawing.Point(256, 21);
             this.favoritesList.Name = "favoritesList";
-            this.favoritesList.Size = new System.Drawing.Size(205, 214);
             this.favoritesList.Sorted = true;
-            this.favoritesList.TabIndex = 10;
             // 
             // button3
             // 
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Image = global::BorderlessGaming.Properties.Resources.remove;
-            this.button3.Location = new System.Drawing.Point(3, 45);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(37, 36);
-            this.button3.TabIndex = 11;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.RemoveFavoriteClick);
             // 
             // processLabel
             // 
-            this.processLabel.AutoSize = true;
-            this.processLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.processLabel.Location = new System.Drawing.Point(3, 0);
+            resources.ApplyResources(this.processLabel, "processLabel");
             this.processLabel.Name = "processLabel";
-            this.processLabel.Size = new System.Drawing.Size(94, 18);
-            this.processLabel.TabIndex = 12;
-            this.processLabel.Text = "Processes:";
             // 
             // favoritesLabel
             // 
-            this.favoritesLabel.AutoSize = true;
-            this.favoritesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.favoritesLabel.Location = new System.Drawing.Point(256, 0);
+            resources.ApplyResources(this.favoritesLabel, "favoritesLabel");
             this.favoritesLabel.Name = "favoritesLabel";
-            this.favoritesLabel.Size = new System.Drawing.Size(83, 18);
-            this.favoritesLabel.TabIndex = 13;
-            this.favoritesLabel.Text = "Favorites:";
             // 
             // trayIcon
             // 
+            resources.ApplyResources(this.trayIcon, "trayIcon");
             this.trayIcon.ContextMenuStrip = this.trayIconContextMenu;
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "Borderless Gaming";
-            this.trayIcon.Visible = true;
             this.trayIcon.DoubleClick += new System.EventHandler(this.TrayIconOpen);
             // 
             // trayIconContextMenu
             // 
+            resources.ApplyResources(this.trayIconContextMenu, "trayIconContextMenu");
             this.trayIconContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.trayIconContextMenu.Name = "trayIconContextMenu";
-            this.trayIconContextMenu.Size = new System.Drawing.Size(104, 48);
             // 
             // openToolStripMenuItem
             // 
+            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.TrayIconOpen);
             // 
             // exitToolStripMenuItem
             // 
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.TrayIconExit);
             // 
             // menuStrip
             // 
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripOptions,
             this.toolStripInfo});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.MinimumSize = new System.Drawing.Size(0, 31);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(464, 31);
-            this.menuStrip.TabIndex = 16;
-            this.menuStrip.Text = "menuStrip1";
             // 
             // toolStripOptions
             // 
+            resources.ApplyResources(this.toolStripOptions, "toolStripOptions");
             this.toolStripOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRunOnStartup});
             this.toolStripOptions.Name = "toolStripOptions";
-            this.toolStripOptions.Size = new System.Drawing.Size(61, 27);
-            this.toolStripOptions.Text = "Options";
             // 
             // toolStripRunOnStartup
             // 
+            resources.ApplyResources(this.toolStripRunOnStartup, "toolStripRunOnStartup");
             this.toolStripRunOnStartup.CheckOnClick = true;
             this.toolStripRunOnStartup.Name = "toolStripRunOnStartup";
-            this.toolStripRunOnStartup.Size = new System.Drawing.Size(155, 22);
-            this.toolStripRunOnStartup.Text = "Run On Startup";
             this.toolStripRunOnStartup.CheckedChanged += new System.EventHandler(this.RunOnStartupChecked);
-            this.toolStripRunOnStartup.Checked = AutoStart.CheckShortcut(Environment.SpecialFolder.Startup); 
             // 
             // toolStripInfo
             // 
+            resources.ApplyResources(this.toolStripInfo, "toolStripInfo");
             this.toolStripInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripReportBug,
             this.toolStripSupportUs,
             this.toolStripAbout});
             this.toolStripInfo.Name = "toolStripInfo";
-            this.toolStripInfo.Size = new System.Drawing.Size(24, 27);
-            this.toolStripInfo.Text = "?";
             // 
             // toolStripReportBug
             // 
+            resources.ApplyResources(this.toolStripReportBug, "toolStripReportBug");
             this.toolStripReportBug.Name = "toolStripReportBug";
-            this.toolStripReportBug.Size = new System.Drawing.Size(142, 22);
-            this.toolStripReportBug.Text = "Report a Bug";
             this.toolStripReportBug.Click += new System.EventHandler(this.ReportBugClick);
             // 
             // toolStripSupportUs
             // 
+            resources.ApplyResources(this.toolStripSupportUs, "toolStripSupportUs");
             this.toolStripSupportUs.Name = "toolStripSupportUs";
-            this.toolStripSupportUs.Size = new System.Drawing.Size(142, 22);
-            this.toolStripSupportUs.Text = "Support Us";
             this.toolStripSupportUs.Click += new System.EventHandler(this.SupportUsClick);
             // 
             // toolStripAbout
             // 
+            resources.ApplyResources(this.toolStripAbout, "toolStripAbout");
             this.toolStripAbout.Name = "toolStripAbout";
-            this.toolStripAbout.Size = new System.Drawing.Size(142, 22);
-            this.toolStripAbout.Text = "About...";
             this.toolStripAbout.Click += new System.EventHandler(this.AboutClick);
             // 
             // backWorker
@@ -234,50 +195,31 @@ namespace BorderlessGaming.Forms
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.processLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.favoritesLabel, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.processList, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.favoritesList, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 31);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(464, 238);
-            this.tableLayoutPanel1.TabIndex = 17;
             // 
             // flowLayoutPanel1
             // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.addSelectedItem);
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.makeBorderlessButton);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(211, 18);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(42, 220);
-            this.flowLayoutPanel1.TabIndex = 14;
             // 
             // CompactWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 269);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(480, 307);
             this.Name = "CompactWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Borderless Gaming";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.CompactWindowLoad);
             this.Resize += new System.EventHandler(this.CompactWindowResize);

@@ -13,6 +13,8 @@ using System.Xml;
 
 namespace BorderlessGaming.Utilities
 {
+    using BorderlessGaming.Properties;
+
     public static class Tools
     {
         public static void GotoSite(string url)
@@ -92,7 +94,7 @@ namespace BorderlessGaming.Utilities
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine(("No updates for you"));
+                    MessageBox.Show( Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -102,11 +104,7 @@ namespace BorderlessGaming.Utilities
                 var applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
                 if (applicationVersion.CompareTo(_newVersion) < 0)
                 {
-                    if (DialogResult.Yes == MessageBox.Show(
-                            "A new version of Borderless Gaming is available. Would you like to go to the release page?",
-                            "Update Available",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Information))
+                    if (DialogResult.Yes == MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                     {
                         GotoSite(_releasePageURL);
                     }

@@ -81,12 +81,66 @@ namespace BorderlessGaming.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to save favorites. Do you have permission?\r\n\r\nDetailed Error: {0}.
+        /// </summary>
+        public static string ErrorFavoritesSave {
+            get {
+                return ResourceManager.GetString("ErrorFavoritesSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorHeader {
+            get {
+                return ResourceManager.GetString("ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borderless Gaming encountered an error checking for updates. Restart the program to try again..
+        /// </summary>
+        public static string ErrorUpdates {
+            get {
+                return ResourceManager.GetString("ErrorUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version of Borderless Gaming is available. Would you like to go to the release page?.
+        /// </summary>
+        public static string InfoUpdateAvailable {
+            get {
+                return ResourceManager.GetString("InfoUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string InfoUpdatesHeader {
+            get {
+                return ResourceManager.GetString("InfoUpdatesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap remove {
             get {
                 object obj = ResourceManager.GetObject("remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is minimized..
+        /// </summary>
+        public static string TrayMinimized {
+            get {
+                return ResourceManager.GetString("TrayMinimized", resourceCulture);
             }
         }
     }

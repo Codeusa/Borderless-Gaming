@@ -12,6 +12,8 @@ using Utilities;
 
 namespace BorderlessGaming.Forms
 {
+    using BorderlessGaming.Properties;
+
     public partial class CompactWindow : Form
     {
         /// <summary>
@@ -202,7 +204,6 @@ namespace BorderlessGaming.Forms
             if (Favorites.CanAdd(process))
             {
                 Favorites.AddGame(process);
-                Favorites.Save("./Favorites.json");
 
                 this.favoritesList.DataSource = null;
                 this.favoritesList.DataSource = Favorites.List;
@@ -220,7 +221,7 @@ namespace BorderlessGaming.Forms
 
             if (Favorites.CanRemove(process))
             {
-                Favorites.Remove("./Favorites.json", process);
+                Favorites.Remove(process);
 
                 this.favoritesList.DataSource = null;
                 this.favoritesList.DataSource = Favorites.List;
@@ -248,7 +249,7 @@ namespace BorderlessGaming.Forms
             if (this.WindowState == FormWindowState.Minimized)
             {
                 this.trayIcon.Visible = true;
-                this.trayIcon.BalloonTipText = "Borderless Gaming is minimized";
+                this.trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
                 this.trayIcon.ShowBalloonTip(2000);
                 this.Hide();
             }
