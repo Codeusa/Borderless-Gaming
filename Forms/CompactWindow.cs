@@ -61,7 +61,7 @@ namespace BorderlessGaming.Forms
         /// remove the menu, resize the window, remove border
         /// </summary>
         /// <param name="procName">name of the process to target</param>
-        private void RemoveBorder(String procName)
+        private void RemoveBorder(String procName, Screen screen = null)
         {
             var targetHandle = this.FindWindowHandle(procName);
 
@@ -95,7 +95,8 @@ namespace BorderlessGaming.Forms
                 Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
 
                 // update windowsize with bounds from current screen
-                var bounds = Screen.FromHandle(targetHandle).Bounds;
+                var targetScreen = screen ?? Screen.FromHandle(targetHandle);
+                var bounds = targetScreen.Bounds;
 
                 Native.SetWindowPos(targetHandle, 0, bounds.X, bounds.Y, bounds.Width, bounds.Height, SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
             }
@@ -228,6 +229,68 @@ namespace BorderlessGaming.Forms
             }
         }
 
+        /// <summary>
+        /// Sets up the Favorite-ContextMenu according to the current state
+        /// </summary>
+        private void FavoriteContextOpening(object sender, CancelEventArgs e)
+        {
+            if (this.favoritesList.SelectedItem == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            var process = this.favoritesList.GetItemText(this.favoritesList.SelectedItem);
+            this.contextRemoveFromFavs.Enabled = Favorites.CanRemove(process);
+        }
+
+        /// <summary>
+        /// Sets up the Process-ContextMenu according to the current state
+        /// </summary>
+        private void ProcessContextOpening(object sender, CancelEventArgs e)
+        {
+            if (this.processList.SelectedItem == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            var process = this.processList.GetItemText(this.processList.SelectedItem);
+            this.contextAddToFavs.Enabled = Favorites.CanAdd(process);
+
+            if (Screen.AllScreens.Length < 2)
+            {
+                this.contextBorderlessOn.Visible = false;
+            }
+            else
+            {
+                this.contextBorderlessOn.Visible = true;
+
+                if (this.contextBorderlessOn.HasDropDownItems)
+                {
+                    this.contextBorderlessOn.DropDownItems.Clear();
+                }
+
+                foreach (var screen in Screen.AllScreens)
+                {
+                    // fix for a .net-bug on Windows XP
+                    var idx = screen.DeviceName.IndexOf('\0');
+                    var fixedDeviceName = idx > 0 ? screen.DeviceName.Substring(0,idx) : screen.DeviceName;
+
+                    var label = fixedDeviceName + (screen.Primary ? " (P)" : string.Empty);
+
+                    var tsi = new ToolStripMenuItem(label);
+
+                    tsi.Click += (s, ea) =>
+                        {
+                            this.RemoveBorder(process, screen);
+                        };
+
+                    this.contextBorderlessOn.DropDownItems.Add(tsi);
+                }
+            }
+        }
+
         #endregion
 
         #region Tray Icon Events
@@ -274,6 +337,5 @@ namespace BorderlessGaming.Forms
             this.UpdateProcessList();
             this.StartMonitoringFavorites();
         }
-
     }
 }
