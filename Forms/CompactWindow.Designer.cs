@@ -35,9 +35,15 @@ namespace BorderlessGaming.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompactWindow));
             this.makeBorderlessButton = new System.Windows.Forms.Button();
             this.processList = new System.Windows.Forms.ListBox();
+            this.processContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextAddToFavs = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
             this.workerTimer = new System.Windows.Forms.Timer(this.components);
             this.addSelectedItem = new System.Windows.Forms.Button();
             this.favoritesList = new System.Windows.Forms.ListBox();
+            this.favoritesContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextRemoveFromFavs = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.processLabel = new System.Windows.Forms.Label();
             this.favoritesLabel = new System.Windows.Forms.Label();
@@ -55,6 +61,8 @@ namespace BorderlessGaming.Forms
             this.backWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.processContext.SuspendLayout();
+            this.favoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,9 +80,37 @@ namespace BorderlessGaming.Forms
             // processList
             // 
             resources.ApplyResources(this.processList, "processList");
+            this.processList.ContextMenuStrip = this.processContext;
             this.processList.FormattingEnabled = true;
             this.processList.Name = "processList";
             this.processList.Sorted = true;
+            // 
+            // processContext
+            // 
+            resources.ApplyResources(this.processContext, "processContext");
+            this.processContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextAddToFavs,
+            this.contextBorderless,
+            this.contextBorderlessOn});
+            this.processContext.Name = "processContext";
+            this.processContext.Opening += new System.ComponentModel.CancelEventHandler(this.ProcessContextOpening);
+            // 
+            // contextAddToFavs
+            // 
+            resources.ApplyResources(this.contextAddToFavs, "contextAddToFavs");
+            this.contextAddToFavs.Name = "contextAddToFavs";
+            this.contextAddToFavs.Click += new System.EventHandler(this.AddFavoriteClick);
+            // 
+            // contextBorderless
+            // 
+            resources.ApplyResources(this.contextBorderless, "contextBorderless");
+            this.contextBorderless.Name = "contextBorderless";
+            this.contextBorderless.Click += new System.EventHandler(this.MakeBorderlessClick);
+            // 
+            // contextBorderlessOn
+            // 
+            resources.ApplyResources(this.contextBorderlessOn, "contextBorderlessOn");
+            this.contextBorderlessOn.Name = "contextBorderlessOn";
             // 
             // workerTimer
             // 
@@ -92,9 +128,24 @@ namespace BorderlessGaming.Forms
             // favoritesList
             // 
             resources.ApplyResources(this.favoritesList, "favoritesList");
+            this.favoritesList.ContextMenuStrip = this.favoritesContext;
             this.favoritesList.FormattingEnabled = true;
             this.favoritesList.Name = "favoritesList";
             this.favoritesList.Sorted = true;
+            // 
+            // favoritesContext
+            // 
+            resources.ApplyResources(this.favoritesContext, "favoritesContext");
+            this.favoritesContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextRemoveFromFavs});
+            this.favoritesContext.Name = "favoritesContext";
+            this.favoritesContext.Opening += new System.ComponentModel.CancelEventHandler(this.FavoriteContextOpening);
+            // 
+            // contextRemoveFromFavs
+            // 
+            resources.ApplyResources(this.contextRemoveFromFavs, "contextRemoveFromFavs");
+            this.contextRemoveFromFavs.Name = "contextRemoveFromFavs";
+            this.contextRemoveFromFavs.Click += new System.EventHandler(this.RemoveFavoriteClick);
             // 
             // button3
             // 
@@ -223,6 +274,8 @@ namespace BorderlessGaming.Forms
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.CompactWindowLoad);
             this.Resize += new System.EventHandler(this.CompactWindowResize);
+            this.processContext.ResumeLayout(false);
+            this.favoritesContext.ResumeLayout(false);
             this.trayIconContextMenu.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -259,5 +312,11 @@ namespace BorderlessGaming.Forms
         private System.ComponentModel.BackgroundWorker backWorker;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ContextMenuStrip processContext;
+        private System.Windows.Forms.ToolStripMenuItem contextAddToFavs;
+        private System.Windows.Forms.ToolStripMenuItem contextBorderless;
+        private System.Windows.Forms.ToolStripMenuItem contextBorderlessOn;
+        private System.Windows.Forms.ContextMenuStrip favoritesContext;
+        private System.Windows.Forms.ToolStripMenuItem contextRemoveFromFavs;
     }
 }
