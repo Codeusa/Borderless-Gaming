@@ -54,6 +54,7 @@ namespace BorderlessGaming.Forms
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRunOnStartup = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,7 +204,8 @@ namespace BorderlessGaming.Forms
             // 
             resources.ApplyResources(this.toolStripOptions, "toolStripOptions");
             this.toolStripOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripRunOnStartup});
+            this.toolStripRunOnStartup,
+            this.toolStripGlobalHotkey});
             this.toolStripOptions.Name = "toolStripOptions";
             // 
             // toolStripRunOnStartup
@@ -212,6 +214,13 @@ namespace BorderlessGaming.Forms
             this.toolStripRunOnStartup.CheckOnClick = true;
             this.toolStripRunOnStartup.Name = "toolStripRunOnStartup";
             this.toolStripRunOnStartup.CheckedChanged += new System.EventHandler(this.RunOnStartupChecked);
+            // 
+            // toolStripGlobalHotkey
+            // 
+            resources.ApplyResources(this.toolStripGlobalHotkey, "toolStripGlobalHotkey");
+            this.toolStripGlobalHotkey.CheckOnClick = true;
+            this.toolStripGlobalHotkey.Name = "toolStripGlobalHotkey";
+            this.toolStripGlobalHotkey.CheckedChanged += new System.EventHandler(this.UseGlobalHotkeyChanged);
             // 
             // toolStripInfo
             // 
@@ -272,6 +281,7 @@ namespace BorderlessGaming.Forms
             this.MaximizeBox = false;
             this.Name = "CompactWindow";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CompactWindowFormClosing);
             this.Load += new System.EventHandler(this.CompactWindowLoad);
             this.Resize += new System.EventHandler(this.CompactWindowResize);
             this.processContext.ResumeLayout(false);
@@ -318,5 +328,6 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ToolStripMenuItem contextBorderlessOn;
         private System.Windows.Forms.ContextMenuStrip favoritesContext;
         private System.Windows.Forms.ToolStripMenuItem contextRemoveFromFavs;
+        private System.Windows.Forms.ToolStripMenuItem toolStripGlobalHotkey;
     }
 }
