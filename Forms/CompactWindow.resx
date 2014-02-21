@@ -131,17 +131,7 @@
   <data name="processList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="favoritesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="&gt;&gt;contextRemoveFromFavs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;favoritesContext.Name" xml:space="preserve">
@@ -162,14 +152,18 @@
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
   </data>
-  <data name="processLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="favoritesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="&gt;&gt;processLabel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;processList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -180,11 +174,8 @@
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
   </data>
-  <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
-  </data>
-  <data name="&gt;&gt;addSelectedItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;toolStripReportBug.Name" xml:space="preserve">
     <value>toolStripReportBug</value>
@@ -198,6 +189,9 @@
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 48</value>
   </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>431, 271</value>
+  </data>
   <data name="&gt;&gt;processList.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -210,14 +204,17 @@
   <data name="&gt;&gt;favoritesLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="menuStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="favoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 26</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Borderless Gaming</value>
   </data>
-  <data name="favoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 26</value>
+  <data name="&gt;&gt;toolStripRunOnStartup.Name" xml:space="preserve">
+    <value>toolStripRunOnStartup</value>
+  </data>
+  <data name="menuStrip.Text" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
   <data name="&gt;&gt;addSelectedItem.Name" xml:space="preserve">
     <value>addSelectedItem</value>
@@ -236,6 +233,12 @@
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 22</value>
+  </data>
+  <data name="processLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
+  </data>
+  <data name="favoritesList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 21</value>
   </data>
   <data name="&gt;&gt;toolStripGlobalHotkey.Name" xml:space="preserve">
     <value>toolStripGlobalHotkey</value>
@@ -265,17 +268,14 @@
         /+HGc//jxgP/494H//vec//73nP/+94D//veB//73///+9////vf8A/73/AP+8AAAAP//D////5//w==
 </value>
   </data>
-  <data name="contextBorderless.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
   <data name="&gt;&gt;makeBorderlessButton.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
   </data>
+  <data name="processList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 216</value>
+  </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 45</value>
-  </data>
-  <data name="toolStripInfo.Text" xml:space="preserve">
-    <value>?</value>
   </data>
   <data name="trayIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,8 +286,8 @@
   <data name="processLabel.Text" xml:space="preserve">
     <value>Processes:</value>
   </data>
-  <data name="&gt;&gt;workerTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="contextBorderless.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
   </data>
   <data name="favoritesLabel.Text" xml:space="preserve">
     <value>Favorites:</value>
@@ -298,23 +298,17 @@
   <data name="&gt;&gt;makeBorderlessButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="processList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 216</value>
+  <data name="contextRemoveFromFavs.Text" xml:space="preserve">
+    <value>Remove From Favorites</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="toolStripInfo.Text" xml:space="preserve">
+    <value>?</value>
   </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
     <value>exitToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripAbout.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
     <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;toolStripAbout.Name" xml:space="preserve">
-    <value>toolStripAbout</value>
   </data>
   <data name="&gt;&gt;toolStripSupportUs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -334,9 +328,6 @@
   <data name="&gt;&gt;processList.Name" xml:space="preserve">
     <value>processList</value>
   </data>
-  <data name="&gt;&gt;favoritesLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>194, 18</value>
   </data>
@@ -355,14 +346,11 @@
   <data name="&gt;&gt;openToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;trayIconContextMenu.Name" xml:space="preserve">
     <value>trayIconContextMenu</value>
   </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
+  <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
   <data name="contextBorderlessOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
@@ -412,17 +400,14 @@
   <data name="&gt;&gt;toolStripReportBug.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="contextRemoveFromFavs.Text" xml:space="preserve">
-    <value>Remove From Favorites</value>
+  <data name="&gt;&gt;favoritesList.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;favoritesContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
-  </data>
-  <data name="&gt;&gt;toolStripRunOnStartup.Name" xml:space="preserve">
-    <value>toolStripRunOnStartup</value>
   </data>
   <data name="&gt;&gt;processLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -436,14 +421,23 @@
   <data name="&gt;&gt;menuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;favoritesList.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="menuStrip.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
   </data>
   <data name="trayIcon.Text" xml:space="preserve">
     <value>Borderless Gaming</value>
   </data>
-  <data name="&gt;&gt;contextRemoveFromFavs.Name" xml:space="preserve">
-    <value>contextRemoveFromFavs</value>
+  <data name="&gt;&gt;addSelectedItem.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="toolStripReportBug.Text" xml:space="preserve">
     <value>Report a Bug</value>
@@ -453,28 +447,6 @@
   </data>
   <data name="&gt;&gt;toolStripOptions.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA
-        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
-        AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAACIiIAACIiIAIAAAAAAAAgAgAAAAAAACACAAAAAAA
-        AIAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAIAAAAAAAAgAgA
-        AAAAAACACAAAAAAAAIAIiIgAAIiIgAAAAAAAAAAA/n8AAIABAAC4HQAAv/0AAL+NAACfaQAAn0kAABF4
-        AAAWiAAAkfkAAJb5AACx/QAAv/0AALgdAACAAQAA/n8AACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAA
-        AAAAAAAAEAAAABAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD/
-        /wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiIgAAAAA
-        iIiIiIgAAIiIiIiIAAAAAIiIiIiIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
-        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
-        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
-        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
-        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACIiIiIiAAAAACIiIiI
-        iAAAiIiIiIgAAAAAiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//D////w//8AA
-        AAPAAAADz8AD88/AA/PP///zz///88//wPPP/8Dzw/88w8P/PMPD/zDDw/8wwwMDP8ADAz/AAzzAwAM8
-        wMDDA//DwwP/w8M8/8PDPP/DzwP/888D//PP///zz///88/AA/PPwAPzwAAAA8AAAAP//D////w//w==
-</value>
   </data>
   <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 27</value>
@@ -491,14 +463,20 @@
   <data name="toolStripSupportUs.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
   </data>
+  <data name="&gt;&gt;trayIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;favoritesList.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="processLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="favoritesList.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 22</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -511,9 +489,6 @@
   </data>
   <data name="&gt;&gt;makeBorderlessButton.Name" xml:space="preserve">
     <value>makeBorderlessButton</value>
-  </data>
-  <data name="makeBorderlessButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 87</value>
   </data>
   <data name="addSelectedItem.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -551,8 +526,8 @@
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;toolStripAbout.Name" xml:space="preserve">
+    <value>toolStripAbout</value>
   </data>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -569,8 +544,8 @@
   <data name="favoritesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="&gt;&gt;addSelectedItem.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="&gt;&gt;favoritesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripRunOnStartup.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -581,11 +556,14 @@
   <data name="processList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>431, 271</value>
+  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;backWorker.Name" xml:space="preserve">
     <value>backWorker</value>
+  </data>
+  <data name="contextAddToFavs.Text" xml:space="preserve">
+    <value>Add To Favorites</value>
   </data>
   <data name="&gt;&gt;trayIcon.Name" xml:space="preserve">
     <value>trayIcon</value>
@@ -599,23 +577,20 @@
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 22</value>
+  <data name="&gt;&gt;workerTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;processContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;backWorker.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="addSelectedItem.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;trayIcon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripAbout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="processLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
+  <data name="&gt;&gt;backWorker.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSupportUs.Name" xml:space="preserve">
     <value>toolStripSupportUs</value>
@@ -623,32 +598,57 @@
   <data name="&gt;&gt;contextBorderlessOn.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="favoritesList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 21</value>
+  <data name="&gt;&gt;toolStripInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;contextAddToFavs.Name" xml:space="preserve">
     <value>contextAddToFavs</value>
   </data>
-  <data name="menuStrip.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 31</value>
+  <data name="makeBorderlessButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 87</value>
   </data>
   <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;contextBorderless.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA
+        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
+        AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAACIiIAACIiIAIAAAAAAAAgAgAAAAAAACACAAAAAAA
+        AIAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAIAAAAAAAAgAgA
+        AAAAAACACAAAAAAAAIAIiIgAAIiIgAAAAAAAAAAA/n8AAIABAAC4HQAAv/0AAL+NAACfaQAAn0kAABF4
+        AAAWiAAAkfkAAJb5AACx/QAAv/0AALgdAACAAQAA/n8AACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAA
+        AAAAAAAAEAAAABAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD/
+        /wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiIgAAAAA
+        iIiIiIgAAIiIiIiIAAAAAIiIiIiIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
+        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
+        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
+        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
+        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACIiIiIiAAAAACIiIiI
+        iAAAiIiIiIgAAAAAiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//D////w//8AA
+        AAPAAAADz8AD88/AA/PP///zz///88//wPPP/8Dzw/88w8P/PMPD/zDDw/8wwwMDP8ADAz/AAzzAwAM8
+        wMDDA//DwwP/w8M8/8PDPP/DzwP/888D//PP///zz///88/AA/PPwAPzwAAAA8AAAAP//D////w//w==
+</value>
   </data>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
   </data>
-  <data name="contextAddToFavs.Text" xml:space="preserve">
-    <value>Add To Favorites</value>
+  <data name="&gt;&gt;contextBorderless.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 22</value>
   </data>
+  <data name="&gt;&gt;addSelectedItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;contextBorderless.Name" xml:space="preserve">
     <value>contextBorderless</value>
+  </data>
+  <data name="&gt;&gt;contextRemoveFromFavs.Name" xml:space="preserve">
+    <value>contextRemoveFromFavs</value>
   </data>
   <data name="&gt;&gt;button3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -661,9 +661,6 @@
   </metadata>
   <metadata name="processContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>394, 23</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
   </metadata>
   <metadata name="favoritesContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>745, 17</value>

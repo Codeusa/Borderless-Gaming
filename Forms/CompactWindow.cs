@@ -141,12 +141,12 @@ namespace BorderlessGaming.Forms
                 Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
                 Native.SetWindowPos(
                     targetHandle,
-                    0,
+                    -1, //HWND_TOPMOST
                     targetFrame.X,
                     targetFrame.Y,
                     targetFrame.Width,
                     targetFrame.Height,
-                    SetWindowPosFlags.NoZOrder | SetWindowPosFlags.ShowWindow);
+                    SetWindowPosFlags.ShowWindow);
                 return true;
             }
             
@@ -327,6 +327,26 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
+        /// Gets the smallest containing Rectangle
+        /// </summary>
+        private Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
+        {
+            var amin = new Point(a.X, a.Y);
+            var amax = new Point(a.X + a.Width, a.Y + a.Height);
+            var bmin = new Point(b.X, b.Y);
+            var bmax = new Point(b.X + b.Width, b.Y + b.Height);
+            var nmin = new Point(0, 0);
+            var nmax = new Point(0, 0);
+
+            nmin.X = (amin.X < bmin.X) ? amin.X : bmin.X;
+            nmin.Y = (amin.Y < bmin.Y) ? amin.Y : bmin.Y;
+            nmax.X = (amax.X > bmax.X) ? amax.X : bmax.X;
+            nmax.Y = (amax.Y > bmax.Y) ? amax.Y : bmax.Y;
+
+            return new Rectangle(nmin, new Size(nmax.X - nmin.X, nmax.Y - nmin.Y));
+        }
+
+        /// <summary>
         /// Sets up the Process-ContextMenu according to the current state
         /// </summary>
         private void ProcessContextOpening(object sender, CancelEventArgs e)
@@ -353,8 +373,12 @@ namespace BorderlessGaming.Forms
                     this.contextBorderlessOn.DropDownItems.Clear();
                 }
 
+                var superSize = Screen.PrimaryScreen.Bounds;
+
                 foreach (var screen in Screen.AllScreens)
                 {
+                    superSize = GetContainingRectangle(superSize, screen.Bounds);
+
                     // fix for a .net-bug on Windows XP
                     var idx = screen.DeviceName.IndexOf('\0');
                     var fixedDeviceName = idx > 0 ? screen.DeviceName.Substring(0,idx) : screen.DeviceName;
@@ -370,6 +394,16 @@ namespace BorderlessGaming.Forms
 
                     this.contextBorderlessOn.DropDownItems.Add(tsi);
                 }
+
+                //add supersize Option
+                var superSizeItem = new ToolStripMenuItem("SuperSize!");
+                System.Diagnostics.Debug.WriteLine(superSize);
+                superSizeItem.Click += (s, ea) =>
+                {
+                    this.RemoveBorderRect(process, superSize);
+                };
+
+                this.contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
         }
 
