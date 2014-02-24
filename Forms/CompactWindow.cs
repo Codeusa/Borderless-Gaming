@@ -146,7 +146,7 @@ namespace BorderlessGaming.Forms
                     targetFrame.Y,
                     targetFrame.Width,
                     targetFrame.Height,
-                    SetWindowPosFlags.ShowWindow);
+                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder);
                 return true;
             }
             
