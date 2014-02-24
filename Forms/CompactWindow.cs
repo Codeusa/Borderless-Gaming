@@ -141,7 +141,7 @@ namespace BorderlessGaming.Forms
                 Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
                 Native.SetWindowPos(
                     targetHandle,
-                    -1, //HWND_TOPMOST
+                    0, 
                     targetFrame.X,
                     targetFrame.Y,
                     targetFrame.Width,
