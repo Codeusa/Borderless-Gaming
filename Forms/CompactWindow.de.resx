@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 70</value>
+  </data>
+  <data name="processList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 217</value>
+  </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
@@ -136,23 +142,17 @@
   <data name="contextBorderlessOn.Text" xml:space="preserve">
     <value>Vollbild auf..</value>
   </data>
-  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 70</value>
+  <data name="favoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 26</value>
   </data>
-  <data name="processList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 217</value>
+  <data name="favoritesList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 217</value>
   </data>
   <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 22</value>
   </data>
   <data name="contextRemoveFromFavs.Text" xml:space="preserve">
     <value>Aus Favoriten entfernen</value>
-  </data>
-  <data name="favoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 26</value>
-  </data>
-  <data name="favoritesList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 217</value>
   </data>
   <data name="processLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 18</value>
@@ -162,18 +162,6 @@
   </data>
   <data name="favoritesLabel.Text" xml:space="preserve">
     <value>Favoriten:</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Öffnen</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Beenden</value>
   </data>
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 48</value>
@@ -200,23 +188,41 @@
         wMDDA//DwwP/w8M8/8PDPP/DzwP/888D//PP///zz///88/AA/PPwAPzwAAAA8AAAAP//D////w//w==
 </value>
   </data>
-  <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
   </data>
-  <data name="toolStripRunOnStartup.Text" xml:space="preserve">
-    <value>Automatisch starten</value>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öffnen</value>
   </data>
-  <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
   </data>
-  <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
-    <value>Globalen Hotkey verwenden (WIN+F6)</value>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Beenden</value>
   </data>
   <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 27</value>
   </data>
   <data name="toolStripOptions.Text" xml:space="preserve">
     <value>Optionen</value>
+  </data>
+  <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 22</value>
+  </data>
+  <data name="toolStripRunOnStartup.Text" xml:space="preserve">
+    <value>Automatisch starten</value>
+  </data>
+  <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 22</value>
+  </data>
+  <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
+    <value>Globalen Hotkey verwenden (WIN+F6)</value>
+  </data>
+  <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 22</value>
+  </data>
+  <data name="toolStripMouseLock.Text" xml:space="preserve">
+    <value>CursorSperre-Hotkey verwenden (Rollen)</value>
   </data>
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 22</value>
@@ -236,11 +242,11 @@
   <data name="toolStripAbout.Text" xml:space="preserve">
     <value>Über...</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 223</value>
-  </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>431, 241</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 223</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>431, 272</value>

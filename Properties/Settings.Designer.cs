@@ -46,5 +46,17 @@ namespace BorderlessGaming.Properties {
                 this["UseGlobalHotkey"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseMouseLockHotkey {
+            get {
+                return ((bool)(this["UseMouseLockHotkey"]));
+            }
+            set {
+                this["UseMouseLockHotkey"] = value;
+            }
+        }
     }
 }

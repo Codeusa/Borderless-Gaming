@@ -26,8 +26,11 @@ namespace BorderlessGaming
 
         public static void AddGame(string title)
         {
-            _favoriteGames.Add(title);
-            Save();
+            lock (List)
+            {
+                _favoriteGames.Add(title);
+                Save();
+            }
         }
 
         public static void Save()
@@ -58,8 +61,11 @@ namespace BorderlessGaming
 
         public static void Remove(string item)
         {
-            _favoriteGames.Remove(item);
-            Save();
+            lock (List)
+            {
+                _favoriteGames.Remove(item);
+                Save();
+            }
         }
 
         public static bool CanAdd(string item)
