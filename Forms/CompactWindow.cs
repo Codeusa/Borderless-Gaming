@@ -45,11 +45,6 @@ namespace BorderlessGaming.Forms
         private const int MouseLockHotKey = (int)Keys.Scroll;
 
         /// <summary>
-        /// State of the MouseLock
-        /// </summary>
-        private bool IsMouseLocked = false;
-
-        /// <summary>
         /// the ctor
         /// </summary>
         public CompactWindow()
@@ -527,16 +522,6 @@ namespace BorderlessGaming.Forms
 
                 if (key == MouseLockHotKey)
                 {
-                    if (IsMouseLocked)
-                    {
-                        IsMouseLocked = !IsMouseLocked;
-                        // remove the clip
-                        Cursor.Clip = Rectangle.Empty;
-                    }
-                    else
-                    {
-                        IsMouseLocked = !IsMouseLocked;
-
                         var hwnd = Native.GetForegroundWindow();
                         
                         // get size of clientarea
@@ -547,9 +532,18 @@ namespace BorderlessGaming.Forms
                         var p = new Native.POINTAPI() { X = 0, Y = 0 };
                         Native.ClientToScreen(hwnd, ref p);
 
-                        // set clip rectangle
-                        Cursor.Clip = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
-                    }
+                        var clipRect = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
+
+                        if (Cursor.Clip.Equals(clipRect))
+                        {
+                            // unclip
+                            Cursor.Clip = Rectangle.Empty;
+                        }
+                        else
+                        {
+                            // set clip rectangle
+                            Cursor.Clip = clipRect;
+                        }
                 }
             }
 
