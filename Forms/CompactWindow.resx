@@ -124,6 +124,9 @@
   <data name="&gt;&gt;contextAddToFavs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMouseLock.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="processList.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 21</value>
   </data>
@@ -133,6 +136,9 @@
   </data>
   <data name="&gt;&gt;contextRemoveFromFavs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMouseLock.Text" xml:space="preserve">
+    <value>Use MouseLock-Hotkey (ScrollLock)</value>
   </data>
   <data name="&gt;&gt;favoritesContext.Name" xml:space="preserve">
     <value>favoritesContext</value>
@@ -298,14 +304,14 @@
   <data name="&gt;&gt;makeBorderlessButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="contextRemoveFromFavs.Text" xml:space="preserve">
-    <value>Remove From Favorites</value>
-  </data>
   <data name="toolStripInfo.Text" xml:space="preserve">
     <value>?</value>
   </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
     <value>exitToolStripMenuItem</value>
+  </data>
+  <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 22</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
     <value>flowLayoutPanel1</value>
@@ -330,6 +336,9 @@
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>194, 18</value>
+  </data>
+  <data name="&gt;&gt;favoritesList.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;processContext.Name" xml:space="preserve">
     <value>processContext</value>
@@ -400,8 +409,8 @@
   <data name="&gt;&gt;toolStripReportBug.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;favoritesList.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="contextRemoveFromFavs.Text" xml:space="preserve">
+    <value>Remove From Favorites</value>
   </data>
   <data name="&gt;&gt;favoritesContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -425,7 +434,7 @@
     <value>0, 31</value>
   </data>
   <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>265, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
@@ -444,6 +453,9 @@
   </data>
   <data name="favoritesLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStripMouseLock.Name" xml:space="preserve">
+    <value>toolStripMouseLock</value>
   </data>
   <data name="&gt;&gt;toolStripOptions.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -550,6 +562,9 @@
   <data name="&gt;&gt;toolStripRunOnStartup.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;addSelectedItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="button3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
@@ -561,9 +576,6 @@
   </data>
   <data name="&gt;&gt;backWorker.Name" xml:space="preserve">
     <value>backWorker</value>
-  </data>
-  <data name="contextAddToFavs.Text" xml:space="preserve">
-    <value>Add To Favorites</value>
   </data>
   <data name="&gt;&gt;trayIcon.Name" xml:space="preserve">
     <value>trayIcon</value>
@@ -633,16 +645,16 @@
 </value>
   </data>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>265, 22</value>
   </data>
-  <data name="&gt;&gt;contextBorderless.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="contextAddToFavs.Text" xml:space="preserve">
+    <value>Add To Favorites</value>
   </data>
   <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 22</value>
   </data>
-  <data name="&gt;&gt;addSelectedItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;contextBorderless.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;contextBorderless.Name" xml:space="preserve">
     <value>contextBorderless</value>

@@ -55,6 +55,7 @@ namespace BorderlessGaming.Forms
             this.toolStripOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRunOnStartup = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMouseLock = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,7 +206,8 @@ namespace BorderlessGaming.Forms
             resources.ApplyResources(this.toolStripOptions, "toolStripOptions");
             this.toolStripOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRunOnStartup,
-            this.toolStripGlobalHotkey});
+            this.toolStripGlobalHotkey,
+            this.toolStripMouseLock});
             this.toolStripOptions.Name = "toolStripOptions";
             // 
             // toolStripRunOnStartup
@@ -221,6 +223,13 @@ namespace BorderlessGaming.Forms
             this.toolStripGlobalHotkey.CheckOnClick = true;
             this.toolStripGlobalHotkey.Name = "toolStripGlobalHotkey";
             this.toolStripGlobalHotkey.CheckedChanged += new System.EventHandler(this.UseGlobalHotkeyChanged);
+            // 
+            // toolStripMouseLock
+            // 
+            resources.ApplyResources(this.toolStripMouseLock, "toolStripMouseLock");
+            this.toolStripMouseLock.CheckOnClick = true;
+            this.toolStripMouseLock.Name = "toolStripMouseLock";
+            this.toolStripMouseLock.CheckedChanged += new System.EventHandler(this.UseMouseLockChanged);
             // 
             // toolStripInfo
             // 
@@ -329,5 +338,6 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ContextMenuStrip favoritesContext;
         private System.Windows.Forms.ToolStripMenuItem contextRemoveFromFavs;
         private System.Windows.Forms.ToolStripMenuItem toolStripGlobalHotkey;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMouseLock;
     }
 }

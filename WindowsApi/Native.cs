@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -88,5 +89,26 @@ namespace BorderlessGaming.WindowsApi
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool GetClientRect(IntPtr hWnd, ref RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern int ClientToScreen(IntPtr hwnd, [MarshalAs(UnmanagedType.Struct)] ref POINTAPI lpPoint);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINTAPI
+        {
+            public int X;
+            public int Y;
+        }
     }
 }

@@ -12,6 +12,7 @@ using Utilities;
 
 namespace BorderlessGaming.Forms
 {
+    using System.Configuration;
     using System.Drawing;
 
     using BorderlessGaming.Properties;
@@ -37,6 +38,11 @@ namespace BorderlessGaming.Forms
         /// HotKey Modifier
         /// </summary>
         private const int HotKeyModifier = 0x008;   // WIN-Key
+
+        /// <summary>
+        /// The MouseLockHotKey
+        /// </summary>
+        private const int MouseLockHotKey = (int)Keys.Scroll;
 
         /// <summary>
         /// the ctor
@@ -213,9 +219,12 @@ namespace BorderlessGaming.Forms
             this.processList.Invoke((MethodInvoker)this.UpdateProcessList);
 
             // check favorites against the cache
-            foreach (var process in Favorites.List.Where(process => this.processCache.Contains(process)))
+            lock (Favorites.List)
             {
-                this.RemoveBorder(process);
+                foreach (var process in Favorites.List.Where(process => this.processCache.Contains(process)))
+                {
+                    this.RemoveBorder(process);
+                }
             }
         }
 
@@ -231,17 +240,16 @@ namespace BorderlessGaming.Forms
 
         private void UseGlobalHotkeyChanged(object sender, EventArgs e)
         {
-            if (toolStripGlobalHotkey.Checked)
-            {
-                this.RegisterHotkey();
-            }
-            else
-            {
-                UnregisterHotkey();
-            }
-
             Settings.Default.UseGlobalHotkey = toolStripGlobalHotkey.Checked;
             Settings.Default.Save();
+            this.RegisterHotkeys();
+        }
+
+        private void UseMouseLockChanged(object sender, EventArgs e)
+        {
+            Settings.Default.UseMouseLockHotkey = toolStripMouseLock.Checked;
+            Settings.Default.Save();
+            this.RegisterHotkeys();
         }
 
         private void ReportBugClick(object sender, EventArgs e)
@@ -287,7 +295,6 @@ namespace BorderlessGaming.Forms
             if (Favorites.CanAdd(process))
             {
                 Favorites.AddGame(process);
-
                 this.favoritesList.DataSource = null;
                 this.favoritesList.DataSource = Favorites.List;
             }
@@ -426,14 +433,15 @@ namespace BorderlessGaming.Forms
 
             toolStripRunOnStartup.Checked = Settings.Default.RunOnStartup;
             toolStripGlobalHotkey.Checked = Settings.Default.UseGlobalHotkey;
+            toolStripMouseLock.Checked = Settings.Default.UseMouseLockHotkey;
         }
 
         /// <summary>
-        /// Unregisters the hotkey on closing
+        /// Unregisters the hotkeys on closing
         /// </summary>
         private void CompactWindowFormClosing(object sender, FormClosingEventArgs e)
         {
-            this.UnregisterHotkey();
+            this.UnregisterHotkeys();
         }
 
         #endregion
@@ -465,31 +473,32 @@ namespace BorderlessGaming.Forms
 
         #endregion
 
-        #region Global HotKey 
-
-        private bool IsHotKeyRegistered = false;
+        #region Global HotKeys
 
         /// <summary>
-        /// registers the global hotkey
+        /// registers the global hotkeys
         /// </summary>
-        private void RegisterHotkey()
+        private void RegisterHotkeys()
         {
-            if (!this.IsHotKeyRegistered)
+            this.UnregisterHotkeys();
+            
+            if (Settings.Default.UseGlobalHotkey)
             {
                 Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), HotKeyModifier, HotKey);
-                this.IsHotKeyRegistered = true;
+            }
+
+            if (Settings.Default.UseMouseLockHotkey)
+            {
+                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), 0, MouseLockHotKey);
             }
         }
 
         /// <summary>
-        /// unregisters the global hotkey
+        /// unregisters the global hotkeys
         /// </summary>
-        private void UnregisterHotkey()
+        private void UnregisterHotkeys()
         {
-            if (this.IsHotKeyRegistered)
-            {
                 Native.UnregisterHotKey(this.Handle, this.GetType().GetHashCode());
-            }
         }
 
         /// <summary>
@@ -509,6 +518,32 @@ namespace BorderlessGaming.Forms
                     {
                         this.AddBorder(hwnd);
                     }
+                }
+
+                if (key == MouseLockHotKey)
+                {
+                        var hwnd = Native.GetForegroundWindow();
+                        
+                        // get size of clientarea
+                        var r = new Native.RECT();
+                        Native.GetClientRect(hwnd, ref r);
+
+                        // get top,left point of clientarea
+                        var p = new Native.POINTAPI() { X = 0, Y = 0 };
+                        Native.ClientToScreen(hwnd, ref p);
+
+                        var clipRect = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
+
+                        if (Cursor.Clip.Equals(clipRect))
+                        {
+                            // unclip
+                            Cursor.Clip = Rectangle.Empty;
+                        }
+                        else
+                        {
+                            // set clip rectangle
+                            Cursor.Clip = clipRect;
+                        }
                 }
             }
 
