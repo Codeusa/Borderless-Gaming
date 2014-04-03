@@ -14,6 +14,7 @@ namespace BorderlessGaming.Forms
 {
     using System.Configuration;
     using System.Drawing;
+    using System.Threading;
 
     using BorderlessGaming.Properties;
 
@@ -27,7 +28,7 @@ namespace BorderlessGaming.Forms
         /// <summary>
         /// list of currently running processes
         /// </summary>
-        private IEnumerable<string> processCache;
+        private List<string> processCache = new List<string>();
 
         /// <summary>
         /// The HotKey
@@ -67,11 +68,7 @@ namespace BorderlessGaming.Forms
         /// <returns>a valid WindowHandle or IntPtr.Zero</returns>
         private IntPtr FindWindowHandle(string processName)
         {
-            var process = Process.GetProcesses().FirstOrDefault(p =>
-                p.ProcessName.Equals(processName, StringComparison.InvariantCultureIgnoreCase) &&
-                p.MainWindowHandle != IntPtr.Zero
-                );
-
+            var process = Process.GetProcessesByName(processName).FirstOrDefault(p => p.MainWindowHandle != IntPtr.Zero);
             return process != null ? process.MainWindowHandle : IntPtr.Zero;
         }
 
@@ -119,17 +116,6 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private bool RemoveBorderRect(IntPtr targetHandle, Rectangle targetFrame)
         {
-            // remove the menu and menuitems and force a redraw
-            var menuHandle = Native.GetMenu(targetHandle);
-            var menuItemCount = Native.GetMenuItemCount(menuHandle);
-
-            for (var i = 0; i < menuItemCount; i++)
-            {
-                Native.RemoveMenu(menuHandle, 0, MenuFlags.ByPosition | MenuFlags.Remove);
-            }
-
-            Native.DrawMenuBar(targetHandle);
-
             // check windowstyles
             var windowStyle = Native.GetWindowLong(targetHandle, WindowLongIndex.Style);
 
@@ -143,6 +129,17 @@ namespace BorderlessGaming.Forms
             // if the windowstyles differ this window hasn't been made borderless yet
             if (windowStyle != newWindowStyle)
             {
+                // remove the menu and menuitems and force a redraw
+                var menuHandle = Native.GetMenu(targetHandle);
+                var menuItemCount = Native.GetMenuItemCount(menuHandle);
+
+                for (var i = 0; i < menuItemCount; i++)
+                {
+                    Native.RemoveMenu(menuHandle, 0, MenuFlags.ByPosition | MenuFlags.Remove);
+                }
+
+                Native.DrawMenuBar(targetHandle);
+
                 // update windowstyle & position
                 Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
                 Native.SetWindowPos(
@@ -178,24 +175,32 @@ namespace BorderlessGaming.Forms
         private void UpdateProcessList()
         {
             // update processCache
-            this.processCache = Process.GetProcesses().Where(process =>
-                !processBlacklist.Contains(process.ProcessName) &&
-                process.MainWindowHandle != IntPtr.Zero
-                ).Select(process => process.ProcessName);
-
+            var processes = Process.GetProcesses().Where(process => !processBlacklist.Contains(process.ProcessName));
+            
             // prune closed processes
             for (int i = processList.Items.Count - 1; i > 0; i--)
             {
                 var process = this.processList.Items[i] as string;
-                if (!this.processCache.Contains(process)) this.processList.Items.RemoveAt(i);
+                if (!processes.Any(p => p.ProcessName == process))
+                {
+                    this.processList.Items.RemoveAt(i);
+                    this.processCache.Remove(process);
+                }
             }
 
             // add new processes
-            foreach (var process in this.processCache)
+            foreach (var process in processes)
             {
-                if (!this.processList.Items.Contains(process))
+                if (!this.processList.Items.Contains(process.ProcessName))
                 {
-                    this.processList.Items.Add(process);
+                    if (process.MainWindowHandle != IntPtr.Zero)
+                    {
+                        this.processList.Items.Add(process.ProcessName);
+                        this.processCache.Add(process.ProcessName);
+                    }
+
+                    // getting MainWindowHandle is 'heavy' -> pause a bit to spread the load
+                    Thread.Sleep(10);
                 }
             }
         }
