@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 using BorderlessGaming.Properties;
+using Newtonsoft.Json;
 
 namespace BorderlessGaming
 {
     public static class Favorites
     {
-        private static List<string> _favoriteGames;
-
         private const string FavoritesFile = "./Favorites.json";
+        private static List<string> _favoriteGames;
 
         static Favorites()
         {
@@ -42,7 +41,8 @@ namespace BorderlessGaming
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave,  e.Message), Resources.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave, e.Message), Resources.ErrorHeader,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

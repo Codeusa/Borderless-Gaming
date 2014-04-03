@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -26,11 +25,13 @@ namespace BorderlessGaming.WindowsApi
         public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+        public static extern WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex,
+            WindowStyleFlags dwNewLong);
 
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags uFlags);
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
+            SetWindowPosFlags uFlags);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern int GetWindowText(int hWnd, StringBuilder title, int size);
@@ -78,7 +79,8 @@ namespace BorderlessGaming.WindowsApi
         public static extern bool RemoveMenu(IntPtr hMenu, uint uPosition, MenuFlags uFlags);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPosFlags wFlags);
+        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy,
+            SetWindowPosFlags wFlags);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr GetForegroundWindow();
@@ -92,6 +94,22 @@ namespace BorderlessGaming.WindowsApi
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetClientRect(IntPtr hWnd, ref RECT lpRect);
 
+        [DllImport("user32.dll")]
+        public static extern int ClientToScreen(IntPtr hwnd, [MarshalAs(UnmanagedType.Struct)] ref POINTAPI lpPoint);
+
+        #region Nested type: POINTAPI
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINTAPI
+        {
+            public int X;
+            public int Y;
+        }
+
+        #endregion
+
+        #region Nested type: RECT
+
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -101,14 +119,6 @@ namespace BorderlessGaming.WindowsApi
             public int Bottom;
         }
 
-        [DllImport("user32.dll")]
-        public static extern int ClientToScreen(IntPtr hwnd, [MarshalAs(UnmanagedType.Struct)] ref POINTAPI lpPoint);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct POINTAPI
-        {
-            public int X;
-            public int Y;
-        }
+        #endregion
     }
 }

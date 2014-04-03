@@ -1,20 +1,15 @@
-﻿using Microsoft.Win32;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
+using BorderlessGaming.Properties;
 
 namespace BorderlessGaming.Utilities
 {
-    using BorderlessGaming.Properties;
-
     public static class Tools
     {
         public static void GotoSite(string url)
@@ -40,7 +35,7 @@ namespace BorderlessGaming.Utilities
                 return false;
             }
         }
-    
+
         public static string AppFile(string fileName, params string[] folders)
         {
             var folderPath = Application.StartupPath + @"\";
@@ -94,7 +89,8 @@ namespace BorderlessGaming.Utilities
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show( Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -104,7 +100,9 @@ namespace BorderlessGaming.Utilities
                 var applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
                 if (applicationVersion.CompareTo(_newVersion) < 0)
                 {
-                    if (DialogResult.Yes == MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                     {
                         GotoSite(_releasePageURL);
                     }

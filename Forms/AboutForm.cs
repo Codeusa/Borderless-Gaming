@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Forms
 {
-    using System.Reflection;
-
     public partial class AboutForm : Form
     {
         public AboutForm()
@@ -15,7 +14,7 @@ namespace BorderlessGaming.Forms
 
         private void AboutFormLoad(object sender, EventArgs e)
         {
-            this.versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
         }
 
         #region Project and Maintainer Links

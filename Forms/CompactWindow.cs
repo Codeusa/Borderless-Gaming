@@ -2,67 +2,63 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
-
-using BorderlessGaming.WindowsApi;
+using BorderlessGaming.Properties;
 using BorderlessGaming.Utilities;
+using BorderlessGaming.WindowsApi;
 using Utilities;
 
 namespace BorderlessGaming.Forms
 {
-    using System.Configuration;
-    using System.Drawing;
-    using System.Threading;
-
-    using BorderlessGaming.Properties;
-
     public partial class CompactWindow : Form
     {
         /// <summary>
-        /// the processblacklist is used to keep processes from showing up in the list
+        ///     The HotKey
         /// </summary>
-        private readonly string[] processBlacklist = { "explorer", "BorderlessGaming", "IW4 Console" };
+        private const int HotKey = (int) Keys.F6;
 
         /// <summary>
-        /// list of currently running processes
+        ///     HotKey Modifier
+        /// </summary>
+        private const int HotKeyModifier = 0x008; // WIN-Key
+
+        /// <summary>
+        ///     The MouseLockHotKey
+        /// </summary>
+        private const int MouseLockHotKey = (int) Keys.Scroll;
+
+        /// <summary>
+        ///     the processblacklist is used to keep processes from showing up in the list
+        /// </summary>
+        private readonly string[] processBlacklist = {"explorer", "BorderlessGaming", "IW4 Console", "XSplit"};
+
+        /// <summary>
+        ///     list of currently running processes
         /// </summary>
         private List<string> processCache = new List<string>();
 
         /// <summary>
-        /// The HotKey
-        /// </summary>
-        private const int HotKey = (int)Keys.F6;
-
-        /// <summary>
-        /// HotKey Modifier
-        /// </summary>
-        private const int HotKeyModifier = 0x008;   // WIN-Key
-
-        /// <summary>
-        /// The MouseLockHotKey
-        /// </summary>
-        private const int MouseLockHotKey = (int)Keys.Scroll;
-
-        /// <summary>
-        /// the ctor
+        ///     the ctor
         /// </summary>
         public CompactWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
-        /// Starts the timer that periodically runs the worker.
+        ///     Starts the timer that periodically runs the worker.
         /// </summary>
         private void StartMonitoringFavorites()
         {
-            this.workerTimer.Start();
+            workerTimer.Start();
         }
 
         /// <summary>
-        /// Gets the WindowHandle for the given Process
+        ///     Gets the WindowHandle for the given Process
         /// </summary>
         /// <param name="processName">Name of the Process</param>
         /// <returns>a valid WindowHandle or IntPtr.Zero</returns>
@@ -73,46 +69,46 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
-        /// remove the menu, resize the window, remove border
+        ///     remove the menu, resize the window, remove border
         /// </summary>
         private void RemoveBorderScreen(string procName, Screen screen)
         {
-            this.RemoveBorderRect(procName, screen.Bounds);    
+            RemoveBorderRect(procName, screen.Bounds);
         }
 
         /// <summary>
-        /// remove the menu, resize the window, remove border
+        ///     remove the menu, resize the window, remove border
         /// </summary>
         private void RemoveBorderRect(string procName, Rectangle targetFrame)
         {
-            var targetHandle = this.FindWindowHandle(procName);
+            var targetHandle = FindWindowHandle(procName);
             if (targetHandle == IntPtr.Zero) return;
 
-            this.RemoveBorderRect(targetHandle, targetFrame);
+            RemoveBorderRect(targetHandle, targetFrame);
         }
 
         /// <summary>
-        /// remove the menu, resize the window, remove border
+        ///     remove the menu, resize the window, remove border
         /// </summary>
         private void RemoveBorder(string procName)
         {
-            var targetHandle = this.FindWindowHandle(procName);
+            var targetHandle = FindWindowHandle(procName);
             if (targetHandle == IntPtr.Zero) return;
 
-            this.RemoveBorder(targetHandle);
+            RemoveBorder(targetHandle);
         }
 
         /// <summary>
-        /// remove the menu, resize the window, remove border
+        ///     remove the menu, resize the window, remove border
         /// </summary>
         private bool RemoveBorder(IntPtr hWnd)
         {
             var targetScreen = Screen.FromHandle(hWnd);
-            return this.RemoveBorderRect(hWnd, targetScreen.Bounds);
+            return RemoveBorderRect(hWnd, targetScreen.Bounds);
         }
 
         /// <summary>
-        /// remove the menu, resize the window, remove border
+        ///     remove the menu, resize the window, remove border
         /// </summary>
         private bool RemoveBorderRect(IntPtr targetHandle, Rectangle targetFrame)
         {
@@ -144,7 +140,7 @@ namespace BorderlessGaming.Forms
                 Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
                 Native.SetWindowPos(
                     targetHandle,
-                    0, 
+                    0,
                     targetFrame.X,
                     targetFrame.Y,
                     targetFrame.Width,
@@ -152,7 +148,7 @@ namespace BorderlessGaming.Forms
                     SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder);
                 return true;
             }
-            
+
             return false;
         }
 
@@ -162,41 +158,41 @@ namespace BorderlessGaming.Forms
 
             var newWindowStyle = (windowStyle
                                   | (WindowStyleFlags.ExtendedDlgmodalframe | WindowStyleFlags.Caption
-                                      | WindowStyleFlags.ThickFrame | WindowStyleFlags.SystemMenu
-                                      | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox
-                                      | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited));
+                                     | WindowStyleFlags.ThickFrame | WindowStyleFlags.SystemMenu
+                                     | WindowStyleFlags.MaximizeBox | WindowStyleFlags.MinimizeBox
+                                     | WindowStyleFlags.Border | WindowStyleFlags.ExtendedComposited));
 
             Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
         }
 
         /// <summary>
-        /// Updates the list of processes
+        ///     Updates the list of processes
         /// </summary>
         private void UpdateProcessList()
         {
             // update processCache
             var processes = Process.GetProcesses().Where(process => !processBlacklist.Contains(process.ProcessName));
-            
+
             // prune closed processes
-            for (int i = processList.Items.Count - 1; i > 0; i--)
+            for (var i = processList.Items.Count - 1; i > 0; i--)
             {
-                var process = this.processList.Items[i] as string;
+                var process = processList.Items[i] as string;
                 if (!processes.Any(p => p.ProcessName == process))
                 {
-                    this.processList.Items.RemoveAt(i);
-                    this.processCache.Remove(process);
+                    processList.Items.RemoveAt(i);
+                    processCache.Remove(process);
                 }
             }
 
             // add new processes
             foreach (var process in processes)
             {
-                if (!this.processList.Items.Contains(process.ProcessName))
+                if (!processList.Items.Contains(process.ProcessName))
                 {
                     if (process.MainWindowHandle != IntPtr.Zero)
                     {
-                        this.processList.Items.Add(process.ProcessName);
-                        this.processCache.Add(process.ProcessName);
+                        processList.Items.Add(process.ProcessName);
+                        processCache.Add(process.ProcessName);
                     }
 
                     // getting MainWindowHandle is 'heavy' -> pause a bit to spread the load
@@ -206,29 +202,29 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
-        /// Starts the worker if it is idle
+        ///     Starts the worker if it is idle
         /// </summary>
         private void WorkerTimerTick(object sender, EventArgs e)
         {
-            if (this.backWorker.IsBusy) return;
+            if (backWorker.IsBusy) return;
 
-            this.backWorker.RunWorkerAsync();
+            backWorker.RunWorkerAsync();
         }
 
         /// <summary>
-        /// Update the processlist and process the favorites
+        ///     Update the processlist and process the favorites
         /// </summary>
         private void BackWorkerProcess(object sender, DoWorkEventArgs e)
         {
             // update the processlist
-            this.processList.Invoke((MethodInvoker)this.UpdateProcessList);
+            processList.Invoke((MethodInvoker) UpdateProcessList);
 
             // check favorites against the cache
             lock (Favorites.List)
             {
-                foreach (var process in Favorites.List.Where(process => this.processCache.Contains(process)))
+                foreach (var process in Favorites.List.Where(process => processCache.Contains(process)))
                 {
-                    this.RemoveBorder(process);
+                    RemoveBorder(process);
                 }
             }
         }
@@ -247,14 +243,14 @@ namespace BorderlessGaming.Forms
         {
             Settings.Default.UseGlobalHotkey = toolStripGlobalHotkey.Checked;
             Settings.Default.Save();
-            this.RegisterHotkeys();
+            RegisterHotkeys();
         }
 
         private void UseMouseLockChanged(object sender, EventArgs e)
         {
             Settings.Default.UseMouseLockHotkey = toolStripMouseLock.Checked;
             Settings.Default.Save();
-            this.RegisterHotkeys();
+            RegisterHotkeys();
         }
 
         private void ReportBugClick(object sender, EventArgs e)
@@ -277,69 +273,69 @@ namespace BorderlessGaming.Forms
         #region Application Form Events
 
         /// <summary>
-        /// Makes the currently selected process borderless
+        ///     Makes the currently selected process borderless
         /// </summary>
         private void MakeBorderlessClick(object sender, EventArgs e)
         {
-            if (this.processList.SelectedItem == null) return;
+            if (processList.SelectedItem == null) return;
 
-            var process = this.processList.GetItemText(this.processList.SelectedItem);
+            var process = processList.GetItemText(processList.SelectedItem);
 
-            this.RemoveBorder(process);
+            RemoveBorder(process);
         }
 
         /// <summary>
-        /// adds the currently selected process to the favorites
+        ///     adds the currently selected process to the favorites
         /// </summary>
         private void AddFavoriteClick(object sender, EventArgs e)
         {
-            if (this.processList.SelectedItem == null) return;
+            if (processList.SelectedItem == null) return;
 
-            var process = this.processList.GetItemText(this.processList.SelectedItem);
+            var process = processList.GetItemText(processList.SelectedItem);
 
             if (Favorites.CanAdd(process))
             {
                 Favorites.AddGame(process);
-                this.favoritesList.DataSource = null;
-                this.favoritesList.DataSource = Favorites.List;
+                favoritesList.DataSource = null;
+                favoritesList.DataSource = Favorites.List;
             }
         }
 
         /// <summary>
-        /// removes the currently selected entry from the favorites
+        ///     removes the currently selected entry from the favorites
         /// </summary>
         private void RemoveFavoriteClick(object sender, EventArgs e)
         {
-            if (this.favoritesList.SelectedItem == null) return;
+            if (favoritesList.SelectedItem == null) return;
 
-            var process = this.favoritesList.GetItemText(this.favoritesList.SelectedItem);
+            var process = favoritesList.GetItemText(favoritesList.SelectedItem);
 
             if (Favorites.CanRemove(process))
             {
                 Favorites.Remove(process);
 
-                this.favoritesList.DataSource = null;
-                this.favoritesList.DataSource = Favorites.List;
+                favoritesList.DataSource = null;
+                favoritesList.DataSource = Favorites.List;
             }
         }
 
         /// <summary>
-        /// Sets up the Favorite-ContextMenu according to the current state
+        ///     Sets up the Favorite-ContextMenu according to the current state
         /// </summary>
         private void FavoriteContextOpening(object sender, CancelEventArgs e)
         {
-            if (this.favoritesList.SelectedItem == null)
+            if (favoritesList.SelectedItem == null)
             {
                 e.Cancel = true;
                 return;
             }
 
-            var process = this.favoritesList.GetItemText(this.favoritesList.SelectedItem);
-            this.contextRemoveFromFavs.Enabled = Favorites.CanRemove(process);
+            var process = favoritesList.GetItemText(favoritesList.SelectedItem);
+            contextRemoveFromFavs.Enabled = Favorites.CanRemove(process);
         }
 
         /// <summary>
-        /// Gets the smallest containing Rectangle
+        ///     Gets the smallest containing Rectangle
         /// </summary>
         private Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
         {
@@ -359,30 +355,30 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
-        /// Sets up the Process-ContextMenu according to the current state
+        ///     Sets up the Process-ContextMenu according to the current state
         /// </summary>
         private void ProcessContextOpening(object sender, CancelEventArgs e)
         {
-            if (this.processList.SelectedItem == null)
+            if (processList.SelectedItem == null)
             {
                 e.Cancel = true;
                 return;
             }
 
-            var process = this.processList.GetItemText(this.processList.SelectedItem);
-            this.contextAddToFavs.Enabled = Favorites.CanAdd(process);
+            var process = processList.GetItemText(processList.SelectedItem);
+            contextAddToFavs.Enabled = Favorites.CanAdd(process);
 
             if (Screen.AllScreens.Length < 2)
             {
-                this.contextBorderlessOn.Visible = false;
+                contextBorderlessOn.Visible = false;
             }
             else
             {
-                this.contextBorderlessOn.Visible = true;
+                contextBorderlessOn.Visible = true;
 
-                if (this.contextBorderlessOn.HasDropDownItems)
+                if (contextBorderlessOn.HasDropDownItems)
                 {
-                    this.contextBorderlessOn.DropDownItems.Clear();
+                    contextBorderlessOn.DropDownItems.Clear();
                 }
 
                 var superSize = Screen.PrimaryScreen.Bounds;
@@ -393,48 +389,42 @@ namespace BorderlessGaming.Forms
 
                     // fix for a .net-bug on Windows XP
                     var idx = screen.DeviceName.IndexOf('\0');
-                    var fixedDeviceName = idx > 0 ? screen.DeviceName.Substring(0,idx) : screen.DeviceName;
+                    var fixedDeviceName = idx > 0 ? screen.DeviceName.Substring(0, idx) : screen.DeviceName;
 
                     var label = fixedDeviceName + (screen.Primary ? " (P)" : string.Empty);
 
                     var tsi = new ToolStripMenuItem(label);
 
-                    tsi.Click += (s, ea) =>
-                        {
-                            this.RemoveBorderScreen(process, screen);
-                        };
+                    tsi.Click += (s, ea) => { RemoveBorderScreen(process, screen); };
 
-                    this.contextBorderlessOn.DropDownItems.Add(tsi);
+                    contextBorderlessOn.DropDownItems.Add(tsi);
                 }
 
                 //add supersize Option
                 var superSizeItem = new ToolStripMenuItem("SuperSize!");
-                System.Diagnostics.Debug.WriteLine(superSize);
-                superSizeItem.Click += (s, ea) =>
-                {
-                    this.RemoveBorderRect(process, superSize);
-                };
+                Debug.WriteLine(superSize);
+                superSizeItem.Click += (s, ea) => { RemoveBorderRect(process, superSize); };
 
-                this.contextBorderlessOn.DropDownItems.Add(superSizeItem);
+                contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
         }
 
         /// <summary>
-        /// Sets up the form
+        ///     Sets up the form
         /// </summary>
         private void CompactWindowLoad(object sender, EventArgs e)
         {
             // set the title and hide/minimize the window
-            this.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
-            this.Hide();
+            Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            Hide();
 
-            if (this.favoritesList != null)
+            if (favoritesList != null)
             {
-                this.favoritesList.DataSource = Favorites.List;
+                favoritesList.DataSource = Favorites.List;
             }
 
-            this.UpdateProcessList();
-            this.StartMonitoringFavorites();
+            UpdateProcessList();
+            StartMonitoringFavorites();
 
             toolStripRunOnStartup.Checked = Settings.Default.RunOnStartup;
             toolStripGlobalHotkey.Checked = Settings.Default.UseGlobalHotkey;
@@ -442,11 +432,11 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
-        /// Unregisters the hotkeys on closing
+        ///     Unregisters the hotkeys on closing
         /// </summary>
         private void CompactWindowFormClosing(object sender, FormClosingEventArgs e)
         {
-            this.UnregisterHotkeys();
+            UnregisterHotkeys();
         }
 
         #endregion
@@ -455,24 +445,24 @@ namespace BorderlessGaming.Forms
 
         private void TrayIconOpen(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void TrayIconExit(object sender, EventArgs e)
         {
-            this.trayIcon.Visible = false;
+            trayIcon.Visible = false;
             Environment.Exit(0);
         }
 
         private void CompactWindowResize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
-                this.trayIcon.Visible = true;
-                this.trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
-                this.trayIcon.ShowBalloonTip(2000);
-                this.Hide();
+                trayIcon.Visible = true;
+                trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
+                trayIcon.ShowBalloonTip(2000);
+                Hide();
             }
         }
 
@@ -481,74 +471,74 @@ namespace BorderlessGaming.Forms
         #region Global HotKeys
 
         /// <summary>
-        /// registers the global hotkeys
+        ///     registers the global hotkeys
         /// </summary>
         private void RegisterHotkeys()
         {
-            this.UnregisterHotkeys();
-            
+            UnregisterHotkeys();
+
             if (Settings.Default.UseGlobalHotkey)
             {
-                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), HotKeyModifier, HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), HotKeyModifier, HotKey);
             }
 
             if (Settings.Default.UseMouseLockHotkey)
             {
-                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), 0, MouseLockHotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), 0, MouseLockHotKey);
             }
         }
 
         /// <summary>
-        /// unregisters the global hotkeys
+        ///     unregisters the global hotkeys
         /// </summary>
         private void UnregisterHotkeys()
         {
-                Native.UnregisterHotKey(this.Handle, this.GetType().GetHashCode());
+            Native.UnregisterHotKey(Handle, GetType().GetHashCode());
         }
 
         /// <summary>
-        /// Catches the Hotkeys
+        ///     Catches the Hotkeys
         /// </summary>
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x312) // WM_HOTKEY
             {
-                var key = ((int)m.LParam >> 16) & 0xFFFF;
-                var modifier = (int)m.LParam & 0xFFFF;
+                var key = ((int) m.LParam >> 16) & 0xFFFF;
+                var modifier = (int) m.LParam & 0xFFFF;
 
                 if (key == HotKey && modifier == HotKeyModifier)
                 {
                     var hwnd = Native.GetForegroundWindow();
-                    if (!this.RemoveBorder(hwnd))
+                    if (!RemoveBorder(hwnd))
                     {
-                        this.AddBorder(hwnd);
+                        AddBorder(hwnd);
                     }
                 }
 
                 if (key == MouseLockHotKey)
                 {
-                        var hwnd = Native.GetForegroundWindow();
-                        
-                        // get size of clientarea
-                        var r = new Native.RECT();
-                        Native.GetClientRect(hwnd, ref r);
+                    var hwnd = Native.GetForegroundWindow();
 
-                        // get top,left point of clientarea
-                        var p = new Native.POINTAPI() { X = 0, Y = 0 };
-                        Native.ClientToScreen(hwnd, ref p);
+                    // get size of clientarea
+                    var r = new Native.RECT();
+                    Native.GetClientRect(hwnd, ref r);
 
-                        var clipRect = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
+                    // get top,left point of clientarea
+                    var p = new Native.POINTAPI {X = 0, Y = 0};
+                    Native.ClientToScreen(hwnd, ref p);
 
-                        if (Cursor.Clip.Equals(clipRect))
-                        {
-                            // unclip
-                            Cursor.Clip = Rectangle.Empty;
-                        }
-                        else
-                        {
-                            // set clip rectangle
-                            Cursor.Clip = clipRect;
-                        }
+                    var clipRect = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
+
+                    if (Cursor.Clip.Equals(clipRect))
+                    {
+                        // unclip
+                        Cursor.Clip = Rectangle.Empty;
+                    }
+                    else
+                    {
+                        // set clip rectangle
+                        Cursor.Clip = clipRect;
+                    }
                 }
             }
 
