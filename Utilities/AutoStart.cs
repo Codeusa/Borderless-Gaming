@@ -7,11 +7,11 @@ using IWshRuntimeLibrary;
 
 #endif
 
-namespace Utilities
+namespace BorderlessGaming.Utilities
 {
     public static class AutoStart
     {
-        public static bool Create(string shortcutPath, string targetPath, string arguments = "")
+        private static bool Create(string shortcutPath, string targetPath, string arguments = "")
         {
 #if !__MonoCS__
             if (!string.IsNullOrEmpty(shortcutPath) && !string.IsNullOrEmpty(targetPath) && File.Exists(targetPath))
@@ -35,7 +35,7 @@ namespace Utilities
             return false;
         }
 
-        public static bool Delete(string shortcutPath)
+        private static bool Delete(string shortcutPath)
         {
             if (!string.IsNullOrEmpty(shortcutPath) && File.Exists(shortcutPath))
             {

@@ -14,7 +14,7 @@ namespace BorderlessGaming.Forms
 
         private void AboutFormLoad(object sender, EventArgs e)
         {
-            versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            versionLabel.Text = @"Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
         }
 
         #region Project and Maintainer Links

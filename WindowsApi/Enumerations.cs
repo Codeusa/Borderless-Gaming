@@ -80,7 +80,8 @@ namespace BorderlessGaming.WindowsApi
         NoSendChanging = 0x0400,
         NoSize = 0x0001,
         NoZOrder = 0x0004,
-        ShowWindow = 0x0040
+        ShowWindow = 0x0040,
+        ShowMaximixed = 0x0003
     }
 
     [Flags]
