@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Management;
+using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,7 +11,6 @@ using System.Windows.Forms;
 using BorderlessGaming.Properties;
 using BorderlessGaming.Utilities;
 using BorderlessGaming.WindowsApi;
-using Utilities;
 
 namespace BorderlessGaming.Forms
 {
@@ -39,7 +39,11 @@ namespace BorderlessGaming.Forms
         /// <summary>
         ///     list of currently running processes
         /// </summary>
-        private List<string> processCache = new List<string>();
+        //private readonly List<string> processCache = new List<string>();
+
+        private readonly ManagementEventWatcher procStartWatch = new ManagementEventWatcher(new WqlEventQuery("SELECT * FROM Win32_ProcessStartTrace"));
+
+        private readonly ManagementEventWatcher procStopWatch = new ManagementEventWatcher(new WqlEventQuery("SELECT * FROM Win32_ProcessStopTrace"));
 
         /// <summary>
         ///     the ctor
@@ -47,14 +51,6 @@ namespace BorderlessGaming.Forms
         public CompactWindow()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        ///     Starts the timer that periodically runs the worker.
-        /// </summary>
-        private void StartMonitoringFavorites()
-        {
-            workerTimer.Start();
         }
 
         /// <summary>
@@ -79,12 +75,12 @@ namespace BorderlessGaming.Forms
         /// <summary>
         ///     remove the menu, resize the window, remove border
         /// </summary>
-        private void RemoveBorderRect(string procName, Rectangle targetFrame)
+        private bool RemoveBorderRect(string procName, Rectangle targetFrame)
         {
             var targetHandle = FindWindowHandle(procName);
-            if (targetHandle == IntPtr.Zero) return;
+            if (targetHandle == IntPtr.Zero) return false;
 
-            RemoveBorderRect(targetHandle, targetFrame);
+            return RemoveBorderRect(targetHandle, targetFrame);
         }
 
         /// <summary>
@@ -125,7 +121,7 @@ namespace BorderlessGaming.Forms
             // if the windowstyles differ this window hasn't been made borderless yet
             if (windowStyle != newWindowStyle)
             {
-                // remove the menu and menuitems and force a redraw
+                // remove the menu and menuitems
                 var menuHandle = Native.GetMenu(targetHandle);
                 var menuItemCount = Native.GetMenuItemCount(menuHandle);
 
@@ -134,6 +130,7 @@ namespace BorderlessGaming.Forms
                     Native.RemoveMenu(menuHandle, 0, MenuFlags.ByPosition | MenuFlags.Remove);
                 }
 
+                // force a redraw
                 Native.DrawMenuBar(targetHandle);
 
                 // update windowstyle & position
@@ -146,6 +143,9 @@ namespace BorderlessGaming.Forms
                     targetFrame.Width,
                     targetFrame.Height,
                     SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder);
+
+                Native.ShowWindowAsync(targetHandle, 3); //SW_SHOWMAXIMIZED
+
                 return true;
             }
 
@@ -165,67 +165,17 @@ namespace BorderlessGaming.Forms
             Native.SetWindowLong(targetHandle, WindowLongIndex.Style, newWindowStyle);
         }
 
-        /// <summary>
-        ///     Updates the list of processes
-        /// </summary>
-        private void UpdateProcessList()
+        private void FillProcessList()
         {
-            // update processCache
-            var processes = Process.GetProcesses().Where(process => !processBlacklist.Contains(process.ProcessName));
+            var currentProcesses = Process.GetProcesses().Where(process => !processBlacklist.Contains(process.ProcessName))
+                                                         .Where(p => p.MainWindowHandle != IntPtr.Zero);
+            var processNames = currentProcesses.Select(p => p.ProcessName);
 
-            // prune closed processes
-            for (var i = processList.Items.Count - 1; i > 0; i--)
+            processList.Items.Clear();
+
+            foreach (var name in processNames)
             {
-                var process = processList.Items[i] as string;
-                if (!processes.Any(p => p.ProcessName == process))
-                {
-                    processList.Items.RemoveAt(i);
-                    processCache.Remove(process);
-                }
-            }
-
-            // add new processes
-            foreach (var process in processes)
-            {
-                if (!processList.Items.Contains(process.ProcessName))
-                {
-                    if (process.MainWindowHandle != IntPtr.Zero)
-                    {
-                        processList.Items.Add(process.ProcessName);
-                        processCache.Add(process.ProcessName);
-                    }
-
-                    // getting MainWindowHandle is 'heavy' -> pause a bit to spread the load
-                    Thread.Sleep(10);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Starts the worker if it is idle
-        /// </summary>
-        private void WorkerTimerTick(object sender, EventArgs e)
-        {
-            if (backWorker.IsBusy) return;
-
-            backWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     Update the processlist and process the favorites
-        /// </summary>
-        private void BackWorkerProcess(object sender, DoWorkEventArgs e)
-        {
-            // update the processlist
-            processList.Invoke((MethodInvoker) UpdateProcessList);
-
-            // check favorites against the cache
-            lock (Favorites.List)
-            {
-                foreach (var process in Favorites.List.Where(process => processCache.Contains(process)))
-                {
-                    RemoveBorder(process);
-                }
+                processList.Items.Add(name);
             }
         }
 
@@ -339,6 +289,7 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
         {
+ 
             var amin = new Point(a.X, a.Y);
             var amax = new Point(a.X + a.Width, a.Y + a.Height);
             var bmin = new Point(b.X, b.Y);
@@ -395,7 +346,8 @@ namespace BorderlessGaming.Forms
 
                     var tsi = new ToolStripMenuItem(label);
 
-                    tsi.Click += (s, ea) => { RemoveBorderScreen(process, screen); };
+                    Screen screen1 = screen;
+                    tsi.Click += (s, ea) => RemoveBorderScreen(process, screen1);
 
                     contextBorderlessOn.DropDownItems.Add(tsi);
                 }
@@ -403,7 +355,7 @@ namespace BorderlessGaming.Forms
                 //add supersize Option
                 var superSizeItem = new ToolStripMenuItem("SuperSize!");
                 Debug.WriteLine(superSize);
-                superSizeItem.Click += (s, ea) => { RemoveBorderRect(process, superSize); };
+                superSizeItem.Click += (s, ea) => RemoveBorderRect(process, superSize);
 
                 contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
@@ -415,7 +367,7 @@ namespace BorderlessGaming.Forms
         private void CompactWindowLoad(object sender, EventArgs e)
         {
             // set the title and hide/minimize the window
-            Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            Text = @"Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
             Hide();
 
             if (favoritesList != null)
@@ -423,8 +375,8 @@ namespace BorderlessGaming.Forms
                 favoritesList.DataSource = Favorites.List;
             }
 
-            UpdateProcessList();
-            StartMonitoringFavorites();
+            FillProcessList();
+            StartEventListening();
 
             toolStripRunOnStartup.Checked = Settings.Default.RunOnStartup;
             toolStripGlobalHotkey.Checked = Settings.Default.UseGlobalHotkey;
@@ -437,6 +389,8 @@ namespace BorderlessGaming.Forms
         private void CompactWindowFormClosing(object sender, FormClosingEventArgs e)
         {
             UnregisterHotkeys();
+            procStartWatch.Stop();
+            procStopWatch.Stop();
         }
 
         #endregion
@@ -445,25 +399,83 @@ namespace BorderlessGaming.Forms
 
         private void TrayIconOpen(object sender, EventArgs e)
         {
+            // Open window
             Show();
+            // Focus window
             WindowState = FormWindowState.Normal;
         }
 
         private void TrayIconExit(object sender, EventArgs e)
         {
+            // remove icon so it doesn't ghost when the application exits
             trayIcon.Visible = false;
             Environment.Exit(0);
         }
 
         private void CompactWindowResize(object sender, EventArgs e)
         {
+            //The window will now minimize
             if (WindowState == FormWindowState.Minimized)
             {
+                // Show a balloon
                 trayIcon.Visible = true;
                 trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
                 trayIcon.ShowBalloonTip(2000);
+
+                // Hide window (so it's not on the bar)
                 Hide();
             }
+        }
+
+        #endregion
+
+        #region Events
+
+        private void StartEventListening()
+        {
+            procStartWatch.EventArrived += startWatch_EventArrived;
+            procStartWatch.Start();
+
+            procStopWatch.EventArrived += stopWatch_EventArrived;
+            procStopWatch.Start();
+        }
+
+
+        void startWatch_EventArrived(object sender, EventArrivedEventArgs e)
+        {
+            Task.Factory.StartNew( () => {
+                var processId = (uint)e.NewEvent.Properties["ProcessID"].Value;
+                try
+                {
+                    using (var process = Process.GetProcessById((int) processId))
+                    {
+                        var processName = process.ProcessName;
+
+                        //FAILS HERE
+                        Thread.Sleep(2000);
+                        if (process.MainWindowHandle == IntPtr.Zero) return;
+                        // Add process from list
+                        processList.Invoke(new Action(() => processList.Items.Add(processName)));
+
+                        // Favorite check and handle
+                        if (!Favorites.List.Contains(processName)) return;
+                        RemoveBorder(processName);
+                    }
+                }
+                catch (ArgumentException)
+                {
+                }
+            }); 
+        }
+
+        void stopWatch_EventArrived(object sender, EventArrivedEventArgs e)
+        {
+            Task.Factory.StartNew( () => {
+                var processName = e.NewEvent.Properties["ProcessName"].Value.ToString();
+
+                // Remove process to lists
+                processList.Invoke(new Action(() => processList.Items.Remove(processName)));
+            });                 
         }
 
         #endregion
@@ -529,16 +541,7 @@ namespace BorderlessGaming.Forms
 
                     var clipRect = new Rectangle(p.X, p.Y, r.Right - r.Left, r.Bottom - r.Top);
 
-                    if (Cursor.Clip.Equals(clipRect))
-                    {
-                        // unclip
-                        Cursor.Clip = Rectangle.Empty;
-                    }
-                    else
-                    {
-                        // set clip rectangle
-                        Cursor.Clip = clipRect;
-                    }
+                    Cursor.Clip = Cursor.Clip.Equals(clipRect) ? Rectangle.Empty : clipRect;
                 }
             }
 

@@ -32,7 +32,7 @@ namespace BorderlessGaming
             }
         }
 
-        public static void Save()
+        private static void Save()
         {
             var jsonDoc = JsonConvert.SerializeObject(_favoriteGames);
             try
@@ -46,7 +46,7 @@ namespace BorderlessGaming
             }
         }
 
-        public static void Load()
+        private static void Load()
         {
             if (File.Exists(FavoritesFile))
             {
