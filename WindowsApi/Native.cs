@@ -97,6 +97,10 @@ namespace BorderlessGaming.WindowsApi
         [DllImport("user32.dll")]
         public static extern int ClientToScreen(IntPtr hwnd, [MarshalAs(UnmanagedType.Struct)] ref POINTAPI lpPoint);
 
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool ShowWindow(IntPtr hWnd, WindowShowStyle nCmdShow);
+
         #region Nested type: POINTAPI
 
         [StructLayout(LayoutKind.Sequential)]
