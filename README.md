@@ -34,7 +34,7 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 
 ## Helping Borderless-Gaming 
 
-**I want to help with the code:** I accepts pull-requests, please see the [Contributing to Borderless-Gaming](https://github.com/Codeusa/Borderless-Gaming/blob/master/CONTRIBUTING.md) guide for information on contributing to this project. And don't forget to add your contact informations on the AUTHORS list.
+**I want to help with the code:** I accept pull-requests, please see the [Contributing to Borderless-Gaming](https://github.com/Codeusa/Borderless-Gaming/blob/master/CONTRIBUTING.md) guide for information on contributing to this project. And don't forget to add your contact informations on the AUTHORS list.
 
 **I found a bug:** File it as an [issue](https://github.com/Codeusa/Borderless-Gaming/issues) and please describe as much as possible the bug and the context.
 

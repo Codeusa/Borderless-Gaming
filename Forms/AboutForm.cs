@@ -68,6 +68,15 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("https://github.com/madpew/");
         }
 
+        private void OpenPsouza4Github(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://github.com/psouza4/");
+        }
+        
+        private void OpenPsouza4Steam(object sender, EventArgs e)
+        {
+            Tools.GotoSite("http://steamcommunity.com/id/psouza4/");
+        }
         #endregion
     }
 }

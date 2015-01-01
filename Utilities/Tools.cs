@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
@@ -17,21 +18,27 @@ namespace BorderlessGaming.Utilities
             Process.Start(url);
         }
 
-        private static bool HasInternetConnection()
+        private static bool HasInternetConnection
         {
             //There is absolutely no way you can reliably check if there is an internet connection
-            try
+            get
             {
-                using (var client = new WebClient())
+                try
                 {
-                    using (var stream = client.OpenRead("http://www.google.com"))
+                    if (!NetworkInterface.GetIsNetworkAvailable())
+                        return false;
+
+                    bool result = false;
+
+                    using (Ping p = new Ping())
                     {
-                        return true;
+                        result = (p.Send("8.8.8.8", 15000).Status == IPStatus.Success) || (p.Send("8.8.4.4", 15000).Status == IPStatus.Success) || (p.Send("4.2.2.1", 15000).Status == IPStatus.Success);
                     }
+
+                    return result;
                 }
-            }
-            catch
-            {
+                catch { }
+
                 return false;
             }
         }
@@ -50,7 +57,7 @@ namespace BorderlessGaming.Utilities
 
         public static void CheckForUpdates()
         {
-            if (HasInternetConnection())
+            if (HasInternetConnection)
             {
                 var _releasePageURL = "";
                 Version _newVersion = null;
@@ -106,6 +113,58 @@ namespace BorderlessGaming.Utilities
                     {
                         GotoSite(_releasePageURL);
                     }
+                }
+            }
+        }
+
+        public static string Input_Text(string sTitle, string sInstructions)
+        {
+            return Input_Text(sTitle, sInstructions, string.Empty);
+        }
+
+        public static string Input_Text(string sTitle, string sInstructions, string sDefaultValue)
+        {
+            try
+            {
+                using (Forms.InputText inputForm = new Forms.InputText())
+                {
+                    inputForm.Title = sTitle;
+                    inputForm.Instructions = sInstructions;
+                    inputForm.Input = sDefaultValue;
+                    
+                    if (inputForm.ShowDialog() == DialogResult.OK)
+                        return inputForm.Input;
+
+                    return sDefaultValue;
+                }
+            }
+            catch { }
+
+            return string.Empty;
+        }
+
+        public static List<string> StartupParameters
+        {
+            get
+            {
+                try
+                {
+                    string sModName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+
+                    List<string> startup_parameters_mixed = new List<string>();
+                    startup_parameters_mixed.AddRange(Environment.GetCommandLineArgs());
+
+                    List<string> startup_parameters_lower = new List<string>();
+                    foreach (string s in startup_parameters_mixed)
+                        startup_parameters_lower.Add(s.Trim().ToLower());
+
+                    startup_parameters_mixed.Clear();
+
+                    return startup_parameters_lower;
+                }
+                catch
+                {
+                    return new List<string>(Environment.GetCommandLineArgs());
                 }
             }
         }

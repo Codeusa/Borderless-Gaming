@@ -16,7 +16,7 @@ namespace BorderlessGaming
             ExceptionHandler.AddHandlers();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Tools.CheckForUpdates();
+            try { Tools.CheckForUpdates(); } catch { }
             Application.Run(new CompactWindow());
         }
     }
