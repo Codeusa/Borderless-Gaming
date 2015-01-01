@@ -1,7 +1,7 @@
 # What is this?
 Borderless Gaming is a simple tool that will allow you to turn your windowed video games into "fullscreen" applications without all of the negative side effects
 
-The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github.com/psouza4/Borderless-Gaming/blob/master/LICENSE).
+The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github.com/Codeusa/Borderless-Gaming/blob/master/LICENSE).
 
 
 ![Image](http://img850.imageshack.us/img850/3111/ci9k.png)
@@ -15,7 +15,7 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 
 #### Install
 
-- Download the latest build from: https://github.com/psouza4/Borderless-Gaming/releases/latest
+- Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/latest
 
 - Extract its contents to any desired folder
 
@@ -43,7 +43,6 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 ## Contact info
 
 * **Twitter:** [@CodeusaSoftware](https://twitter.com/codeusasoftware)
-* **Twitter:** [@psouza4](https://twitter.com/psouza4)
 * **Blog:** [andrew.codeusa.net](http://andrew.codeusa.net)
 * **Youtube:** [Youtube Channel](http://www.youtube.com/codeusasoftware)
 
