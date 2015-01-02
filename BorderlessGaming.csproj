@@ -61,8 +61,8 @@
     <StartupObject>BorderlessGaming.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\External Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -91,6 +91,19 @@
       <DependentUpon>CompactWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs" />
+    <Compile Include="Forms\DesktopAreaSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DesktopAreaSelector.designer.cs">
+      <DependentUpon>DesktopAreaSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputText.designer.cs">
+      <DependentUpon>InputText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -108,12 +121,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CompactWindow.de.resx">
       <DependentUpon>CompactWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CompactWindow.resx">
       <DependentUpon>CompactWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DesktopAreaSelector.resx">
+      <DependentUpon>DesktopAreaSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputText.resx">
+      <DependentUpon>InputText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -184,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BorderlessGaming.ico" />
+    <None Include="data\bordered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

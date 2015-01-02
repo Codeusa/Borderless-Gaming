@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using File = System.IO.File;
-#if !__MonoCS__
-using IWshRuntimeLibrary;
 
+#if !__MonoCS__
+    using IWshRuntimeLibrary;
 #endif
+
+using File = System.IO.File;
 
 namespace Utilities
 {
@@ -19,7 +20,7 @@ namespace Utilities
                 try
                 {
                     IWshShell wsh = new WshShellClass();
-                    var shortcut = (IWshShortcut) wsh.CreateShortcut(shortcutPath);
+                    var shortcut = (IWshShortcut)wsh.CreateShortcut(shortcutPath);
                     shortcut.TargetPath = targetPath;
                     shortcut.Arguments = arguments;
                     shortcut.WorkingDirectory = Path.GetDirectoryName(targetPath);
@@ -27,9 +28,7 @@ namespace Utilities
 
                     return true;
                 }
-                catch
-                {
-                }
+                catch { }
             }
 #endif
             return false;
@@ -58,11 +57,12 @@ namespace Utilities
             return Delete(shortcutPath);
         }
 
-        public static bool CheckShortcut(Environment.SpecialFolder specialFolder)
-        {
-            var shortcutPath = GetShortcutPath(specialFolder);
-            return File.Exists(shortcutPath);
-        }
+        // Code commented (but not removed) by psouza4 2015/01/01: there were no references to this method, so no need to compile it and bloat the software.
+        //public static bool CheckShortcut(Environment.SpecialFolder specialFolder)
+        //{
+        //    var shortcutPath = GetShortcutPath(specialFolder);
+        //    return File.Exists(shortcutPath);
+        //}
 
         private static string GetShortcutPath(Environment.SpecialFolder specialFolder)
         {

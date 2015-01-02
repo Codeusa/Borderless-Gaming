@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Borderless Gaming")]
-[assembly: AssemblyDescription("Play your favorite games in a borderless window; no more time consuming alt-tabs")]
+[assembly: AssemblyDescription("Play your favorite games in a borderless window; no more time-consuming Alt-Tabs!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Codeusa Software")]
-[assembly: AssemblyProduct("BorderlessGaming")]
-[assembly: AssemblyCopyright("Copyright © 2014")]
+[assembly: AssemblyProduct("Borderless Gaming")]
+[assembly: AssemblyCopyright("Copyright © 2014-2015 Codeusa Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,6 +36,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("6.5.0.0")]
-[assembly: AssemblyFileVersion("6.5.0.0")]
+[assembly: AssemblyVersion("7.2.115.1273")]
+[assembly: AssemblyFileVersion("7.2.115.1273")]
 [assembly: NeutralResourcesLanguage("en-US")]
