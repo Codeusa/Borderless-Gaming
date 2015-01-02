@@ -14,7 +14,8 @@ namespace BorderlessGaming.Forms
 
         private void AboutFormLoad(object sender, EventArgs e)
         {
-            versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            // removed .Version.ToString(2) in favor of just .ToString() here so we can see the build number now
+            versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         #region Project and Maintainer Links
@@ -36,7 +37,7 @@ namespace BorderlessGaming.Forms
 
         private void OpenOwnerSteam(object sender, EventArgs e)
         {
-            Tools.GotoSite("http://steamcommunity.com/id/deathstrokee/");
+            Tools.GotoSite("http://steamcommunity.com/id/Codeusa/");
         }
 
         private void OpenGithubRepo(object sender, LinkLabelLinkClickedEventArgs e)
@@ -77,6 +78,7 @@ namespace BorderlessGaming.Forms
         {
             Tools.GotoSite("http://steamcommunity.com/id/psouza4/");
         }
+
         #endregion
     }
 }

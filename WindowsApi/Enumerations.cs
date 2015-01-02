@@ -35,32 +35,32 @@ namespace BorderlessGaming.WindowsApi
         OverlappedWindow = Overlapped | Caption | SystemMenu | ThickFrame | MinimizeBox | MaximizeBox,
         ChildWindow = Child,
 
-        ExtendedDlgmodalframe = 0x00000001,
-        ExtendedNoparentnotify = 0x00000004,
+        ExtendedDlgModalFrame = 0x00000001,
+        ExtendedNoParentNotify = 0x00000004,
         ExtendedTopmost = 0x00000008,
-        ExtendedAcceptfiles = 0x00000010,
+        ExtendedAcceptFiles = 0x00000010,
         ExtendedTransparent = 0x00000020,
-        ExtendedMdichild = 0x00000040,
+        ExtendedMDIChild = 0x00000040,
         ExtendedToolWindow = 0x00000080,
         ExtendedWindowEdge = 0x00000100,
         ExtendedClientEdge = 0x00000200,
-        ExtendedContexthelp = 0x00000400,
+        ExtendedContextHelp = 0x00000400,
         ExtendedRight = 0x00001000,
         ExtendedLeft = 0x00000000,
-        ExtendedRtlreading = 0x00002000,
-        ExtendedLtrreading = 0x00000000,
-        ExtendedLeftscrollbar = 0x00004000,
-        ExtendedRightscrollbar = 0x00000000,
+        ExtendedRTLReading = 0x00002000,
+        ExtendedLTRReading = 0x00000000,
+        ExtendedLeftScrollbar = 0x00004000,
+        ExtendedRightScrollbar = 0x00000000,
         ExtendedControlParent = 0x00010000,
         ExtendedStaticEdge = 0x00020000,
         ExtendedAppWindow = 0x00040000,
         ExtendedOverlappedWindow = (ExtendedWindowEdge | ExtendedClientEdge),
         ExtendedPaletteWindow = (ExtendedWindowEdge | ExtendedToolWindow | ExtendedTopmost),
         ExtendedLayered = 0x00080000,
-        ExtendedNoinheritlayout = 0x00100000,
-        ExtendedLayoutRtl = 0x00400000,
+        ExtendedNoinheritLayout = 0x00100000,
+        ExtendedLayoutRTL = 0x00400000,
         ExtendedComposited = 0x02000000,
-        ExtendedNoactivate = 0x08000000
+        ExtendedNoActivate = 0x08000000
     }
 
     [Flags]
@@ -199,8 +199,9 @@ namespace BorderlessGaming.WindowsApi
         REMOTECONTROL = 0x2001, // 0x2001
     }
 
-    /// <summary>Enumeration of the different ways of showing a window using 
-    /// ShowWindow</summary>
+    /// <summary>
+    /// Enumeration of the different ways of showing a window using ShowWindow
+    /// </summary>
     public enum WindowShowStyle : uint
     {
         /// <summary>Hides the window and activates another window.</summary>

@@ -15,36 +15,63 @@ namespace BorderlessGaming
 
         public class Favorite
         {
-            public FavoriteKind Kind = FavoriteKind.ByBinaryName;
+            public FavoriteKinds Kind = FavoriteKinds.ByBinaryName;
 
-            public enum FavoriteKind : int
+            public enum FavoriteKinds : int
             {
                 ByBinaryName = 0,
-                ByTitleText = 1
+                ByTitleText = 1,
+            }
+
+            public SizeModes SizeMode = SizeModes.FullScreen;
+
+            public enum SizeModes : int
+            {
+                FullScreen = 0,
+                SpecificSize = 1,
             }
 
             public string SearchText = "";
+
             public int OffsetL = 0;
             public int OffsetT = 0;
             public int OffsetR = 0;
             public int OffsetB = 0;
+
             public bool ShouldMaximize = true;
+
+            public int PositionX = 0;
+            public int PositionY = 0;
+            public int PositionW = 0;
+            public int PositionH = 0;
+
+            public bool RemoveMenus = false;
+            public bool TopMost = false;
 
             public override string ToString() // so that the ListView control knows how to display this object to the user
             {
                 try
                 {
-                    string bounding = "";
+                    string extra_details = "";
+
+                    if (this.Kind == FavoriteKinds.ByTitleText)
+                        extra_details += " [Title]";
+                    else if (this.Kind != FavoriteKinds.ByBinaryName)
+                        extra_details += " [?]";
+
+                    extra_details += ((this.ShouldMaximize) ? " [Max]" : "");
+                    extra_details += ((this.TopMost) ? " [Top]" : "");
+                    extra_details += ((this.RemoveMenus) ? " [NoMenu]" : "");
 
                     if (this.OffsetL != 0 || this.OffsetR != 0 || this.OffsetT != 0 || this.OffsetB != 0)
-                        bounding = " [" + this.OffsetL.ToString() + "," + this.OffsetR.ToString() + "," + this.OffsetT.ToString() + "," + this.OffsetB.ToString() + "]";
+                        extra_details += " [" + this.OffsetL.ToString() + "L," + this.OffsetR.ToString() + "R," +
+                            this.OffsetT.ToString() + "T," + this.OffsetB.ToString() + "B]";
 
-                    if (this.Kind == FavoriteKind.ByBinaryName)
-                        return this.SearchText + bounding + ((this.ShouldMaximize) ? " [Max]" : "");
-                    else if (this.Kind == FavoriteKind.ByTitleText)
-                        return this.SearchText + bounding + " [Title]" + ((this.ShouldMaximize) ? " [Max]" : "");
-                    else
-                        return this.SearchText + bounding + " [?]" + ((this.ShouldMaximize) ? " [Max]" : "");
+                    if (this.PositionX != 0 || this.PositionY != 0 || this.PositionW != 0 || this.PositionH != 0)
+                        extra_details += " [" + this.PositionX.ToString() + "x" + this.PositionY.ToString() + "-" +
+                            (this.PositionX + this.PositionW).ToString() + "x" + (this.PositionY + this.PositionH).ToString() + "]";
+
+                    return this.SearchText + extra_details;
                 }
                 catch { }
 
@@ -104,7 +131,7 @@ namespace BorderlessGaming
                     foreach (string old_fav in Favorites._favoriteGames_old)
                     {
                         Favorite fav = new Favorite();
-                        fav.Kind = Favorite.FavoriteKind.ByBinaryName;
+                        fav.Kind = Favorite.FavoriteKinds.ByBinaryName;
                         fav.SearchText = old_fav;
                         Favorites.AddGame(fav);
                     }

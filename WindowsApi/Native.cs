@@ -164,5 +164,8 @@ namespace BorderlessGaming.WindowsApi
 
         [DllImport("user32.dll", SetLastError=true)]
         public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
+
+        public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+        public static readonly IntPtr HWND_NOTTOPMOST = new IntPtr(-2);
     }
 }

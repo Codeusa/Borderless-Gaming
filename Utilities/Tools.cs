@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -43,17 +44,18 @@ namespace BorderlessGaming.Utilities
             }
         }
 
-        public static string AppFile(string fileName, params string[] folders)
-        {
-            var folderPath = Application.StartupPath + @"\";
-            folders.ToList().ForEach(folder => folderPath += folder + @"\");
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
+        // Code commented (but not removed) by psouza4 2015/01/01: there were no references to this method, so no need to compile it and bloat the software.
+        //public static string AppFile(string fileName, params string[] folders)
+        //{
+        //    var folderPath = Application.StartupPath + @"\";
+        //    folders.ToList().ForEach(folder => folderPath += folder + @"\");
+        //    if (!Directory.Exists(folderPath))
+        //    {
+        //        Directory.CreateDirectory(folderPath);
+        //    }
 
-            return folderPath + fileName;
-        }
+        //    return folderPath + fileName;
+        //}
 
         public static void CheckForUpdates()
         {
@@ -117,12 +119,27 @@ namespace BorderlessGaming.Utilities
             }
         }
 
-        public static string Input_Text(string sTitle, string sInstructions)
+        /// <summary>
+        ///     Gets the smallest containing Rectangle
+        /// </summary>
+        public static Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
         {
-            return Input_Text(sTitle, sInstructions, string.Empty);
+            var amin = new Point(a.X, a.Y);
+            var amax = new Point(a.X + a.Width, a.Y + a.Height);
+            var bmin = new Point(b.X, b.Y);
+            var bmax = new Point(b.X + b.Width, b.Y + b.Height);
+            var nmin = new Point(0, 0);
+            var nmax = new Point(0, 0);
+
+            nmin.X = (amin.X < bmin.X) ? amin.X : bmin.X;
+            nmin.Y = (amin.Y < bmin.Y) ? amin.Y : bmin.Y;
+            nmax.X = (amax.X > bmax.X) ? amax.X : bmax.X;
+            nmax.Y = (amax.Y > bmax.Y) ? amax.Y : bmax.Y;
+
+            return new Rectangle(nmin, new Size(nmax.X - nmin.X, nmax.Y - nmin.Y));
         }
 
-        public static string Input_Text(string sTitle, string sInstructions, string sDefaultValue)
+        public static string Input_Text(string sTitle, string sInstructions, string sDefaultValue = "")
         {
             try
             {
@@ -164,8 +181,10 @@ namespace BorderlessGaming.Utilities
                 }
                 catch
                 {
-                    return new List<string>(Environment.GetCommandLineArgs());
+                    try { return new List<string>(Environment.GetCommandLineArgs()); } catch { }
                 }
+
+                return new List<string>();
             }
         }
     }
