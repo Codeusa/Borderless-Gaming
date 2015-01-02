@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Play your favorite games in a borderless window; no more time-consuming Alt-Tabs!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Codeusa Software")]
-[assembly: AssemblyProduct("BorderlessGaming")]
+[assembly: AssemblyProduct("Borderless Gaming")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Codeusa Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
