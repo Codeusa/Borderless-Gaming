@@ -42,6 +42,7 @@ namespace BorderlessGaming.Forms
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
+            this.setWindowTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.hideThisProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workerTimer = new System.Windows.Forms.Timer(this.components);
@@ -54,6 +55,9 @@ namespace BorderlessGaming.Forms
             this.automaximizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustWindowBoundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideMouseCursorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideWindowsTaskbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeMenusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.contextRemoveFromFavs = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,11 +75,15 @@ namespace BorderlessGaming.Forms
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMouseLock = new System.Windows.Forms.ToolStripMenuItem();
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.startMinimizedToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideBalloonTipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewFullProcessDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleMouseCursorVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleWindowsTaskbarVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +95,8 @@ namespace BorderlessGaming.Forms
             this.makeBorderedButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.resToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processContext.SuspendLayout();
             this.favoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
@@ -120,6 +129,7 @@ namespace BorderlessGaming.Forms
             this.toolStripMenuItem1,
             this.contextBorderless,
             this.contextBorderlessOn,
+            this.setWindowTitleToolStripMenuItem,
             this.toolStripMenuItem8,
             this.hideThisProcessToolStripMenuItem});
             this.processContext.Name = "processContext";
@@ -161,6 +171,12 @@ namespace BorderlessGaming.Forms
             // 
             this.contextBorderlessOn.Name = "contextBorderlessOn";
             resources.ApplyResources(this.contextBorderlessOn, "contextBorderlessOn");
+            // 
+            // setWindowTitleToolStripMenuItem
+            // 
+            this.setWindowTitleToolStripMenuItem.Name = "setWindowTitleToolStripMenuItem";
+            resources.ApplyResources(this.setWindowTitleToolStripMenuItem, "setWindowTitleToolStripMenuItem");
+            this.setWindowTitleToolStripMenuItem.Click += new System.EventHandler(this.setWindowTitleToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -204,6 +220,8 @@ namespace BorderlessGaming.Forms
             this.adjustWindowBoundsToolStripMenuItem,
             this.toolStripMenuItem4,
             this.alwaysOnTopToolStripMenuItem,
+            this.hideMouseCursorToolStripMenuItem,
+            this.hideWindowsTaskbarToolStripMenuItem,
             this.removeMenusToolStripMenuItem,
             this.toolStripMenuItem9,
             this.contextRemoveFromFavs});
@@ -246,6 +264,27 @@ namespace BorderlessGaming.Forms
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            // 
+            // alwaysOnTopToolStripMenuItem
+            // 
+            this.alwaysOnTopToolStripMenuItem.CheckOnClick = true;
+            this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
+            resources.ApplyResources(this.alwaysOnTopToolStripMenuItem, "alwaysOnTopToolStripMenuItem");
+            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
+            // 
+            // hideMouseCursorToolStripMenuItem
+            // 
+            this.hideMouseCursorToolStripMenuItem.CheckOnClick = true;
+            this.hideMouseCursorToolStripMenuItem.Name = "hideMouseCursorToolStripMenuItem";
+            resources.ApplyResources(this.hideMouseCursorToolStripMenuItem, "hideMouseCursorToolStripMenuItem");
+            this.hideMouseCursorToolStripMenuItem.Click += new System.EventHandler(this.hideMouseCursorToolStripMenuItem_Click);
+            // 
+            // hideWindowsTaskbarToolStripMenuItem
+            // 
+            this.hideWindowsTaskbarToolStripMenuItem.CheckOnClick = true;
+            this.hideWindowsTaskbarToolStripMenuItem.Name = "hideWindowsTaskbarToolStripMenuItem";
+            resources.ApplyResources(this.hideWindowsTaskbarToolStripMenuItem, "hideWindowsTaskbarToolStripMenuItem");
+            this.hideWindowsTaskbarToolStripMenuItem.Click += new System.EventHandler(this.hideWindowsTaskbarToolStripMenuItem_Click);
             // 
             // removeMenusToolStripMenuItem
             // 
@@ -319,6 +358,7 @@ namespace BorderlessGaming.Forms
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripOptions,
+            this.toolsToolStripMenuItem,
             this.toolStripInfo});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
@@ -330,11 +370,14 @@ namespace BorderlessGaming.Forms
             this.toolStripMenuItem3,
             this.toolStripGlobalHotkey,
             this.toolStripMouseLock,
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem,
             this.toolStripMenuItem5,
             this.startMinimizedToTrayToolStripMenuItem,
             this.closeToTrayToolStripMenuItem,
             this.hideBalloonTipsToolStripMenuItem,
-            this.viewFullProcessDetailsToolStripMenuItem});
+            this.viewFullProcessDetailsToolStripMenuItem,
+            this.toolStripMenuItem10,
+            this.resToolStripMenuItem});
             this.toolStripOptions.Name = "toolStripOptions";
             resources.ApplyResources(this.toolStripOptions, "toolStripOptions");
             // 
@@ -363,6 +406,13 @@ namespace BorderlessGaming.Forms
             this.toolStripMouseLock.Name = "toolStripMouseLock";
             resources.ApplyResources(this.toolStripMouseLock, "toolStripMouseLock");
             this.toolStripMouseLock.CheckedChanged += new System.EventHandler(this.UseMouseLockChanged);
+            // 
+            // useMouseHideKotkeyWinScrollLockToolStripMenuItem
+            // 
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.CheckOnClick = true;
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Name = "useMouseHideKotkeyWinScrollLockToolStripMenuItem";
+            resources.ApplyResources(this.useMouseHideKotkeyWinScrollLockToolStripMenuItem, "useMouseHideKotkeyWinScrollLockToolStripMenuItem");
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.CheckedChanged += new System.EventHandler(this.UseMouseHideKotkeyChanged);
             // 
             // toolStripMenuItem5
             // 
@@ -396,6 +446,26 @@ namespace BorderlessGaming.Forms
             this.viewFullProcessDetailsToolStripMenuItem.Name = "viewFullProcessDetailsToolStripMenuItem";
             resources.ApplyResources(this.viewFullProcessDetailsToolStripMenuItem, "viewFullProcessDetailsToolStripMenuItem");
             this.viewFullProcessDetailsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.viewFullProcessDetailsToolStripMenuItem_CheckedChanged);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toggleMouseCursorVisibilityToolStripMenuItem,
+            this.toggleWindowsTaskbarVisibilityToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            // 
+            // toggleMouseCursorVisibilityToolStripMenuItem
+            // 
+            this.toggleMouseCursorVisibilityToolStripMenuItem.Name = "toggleMouseCursorVisibilityToolStripMenuItem";
+            resources.ApplyResources(this.toggleMouseCursorVisibilityToolStripMenuItem, "toggleMouseCursorVisibilityToolStripMenuItem");
+            this.toggleMouseCursorVisibilityToolStripMenuItem.Click += new System.EventHandler(this.toggleMouseCursorVisibilityToolStripMenuItem_Click);
+            // 
+            // toggleWindowsTaskbarVisibilityToolStripMenuItem
+            // 
+            this.toggleWindowsTaskbarVisibilityToolStripMenuItem.Name = "toggleWindowsTaskbarVisibilityToolStripMenuItem";
+            resources.ApplyResources(this.toggleWindowsTaskbarVisibilityToolStripMenuItem, "toggleWindowsTaskbarVisibilityToolStripMenuItem");
+            this.toggleWindowsTaskbarVisibilityToolStripMenuItem.Click += new System.EventHandler(this.toggleWindowsTaskbarVisibilityToolStripMenuItem_Click);
             // 
             // toolStripInfo
             // 
@@ -473,12 +543,16 @@ namespace BorderlessGaming.Forms
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
             // 
-            // alwaysOnTopToolStripMenuItem
+            // toolStripMenuItem10
             // 
-            this.alwaysOnTopToolStripMenuItem.CheckOnClick = true;
-            this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-            resources.ApplyResources(this.alwaysOnTopToolStripMenuItem, "alwaysOnTopToolStripMenuItem");
-            this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
+            // 
+            // resToolStripMenuItem
+            // 
+            this.resToolStripMenuItem.Name = "resToolStripMenuItem";
+            resources.ApplyResources(this.resToolStripMenuItem, "resToolStripMenuItem");
+            this.resToolStripMenuItem.Click += new System.EventHandler(this.resToolStripMenuItem_Click);
             // 
             // CompactWindow
             // 
@@ -567,5 +641,14 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ToolStripMenuItem removeMenusToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleWindowsTaskbarVisibilityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setWindowTitleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideWindowsTaskbarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideMouseCursorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleMouseCursorVisibilityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useMouseHideKotkeyWinScrollLockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripMenuItem resToolStripMenuItem;
     }
 }

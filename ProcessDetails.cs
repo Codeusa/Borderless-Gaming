@@ -14,7 +14,7 @@ namespace BorderlessGaming
         public string WindowTitle = "";
         public string WindowClass = ""; // note: this isn't used, currently
         public IntPtr WindowHandle = IntPtr.Zero;
-        public bool Hidable = false;
+        public bool Manageable = false;
         public bool MadeBorderless = false;
         public WindowsApi.WindowStyleFlags OriginalStyleFlags_Standard = 0;
         public WindowsApi.WindowStyleFlags OriginalStyleFlags_Extended = 0;

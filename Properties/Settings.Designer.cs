@@ -106,5 +106,17 @@ namespace BorderlessGaming.Properties {
                 this["CloseToTray"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseMouseHideHotkey {
+            get {
+                return ((bool)(this["UseMouseHideHotkey"]));
+            }
+            set {
+                this["UseMouseHideHotkey"] = value;
+            }
+        }
     }
 }

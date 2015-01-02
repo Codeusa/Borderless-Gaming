@@ -16,8 +16,6 @@ namespace BorderlessGaming.Forms
 {
     public partial class CompactWindow : Form
     {
-        private const bool Developer_Mode = true; // for testing
-
         /// <summary>
         ///     The HotKey
         /// </summary>
@@ -32,6 +30,9 @@ namespace BorderlessGaming.Forms
         ///     The MouseLockHotKey
         /// </summary>
         private const int MouseLock_HotKey = (int)Keys.Scroll;
+
+        private const int MouseHide_HotKey = (int)Keys.Scroll;
+        private const int MouseHide_HotKeyModifier = 0x008; // WIN-Key
 
         /// <summary>
         ///     the processblacklist is used to keep processes from showing up in the list
@@ -51,14 +52,11 @@ namespace BorderlessGaming.Forms
             // Skip common video streaming software
             "XSplit",
 
-            // Skip common instant messengers
-            "trillian", "pidgin",
-
             // Skip common web browsers
             "iexplore", "firefox", "chrome", "safari",
         
             // Skip misc.
-            "IW4 Console", "Steam", "Origin", "devenv", "msbuild",
+            "IW4 Console", "Steam", "Origin",
 
             // Let them hide the rest manually
         };
@@ -189,8 +187,22 @@ namespace BorderlessGaming.Forms
                 Native.DrawMenuBar(targetHandle);
             }
 
+            // auto-hide the Windows taskbar
+            if (favDetails.HideWindowsTaskbar)
+            {
+                Native.ShowWindow(this.Handle, WindowShowStyle.ShowNoActivate);
+                if (this.WindowState == FormWindowState.Minimized)
+                    this.WindowState = FormWindowState.Normal;
+
+                this.ToggleWindowsTaskbarVisibility(Boolstate.False);
+            }
+
+            // auto-hide the mouse cursor
+            if (favDetails.HideMouseCursor)
+                this.ToggleMouseCursorVisibility(Boolstate.False);
+
             // update window styles
-            Native.SetWindowLong(targetHandle, WindowLongIndex.Style, styleNewWindow_standard);
+            Native.SetWindowLong(targetHandle, WindowLongIndex.Style,         styleNewWindow_standard);
             Native.SetWindowLong(targetHandle, WindowLongIndex.ExtendedStyle, styleNewWindow_extended);
 
             // update window position
@@ -229,7 +241,6 @@ namespace BorderlessGaming.Forms
                     0,
                     0,
                     SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize);
-
 
             this.BorderlessByWindow(targetHandle, true);
             return true;
@@ -323,6 +334,26 @@ namespace BorderlessGaming.Forms
             return false;
         }
 
+        private void HandlePrunedProcess(ProcessDetails pd)
+        {
+            if (!pd.MadeBorderless)
+                return;
+
+            // If we made this process borderless at some point, then check for a favorite that matches and undo
+            // some stuff to Windows.
+            foreach (Favorites.Favorite fav_process in Favorites.List)
+            {
+                if ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName && pd.BinaryName == fav_process.SearchText)
+                    || (fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText && pd.WindowTitle == fav_process.SearchText))
+                {
+                    if (fav_process.HideWindowsTaskbar)
+                        this.ToggleWindowsTaskbarVisibility(Boolstate.True);
+                    if (fav_process.HideMouseCursor)
+                        this.ToggleMouseCursorVisibility(Boolstate.True);
+                }
+            }
+        }
+
         /// <summary>
         ///     Updates the list of processes
         /// </summary>
@@ -339,8 +370,10 @@ namespace BorderlessGaming.Forms
             {
                 ProcessDetails pd = (ProcessDetails)processList.Items[i];
 
-                if (!pd.Hidable || !processes.Any(p => p.Id.ToString() == pd.ID) || ProcessIsHidden(pd))
+                if (!pd.Manageable || !processes.Any(p => p.Id.ToString() == pd.ID) || ProcessIsHidden(pd))
                 {
+                    this.HandlePrunedProcess(pd);
+
                     processList.Items.RemoveAt(i);
 
                     if (processCache.Contains(pd))
@@ -353,6 +386,8 @@ namespace BorderlessGaming.Forms
 
                     if (pd.WindowTitle != window_title)
                     {
+                        this.HandlePrunedProcess(pd);
+
                         processList.Items.RemoveAt(i);
 
                         if (processCache.Contains(pd))
@@ -360,9 +395,6 @@ namespace BorderlessGaming.Forms
                     }
                 }
             }
-
-            // add a tag at the top of the list to show when the process list was last refresh
-            //processList.Items.Insert(0, new ProcessDetails() { description_override = " (updated " + DateTime.Now.ToString() + ")" });
 
             this.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
 
@@ -389,7 +421,7 @@ namespace BorderlessGaming.Forms
                     {
                         ProcessDetails curProcess = new ProcessDetails();
 
-                        curProcess.Hidable = true;
+                        curProcess.Manageable = true;
                         curProcess.ID = process.Id.ToString();
                         curProcess.BinaryName = process.ProcessName;
                         curProcess.WindowHandle = pMainWindowHandle;
@@ -467,6 +499,13 @@ namespace BorderlessGaming.Forms
             RegisterHotkeys();
         }
 
+        private void UseMouseHideKotkeyChanged(object sender, EventArgs e)
+        {
+            Settings.Default.UseMouseHideHotkey = useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked;
+            Settings.Default.Save();
+            RegisterHotkeys();
+        }
+
         private void startMinimizedToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.StartMinimized = startMinimizedToTrayToolStripMenuItem.Checked;
@@ -493,6 +532,189 @@ namespace BorderlessGaming.Forms
             processList.Items.Clear();
             UpdateProcessList();
         }
+        
+        private void resToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HiddenProcesses.Clear();
+
+            try
+            {
+                if (System.IO.File.Exists("./HiddenProcesses.json"))
+                    System.IO.File.Delete("./HiddenProcesses.json");
+            }
+            catch { }
+
+            processList.Items.Clear();
+            UpdateProcessList();
+        }
+
+        private class OriginalScreenInfo
+        {
+            public Screen screen;
+            public Native.RECT workarea; // with taskbar
+        }
+
+        private Cursor curInvisibleCursor = null;
+        private IntPtr hCursorOriginal = IntPtr.Zero;
+
+        private void ToggleMouseCursorVisibility(Boolstate forced = Boolstate.Indeterminate)
+        {
+            if (forced == Boolstate.True && !this.MouseCursorIsHidden)
+                return;
+
+            if (forced == Boolstate.False && this.MouseCursorIsHidden)
+                return;
+
+            if (forced == Boolstate.True || this.MouseCursorIsHidden)
+            {
+                Native.SetSystemCursor(this.hCursorOriginal, OCR_SYSTEM_CURSORS.OCR_NORMAL);
+                Native.DestroyIcon(this.hCursorOriginal);
+                this.hCursorOriginal = IntPtr.Zero;
+
+                this.MouseCursorIsHidden = false;
+            }
+            else
+            {                
+                string fileName = null;
+
+                try
+                {
+                    this.hCursorOriginal = Cursor.CopyHandle();
+
+                    if (this.curInvisibleCursor == null)
+                    {
+                        // Can't load from a memory stream because the constructor new Cursor() does not accept animated or non-monochrome cursors
+                        fileName = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".cur";
+
+                        using (var fileStream = System.IO.File.Open(fileName, System.IO.FileMode.Create))
+                        {
+                            using (System.IO.MemoryStream ms = new System.IO.MemoryStream(Properties.Resources.blank))
+                            {
+                                ms.WriteTo(fileStream);
+                            }
+
+                            fileStream.Flush();
+                            fileStream.Close();
+                        }
+
+                        this.curInvisibleCursor = new Cursor(Native.LoadCursorFromFile(fileName));
+                    }
+
+                    Native.SetSystemCursor(this.curInvisibleCursor.CopyHandle(), OCR_SYSTEM_CURSORS.OCR_NORMAL);
+
+                    this.MouseCursorIsHidden = true;
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(fileName))
+                            if (System.IO.File.Exists(fileName))
+                                System.IO.File.Delete(fileName);
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.MouseCursorIsHidden || MessageBox.Show("Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.", "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                this.ToggleMouseCursorVisibility();
+        }
+
+        private List<OriginalScreenInfo> OriginalScreens = new List<OriginalScreenInfo>();
+        private bool WindowsTaskbarIsHidden = false;
+        private bool MouseCursorIsHidden = false;
+
+        private void toggleWindowsTaskbarVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ToggleWindowsTaskbarVisibility();
+        }
+
+        private enum Boolstate
+        {
+            True,
+            False,
+            Indeterminate
+        }
+
+        private void ToggleWindowsTaskbarVisibility(Boolstate forced = Boolstate.Indeterminate)
+        {
+            try
+            {
+                IntPtr iwTaskBar = Native.FindWindow("Shell_TrayWnd", null);
+                
+                bool TaskBarIsCurrentlyVisible = Native.IsWindowVisible(iwTaskBar);
+                bool WantToMakeWindowsTaskbarVisible = (forced == Boolstate.True) ? true : (forced == Boolstate.False) ? false : !TaskBarIsCurrentlyVisible;
+
+                // For forced modes, if the taskbar is already visible and we're requesting to show it, then do nothing
+                if (WantToMakeWindowsTaskbarVisible && TaskBarIsCurrentlyVisible)
+                    return;
+
+                // For forced modes, if the taskbar is already hidden and we're requesting to hide it, then do nothing
+                if (!WantToMakeWindowsTaskbarVisible && !TaskBarIsCurrentlyVisible)
+                    return;
+
+                // If we're hiding the taskbar, let's take some notes on the original screen desktop work areas
+                if (!WantToMakeWindowsTaskbarVisible)
+                {
+                    foreach (Screen screen in Screen.AllScreens)
+                    {
+                        OriginalScreenInfo osi = new OriginalScreenInfo();
+                        osi.screen = screen;
+                        osi.workarea = new Native.RECT();
+                        osi.workarea.Left = screen.WorkingArea.Left;
+                        osi.workarea.Top = screen.WorkingArea.Top;
+                        osi.workarea.Right = screen.WorkingArea.Right;
+                        osi.workarea.Bottom = screen.WorkingArea.Bottom;
+                        this.OriginalScreens.Add(osi);
+                    }
+                }
+
+                // Show or hide the Windows taskbar
+                Native.ShowWindow(iwTaskBar, (WantToMakeWindowsTaskbarVisible) ? WindowShowStyle.ShowNoActivate : WindowShowStyle.Hide);
+
+                // Keep track of the taskbar state so we don't let the user accidentally close Borderless Gaming
+                this.WindowsTaskbarIsHidden = !WantToMakeWindowsTaskbarVisible;
+
+                if (WantToMakeWindowsTaskbarVisible)
+                {
+                    // If we're showing the taskbar, let's restore the original screen desktop work areas...
+                    foreach (OriginalScreenInfo osi in this.OriginalScreens)
+                        Native.SystemParametersInfo(SPI.SPI_SETWORKAREA, 0, ref osi.workarea, SPIF.SPIF_SENDCHANGE);
+
+                    // ...and then forget them (we don't need them anymore)
+                    this.OriginalScreens.Clear();
+
+                    // And we need to redraw the system tray in case tray icons from other applications did something while the
+                    // taskbar was hidden.  Simulating mouse movement over the system tray seems to be the best way to get this
+                    // done.
+                    Native.RedrawWindowsSystemTrayArea();
+                }
+                else
+                {
+                    // If we're hiding the taskbar, let's set the screen desktop work area over the entire screen so that 
+                    // maximizing windows works as expected.
+                    foreach (OriginalScreenInfo osi in this.OriginalScreens)
+                    {
+                        Native.RECT rect = new Native.RECT();
+                        rect.Left = osi.screen.Bounds.Left;
+                        rect.Top = osi.screen.Bounds.Top;
+                        rect.Right = osi.screen.Bounds.Right;
+                        rect.Bottom = osi.screen.Bounds.Bottom;
+                        Native.SystemParametersInfo(SPI.SPI_SETWORKAREA, 0, ref rect, SPIF.SPIF_SENDCHANGE);
+
+                        // Note: WinAPI SystemParametersInfo() will automatically determine which screen by the rectangle we pass in.
+                        //       (it's not possible to specify which screen we're referring to directly)
+                    }
+                }
+            }
+            catch { }  
+        }
 
         private void ReportBugClick(object sender, EventArgs e)
         {
@@ -513,13 +735,26 @@ namespace BorderlessGaming.Forms
 
         #region Application Form Events
 
+        
+        private void setWindowTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (processList.SelectedItem == null) return;
+
+            ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
+
+            if (!pd.Manageable)
+                return;
+
+            Native.SetWindowText(pd.WindowHandle, Tools.Input_Text("Set Window Title", "Set the new window title text:", Native.GetWindowTitle(pd.WindowHandle)));
+        }
+
         private void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (processList.SelectedItem == null) return;
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
                 return;
 
             HiddenProcesses.Add(pd.BinaryName);
@@ -543,7 +778,7 @@ namespace BorderlessGaming.Forms
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
                 return;
 
             this.RemoveBorder(pd.WindowHandle, Favorites.FindMatch(pd.BinaryName));
@@ -555,7 +790,7 @@ namespace BorderlessGaming.Forms
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
                 return;
 
             this.AddBorder(pd);
@@ -570,7 +805,7 @@ namespace BorderlessGaming.Forms
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
                 return;
 
             if (Favorites.CanAdd(pd.WindowTitle))
@@ -593,7 +828,7 @@ namespace BorderlessGaming.Forms
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
                 return;
 
             if (Favorites.CanAdd(pd.BinaryName))
@@ -700,8 +935,40 @@ namespace BorderlessGaming.Forms
             Favorites.AddGame(fav);
             favoritesList.DataSource = null;
             favoritesList.DataSource = Favorites.List;
-        }
+        }        
         
+        private void hideMouseCursorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Favorites.Favorite fav = (Favorites.Favorite)favoritesList.SelectedItem;
+
+            if (!Favorites.CanRemove(fav.SearchText))
+                return;
+
+            Favorites.Remove(fav);
+
+            fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
+
+            Favorites.AddGame(fav);
+            favoritesList.DataSource = null;
+            favoritesList.DataSource = Favorites.List;
+        }
+
+        private void hideWindowsTaskbarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Favorites.Favorite fav = (Favorites.Favorite)favoritesList.SelectedItem;
+
+            if (!Favorites.CanRemove(fav.SearchText))
+                return;
+
+            Favorites.Remove(fav);
+
+            fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
+
+            Favorites.AddGame(fav);
+            favoritesList.DataSource = null;
+            favoritesList.DataSource = Favorites.List;
+        }
+
         private void setWindowSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Favorites.Favorite fav = (Favorites.Favorite)favoritesList.SelectedItem;
@@ -789,6 +1056,8 @@ namespace BorderlessGaming.Forms
             fullScreenToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
             automaximizeToolStripMenuItem.Checked = fav.ShouldMaximize;
             alwaysOnTopToolStripMenuItem.Checked = fav.TopMost;
+            hideMouseCursorToolStripMenuItem.Checked = fav.HideMouseCursor;
+            hideWindowsTaskbarToolStripMenuItem.Checked = fav.HideWindowsTaskbar;
             removeMenusToolStripMenuItem.Checked = fav.RemoveMenus;
 
             automaximizeToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
@@ -809,7 +1078,7 @@ namespace BorderlessGaming.Forms
 
             ProcessDetails pd = ((ProcessDetails)processList.SelectedItem);
 
-            if (!pd.Hidable)
+            if (!pd.Manageable)
             {
                 e.Cancel = true;
                 return;
@@ -893,6 +1162,7 @@ namespace BorderlessGaming.Forms
             toolStripRunOnStartup.Checked = Settings.Default.RunOnStartup;
             toolStripGlobalHotkey.Checked = Settings.Default.UseGlobalHotkey;
             toolStripMouseLock.Checked = Settings.Default.UseMouseLockHotkey;
+            useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked = Settings.Default.UseMouseHideHotkey;
             startMinimizedToTrayToolStripMenuItem.Checked = Settings.Default.StartMinimized;
             hideBalloonTipsToolStripMenuItem.Checked = Settings.Default.HideBalloonTips;
             closeToTrayToolStripMenuItem.Checked = Settings.Default.CloseToTray;
@@ -911,6 +1181,14 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void CompactWindowFormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this.WindowsTaskbarIsHidden)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            this.ToggleMouseCursorVisibility(Boolstate.True);
+
             if (Settings.Default.CloseToTray)
             {
                 this.WindowState = FormWindowState.Minimized;
@@ -949,7 +1227,8 @@ namespace BorderlessGaming.Forms
                     trayIcon.ShowBalloonTip(2000);
                 }
 
-                this.Hide();
+                if (!this.WindowsTaskbarIsHidden)
+                    this.Hide();
             }
         }
 
@@ -972,6 +1251,11 @@ namespace BorderlessGaming.Forms
             if (Settings.Default.UseMouseLockHotkey)
             {
                 Native.RegisterHotKey(Handle, GetType().GetHashCode(), 0, MouseLock_HotKey);
+            }
+
+            if (Settings.Default.UseMouseHideHotkey)
+            {
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MouseHide_HotKeyModifier, MouseHide_HotKey);
             }
         }
 
@@ -1004,7 +1288,14 @@ namespace BorderlessGaming.Forms
                     return; // handled the message, do not call base WndProc for this message
                 }
 
-                if (key == MouseLock_HotKey)
+                if (key == MouseHide_HotKey && modifier == MouseHide_HotKeyModifier)
+                {
+                    this.ToggleMouseCursorVisibility();
+
+                    return; // handled the message, do not call base WndProc for this message
+                }
+
+                if (key == MouseLock_HotKey && modifier == 0)
                 {
                     var hwnd = Native.GetForegroundWindow();
 
