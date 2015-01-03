@@ -808,13 +808,13 @@ namespace BorderlessGaming.Forms
         private void btnMakeBorderless_MouseHover(object sender, EventArgs e)
         {
             ToolTip ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control)sender, "Make the currently-selected application borderless.");
+            ttTemp.SetToolTip((Control)sender, "Makes the currently-selected application borderless.");
         }
 
         private void btnRestoreWindow_MouseHover(object sender, EventArgs e)
         {
             ToolTip ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control)sender, "Attempt to restore a window back to its bordered state.");
+            ttTemp.SetToolTip((Control)sender, "Attempts to restore a window back to its bordered state.");
         }
 
         #endregion

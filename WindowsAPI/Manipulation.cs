@@ -71,6 +71,7 @@ namespace BorderlessGaming.WindowsAPI
              & ~(
                     WindowStyleFlags.ExtendedDlgModalFrame
                   | WindowStyleFlags.ExtendedComposited
+                  | WindowStyleFlags.ExtendedClientEdge
                 )
             );
 
