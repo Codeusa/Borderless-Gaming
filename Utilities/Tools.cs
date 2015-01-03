@@ -14,7 +14,11 @@ namespace BorderlessGaming.Utilities
     {
         public static void GotoSite(string url)
         {
-            Process.Start(url);
+            try
+            {
+                Process.Start(url);
+            }
+            catch { }
         }
 
         private static bool HasInternetConnection
@@ -22,29 +26,27 @@ namespace BorderlessGaming.Utilities
             //There is absolutely no way you can reliably check if there is an internet connection
             get
             {
+                bool result = false;
+
                 try
                 {
-                    if (!NetworkInterface.GetIsNetworkAvailable())
-                        return false;
-
-                    bool result = false;
-
-                    using (Ping p = new Ping())
+                    if (NetworkInterface.GetIsNetworkAvailable())
                     {
-                        result = (p.Send("8.8.8.8", 15000).Status == IPStatus.Success) || (p.Send("8.8.4.4", 15000).Status == IPStatus.Success) || (p.Send("4.2.2.1", 15000).Status == IPStatus.Success);
+                        using (Ping p = new Ping())
+                        {
+                            result = (p.Send("8.8.8.8", 15000).Status == IPStatus.Success) || (p.Send("8.8.4.4", 15000).Status == IPStatus.Success) || (p.Send("4.2.2.1", 15000).Status == IPStatus.Success);
+                        }
                     }
-
-                    return result;
                 }
                 catch { }
 
-                return false;
+                return result;
             }
         }
 
         public static void CheckForUpdates()
         {
-            if (HasInternetConnection)
+            if (Tools.HasInternetConnection)
             {
                 string _releasePageURL = "";
                 Version _newVersion = null;
@@ -94,18 +96,17 @@ namespace BorderlessGaming.Utilities
                 Version applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
                 if (applicationVersion.CompareTo(_newVersion) < 0)
                 {
-                    if (DialogResult.Yes ==
-                        MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                    if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        GotoSite(_releasePageURL);
+                        Tools.GotoSite(_releasePageURL);
                     }
                 }
             }
         }
 
         /// <summary>
-        ///     Gets the smallest containing Rectangle
+        ///     Gets the smallest Rectangle containing two input Rectangles
         /// </summary>
         public static Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
         {
@@ -151,8 +152,6 @@ namespace BorderlessGaming.Utilities
             {
                 try
                 {
-                    string sModName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
-
                     List<string> startup_parameters_mixed = new List<string>();
                     startup_parameters_mixed.AddRange(Environment.GetCommandLineArgs());
 

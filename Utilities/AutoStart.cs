@@ -50,9 +50,7 @@ namespace BorderlessGaming.Utilities
             string shortcutPath = GetShortcutPath(specialFolder);
 
             if (create)
-            {
                 return Create(shortcutPath, Application.ExecutablePath, arguments);
-            }
 
             return Delete(shortcutPath);
         }

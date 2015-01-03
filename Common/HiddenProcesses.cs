@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BorderlessGaming.Utilities;
 using Newtonsoft.Json;
 
 namespace BorderlessGaming.Common
 {
     public static class HiddenProcesses
     {
-        private const string HiddenFile = "./HiddenProcesses.json";
+        private static readonly string HiddenFile = Path.Combine(AppEnvironment.DataPath, "HiddenProcesses.json");
         private static List<string> _List = null;
 
         /// <summary>
@@ -74,16 +75,15 @@ namespace BorderlessGaming.Common
 
         public static void Load()
         {
+            HiddenProcesses._List = new List<string>();
+
             try
             {
                 if (File.Exists(HiddenProcesses.HiddenFile))
-                    HiddenProcesses._List = new List<string>(JsonConvert.DeserializeObject<List<string>>
+                    HiddenProcesses._List.AddRange(JsonConvert.DeserializeObject<List<string>>
                         (File.ReadAllText(HiddenProcesses.HiddenFile)));
             }
-            catch
-            {
-                HiddenProcesses._List = new List<string>();
-            }
+            catch { }
         }
 
         public static bool IsHidden(System.Diagnostics.Process process)
@@ -94,19 +94,6 @@ namespace BorderlessGaming.Common
 
             foreach (string hiddenProcess in HiddenProcesses.List)
                 if (process.ProcessName.Trim().ToLower() == hiddenProcess.Trim().ToLower())
-                    return true;
-            
-            return false;
-        }
-
-        public static bool IsHidden(ProcessDetails process)
-        {
-            foreach (string blacklistedProcess in HiddenProcesses.AlwaysHiddenProcesses)
-                if (process.BinaryName.Trim().ToLower() == blacklistedProcess.Trim().ToLower())
-                    return true;
-
-            foreach (string hiddenProcess in HiddenProcesses.List)
-                if (process.BinaryName.Trim().ToLower() == hiddenProcess.Trim().ToLower())
                     return true;
             
             return false;

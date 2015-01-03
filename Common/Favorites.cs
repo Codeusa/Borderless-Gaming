@@ -4,12 +4,13 @@ using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using BorderlessGaming.Properties;
+using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Common
 {
     public static class Favorites
     {
-        private const string FavoritesFile = "./Favorites.json";
+        private static readonly string FavoritesFile = Path.Combine(AppEnvironment.DataPath, "Favorites.json");
         private static List<Favorite> _List;
         private static List<string> _List_old; // used for upgrading and converting old text array of favs
 

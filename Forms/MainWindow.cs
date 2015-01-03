@@ -211,55 +211,50 @@ namespace BorderlessGaming.Forms
 
         private void toolStripRunOnStartup_CheckChanged(object sender, EventArgs e)
         {
-            AutoStart.SetShortcut(toolStripRunOnStartup.Checked, Environment.SpecialFolder.Startup, "-silent -minimize");
+            AutoStart.SetShortcut(this.toolStripRunOnStartup.Checked, Environment.SpecialFolder.Startup, "-silent -minimize");
 
-            Settings.Default.RunOnStartup = this.toolStripRunOnStartup.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("RunOnStartup", this.toolStripRunOnStartup.Checked);
         }
 
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
-            Settings.Default.UseGlobalHotkey = this.toolStripGlobalHotkey.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("UseGlobalHotkey", this.toolStripGlobalHotkey.Checked);
+
             this.RegisterHotkeys();
         }
 
         private void toolStripMouseLock_CheckChanged(object sender, EventArgs e)
         {
-            Settings.Default.UseMouseLockHotkey = this.toolStripMouseLock.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("UseMouseLockHotkey", this.toolStripMouseLock.Checked);
+
             this.RegisterHotkeys();
         }
 
         private void useMouseHideKotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            Settings.Default.UseMouseHideHotkey = this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("UseMouseHideHotkey", this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked);
+
             this.RegisterHotkeys();
         }
 
         private void startMinimizedToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.StartMinimized = this.startMinimizedToTrayToolStripMenuItem.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("StartMinimized", this.startMinimizedToTrayToolStripMenuItem.Checked);
         }
 
         private void hideBalloonTipsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.HideBalloonTips = this.hideBalloonTipsToolStripMenuItem.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("HideBalloonTips", this.hideBalloonTipsToolStripMenuItem.Checked);
         }
 
         private void closeToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.CloseToTray = this.closeToTrayToolStripMenuItem.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("CloseToTray", this.closeToTrayToolStripMenuItem.Checked);
         }
 
         private void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.ViewAllProcessDetails = this.viewFullProcessDetailsToolStripMenuItem.Checked;
-            Settings.Default.Save();
+            AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
 
             this.lstProcesses.Items.Clear();
             this.UpdateProcessList();
@@ -273,6 +268,16 @@ namespace BorderlessGaming.Forms
             this.UpdateProcessList();
         }
         
+        private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("explorer.exe", "/e,\"" + AppEnvironment.DataPath + "\",\"" + AppEnvironment.DataPath + "\"");
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch { }
+        }
+
         private void pauseAutomaticProcessingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ProcessingIsPaused = pauseAutomaticProcessingToolStripMenuItem.Checked;
@@ -737,21 +742,22 @@ namespace BorderlessGaming.Forms
             this.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
 
             // load up settings
-            this.toolStripRunOnStartup.Checked = Settings.Default.RunOnStartup;
-            this.toolStripGlobalHotkey.Checked = Settings.Default.UseGlobalHotkey;
-            this.toolStripMouseLock.Checked = Settings.Default.UseMouseLockHotkey;
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked = Settings.Default.UseMouseHideHotkey;
-            this.startMinimizedToTrayToolStripMenuItem.Checked = Settings.Default.StartMinimized;
-            this.hideBalloonTipsToolStripMenuItem.Checked = Settings.Default.HideBalloonTips;
-            this.closeToTrayToolStripMenuItem.Checked = Settings.Default.CloseToTray;
-            this.viewFullProcessDetailsToolStripMenuItem.Checked = Settings.Default.ViewAllProcessDetails;
+
+            this.toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
+            this.toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
+            this.toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
+            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
+            this.startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
+            this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
+            this.closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
+            this.viewFullProcessDetailsToolStripMenuItem.Checked = AppEnvironment.SettingValue("ViewAllProcessDetails", false);
 
             // load up favorites (automatically imports from v7.0 and earlier)
             if (this.lstFavorites != null)
                 this.lstFavorites.DataSource = Favorites.List;
 
             // minimize the window if desired (hiding done in Shown)
-            if (Settings.Default.StartMinimized || Tools.StartupParameters.Contains("-minimize"))
+            if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
                 this.WindowState = FormWindowState.Minimized;
             else
                 this.WindowState = FormWindowState.Normal;
@@ -760,7 +766,7 @@ namespace BorderlessGaming.Forms
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             // hide the window if desired (this doesn't work well in Load)
-            if (Settings.Default.StartMinimized)
+            if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
                 this.Hide();
 
             // initialize lists
@@ -783,7 +789,7 @@ namespace BorderlessGaming.Forms
 
             Manipulation.ToggleMouseCursorVisibility(this, Manipulation.Boolstate.True);
 
-            if (Settings.Default.CloseToTray)
+            if (AppEnvironment.SettingValue("CloseToTray", false))
             {
                 this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
@@ -839,7 +845,7 @@ namespace BorderlessGaming.Forms
             {
                 this.trayIcon.Visible = true;
 
-                if (!Settings.Default.HideBalloonTips && !Tools.StartupParameters.Contains("-silent"))
+                if (!AppEnvironment.SettingValue("HideBalloonTips", false) && !Tools.StartupParameters.Contains("-silent"))
                 {
                     // Display a balloon tooltip message for 2 seconds
                     this.trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
@@ -862,13 +868,13 @@ namespace BorderlessGaming.Forms
         {
             this.UnregisterHotkeys();
 
-            if (Settings.Default.UseGlobalHotkey)
+            if (AppEnvironment.SettingValue("UseGlobalHotkey", false))
                 Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), MainWindow.MakeBorderless_HotKeyModifier, MainWindow.MakeBorderless_HotKey);
 
-            if (Settings.Default.UseMouseLockHotkey)
+            if (AppEnvironment.SettingValue("UseMouseLockHotkey", false))
                 Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), 0, MainWindow.MouseLock_HotKey);
 
-            if (Settings.Default.UseMouseHideHotkey)
+            if (AppEnvironment.SettingValue("UseMouseHideHotkey", false))
                 Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), MainWindow.MouseHide_HotKeyModifier, MainWindow.MouseHide_HotKey);
         }
 

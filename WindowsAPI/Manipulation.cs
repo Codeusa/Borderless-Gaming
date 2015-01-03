@@ -56,12 +56,11 @@ namespace BorderlessGaming.WindowsAPI
              & ~(
                     WindowStyleFlags.Caption
                   | WindowStyleFlags.ThickFrame
-                  | WindowStyleFlags.Minimize
-                  | WindowStyleFlags.Maximize
                   | WindowStyleFlags.SystemMenu
                   | WindowStyleFlags.MaximizeBox
                   | WindowStyleFlags.MinimizeBox
                   | WindowStyleFlags.Border
+                  | WindowStyleFlags.DialogFrame                  
                 )
             );
 
@@ -71,7 +70,11 @@ namespace BorderlessGaming.WindowsAPI
              & ~(
                     WindowStyleFlags.ExtendedDlgModalFrame
                   | WindowStyleFlags.ExtendedComposited
+                  | WindowStyleFlags.ExtendedWindowEdge
                   | WindowStyleFlags.ExtendedClientEdge
+                  | WindowStyleFlags.ExtendedLayered
+                  | WindowStyleFlags.ExtendedStaticEdge
+                  | WindowStyleFlags.ExtendedToolWindow
                 )
             );
 

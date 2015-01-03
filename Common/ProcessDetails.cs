@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Diagnostics;
 using BorderlessGaming.Properties;
+using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Common
 {
@@ -24,14 +25,15 @@ namespace BorderlessGaming.Common
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
         public Rectangle OriginalLocation = new Rectangle();
 
-        public ProcessDetails(Process p)
-        {
-            this.Proc = p;
+        // Code commented (but not removed) by psouza4 2015/01/02: there were no references to this method, so no need to compile it and bloat the software.
+        //public ProcessDetails(Process p)
+        //{
+        //    this.Proc = p;
 
-            this.WindowHandle = this.Proc.MainWindowHandle;
-            this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
-            //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
-        }
+        //    this.WindowHandle = this.Proc.MainWindowHandle;
+        //    this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
+        //    //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
+        //}
 
         public ProcessDetails(Process p, IntPtr hWnd)
         {
@@ -57,7 +59,7 @@ namespace BorderlessGaming.Common
                 if (!string.IsNullOrEmpty(this.DescriptionOverride))
                     return this.DescriptionOverride;
 
-                if (Settings.Default.ViewAllProcessDetails)
+                if (AppEnvironment.SettingValue("ViewAllProcessDetails", false))
                 {
                     if (this.WindowTitle.Trim().Length == 0)
                         return this.BinaryName + " [#" + this.Proc.Id.ToString() + "]";
@@ -119,6 +121,14 @@ namespace BorderlessGaming.Common
                     return ProcessDetails.List[i];
 
             return null;
+        }
+
+        public static implicit operator Process(ProcessDetails pd)
+        {
+            if (pd == null)
+                return null;
+
+            return pd.Proc;
         }
 
         public static implicit operator IntPtr(ProcessDetails pd)
