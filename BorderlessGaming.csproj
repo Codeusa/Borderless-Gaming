@@ -85,11 +85,11 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CompactWindow.cs">
+    <Compile Include="Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CompactWindow.Designer.cs">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <Compile Include="Forms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs" />
     <Compile Include="Forms\DesktopAreaSelector.cs">
@@ -104,6 +104,7 @@
     <Compile Include="Forms\InputText.designer.cs">
       <DependentUpon>InputText.cs</DependentUpon>
     </Compile>
+    <Compile Include="HiddenProcesses.cs" />
     <Compile Include="ProcessDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,8 +116,9 @@
     <Compile Include="Utilities\ExceptionHandler.cs" />
     <Compile Include="Utilities\AutoStart.cs" />
     <Compile Include="Utilities\Tools.cs" />
-    <Compile Include="WindowsApi\Enumerations.cs" />
-    <Compile Include="WindowsApi\Native.cs" />
+    <Compile Include="WindowsAPI\Enumerations.cs" />
+    <Compile Include="WindowsAPI\Manipulation.cs" />
+    <Compile Include="WindowsAPI\Native.cs" />
     <EmbeddedResource Include="Forms\AboutForm.de.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,11 +126,13 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CompactWindow.de.resx">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainWindow.de.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CompactWindow.resx">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DesktopAreaSelector.resx">
       <DependentUpon>DesktopAreaSelector.cs</DependentUpon>

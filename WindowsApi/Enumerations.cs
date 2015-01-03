@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BorderlessGaming.WindowsApi
+namespace BorderlessGaming.WindowsAPI
 {
     [Flags]
     public enum WindowStyleFlags : uint

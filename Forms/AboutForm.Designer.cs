@@ -1,7 +1,5 @@
 ﻿namespace BorderlessGaming.Forms
 {
-    using BorderlessGaming.Properties;
-
     partial class AboutForm
     {
         /// <summary>

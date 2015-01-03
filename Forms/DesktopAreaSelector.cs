@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using BorderlessGaming.Utilities;
 
 // Adapted from http://www.codeproject.com/KB/cs/TeboScreen/ under the Code Project Open License (CPOL) 1.02:

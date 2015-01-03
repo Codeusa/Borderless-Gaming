@@ -118,26 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="makeBorderlessButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnMakeBorderless.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 87</value>
   </data>
-  <data name="makeBorderlessButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="makeBorderlessButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMakeBorderless.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;makeBorderlessButton.Name" xml:space="preserve">
-    <value>makeBorderlessButton</value>
+  <data name="&gt;&gt;btnMakeBorderless.Name" xml:space="preserve">
+    <value>btnMakeBorderless</value>
   </data>
-  <data name="&gt;&gt;makeBorderlessButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnMakeBorderless.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;makeBorderlessButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnMakeBorderless.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;makeBorderlessButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnMakeBorderless.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <metadata name="processContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -201,31 +201,31 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="processList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="processList.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 21</value>
   </data>
-  <data name="processList.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 216</value>
   </data>
-  <data name="processList.TabIndex" type="System.Int32, mscorlib">
+  <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;processList.Name" xml:space="preserve">
-    <value>processList</value>
+  <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
+    <value>lstProcesses</value>
   </data>
-  <data name="&gt;&gt;processList.Type" xml:space="preserve">
+  <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;processList.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lstProcesses.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;processList.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="workerTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="tmrWork.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>281, 19</value>
   </metadata>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -255,7 +255,7 @@
   <data name="&gt;&gt;addSelectedItem.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="favoritesContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mnuFavoritesContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>745, 17</value>
   </metadata>
   <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -321,58 +321,58 @@
   <data name="contextRemoveFromFavs.Text" xml:space="preserve">
     <value>Remove From Favorites</value>
   </data>
-  <data name="favoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 220</value>
   </data>
-  <data name="&gt;&gt;favoritesContext.Name" xml:space="preserve">
-    <value>favoritesContext</value>
+  <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
+    <value>mnuFavoritesContext</value>
   </data>
-  <data name="&gt;&gt;favoritesContext.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnuFavoritesContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="favoritesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="favoritesList.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
     <value>259, 21</value>
   </data>
-  <data name="favoritesList.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 216</value>
   </data>
-  <data name="favoritesList.TabIndex" type="System.Int32, mscorlib">
+  <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;favoritesList.Name" xml:space="preserve">
-    <value>favoritesList</value>
+  <data name="&gt;&gt;lstFavorites.Name" xml:space="preserve">
+    <value>lstFavorites</value>
   </data>
-  <data name="&gt;&gt;favoritesList.Type" xml:space="preserve">
+  <data name="&gt;&gt;lstFavorites.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;favoritesList.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lstFavorites.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;favoritesList.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lstFavorites.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnRemoveFavorite.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 45</value>
   </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnRemoveFavorite.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnRemoveFavorite.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
+  <data name="&gt;&gt;btnRemoveFavorite.Name" xml:space="preserve">
+    <value>btnRemoveFavorite</value>
   </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRemoveFavorite.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnRemoveFavorite.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnRemoveFavorite.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="processLabel.AutoSize" type="System.Boolean, mscorlib">
@@ -493,7 +493,7 @@
   <data name="trayIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>520, 17</value>
   </metadata>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
@@ -610,34 +610,34 @@
   <data name="toolStripInfo.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="mnuMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="menuStrip.MinimumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 31</value>
   </data>
-  <data name="menuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>471, 31</value>
   </data>
-  <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
+  <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="menuStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="mnuMain.Text" xml:space="preserve">
+    <value>mnuMain</value>
   </data>
-  <data name="&gt;&gt;menuStrip.Name" xml:space="preserve">
-    <value>menuStrip</value>
+  <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
+    <value>mnuMain</value>
   </data>
-  <data name="&gt;&gt;menuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnuMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuStrip.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mnuMain.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="backWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="wrkBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>628, 17</value>
   </metadata>
   <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -649,28 +649,28 @@
   <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="makeBorderedButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnRestoreWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="makeBorderedButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 129</value>
   </data>
-  <data name="makeBorderedButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="makeBorderedButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;makeBorderedButton.Name" xml:space="preserve">
-    <value>makeBorderedButton</value>
+  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
+    <value>btnRestoreWindow</value>
   </data>
-  <data name="&gt;&gt;makeBorderedButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;makeBorderedButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;makeBorderedButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
@@ -722,7 +722,7 @@
     <value>4</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="processList" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesList" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,42,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lstProcesses" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lstFavorites" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,42,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>885, 17</value>
@@ -851,10 +851,10 @@
   <data name="&gt;&gt;hideThisProcessToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;workerTimer.Name" xml:space="preserve">
-    <value>workerTimer</value>
+  <data name="&gt;&gt;tmrWork.Name" xml:space="preserve">
+    <value>tmrWork</value>
   </data>
-  <data name="&gt;&gt;workerTimer.Type" xml:space="preserve">
+  <data name="&gt;&gt;tmrWork.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fullScreenToolStripMenuItem.Name" xml:space="preserve">
@@ -1067,10 +1067,10 @@
   <data name="&gt;&gt;toolStripAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;backWorker.Name" xml:space="preserve">
-    <value>backWorker</value>
+  <data name="&gt;&gt;wrkBackgroundWorker.Name" xml:space="preserve">
+    <value>wrkBackgroundWorker</value>
   </data>
-  <data name="&gt;&gt;backWorker.Type" xml:space="preserve">
+  <data name="&gt;&gt;wrkBackgroundWorker.Type" xml:space="preserve">
     <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblUpdateStatus.Name" xml:space="preserve">

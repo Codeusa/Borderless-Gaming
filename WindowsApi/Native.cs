@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace BorderlessGaming.WindowsApi
+namespace BorderlessGaming.WindowsAPI
 {
     public static class Native
     {
@@ -161,9 +161,10 @@ namespace BorderlessGaming.WindowsApi
         public static readonly IntPtr HWND_TOPMOST    = new IntPtr(-1);
         public static readonly IntPtr HWND_NOTTOPMOST = new IntPtr(-2);
 
-        private const UInt32 WM_GETTEXT            = 0x000D;
-        private const UInt32 WM_GETTEXTLENGTH      = 0x000E;
-        public  const UInt32 WM_MOUSEMOVE          = 0x0200;
+        private const UInt32 WM_GETTEXT            = 0x0000000D;
+        private const UInt32 WM_GETTEXTLENGTH      = 0x0000000E;
+        public  const UInt32 WM_MOUSEMOVE          = 0x00000200;
+        public  const UInt32 WM_HOTKEY             = 0x00000312;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
         public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
@@ -192,44 +193,6 @@ namespace BorderlessGaming.WindowsApi
         public static IntPtr FW(IntPtr hwndParent, string lpszClass)
         {
             return Native.FindWindowEx(hwndParent, IntPtr.Zero, lpszClass, string.Empty);
-        }
-
-        public static void RedrawWindowsSystemTrayArea()
-        {
-            try
-            {
-                // Windows XP and earlier
-                IntPtr hNotificationArea = Native.FindWindowEx
-                (
-                    Native.FW(Native.FW(Native.FW(IntPtr.Zero, "Shell_TrayWnd"), "TrayNotifyWnd"), "SysPager"),
-                    IntPtr.Zero,
-                    "ToolbarWindow32",
-                    "Notification Area"
-                );
-
-                // Windows Vista and later
-                if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
-                {
-                    hNotificationArea = Native.FindWindowEx
-                    (
-                        Native.FW(Native.FW(Native.FW(IntPtr.Zero, "Shell_TrayWnd"), "TrayNotifyWnd"), "SysPager"),
-                        IntPtr.Zero,
-                        "ToolbarWindow32",
-                        "User Promoted Notification Area"
-                    );
-                }
-
-                if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
-                    return;
-
-                Native.RECT rect = new Native.RECT();
-                Native.GetClientRect(hNotificationArea, ref rect);
-
-                for (UInt32 x = 0; x < rect.Right; x += 5)
-                    for (UInt32 y = 0; y < rect.Bottom; y += 5)
-                        Native.SendMessage(hNotificationArea, Native.WM_MOUSEMOVE, 0, (y << 16) + x);
-            }
-            catch { }
         }
 
         [DllImport("user32.dll", SetLastError = true)]

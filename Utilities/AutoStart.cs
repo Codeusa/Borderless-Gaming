@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using File = System.IO.File;
 
-namespace Utilities
+namespace BorderlessGaming.Utilities
 {
     public static class AutoStart
     {
@@ -47,7 +47,7 @@ namespace Utilities
 
         public static bool SetShortcut(bool create, Environment.SpecialFolder specialFolder, string arguments = "")
         {
-            var shortcutPath = GetShortcutPath(specialFolder);
+            string shortcutPath = GetShortcutPath(specialFolder);
 
             if (create)
             {
@@ -60,19 +60,17 @@ namespace Utilities
         // Code commented (but not removed) by psouza4 2015/01/01: there were no references to this method, so no need to compile it and bloat the software.
         //public static bool CheckShortcut(Environment.SpecialFolder specialFolder)
         //{
-        //    var shortcutPath = GetShortcutPath(specialFolder);
+        //    string shortcutPath = GetShortcutPath(specialFolder);
         //    return File.Exists(shortcutPath);
         //}
 
         private static string GetShortcutPath(Environment.SpecialFolder specialFolder)
         {
-            var folderPath = Environment.GetFolderPath(specialFolder);
-            var shortcutPath = Path.Combine(folderPath, Application.ProductName);
+            string folderPath = Environment.GetFolderPath(specialFolder);
+            string shortcutPath = Path.Combine(folderPath, Application.ProductName);
 
             if (!Path.GetExtension(shortcutPath).Equals(".lnk", StringComparison.InvariantCultureIgnoreCase))
-            {
                 shortcutPath = Path.ChangeExtension(shortcutPath, "lnk");
-            }
 
             return shortcutPath;
         }

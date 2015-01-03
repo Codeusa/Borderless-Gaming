@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using BorderlessGaming.Properties;
 using Newtonsoft.Json;
+using BorderlessGaming.Properties;
 
 namespace BorderlessGaming
 {
@@ -81,6 +81,40 @@ namespace BorderlessGaming
 
                 return "<error>";
             }
+
+            public static implicit operator Favorite(string text)
+            {
+                 foreach (Favorite fav in Favorites._favoriteGames)
+                    if (fav.SearchText.Trim() == text.Trim())
+                        return fav;
+
+                return new Favorite() { SearchText = text };
+            }
+
+            public static implicit operator Favorite(IntPtr hWnd)
+            {
+                 string window_title = WindowsAPI.Native.GetWindowTitle(hWnd);
+
+                 foreach (Favorite fav in Favorites._favoriteGames)
+                    if (fav.SearchText.Trim() == window_title.Trim())
+                        return fav;
+
+                return new Favorite() { SearchText = window_title };
+            }
+
+            public static implicit operator Favorite(ProcessDetails pd)
+            {
+                 foreach (Favorite fav in Favorites._favoriteGames)
+                 {
+                     if ((fav.Kind == Favorite.FavoriteKinds.ByBinaryName) && (fav.SearchText.Trim() == pd.BinaryName.Trim()))
+                         return fav;
+
+                     if ((fav.Kind == Favorite.FavoriteKinds.ByTitleText) && (fav.SearchText.Trim() == pd.WindowTitle.Trim()))
+                         return fav;
+                 }
+
+                return new Favorite() { SearchText = pd.BinaryName };
+            }
         }
 
         static Favorites()
@@ -106,14 +140,15 @@ namespace BorderlessGaming
 
         public static void Save()
         {
-            var jsonDoc = JsonConvert.SerializeObject(Favorites._favoriteGames);
             try
             {
+                string jsonDoc = JsonConvert.SerializeObject(Favorites._favoriteGames);
+
                 File.WriteAllText(Favorites.FavoritesFile, jsonDoc);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave, e.Message), Resources.ErrorHeader,
+                MessageBox.Show(string.Format(Resources.ErrorFavoritesSave, ex.Message), Resources.ErrorHeader,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -122,7 +157,7 @@ namespace BorderlessGaming
         {
             if (File.Exists(Favorites.FavoritesFile))
             {
-                var jsonDoc = File.ReadAllText(FavoritesFile);
+                string jsonDoc = File.ReadAllText(FavoritesFile);
 
                 try
                 {
@@ -168,15 +203,6 @@ namespace BorderlessGaming
         public static bool CanRemove(string item)
         {
             return !CanAdd(item);
-        }
-
-        public static Favorite FindMatch(string text)
-        {
-            foreach (Favorite fav in Favorites._favoriteGames)
-                if (fav.SearchText.Trim() == text.Trim())
-                    return fav;
-
-            return new Favorite() { SearchText = text };
         }
     }
 }

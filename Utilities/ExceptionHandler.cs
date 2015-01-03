@@ -7,7 +7,7 @@ namespace BorderlessGaming.Utilities
 {
     public static class ExceptionHandler
     {
-        public static void AddHandlers()
+        public static void AddGlobalHandlers()
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
@@ -15,7 +15,7 @@ namespace BorderlessGaming.Utilities
                 {
                     Directory.CreateDirectory("./Logs");
 
-                    var filePath = string.Format("Logs/UnhandledException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
+                    string filePath = string.Format("Logs/UnhandledException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
 
                     File.WriteAllText("./" + filePath, JsonConvert.SerializeObject(args.ExceptionObject, Formatting.Indented));
 
@@ -32,7 +32,7 @@ namespace BorderlessGaming.Utilities
                 {
                     Directory.CreateDirectory("./Logs");
                 
-                    var filePath = string.Format("Logs/ThreadException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
+                    string filePath = string.Format("Logs/ThreadException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
 
                     File.WriteAllText("./" + filePath, JsonConvert.SerializeObject(args.Exception, Formatting.Indented));
 
