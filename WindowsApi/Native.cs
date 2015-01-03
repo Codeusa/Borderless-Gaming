@@ -36,10 +36,6 @@ namespace BorderlessGaming.WindowsAPI
         public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex,
-            WindowStyleFlags dwNewLong);
-
-        [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
             SetWindowPosFlags uFlags);
@@ -57,9 +53,6 @@ namespace BorderlessGaming.WindowsAPI
         public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags SetWindowLong(IntPtr hWnd, int nIndex, WindowStyleFlags dwNewLong);
-
-        [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -71,12 +64,8 @@ namespace BorderlessGaming.WindowsAPI
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
-
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr GetMenu(IntPtr hWnd);
@@ -187,7 +176,7 @@ namespace BorderlessGaming.WindowsAPI
             return sbWindowTitle.ToString();
         }
 
-        [DllImport("user32.dll", SetLastError=true)]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
         public static IntPtr FW(IntPtr hwndParent, string lpszClass)
@@ -214,10 +203,27 @@ namespace BorderlessGaming.WindowsAPI
         [DllImport("user32.dll")]
         public static extern IntPtr CopyIcon(IntPtr hIcon);
 
-        [DllImport("user32.dll", SetLastError=true)]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool DestroyIcon(IntPtr hIcon);
 
         [DllImport("User32.dll", CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         public static extern IntPtr LoadCursorFromFile(String str);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
+        private static extern int SetWindowLong32(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
+        private static extern IntPtr SetWindowLong64(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+        
+        /// <summary>
+        // This static method is required because legacy OSes do not support SetWindowLongPtr 
+        /// </summary>
+        public static IntPtr SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong)
+        {
+            if (IntPtr.Size == 8)
+                return Native.SetWindowLong64(hWnd, nIndex, dwNewLong);
+
+            return new IntPtr(Native.SetWindowLong32(hWnd, nIndex, dwNewLong));
+        }
     }
 }

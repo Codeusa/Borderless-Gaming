@@ -12,6 +12,14 @@ namespace BorderlessGaming.Utilities
 {
     public static class Tools
     {
+        // A sort of nullable boolean
+        public enum Boolstate
+        {
+            True,
+            False,
+            Indeterminate
+        }
+
         public static void GotoSite(string url)
         {
             try
@@ -48,60 +56,64 @@ namespace BorderlessGaming.Utilities
         {
             if (Tools.HasInternetConnection)
             {
-                string _releasePageURL = "";
-                Version _newVersion = null;
-                const string _versionConfig = "https://raw.github.com/Codeusa/Borderless-Gaming/master/version.xml";
-                XmlTextReader _reader = new XmlTextReader(_versionConfig);
-                _reader.MoveToContent();
-                string _elementName = "";
                 try
                 {
-                    if ((_reader.NodeType == XmlNodeType.Element) && (_reader.Name == "borderlessgaming"))
+                    string _releasePageURL = "";
+                    Version _newVersion = null;
+                    const string _versionConfig = "https://raw.github.com/Codeusa/Borderless-Gaming/master/version.xml";
+                    XmlTextReader _reader = new XmlTextReader(_versionConfig);
+                    _reader.MoveToContent();
+                    string _elementName = "";
+                    try
                     {
-                        while (_reader.Read())
+                        if ((_reader.NodeType == XmlNodeType.Element) && (_reader.Name == "borderlessgaming"))
                         {
-                            switch (_reader.NodeType)
+                            while (_reader.Read())
                             {
-                                case XmlNodeType.Element:
-                                    _elementName = _reader.Name;
-                                    break;
-                                default:
-                                    if ((_reader.NodeType == XmlNodeType.Text) && (_reader.HasValue))
-                                    {
-                                        switch (_elementName)
+                                switch (_reader.NodeType)
+                                {
+                                    case XmlNodeType.Element:
+                                        _elementName = _reader.Name;
+                                        break;
+                                    default:
+                                        if ((_reader.NodeType == XmlNodeType.Text) && (_reader.HasValue))
                                         {
-                                            case "version":
-                                                _newVersion = new Version(_reader.Value);
-                                                break;
-                                            case "url":
-                                                _releasePageURL = _reader.Value;
-                                                break;
+                                            switch (_elementName)
+                                            {
+                                                case "version":
+                                                    _newVersion = new Version(_reader.Value);
+                                                    break;
+                                                case "url":
+                                                    _releasePageURL = _reader.Value;
+                                                    break;
+                                            }
                                         }
-                                    }
-                                    break;
+                                        break;
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    _reader.Close();
-                }
-
-                Version applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
-                if (applicationVersion.CompareTo(_newVersion) < 0)
-                {
-                    if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    catch (Exception)
                     {
-                        Tools.GotoSite(_releasePageURL);
+                        MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        _reader.Close();
+                    }
+
+                    Version applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                    if (applicationVersion.CompareTo(_newVersion) < 0)
+                    {
+                        if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            Tools.GotoSite(_releasePageURL);
+                        }
                     }
                 }
+                catch { }
             }
         }
 

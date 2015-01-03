@@ -10,7 +10,7 @@ namespace BorderlessGaming.Common
     public class ProcessDetails
     {
         /// <summary>
-        ///     list of currently running processes
+        ///     Cached list of currently running processes
         /// </summary>
         public static List<ProcessDetails> List = new List<ProcessDetails>();
 
@@ -61,22 +61,25 @@ namespace BorderlessGaming.Common
 
                 if (AppEnvironment.SettingValue("ViewAllProcessDetails", false))
                 {
-                    if (this.WindowTitle.Trim().Length == 0)
-                        return this.BinaryName + " [#" + this.Proc.Id.ToString() + "]";
+                    WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
+                    WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
 
-                    return this.WindowTitle.Trim() + " [" + this.BinaryName + ", #" + this.Proc.Id.ToString() + "]";
+                    string extra_details = string.Format(" [{0:X8}.{1:X8}]", (UInt32)styleCurrentWindow_standard, (UInt32)styleCurrentWindow_extended);
+
+                    if (this.WindowTitle.Trim().Length == 0)
+                        return this.BinaryName + " [#" + this.Proc.Id.ToString() + "]" + extra_details;
+
+                    return this.WindowTitle.Trim() + " [" + this.BinaryName + ", #" + this.Proc.Id.ToString() + "]" + extra_details;
                 }
 
                 if (this.WindowTitle.Trim().Length == 0)
                     return this.BinaryName;
 
-                bool ProcessNameIsDissimilarToWindowTitle = false;
-                if (this.WindowTitle_ForComparison.Length < 5)
-                    ProcessNameIsDissimilarToWindowTitle = true;
-                else if (this.BinaryName_ForComparison.Length < 5)
-                    ProcessNameIsDissimilarToWindowTitle = true;
-                else if (this.BinaryName_ForComparison.Substring(0, 5) != this.WindowTitle_ForComparison.Substring(0, 5))
-                    ProcessNameIsDissimilarToWindowTitle = true;
+                bool ProcessNameIsDissimilarToWindowTitle = true;
+                if (this.WindowTitle_ForComparison.Length >= 5)
+                    if (this.BinaryName_ForComparison.Length >= 5)
+                        if (this.BinaryName_ForComparison.Substring(0, 5) == this.WindowTitle_ForComparison.Substring(0, 5))
+                            ProcessNameIsDissimilarToWindowTitle = false;
 
                 if (ProcessNameIsDissimilarToWindowTitle)
                     return this.WindowTitle.Trim() + " [" + this.BinaryName + "]";

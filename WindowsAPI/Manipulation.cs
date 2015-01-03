@@ -4,17 +4,18 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using BorderlessGaming.Common;
+using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.WindowsAPI
 {
     public static class Manipulation
     {
-        public enum Boolstate
-        {
-            True,
-            False,
-            Indeterminate
-        }
+        // Cursor swap data
+        private static Cursor curInvisibleCursor = null;
+        private static IntPtr hCursorOriginal = IntPtr.Zero;
+
+        // List of original screens prior to Windows taskbar hidden
+        private static List<OriginalScreenInfo> OriginalScreens = new List<OriginalScreenInfo>();
 
         private class OriginalScreenInfo
         {
@@ -22,12 +23,10 @@ namespace BorderlessGaming.WindowsAPI
             public Native.RECT workarea; // with Windows taskbar
         }
 
-        private static Cursor curInvisibleCursor = null;
-        private static IntPtr hCursorOriginal = IntPtr.Zero;
-
-        private static List<OriginalScreenInfo> OriginalScreens = new List<OriginalScreenInfo>();
-
+        // Windows taskbar hidden data
         public static bool WindowsTaskbarIsHidden = false;
+
+        // Mouse cursor hidden data
         public static bool MouseCursorIsHidden = false;
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace BorderlessGaming.WindowsAPI
         {
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
-            favDetails = favDetails ?? (Favorites.Favorite)targetWindow;
+            favDetails = favDetails ?? targetWindow;
 
             // If no target frame was specified, assume the entire space on the primary screen
             if ((targetFrame.Width == 0) || (targetFrame.Height == 0))
@@ -50,17 +49,18 @@ namespace BorderlessGaming.WindowsAPI
             WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(targetWindow, WindowLongIndex.Style);
             WindowStyleFlags styleCurrentWindow_extended = Native.GetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle);
 
+            // Compute new styles (XOR of the inverse of all the bits to filter)
             WindowStyleFlags styleNewWindow_standard =
             (
                 styleCurrentWindow_standard
              & ~(
-                    WindowStyleFlags.Caption
+                    WindowStyleFlags.Caption // composite of Border and DialogFrame
+             //   | WindowStyleFlags.Border
+             //   | WindowStyleFlags.DialogFrame                  
                   | WindowStyleFlags.ThickFrame
                   | WindowStyleFlags.SystemMenu
-                  | WindowStyleFlags.MaximizeBox
-                  | WindowStyleFlags.MinimizeBox
-                  | WindowStyleFlags.Border
-                  | WindowStyleFlags.DialogFrame                  
+                  | WindowStyleFlags.MaximizeBox // same as TabStop
+                  | WindowStyleFlags.MinimizeBox // same as Group
                 )
             );
 
@@ -75,12 +75,14 @@ namespace BorderlessGaming.WindowsAPI
                   | WindowStyleFlags.ExtendedLayered
                   | WindowStyleFlags.ExtendedStaticEdge
                   | WindowStyleFlags.ExtendedToolWindow
+                  | WindowStyleFlags.ExtendedAppWindow
                 )
             );
 
+            // Should have process details by now
             if (processDetails != null)
             {
-                // save original details on this window so that we have a chance at undoing the process
+                // Save original details on this window so that we have a chance at undoing the process
                 processDetails.OriginalStyleFlags_Standard = styleCurrentWindow_standard;
                 processDetails.OriginalStyleFlags_Extended = styleCurrentWindow_extended;
                 Native.RECT rect_temp = new Native.RECT();
@@ -104,19 +106,19 @@ namespace BorderlessGaming.WindowsAPI
                 }
             }
 
-            // auto-hide the Windows taskbar
+            // auto-hide the Windows taskbar (do this before resizing the window)
             if (favDetails.HideWindowsTaskbar)
             {
                 Native.ShowWindow(frmMain.Handle, WindowShowStyle.ShowNoActivate);
                 if (frmMain.WindowState == FormWindowState.Minimized)
                     frmMain.WindowState = FormWindowState.Normal;
 
-                Manipulation.ToggleWindowsTaskbarVisibility(Boolstate.False);
+                Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.False);
             }
 
             // auto-hide the mouse cursor
             if (favDetails.HideMouseCursor)
-                Manipulation.ToggleMouseCursorVisibility(frmMain, Boolstate.False);
+                Manipulation.ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
 
             // update window styles
             Native.SetWindowLong(targetWindow, WindowLongIndex.Style,         styleNewWindow_standard);
@@ -127,6 +129,7 @@ namespace BorderlessGaming.WindowsAPI
             {
                 if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
                 {
+                    // Set the window size to the biggest possible, using bounding adjustments
                     Native.SetWindowPos
                     (
                         targetWindow,
@@ -138,11 +141,13 @@ namespace BorderlessGaming.WindowsAPI
                         SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
                     );
 
+                    // And auto-maximize
                     if (favDetails.ShouldMaximize)
                         Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
                 }
                 else
                 {
+                    // Set the window size to the exact position specified by the user
                     Native.SetWindowPos
                     (
                         targetWindow,
@@ -156,6 +161,7 @@ namespace BorderlessGaming.WindowsAPI
                 }
             }
 
+            // Set topmost
             if (favDetails.TopMost)
             {
                 Native.SetWindowPos
@@ -177,10 +183,7 @@ namespace BorderlessGaming.WindowsAPI
 
         public static void RestoreWindow(ProcessDetails pd)
         {
-            if (pd == null)
-                return;
-
-            if (!pd.MadeBorderless || pd.OriginalStyleFlags_Standard == 0)
+            if ((pd == null) || (!pd.MadeBorderless) || (pd.OriginalStyleFlags_Standard == 0))
                 return;
 
             WindowsAPI.Native.SetWindowLong(pd.WindowHandle, WindowsAPI.WindowLongIndex.Style, pd.OriginalStyleFlags_Standard);
@@ -190,14 +193,17 @@ namespace BorderlessGaming.WindowsAPI
             pd.MadeBorderless = false;
         }
 
-        public static void ToggleWindowsTaskbarVisibility(Manipulation.Boolstate forced = Manipulation.Boolstate.Indeterminate)
+        public static void ToggleWindowsTaskbarVisibility(Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
         {
             try
             {
-                IntPtr iwTaskBar = Native.FindWindow("Shell_TrayWnd", null);
+                IntPtr hTaskBar = Native.FindWindow("Shell_TrayWnd", null);
                 
-                bool TaskBarIsCurrentlyVisible = Native.IsWindowVisible(iwTaskBar);
-                bool WantToMakeWindowsTaskbarVisible = (forced == Manipulation.Boolstate.True) ? true : (forced == Manipulation.Boolstate.False) ? false : !TaskBarIsCurrentlyVisible;
+                if ((hTaskBar.ToInt32() == Native.INVALID_HANDLE_VALUE) || (hTaskBar == IntPtr.Zero))
+                    return;
+
+                bool TaskBarIsCurrentlyVisible = Native.IsWindowVisible(hTaskBar);
+                bool WantToMakeWindowsTaskbarVisible = (forced == Tools.Boolstate.True) ? true : (forced == Tools.Boolstate.False) ? false : !TaskBarIsCurrentlyVisible;
 
                 // For forced modes, if the taskbar is already visible and we're requesting to show it, then do nothing
                 if (WantToMakeWindowsTaskbarVisible && TaskBarIsCurrentlyVisible)
@@ -224,7 +230,7 @@ namespace BorderlessGaming.WindowsAPI
                 }
 
                 // Show or hide the Windows taskbar
-                Native.ShowWindow(iwTaskBar, (WantToMakeWindowsTaskbarVisible) ? WindowShowStyle.ShowNoActivate : WindowShowStyle.Hide);
+                Native.ShowWindow(hTaskBar, (WantToMakeWindowsTaskbarVisible) ? WindowShowStyle.ShowNoActivate : WindowShowStyle.Hide);
 
                 // Keep track of the taskbar state so we don't let the user accidentally close Borderless Gaming
                 Manipulation.WindowsTaskbarIsHidden = !WantToMakeWindowsTaskbarVisible;
@@ -264,15 +270,12 @@ namespace BorderlessGaming.WindowsAPI
             catch { }  
         }
 
-        public static void ToggleMouseCursorVisibility(Forms.MainWindow frmMain, Manipulation.Boolstate forced = Manipulation.Boolstate.Indeterminate)
+        public static void ToggleMouseCursorVisibility(Forms.MainWindow frmMain, Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
         {
-            if (forced == Manipulation.Boolstate.True && !Manipulation.MouseCursorIsHidden)
+            if (((forced == Tools.Boolstate.True) && (!Manipulation.MouseCursorIsHidden)) || ((forced == Tools.Boolstate.False) && Manipulation.MouseCursorIsHidden))
                 return;
 
-            if (forced == Manipulation.Boolstate.False && Manipulation.MouseCursorIsHidden)
-                return;
-
-            if (forced == Manipulation.Boolstate.True || Manipulation.MouseCursorIsHidden)
+            if ((forced == Tools.Boolstate.True) || Manipulation.MouseCursorIsHidden)
             {
                 Native.SetSystemCursor(Manipulation.hCursorOriginal, OCR_SYSTEM_CURSORS.OCR_NORMAL);
                 Native.DestroyIcon(Manipulation.hCursorOriginal);
@@ -313,6 +316,7 @@ namespace BorderlessGaming.WindowsAPI
                 }
                 catch
                 {
+                    // swallow exception and assume cursor set failed
                 }
                 finally
                 {
@@ -341,7 +345,7 @@ namespace BorderlessGaming.WindowsAPI
                 );
 
                 // Windows Vista and later
-                if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
+                if ((hNotificationArea == IntPtr.Zero) || (hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE))
                 {
                     hNotificationArea = Native.FindWindowEx
                     (
@@ -352,15 +356,20 @@ namespace BorderlessGaming.WindowsAPI
                     );
                 }
 
-                if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
+                if ((hNotificationArea == IntPtr.Zero) || (hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE))
                     return;
 
+                // Get the notification bounds
                 Native.RECT rect = new Native.RECT();
                 Native.GetClientRect(hNotificationArea, ref rect);
 
+                // Wiggle the mouse over the notification area
+                // Note: this doesn't actually move the mouse cursor on the screen -- this just sends a message to the system tray window
+                //       that mouse movement occurred over it, forcing it to refresh.  Sending messages asking for a repaint or invalidated
+                //       area don't work, but this does.
                 for (UInt32 x = 0; x < rect.Right; x += 5)
                     for (UInt32 y = 0; y < rect.Bottom; y += 5)
-                        Native.SendMessage(hNotificationArea, Native.WM_MOUSEMOVE, 0, (y << 16) + x);
+                        Native.SendMessage(hNotificationArea, Native.WM_MOUSEMOVE, 0, (y << 16) | x);
             }
             catch { }
         }

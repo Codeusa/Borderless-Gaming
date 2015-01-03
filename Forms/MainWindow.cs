@@ -91,9 +91,9 @@ namespace BorderlessGaming.Forms
                     || ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
                 {
                     if (fav_process.HideWindowsTaskbar)
-                        Manipulation.ToggleWindowsTaskbarVisibility(Manipulation.Boolstate.True);
+                        Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.True);
                     if (fav_process.HideMouseCursor)
-                        Manipulation.ToggleMouseCursorVisibility(this, Manipulation.Boolstate.True);
+                        Manipulation.ToggleMouseCursorVisibility(this, Tools.Boolstate.True);
                 }
             }
         }
@@ -101,8 +101,12 @@ namespace BorderlessGaming.Forms
         /// <summary>
         ///     Updates the list of processes
         /// </summary>
-        private void UpdateProcessList()
+        private void UpdateProcessList(bool bReset = false)
         {
+            // Reset the list contents if we're doing a full refresh
+            if (bReset)
+                this.lstProcesses.Items.Clear();
+
             // update ProcessDetails.processCache
 
             // Got rid of the linq query here so we could normalize the list of processes vs. process blacklist.
@@ -126,6 +130,7 @@ namespace BorderlessGaming.Forms
                 }
             }
 
+            // Let the user know that we're still alive and well
             this.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
 
             // add new processes
@@ -135,6 +140,7 @@ namespace BorderlessGaming.Forms
                 if (HiddenProcesses.IsHidden(process))
                     continue;
 
+                // Check if the process is already in the list
                 bool bHasProcess = false;
                 foreach (ProcessDetails pd in this.lstProcesses.Items)
                     if ((pd.Proc.Id == process.Id) && (pd.BinaryName == process.ProcessName))
@@ -175,12 +181,17 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
+        /// Delegate to call a method with an argument
+        /// </summary>
+        private delegate void Delegate__Void_Bool(bool Bool1);
+
+        /// <summary>
         ///     Update the processlist and process the favorites
         /// </summary>
         private void wrkBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // update the processlist
-            this.lstProcesses.Invoke((MethodInvoker) UpdateProcessList);
+            this.lstProcesses.Invoke((Delegate__Void_Bool)UpdateProcessList, new object[] { false });
 
             // check favorites against the cache
             lock (Favorites.List)
@@ -256,24 +267,25 @@ namespace BorderlessGaming.Forms
         {
             AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
 
-            this.lstProcesses.Items.Clear();
-            this.UpdateProcessList();
+            this.UpdateProcessList(true);
         }
         
         private void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HiddenProcesses.Reset();
 
-            this.lstProcesses.Items.Clear();
-            this.UpdateProcessList();
+            this.UpdateProcessList(true);
         }
         
         private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("explorer.exe", "/e,\"" + AppEnvironment.DataPath + "\",\"" + AppEnvironment.DataPath + "\"");
-                System.Diagnostics.Process.Start(psi);
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                (
+                    "explorer.exe",
+                    "/e,\"" + AppEnvironment.DataPath + "\",\"" + AppEnvironment.DataPath + "\"")
+                );
             }
             catch { }
         }
@@ -285,7 +297,7 @@ namespace BorderlessGaming.Forms
 
         private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Manipulation.MouseCursorIsHidden || MessageBox.Show("Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.", "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+            if (Manipulation.MouseCursorIsHidden || (MessageBox.Show("Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.", "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes))
                 Manipulation.ToggleMouseCursorVisibility(this);
         }
 
@@ -293,7 +305,6 @@ namespace BorderlessGaming.Forms
         {
             Manipulation.ToggleWindowsTaskbarVisibility();
         }
-
 
         private void toolStripReportBug_Click(object sender, EventArgs e)
         {
@@ -337,8 +348,7 @@ namespace BorderlessGaming.Forms
 
             HiddenProcesses.Add(pd.BinaryName);
 
-            this.lstProcesses.Items.Clear();
-            this.UpdateProcessList();
+            this.UpdateProcessList(true);
         }
 
         /// <summary>
@@ -424,6 +434,7 @@ namespace BorderlessGaming.Forms
         {
             if (fav != null)
                 Favorites.AddFavorite(fav);
+
             this.lstFavorites.DataSource = null;
             this.lstFavorites.DataSource = Favorites.List;
         }
@@ -472,7 +483,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.TopMost = alwaysOnTopToolStripMenuItem.Checked;
+            fav.TopMost = this.alwaysOnTopToolStripMenuItem.Checked;
 
             this.RefreshFavoritesList(fav);
         }
@@ -503,7 +514,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.ShouldMaximize = automaximizeToolStripMenuItem.Checked;
+            fav.ShouldMaximize = this.automaximizeToolStripMenuItem.Checked;
 
             if (fav.ShouldMaximize)
             {
@@ -526,7 +537,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
+            fav.HideMouseCursor = this.hideMouseCursorToolStripMenuItem.Checked;
 
             this.RefreshFavoritesList(fav);
         }
@@ -540,7 +551,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
+            fav.HideWindowsTaskbar = this.hideWindowsTaskbarToolStripMenuItem.Checked;
 
             this.RefreshFavoritesList(fav);
         }
@@ -575,7 +586,7 @@ namespace BorderlessGaming.Forms
 #pragma warning restore 1690
                 }
             }
-            else
+            else // System.Windows.Forms.DialogResult.No
             {
                 int.TryParse(Tools.Input_Text("Set Window Size", "Pixel X location for the top left corner (X coordinate):", fav.PositionX.ToString()), out fav.PositionX);
                 int.TryParse(Tools.Input_Text("Set Window Size", "Pixel Y location for the top left corner (Y coordinate):", fav.PositionY.ToString()), out fav.PositionY);
@@ -585,7 +596,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            if (fav.PositionW == 0 || fav.PositionH == 0)
+            if ((fav.PositionW == 0) || (fav.PositionH == 0))
                 fav.SizeMode = Favorites.Favorite.SizeModes.FullScreen;
             else
             {
@@ -605,7 +616,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.SizeMode = (fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
+            fav.SizeMode = (this.fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
 
             if (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen)
             {
@@ -630,7 +641,7 @@ namespace BorderlessGaming.Forms
 
             Favorites.RemoveFavorite(fav);
 
-            fav.SizeMode = (noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
+            fav.SizeMode = (this.noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
 
             if (fav.SizeMode == Favorites.Favorite.SizeModes.NoChange)
             {
@@ -668,7 +679,7 @@ namespace BorderlessGaming.Forms
             this.removeMenusToolStripMenuItem.Checked = fav.RemoveMenus;
 
             this.automaximizeToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
-            this.adjustWindowBoundsToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen && !fav.ShouldMaximize;
+            this.adjustWindowBoundsToolStripMenuItem.Enabled = (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen) && (!fav.ShouldMaximize);
             this.setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
             this.setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
             this.noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
@@ -787,7 +798,7 @@ namespace BorderlessGaming.Forms
                 return;
             }
 
-            Manipulation.ToggleMouseCursorVisibility(this, Manipulation.Boolstate.True);
+            Manipulation.ToggleMouseCursorVisibility(this, Tools.Boolstate.True);
 
             if (AppEnvironment.SettingValue("CloseToTray", false))
             {
@@ -797,6 +808,11 @@ namespace BorderlessGaming.Forms
             }
 
             this.UnregisterHotkeys();
+
+            this.trayIcon.Visible = false;
+            
+            // Overkill... the form should just close naturally.
+            Environment.Exit(0);
         }
 
         private void addSelectedItem_MouseHover(object sender, EventArgs e)
@@ -835,8 +851,7 @@ namespace BorderlessGaming.Forms
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.trayIcon.Visible = false;
-            Environment.Exit(0);
+            this.Close();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
