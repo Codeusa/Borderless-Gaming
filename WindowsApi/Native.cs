@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace BorderlessGaming.WindowsApi
+namespace BorderlessGaming.WindowsAPI
 {
     public static class Native
     {
@@ -12,8 +12,19 @@ namespace BorderlessGaming.WindowsApi
 
         #endregion
 
+        /// <summary>
+        /// This is the raw WinAPI.  You may want to use GetWindowTitle instead, since it will automatically
+        /// calculate the correct buffer length.
+        /// </summary>
         [DllImport("user32.dll", SetLastError = true)]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder title, int size);
+
+        /// <summary>
+        /// This is the raw WinAPI.  You may want to use GetWindowTitle instead, since it will automatically
+        /// calculate the correct buffer length.
+        /// </summary>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowText(int hWnd, StringBuilder title, int size);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool SetWindowText(IntPtr hwnd, string lpString);
@@ -32,9 +43,6 @@ namespace BorderlessGaming.WindowsApi
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
             SetWindowPosFlags uFlags);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern int GetWindowText(int hWnd, StringBuilder title, int size);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern int GetWindowModuleFileName(int hWnd, StringBuilder title, int size);
@@ -59,6 +67,10 @@ namespace BorderlessGaming.WindowsApi
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
@@ -144,28 +156,68 @@ namespace BorderlessGaming.WindowsApi
             return string.Empty;
         }
 
-        private const UInt32 WM_GETTEXT            = 0x000D;
-        private const UInt32 WM_GETTEXTLENGTH      = 0x000E;
+        public const int INVALID_HANDLE_VALUE = -1;
+
+        public static readonly IntPtr HWND_TOPMOST    = new IntPtr(-1);
+        public static readonly IntPtr HWND_NOTTOPMOST = new IntPtr(-2);
+
+        private const UInt32 WM_GETTEXT            = 0x0000000D;
+        private const UInt32 WM_GETTEXTLENGTH      = 0x0000000E;
+        public  const UInt32 WM_MOUSEMOVE          = 0x00000200;
+        public  const UInt32 WM_HOTKEY             = 0x00000312;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
-        private static extern IntPtr SendMessage_SB(IntPtr hWnd, UInt32 Msg, IntPtr wParam, [Out] StringBuilder lParam);
+        public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, UInt32 wParam, UInt32 lParam);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, [Out] StringBuilder lParam);
+
+        /// <summary>
+        /// Use this instead of GetWindowText.
+        /// </summary>
         public static string GetWindowTitle(IntPtr hWnd)
         {
             // Allocate correct string length first
-            int length = (int)SendMessage(hWnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+            int length = (int)Native.SendMessage(hWnd, Native.WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
             StringBuilder sbWindowTitle = new StringBuilder(length + 1);
-            SendMessage_SB(hWnd, WM_GETTEXT, (IntPtr)sbWindowTitle.Capacity, sbWindowTitle);
+            Native.SendMessage(hWnd, Native.WM_GETTEXT, (IntPtr)sbWindowTitle.Capacity, sbWindowTitle);
             return sbWindowTitle.ToString();
         }
 
         [DllImport("user32.dll", SetLastError=true)]
         public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
-        public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
-        public static readonly IntPtr HWND_NOTTOPMOST = new IntPtr(-2);
+        public static IntPtr FW(IntPtr hwndParent, string lpszClass)
+        {
+            return Native.FindWindowEx(hwndParent, IntPtr.Zero, lpszClass, string.Empty);
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, IntPtr pvParam, SPIF fWinIni);
+
+        // For setting a string parameter
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, String pvParam, SPIF fWinIni);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, ref RECT pvParam, SPIF fWinIni);
+ 
+        [DllImport("user32.dll")]
+        public static extern bool SetSystemCursor(IntPtr hcur, OCR_SYSTEM_CURSORS id);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr CopyIcon(IntPtr hIcon);
+
+        [DllImport("user32.dll", SetLastError=true)]
+        public static extern bool DestroyIcon(IntPtr hIcon);
+
+        [DllImport("User32.dll", CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+        public static extern IntPtr LoadCursorFromFile(String str);
     }
 }

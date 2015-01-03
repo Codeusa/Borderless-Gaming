@@ -61,8 +61,9 @@
     <StartupObject>BorderlessGaming.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\External Libraries\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -84,13 +85,13 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CompactWindow.cs">
+    <Compile Include="Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CompactWindow.Designer.cs">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <Compile Include="Forms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Favorites.cs" />
+    <Compile Include="Common\Favorites.cs" />
     <Compile Include="Forms\DesktopAreaSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +104,8 @@
     <Compile Include="Forms\InputText.designer.cs">
       <DependentUpon>InputText.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProcessDetails.cs" />
+    <Compile Include="Common\HiddenProcesses.cs" />
+    <Compile Include="Common\ProcessDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -111,11 +113,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\AppEnvironment.cs" />
     <Compile Include="Utilities\ExceptionHandler.cs" />
     <Compile Include="Utilities\AutoStart.cs" />
     <Compile Include="Utilities\Tools.cs" />
-    <Compile Include="WindowsApi\Enumerations.cs" />
-    <Compile Include="WindowsApi\Native.cs" />
+    <Compile Include="WindowsAPI\Enumerations.cs" />
+    <Compile Include="WindowsAPI\Manipulation.cs" />
+    <Compile Include="WindowsAPI\Native.cs" />
     <EmbeddedResource Include="Forms\AboutForm.de.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,11 +127,13 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CompactWindow.de.resx">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainWindow.de.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CompactWindow.resx">
-      <DependentUpon>CompactWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DesktopAreaSelector.resx">
       <DependentUpon>DesktopAreaSelector.cs</DependentUpon>
@@ -142,19 +148,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx" />
     <None Include="app.manifest" />
+    <None Include="data\blank.cur" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
