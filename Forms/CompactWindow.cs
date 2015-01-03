@@ -161,6 +161,7 @@ namespace BorderlessGaming.Forms
                                 & ~(
                                         WindowStyleFlags.ExtendedDlgModalFrame
                                       | WindowStyleFlags.ExtendedComposited
+                                      | WindowStyleFlags.ExtendedClientEdge
                                    ));
 
             ProcessDetails pd = this.ProcessByWindow(targetHandle);
@@ -259,6 +260,7 @@ namespace BorderlessGaming.Forms
                                 |  (
                                         WindowStyleFlags.ExtendedDlgModalFrame
                                       | WindowStyleFlags.ExtendedComposited
+                                      | WindowStyleFlags.ExtendedClientEdge
                                    ));
 
             Native.SetWindowLong(targetHandle, WindowLongIndex.Style, styleNewWindow_standard);
