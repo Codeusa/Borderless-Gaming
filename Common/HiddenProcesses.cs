@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace BorderlessGaming
+namespace BorderlessGaming.Common
 {
     public static class HiddenProcesses
     {
@@ -11,19 +11,16 @@ namespace BorderlessGaming
         private static List<string> _List = null;
 
         /// <summary>
-        ///     The processblacklist is used to keep processes from showing up in the list
+        ///     AlwaysHiddenProcesses is used to keep processes from showing up in the list no matter what
         /// </summary>
-        private static readonly string[] processBlacklist =
+        private static readonly string[] AlwaysHiddenProcesses =
         {
             // Skip self
             "BorderlessGaming",
 
             // Skip Windows core system processes
             "csrss", "smss", "lsass", "wininit", "svchost", "services", "winlogon", "dwm",
-            "explorer", "taskmgr", "mmc", "rundll32", "vcredist_x86", "vcredist_x64", 
-
-            // Skip common text editors
-            "notepad", "notepad++",
+            "explorer", "taskmgr", "mmc", "rundll32", "vcredist_x86", "vcredist_x64", "msiexec", 
 
             // Skip common video streaming software
             "XSplit",
@@ -91,7 +88,7 @@ namespace BorderlessGaming
 
         public static bool IsHidden(System.Diagnostics.Process process)
         {
-            foreach (string blacklistedProcess in HiddenProcesses.processBlacklist)
+            foreach (string blacklistedProcess in HiddenProcesses.AlwaysHiddenProcesses)
                 if (process.ProcessName.Trim().ToLower() == blacklistedProcess.Trim().ToLower())
                     return true;
 
@@ -104,7 +101,7 @@ namespace BorderlessGaming
 
         public static bool IsHidden(ProcessDetails process)
         {
-            foreach (string blacklistedProcess in HiddenProcesses.processBlacklist)
+            foreach (string blacklistedProcess in HiddenProcesses.AlwaysHiddenProcesses)
                 if (process.BinaryName.Trim().ToLower() == blacklistedProcess.Trim().ToLower())
                     return true;
 

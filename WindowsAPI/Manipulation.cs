@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using BorderlessGaming.Common;
 
 namespace BorderlessGaming.WindowsAPI
 {
@@ -32,7 +33,7 @@ namespace BorderlessGaming.WindowsAPI
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public static void RemoveBorder(Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails = null)
+        public static void MakeWindowBorderless(Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails = null)
         {
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
@@ -118,34 +119,37 @@ namespace BorderlessGaming.WindowsAPI
             Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindow_extended);
 
             // update window position
-            if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
+            if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
             {
-                Native.SetWindowPos
-                (
-                    targetWindow,
-                    0,
-                    targetFrame.X + favDetails.OffsetL,
-                    targetFrame.Y + favDetails.OffsetT,
-                    targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
-                    targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
-                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
-                );
+                if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
+                {
+                    Native.SetWindowPos
+                    (
+                        targetWindow,
+                        0,
+                        targetFrame.X + favDetails.OffsetL,
+                        targetFrame.Y + favDetails.OffsetT,
+                        targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
+                        targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
+                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
+                    );
 
-                if (favDetails.ShouldMaximize)
-                    Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
-            }
-            else
-            {
-                Native.SetWindowPos
-                (
-                    targetWindow,
-                    0,
-                    favDetails.PositionX,
-                    favDetails.PositionY,
-                    favDetails.PositionW,
-                    favDetails.PositionH,
-                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
-                );
+                    if (favDetails.ShouldMaximize)
+                        Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
+                }
+                else
+                {
+                    Native.SetWindowPos
+                    (
+                        targetWindow,
+                        0,
+                        favDetails.PositionX,
+                        favDetails.PositionY,
+                        favDetails.PositionW,
+                        favDetails.PositionH,
+                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
+                    );
+                }
             }
 
             if (favDetails.TopMost)
@@ -165,6 +169,21 @@ namespace BorderlessGaming.WindowsAPI
             if (processDetails != null)
                 processDetails.MadeBorderless = true;
             return;
+        }
+
+        public static void RestoreWindow(ProcessDetails pd)
+        {
+            if (pd == null)
+                return;
+
+            if (!pd.MadeBorderless || pd.OriginalStyleFlags_Standard == 0)
+                return;
+
+            WindowsAPI.Native.SetWindowLong(pd.WindowHandle, WindowsAPI.WindowLongIndex.Style, pd.OriginalStyleFlags_Standard);
+            WindowsAPI.Native.SetWindowLong(pd.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle, pd.OriginalStyleFlags_Extended);
+            WindowsAPI.Native.SetWindowPos(pd.WindowHandle, IntPtr.Zero, pd.OriginalLocation.X, pd.OriginalLocation.Y, pd.OriginalLocation.Width, pd.OriginalLocation.Height, WindowsAPI.SetWindowPosFlags.ShowWindow | WindowsAPI.SetWindowPosFlags.NoZOrder);
+            WindowsAPI.Native.SetWindowPos(pd.WindowHandle, WindowsAPI.Native.HWND_NOTTOPMOST, 0, 0, 0, 0, WindowsAPI.SetWindowPosFlags.NoActivate | WindowsAPI.SetWindowPosFlags.NoMove | WindowsAPI.SetWindowPosFlags.NoSize);
+            pd.MadeBorderless = false;
         }
 
         public static void ToggleWindowsTaskbarVisibility(Manipulation.Boolstate forced = Manipulation.Boolstate.Indeterminate)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using BorderlessGaming.Common;
 using BorderlessGaming.Properties;
 using BorderlessGaming.Utilities;
 using BorderlessGaming.WindowsAPI;
@@ -42,11 +43,10 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private const int MouseHide_HotKeyModifier = 0x008;      // WIN-Key
 
+        private bool ProcessingIsPaused = false;
+
         #endregion
 
-        /// <summary>
-        ///     the ctor
-        /// </summary>
         public MainWindow()
         {
             this.InitializeComponent();
@@ -59,7 +59,7 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void RemoveBorder(IntPtr hWnd, Favorites.Favorite favDetails = null)
         {
-            Manipulation.RemoveBorder(this, hWnd, new Rectangle(), favDetails);
+            Manipulation.MakeWindowBorderless(this, hWnd, new Rectangle(), favDetails);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorites.Favorite favDetails = null)
         {
-            Manipulation.RemoveBorder(this, hWnd, screen.Bounds, favDetails);
+            Manipulation.MakeWindowBorderless(this, hWnd, screen.Bounds, favDetails);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null)
         {
-            Manipulation.RemoveBorder(this, hWnd, targetFrame, favDetails);
+            Manipulation.MakeWindowBorderless(this, hWnd, targetFrame, favDetails);
         }
 
         private void HandlePrunedProcess(ProcessDetails pd)
@@ -121,8 +121,8 @@ namespace BorderlessGaming.Forms
 
                     this.lstProcesses.Items.RemoveAt(i);
 
-                    if (ProcessDetails.processCache.Contains(pd))
-                        ProcessDetails.processCache.Remove(pd);
+                    if (ProcessDetails.List.Contains(pd))
+                        ProcessDetails.List.Remove(pd);
                 }
             }
 
@@ -152,7 +152,7 @@ namespace BorderlessGaming.Forms
                         ProcessDetails curProcess = new ProcessDetails(process, pMainWindowHandle) { Manageable = true };
 
                         this.lstProcesses.Items.Add(curProcess);
-                        ProcessDetails.processCache.Add(curProcess);
+                        ProcessDetails.List.Add(curProcess);
 
                         // getting MainWindowHandle is expensive -> pause a bit to spread the load
                         Thread.Sleep(10);
@@ -185,16 +185,19 @@ namespace BorderlessGaming.Forms
             // check favorites against the cache
             lock (Favorites.List)
             {
-                foreach (ProcessDetails pd in ProcessDetails.processCache)
+                if (!this.ProcessingIsPaused)
                 {
-                    if (!pd.MadeBorderless)
+                    foreach (ProcessDetails pd in ProcessDetails.List)
                     {
-                        foreach (Favorites.Favorite fav_process in Favorites.List)
+                        if (!pd.MadeBorderless)
                         {
-                            if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
-                               ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
+                            foreach (Favorites.Favorite fav_process in Favorites.List)
                             {
-                                this.RemoveBorder(pd, fav_process);
+                                if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
+                                    ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
+                                {
+                                    this.RemoveBorder(pd, fav_process);
+                                }
                             }
                         }
                     }
@@ -268,6 +271,11 @@ namespace BorderlessGaming.Forms
 
             this.lstProcesses.Items.Clear();
             this.UpdateProcessList();
+        }
+        
+        private void pauseAutomaticProcessingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ProcessingIsPaused = pauseAutomaticProcessingToolStripMenuItem.Checked;
         }
 
         private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -352,7 +360,7 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-            pd.AttemptWindowRestoration();
+            Manipulation.RestoreWindow(pd);
         }
 
         /// <summary>
@@ -372,7 +380,7 @@ namespace BorderlessGaming.Forms
                 Favorites.Favorite fav = new Favorites.Favorite();
                 fav.Kind = Favorites.Favorite.FavoriteKinds.ByTitleText;
                 fav.SearchText = pd.WindowTitle;
-                Favorites.AddGame(fav);
+                Favorites.AddFavorite(fav);
                 this.lstFavorites.DataSource = null;
                 this.lstFavorites.DataSource = Favorites.List;
             }
@@ -395,7 +403,7 @@ namespace BorderlessGaming.Forms
                 Favorites.Favorite fav = new Favorites.Favorite();
                 fav.Kind = Favorites.Favorite.FavoriteKinds.ByBinaryName;
                 fav.SearchText = pd.BinaryName;
-                Favorites.AddGame(fav);
+                Favorites.AddFavorite(fav);
                 this.lstFavorites.DataSource = null;
                 this.lstFavorites.DataSource = Favorites.List;
             }
@@ -403,14 +411,14 @@ namespace BorderlessGaming.Forms
         
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
-            // assume that the button press to add to favorites will do so by binary/process name
-            this.byTheProcessBinaryNameToolStripMenuItem_Click(sender, e);
+            // assume that the button press to add to favorites will do so by window title
+            this.byTheWindowTitleTextToolStripMenuItem_Click(sender, e);
         }
 
         private void RefreshFavoritesList(Favorites.Favorite fav = null)
         {
             if (fav != null)
-                Favorites.AddGame(fav);
+                Favorites.AddFavorite(fav);
             this.lstFavorites.DataSource = null;
             this.lstFavorites.DataSource = Favorites.List;
         }
@@ -427,7 +435,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             this.RefreshFavoritesList();
         }        
@@ -441,7 +449,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             fav.RemoveMenus = this.removeMenusToolStripMenuItem.Checked;
 
@@ -457,7 +465,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             fav.TopMost = alwaysOnTopToolStripMenuItem.Checked;
 
@@ -471,7 +479,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the left window edge (0 pixels = no adjustment):", fav.OffsetL.ToString()), out fav.OffsetL);
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the right window edge (0 pixels = no adjustment):", fav.OffsetR.ToString()), out fav.OffsetR);
@@ -488,9 +496,18 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             fav.ShouldMaximize = automaximizeToolStripMenuItem.Checked;
+
+            if (fav.ShouldMaximize)
+            {
+                fav.SizeMode = Favorites.Favorite.SizeModes.FullScreen;
+                fav.PositionX = 0;
+                fav.PositionY = 0;
+                fav.PositionW = 0;
+                fav.PositionH = 0;
+            }
 
             this.RefreshFavoritesList(fav);
         }        
@@ -502,7 +519,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
 
@@ -516,7 +533,7 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
 
@@ -561,7 +578,7 @@ namespace BorderlessGaming.Forms
                 int.TryParse(Tools.Input_Text("Set Window Size", "Window height (in pixels):", fav.PositionH.ToString()), out fav.PositionH);
             }
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
             if (fav.PositionW == 0 || fav.PositionH == 0)
                 fav.SizeMode = Favorites.Favorite.SizeModes.FullScreen;
@@ -581,13 +598,48 @@ namespace BorderlessGaming.Forms
             if (!Favorites.CanRemove(fav.SearchText))
                 return;
 
-            Favorites.Remove(fav);
+            Favorites.RemoveFavorite(fav);
 
-            fav.SizeMode = (fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.SpecificSize;
-            
-            if (fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize)
+            fav.SizeMode = (fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
+
+            if (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen)
+            {
+                fav.PositionX = 0;
+                fav.PositionY = 0;
+                fav.PositionW = 0;
+                fav.PositionH = 0;
+            }
+            else
                 fav.ShouldMaximize = false;
 
+            this.RefreshFavoritesList(fav);
+        }
+
+        
+        private void noSizeChangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+
+            if (!Favorites.CanRemove(fav.SearchText))
+                return;
+
+            Favorites.RemoveFavorite(fav);
+
+            fav.SizeMode = (noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
+
+            if (fav.SizeMode == Favorites.Favorite.SizeModes.NoChange)
+            {
+                fav.ShouldMaximize = false;
+                fav.OffsetL = 0;
+                fav.OffsetR = 0;
+                fav.OffsetT = 0;
+                fav.OffsetB = 0;
+                fav.PositionX = 0;
+                fav.PositionY = 0;
+                fav.PositionW = 0;
+                fav.PositionH = 0;
+            }
+            
             this.RefreshFavoritesList(fav);
         }
 
@@ -613,6 +665,8 @@ namespace BorderlessGaming.Forms
             this.automaximizeToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
             this.adjustWindowBoundsToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen && !fav.ShouldMaximize;
             this.setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
+            this.setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
+            this.noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
         }
 
         /// <summary>
@@ -739,6 +793,30 @@ namespace BorderlessGaming.Forms
             this.UnregisterHotkeys();
         }
 
+        private void addSelectedItem_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ttTemp = new ToolTip();
+            ttTemp.SetToolTip((Control)sender, "Adds the currently-selected application to your favorites list (by the window title).");
+        }
+
+        private void btnRemoveFavorite_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ttTemp = new ToolTip();
+            ttTemp.SetToolTip((Control)sender, "Removes the currently-selected favorite from the list.");
+        }
+
+        private void btnMakeBorderless_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ttTemp = new ToolTip();
+            ttTemp.SetToolTip((Control)sender, "Make the currently-selected application borderless.");
+        }
+
+        private void btnRestoreWindow_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ttTemp = new ToolTip();
+            ttTemp.SetToolTip((Control)sender, "Attempt to restore a window back to its bordered state.");
+        }
+
         #endregion
 
         #region Tray Icon Events
@@ -826,7 +904,7 @@ namespace BorderlessGaming.Forms
 
                         // If we have information about this process -and- we've already made it borderless, then reverse the process
                         if (pd != null && pd.MadeBorderless)
-                            pd.AttemptWindowRestoration();
+                            Manipulation.RestoreWindow(pd);
 
                         // Otherwise, this is a fresh request to remove the border from the current window
                         else
