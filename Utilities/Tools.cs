@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Windows.Forms;
@@ -14,9 +12,21 @@ namespace BorderlessGaming.Utilities
 {
     public static class Tools
     {
+        // A sort of nullable boolean
+        public enum Boolstate
+        {
+            True,
+            False,
+            Indeterminate
+        }
+
         public static void GotoSite(string url)
         {
-            Process.Start(url);
+            try
+            {
+                Process.Start(url);
+            }
+            catch { }
         }
 
         private static bool HasInternetConnection
@@ -24,112 +34,100 @@ namespace BorderlessGaming.Utilities
             //There is absolutely no way you can reliably check if there is an internet connection
             get
             {
+                bool result = false;
+
                 try
                 {
-                    if (!NetworkInterface.GetIsNetworkAvailable())
-                        return false;
-
-                    bool result = false;
-
-                    using (Ping p = new Ping())
+                    if (NetworkInterface.GetIsNetworkAvailable())
                     {
-                        result = (p.Send("8.8.8.8", 15000).Status == IPStatus.Success) || (p.Send("8.8.4.4", 15000).Status == IPStatus.Success) || (p.Send("4.2.2.1", 15000).Status == IPStatus.Success);
-                    }
-
-                    return result;
-                }
-                catch { }
-
-                return false;
-            }
-        }
-
-        // Code commented (but not removed) by psouza4 2015/01/01: there were no references to this method, so no need to compile it and bloat the software.
-        //public static string AppFile(string fileName, params string[] folders)
-        //{
-        //    var folderPath = Application.StartupPath + @"\";
-        //    folders.ToList().ForEach(folder => folderPath += folder + @"\");
-        //    if (!Directory.Exists(folderPath))
-        //    {
-        //        Directory.CreateDirectory(folderPath);
-        //    }
-
-        //    return folderPath + fileName;
-        //}
-
-        public static void CheckForUpdates()
-        {
-            if (HasInternetConnection)
-            {
-                var _releasePageURL = "";
-                Version _newVersion = null;
-                const string _versionConfig = "https://raw.github.com/Codeusa/Borderless-Gaming/master/version.xml";
-                var _reader = new XmlTextReader(_versionConfig);
-                _reader.MoveToContent();
-                var _elementName = "";
-                try
-                {
-                    if ((_reader.NodeType == XmlNodeType.Element) && (_reader.Name == "borderlessgaming"))
-                    {
-                        while (_reader.Read())
+                        using (Ping p = new Ping())
                         {
-                            switch (_reader.NodeType)
-                            {
-                                case XmlNodeType.Element:
-                                    _elementName = _reader.Name;
-                                    break;
-                                default:
-                                    if ((_reader.NodeType == XmlNodeType.Text) && (_reader.HasValue))
-                                    {
-                                        switch (_elementName)
-                                        {
-                                            case "version":
-                                                _newVersion = new Version(_reader.Value);
-                                                break;
-                                            case "url":
-                                                _releasePageURL = _reader.Value;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
+                            result = (p.Send("8.8.8.8", 15000).Status == IPStatus.Success) || (p.Send("8.8.4.4", 15000).Status == IPStatus.Success) || (p.Send("4.2.2.1", 15000).Status == IPStatus.Success);
                         }
                     }
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    _reader.Close();
-                }
+                catch { }
 
-                var applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
-                if (applicationVersion.CompareTo(_newVersion) < 0)
+                return result;
+            }
+        }
+
+        public static void CheckForUpdates()
+        {
+            if (Tools.HasInternetConnection)
+            {
+                try
                 {
-                    if (DialogResult.Yes ==
-                        MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                    string _releasePageURL = "";
+                    Version _newVersion = null;
+                    const string _versionConfig = "https://raw.github.com/Codeusa/Borderless-Gaming/master/version.xml";
+                    XmlTextReader _reader = new XmlTextReader(_versionConfig);
+                    _reader.MoveToContent();
+                    string _elementName = "";
+                    try
                     {
-                        GotoSite(_releasePageURL);
+                        if ((_reader.NodeType == XmlNodeType.Element) && (_reader.Name == "borderlessgaming"))
+                        {
+                            while (_reader.Read())
+                            {
+                                switch (_reader.NodeType)
+                                {
+                                    case XmlNodeType.Element:
+                                        _elementName = _reader.Name;
+                                        break;
+                                    default:
+                                        if ((_reader.NodeType == XmlNodeType.Text) && (_reader.HasValue))
+                                        {
+                                            switch (_elementName)
+                                            {
+                                                case "version":
+                                                    _newVersion = new Version(_reader.Value);
+                                                    break;
+                                                case "url":
+                                                    _releasePageURL = _reader.Value;
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        _reader.Close();
+                    }
+
+                    Version applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                    if (applicationVersion.CompareTo(_newVersion) < 0)
+                    {
+                        if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            Tools.GotoSite(_releasePageURL);
+                        }
                     }
                 }
+                catch { }
             }
         }
 
         /// <summary>
-        ///     Gets the smallest containing Rectangle
+        ///     Gets the smallest Rectangle containing two input Rectangles
         /// </summary>
         public static Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
         {
-            var amin = new Point(a.X, a.Y);
-            var amax = new Point(a.X + a.Width, a.Y + a.Height);
-            var bmin = new Point(b.X, b.Y);
-            var bmax = new Point(b.X + b.Width, b.Y + b.Height);
-            var nmin = new Point(0, 0);
-            var nmax = new Point(0, 0);
+            Point amin = new Point(a.X, a.Y);
+            Point amax = new Point(a.X + a.Width, a.Y + a.Height);
+            Point bmin = new Point(b.X, b.Y);
+            Point bmax = new Point(b.X + b.Width, b.Y + b.Height);
+            Point nmin = new Point(0, 0);
+            Point nmax = new Point(0, 0);
 
             nmin.X = (amin.X < bmin.X) ? amin.X : bmin.X;
             nmin.Y = (amin.Y < bmin.Y) ? amin.Y : bmin.Y;
@@ -166,8 +164,6 @@ namespace BorderlessGaming.Utilities
             {
                 try
                 {
-                    string sModName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
-
                     List<string> startup_parameters_mixed = new List<string>();
                     startup_parameters_mixed.AddRange(Environment.GetCommandLineArgs());
 
