@@ -225,5 +225,9 @@ namespace BorderlessGaming.WindowsAPI
 
             return new IntPtr(Native.SetWindowLong32(hWnd, nIndex, dwNewLong));
         }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWindow(IntPtr hWnd);
     }
 }
