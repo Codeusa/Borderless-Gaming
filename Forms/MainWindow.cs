@@ -117,9 +117,8 @@ namespace BorderlessGaming.Forms
             for (int i = this.lstProcesses.Items.Count - 1; i >= 0; i--)
             {
                 ProcessDetails pd = (ProcessDetails)this.lstProcesses.Items[i];
-                string window_title = Native.GetWindowTitle(pd.WindowHandle);
 
-                if ((!pd.Manageable) || (!processes.Any(p => p.Id == pd.Proc.Id)) || HiddenProcesses.IsHidden(pd) || (pd.WindowTitle != window_title))
+                if ((pd.ProcessHasExited) || (!pd.Manageable) || (!processes.Any(p => p.Id == pd.Proc.Id)) || HiddenProcesses.IsHidden(pd) || (pd.WindowTitle != Native.GetWindowTitle(pd.WindowHandle)))
                 {
                     this.HandlePrunedProcess(pd);
 
@@ -200,15 +199,12 @@ namespace BorderlessGaming.Forms
                 {
                     foreach (ProcessDetails pd in ProcessDetails.List)
                     {
-                        if (!pd.MadeBorderless)
+                        foreach (Favorites.Favorite fav_process in Favorites.List)
                         {
-                            foreach (Favorites.Favorite fav_process in Favorites.List)
+                            if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
+                                ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
                             {
-                                if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
-                                    ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
-                                {
-                                    this.RemoveBorder(pd, fav_process);
-                                }
+                                this.RemoveBorder(pd, fav_process);
                             }
                         }
                     }
@@ -320,6 +316,11 @@ namespace BorderlessGaming.Forms
         {
             new AboutForm().ShowDialog();
         }
+        
+        private void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.UpdateProcessList(true);
+        }
 
         #endregion
 
@@ -426,8 +427,19 @@ namespace BorderlessGaming.Forms
         
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
-            // assume that the button press to add to favorites will do so by window title
-            this.byTheWindowTitleTextToolStripMenuItem_Click(sender, e);
+            // assume that the button press to add to favorites will do so by window title (unless it's blank, then go by process name)
+
+            if (this.lstProcesses.SelectedItem == null) return;
+
+            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+
+            if (!pd.Manageable)
+                return;
+
+            if (!string.IsNullOrEmpty(pd.WindowTitle))
+                this.byTheWindowTitleTextToolStripMenuItem_Click(sender, e);
+            else
+                this.byTheProcessBinaryNameToolStripMenuItem_Click(sender, e);
         }
 
         private void RefreshFavoritesList(Favorites.Favorite fav = null)

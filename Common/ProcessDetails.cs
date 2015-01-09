@@ -18,9 +18,10 @@ namespace BorderlessGaming.Common
         public string DescriptionOverride = "";
         public string WindowTitle = "";
         //public string WindowClass = ""; // note: this isn't used, currently
-        public IntPtr WindowHandle = IntPtr.Zero;
+        public IntPtr _WindowHandle = IntPtr.Zero;
         public bool Manageable = false;
         public bool MadeBorderless = false;
+        public int MadeBorderlessAttempts = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
         public Rectangle OriginalLocation = new Rectangle();
@@ -30,7 +31,7 @@ namespace BorderlessGaming.Common
         //{
         //    this.Proc = p;
 
-        //    this.WindowHandle = this.Proc.MainWindowHandle;
+        //    this._WindowHandle = this.Proc.MainWindowHandle;
         //    this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
         //    //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
         //}
@@ -44,6 +45,47 @@ namespace BorderlessGaming.Common
             //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
         }
 
+        // Automatically detects changes to the window handle
+        public IntPtr WindowHandle
+        {
+            get
+            {
+                try
+                {
+                    if (this.ProcessHasExited)
+                        return IntPtr.Zero;
+
+                    if (!WindowsAPI.Native.IsWindow(this._WindowHandle))
+                    {
+                        this.Proc.Refresh();
+                        this._WindowHandle = this.Proc.MainWindowHandle;
+                    }
+                }
+                catch { }
+
+                return this._WindowHandle;
+            }
+            set
+            {
+                this._WindowHandle = value;
+            }
+        }
+
+        public bool ProcessHasExited
+        {
+            get
+            {
+                try
+                {
+                    if (this.Proc != null)
+                        return this.Proc.HasExited;
+                }
+                catch { }
+
+                return true;
+            }
+        }
+        
         public string BinaryName
         {
             get
@@ -105,6 +147,34 @@ namespace BorderlessGaming.Common
             get
             {
                 return this.BinaryName.Trim().ToLower().Replace(" ", "").Replace("_", "");
+            }
+        }
+
+        // Detect whether or not the window needs border changes
+        public bool WindowHasTargetableStyles
+        {
+            get
+            {
+                WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
+                WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.Border) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.DialogFrame) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ThickFrame) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.SystemMenu) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) return true;
+
+                if ((styleCurrentWindow_extended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) return true;
+                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) return true;
+
+                return false;
             }
         }
 

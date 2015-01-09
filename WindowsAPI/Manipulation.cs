@@ -38,12 +38,18 @@ namespace BorderlessGaming.WindowsAPI
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
             favDetails = favDetails ?? targetWindow;
 
+            // Automatically match this window to a process
+            ProcessDetails processDetails = targetWindow;
+
+            // Failsafe to prevent rapid switching, but also allow a few changes to the window handle (to be persistent)
+            if (processDetails != null)
+                if (processDetails.MadeBorderless)
+                    if ((processDetails.MadeBorderlessAttempts > 3) || (!processDetails.WindowHasTargetableStyles))
+                        return;
+
             // If no target frame was specified, assume the entire space on the primary screen
             if ((targetFrame.Width == 0) || (targetFrame.Height == 0))
                 targetFrame = Screen.FromHandle(targetWindow).Bounds;
-
-            // Automatically match this window to a process
-            ProcessDetails processDetails = targetWindow;
 
             // Get window styles
             WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(targetWindow, WindowLongIndex.Style);
@@ -176,8 +182,12 @@ namespace BorderlessGaming.WindowsAPI
                 );
             }
 
+            // Make a note that we attempted to make the window borderless
             if (processDetails != null)
+            {
                 processDetails.MadeBorderless = true;
+                processDetails.MadeBorderlessAttempts++;
+            }
             return;
         }
 
@@ -191,6 +201,7 @@ namespace BorderlessGaming.WindowsAPI
             WindowsAPI.Native.SetWindowPos(pd.WindowHandle, IntPtr.Zero, pd.OriginalLocation.X, pd.OriginalLocation.Y, pd.OriginalLocation.Width, pd.OriginalLocation.Height, WindowsAPI.SetWindowPosFlags.ShowWindow | WindowsAPI.SetWindowPosFlags.NoZOrder);
             WindowsAPI.Native.SetWindowPos(pd.WindowHandle, WindowsAPI.Native.HWND_NOTTOPMOST, 0, 0, 0, 0, WindowsAPI.SetWindowPosFlags.NoActivate | WindowsAPI.SetWindowPosFlags.NoMove | WindowsAPI.SetWindowPosFlags.NoSize);
             pd.MadeBorderless = false;
+            pd.MadeBorderlessAttempts = 0;
         }
 
         public static void ToggleWindowsTaskbarVisibility(Tools.Boolstate forced = Tools.Boolstate.Indeterminate)

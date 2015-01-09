@@ -83,6 +83,7 @@
             this.resToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseAutomaticProcessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.toggleMouseCursorVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleWindowsTaskbarVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +98,8 @@
             this.btnRestoreWindow = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.openDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.processContext.SuspendLayout();
             this.mnuFavoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
@@ -477,7 +479,9 @@
             this.openDataFolderToolStripMenuItem,
             this.toolStripMenuItem11,
             this.toggleMouseCursorVisibilityToolStripMenuItem,
-            this.toggleWindowsTaskbarVisibilityToolStripMenuItem});
+            this.toggleWindowsTaskbarVisibilityToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.fullApplicationRefreshToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             // 
@@ -487,6 +491,12 @@
             this.pauseAutomaticProcessingToolStripMenuItem.Name = "pauseAutomaticProcessingToolStripMenuItem";
             resources.ApplyResources(this.pauseAutomaticProcessingToolStripMenuItem, "pauseAutomaticProcessingToolStripMenuItem");
             this.pauseAutomaticProcessingToolStripMenuItem.Click += new System.EventHandler(this.pauseAutomaticProcessingToolStripMenuItem_Click);
+            // 
+            // openDataFolderToolStripMenuItem
+            // 
+            this.openDataFolderToolStripMenuItem.Name = "openDataFolderToolStripMenuItem";
+            resources.ApplyResources(this.openDataFolderToolStripMenuItem, "openDataFolderToolStripMenuItem");
+            this.openDataFolderToolStripMenuItem.Click += new System.EventHandler(this.openDataFolderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
@@ -582,11 +592,16 @@
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
             // 
-            // openDataFolderToolStripMenuItem
+            // fullApplicationRefreshToolStripMenuItem
             // 
-            this.openDataFolderToolStripMenuItem.Name = "openDataFolderToolStripMenuItem";
-            resources.ApplyResources(this.openDataFolderToolStripMenuItem, "openDataFolderToolStripMenuItem");
-            this.openDataFolderToolStripMenuItem.Click += new System.EventHandler(this.openDataFolderToolStripMenuItem_Click);
+            this.fullApplicationRefreshToolStripMenuItem.Name = "fullApplicationRefreshToolStripMenuItem";
+            resources.ApplyResources(this.fullApplicationRefreshToolStripMenuItem, "fullApplicationRefreshToolStripMenuItem");
+            this.fullApplicationRefreshToolStripMenuItem.Click += new System.EventHandler(this.fullApplicationRefreshToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
             // 
             // MainWindow
             // 
@@ -688,5 +703,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
         private System.Windows.Forms.ToolStripMenuItem noSizeChangeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openDataFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
     }
 }

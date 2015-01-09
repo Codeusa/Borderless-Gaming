@@ -598,6 +598,15 @@
   <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
     <value>Toggle Windows Taskbar Visibility</value>
   </data>
+  <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 6</value>
+  </data>
+  <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
+    <value>Full Application Refresh</value>
+  </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 27</value>
   </data>
@@ -1070,6 +1079,12 @@
   <data name="&gt;&gt;pauseAutomaticProcessingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;openDataFolderToolStripMenuItem.Name" xml:space="preserve">
+    <value>openDataFolderToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;openDataFolderToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem11.Name" xml:space="preserve">
     <value>toolStripMenuItem11</value>
   </data>
@@ -1130,11 +1145,17 @@
   <data name="&gt;&gt;lblUpdateStatus.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;openDataFolderToolStripMenuItem.Name" xml:space="preserve">
-    <value>openDataFolderToolStripMenuItem</value>
+  <data name="&gt;&gt;fullApplicationRefreshToolStripMenuItem.Name" xml:space="preserve">
+    <value>fullApplicationRefreshToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;openDataFolderToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;fullApplicationRefreshToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem12.Name" xml:space="preserve">
+    <value>toolStripMenuItem12</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>
