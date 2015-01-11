@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using BorderlessGaming.Properties;
@@ -182,6 +183,121 @@ namespace BorderlessGaming.Utilities
 
                 return new List<string>();
             }
+        }
+
+
+        public static void StartMethodMultithreadedAndWait(Action target)
+        {
+            StartMethodMultithreadedAndWait(target, 0);
+        }
+
+        public static void StartMethodMultithreadedAndWait(Action target, int iHowLongToWait)
+        {
+            try
+            {
+                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
+                Thread trdGenericThread = new Thread(tsGenericMethod);
+                trdGenericThread.IsBackground = true;
+                trdGenericThread.Start();
+
+                DateTime dtStartTime = DateTime.Now;
+
+                for (; ; )
+                {
+                    if (iHowLongToWait > 0)
+                    {
+                        if ((DateTime.Now - dtStartTime).TotalSeconds > iHowLongToWait)
+                        {
+                            try { trdGenericThread.Abort(); } catch { }
+                            break;
+                        }
+                    }
+
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
+
+                    Thread.Sleep(15);
+                    Forms.MainWindow.DoEvents();
+                }
+            }
+            catch { }
+        }
+
+        public static void StartMethodMultithreadedAndWait(Action target, double dHowLongToWait)
+        {
+            try
+            {
+                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
+                Thread trdGenericThread = new Thread(tsGenericMethod);
+                trdGenericThread.IsBackground = true;
+                trdGenericThread.Start();
+
+                DateTime dtStartTime = DateTime.Now;
+
+                for (; ; )
+                {
+                    if (dHowLongToWait > 0.0)
+                    {
+                        if ((DateTime.Now - dtStartTime).TotalMilliseconds > dHowLongToWait)
+                        {
+                            try { trdGenericThread.Abort(); } catch { }
+                            break;
+                        }
+                    }
+
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
+
+                    Thread.Sleep(15);
+                    Forms.MainWindow.DoEvents();
+                }
+            }
+            catch { }
+        }
+
+        public static void StartMethodAndWait(Action target, double dHowLongToWait)
+        {
+            try
+            {
+                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
+                Thread trdGenericThread = new Thread(tsGenericMethod);
+                trdGenericThread.IsBackground = false;
+                trdGenericThread.Start();
+
+                DateTime dtStartTime = DateTime.Now;
+
+                for (; ; )
+                {
+                    if (dHowLongToWait > 0.0)
+                    {
+                        if ((DateTime.Now - dtStartTime).TotalMilliseconds > dHowLongToWait)
+                        {
+                            try { trdGenericThread.Abort(); } catch { }
+                            break;
+                        }
+                    }
+
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
+
+                    Thread.Sleep(15);
+                }
+            }
+            catch { }
+        }
+
+        public static void StartMethodMultithreaded(Action target)
+        {
+            ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
+            Thread trdGenericThread = new Thread(tsGenericMethod);
+            trdGenericThread.IsBackground = true;
+            trdGenericThread.Start();
         }
     }
 }

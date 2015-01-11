@@ -87,6 +87,8 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.toggleMouseCursorVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleWindowsTaskbarVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,8 +100,6 @@
             this.btnRestoreWindow = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.processContext.SuspendLayout();
             this.mnuFavoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
@@ -125,6 +125,7 @@
             this.lstProcesses.FormattingEnabled = true;
             this.lstProcesses.Name = "lstProcesses";
             this.lstProcesses.Sorted = true;
+            this.lstProcesses.SelectedIndexChanged += new System.EventHandler(this.lstProcesses_SelectedIndexChanged);
             // 
             // processContext
             // 
@@ -214,6 +215,7 @@
             this.lstFavorites.FormattingEnabled = true;
             this.lstFavorites.Name = "lstFavorites";
             this.lstFavorites.Sorted = true;
+            this.lstFavorites.SelectedIndexChanged += new System.EventHandler(this.lstFavorites_SelectedIndexChanged);
             // 
             // mnuFavoritesContext
             // 
@@ -515,6 +517,17 @@
             resources.ApplyResources(this.toggleWindowsTaskbarVisibilityToolStripMenuItem, "toggleWindowsTaskbarVisibilityToolStripMenuItem");
             this.toggleWindowsTaskbarVisibilityToolStripMenuItem.Click += new System.EventHandler(this.toggleWindowsTaskbarVisibilityToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            // 
+            // fullApplicationRefreshToolStripMenuItem
+            // 
+            this.fullApplicationRefreshToolStripMenuItem.Name = "fullApplicationRefreshToolStripMenuItem";
+            resources.ApplyResources(this.fullApplicationRefreshToolStripMenuItem, "fullApplicationRefreshToolStripMenuItem");
+            this.fullApplicationRefreshToolStripMenuItem.Click += new System.EventHandler(this.fullApplicationRefreshToolStripMenuItem_Click);
+            // 
             // toolStripInfo
             // 
             this.toolStripInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -591,17 +604,6 @@
             // 
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
-            // 
-            // fullApplicationRefreshToolStripMenuItem
-            // 
-            this.fullApplicationRefreshToolStripMenuItem.Name = "fullApplicationRefreshToolStripMenuItem";
-            resources.ApplyResources(this.fullApplicationRefreshToolStripMenuItem, "fullApplicationRefreshToolStripMenuItem");
-            this.fullApplicationRefreshToolStripMenuItem.Click += new System.EventHandler(this.fullApplicationRefreshToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
             // 
             // MainWindow
             // 

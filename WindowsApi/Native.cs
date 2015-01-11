@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace BorderlessGaming.WindowsAPI
     {
         #region Delegates
 
-        public delegate bool EnumWindowsProc(IntPtr hwnd, int lParam);
+        public delegate bool EnumWindows_CallBackProc(IntPtr hwnd, uint lParam);
 
         #endregion
 
@@ -33,9 +34,6 @@ namespace BorderlessGaming.WindowsAPI
         public static extern int GetWindowModuleFileName(IntPtr hWnd, StringBuilder title, int size);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex);
-
-        [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
             SetWindowPosFlags uFlags);
@@ -44,13 +42,10 @@ namespace BorderlessGaming.WindowsAPI
         public static extern int GetWindowModuleFileName(int hWnd, StringBuilder title, int size);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int EnumWindows(EnumWindowsProc ewp, int lParam);
+        public static extern int EnumWindows(EnumWindows_CallBackProc callPtr, int lPar); 
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool IsWindowVisible(IntPtr hWnd);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
@@ -208,26 +203,156 @@ namespace BorderlessGaming.WindowsAPI
 
         [DllImport("User32.dll", CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         public static extern IntPtr LoadCursorFromFile(String str);
+        
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong", SetLastError = true)]
+        private static extern WindowStyleFlags GetWindowLong32(IntPtr hWnd, WindowLongIndex nIndex);
 
-        [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
-        private static extern int SetWindowLong32(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
-
-        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
-        private static extern IntPtr SetWindowLong64(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr", SetLastError = true)]
+        private static extern WindowStyleFlags GetWindowLong64(IntPtr hWnd, WindowLongIndex nIndex);
         
         /// <summary>
         // This static method is required because legacy OSes do not support SetWindowLongPtr 
         /// </summary>
-        public static IntPtr SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong)
+        public static WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex)
+        {
+            if (IntPtr.Size == 8)
+                return Native.GetWindowLong64(hWnd, nIndex);
+
+            return Native.GetWindowLong32(hWnd, nIndex);
+        }
+        
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
+        private static extern WindowStyleFlags SetWindowLong32(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
+        private static extern WindowStyleFlags SetWindowLong64(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong);
+        
+        /// <summary>
+        // This static method is required because legacy OSes do not support SetWindowLongPtr 
+        /// </summary>
+        public static WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong)
         {
             if (IntPtr.Size == 8)
                 return Native.SetWindowLong64(hWnd, nIndex, dwNewLong);
 
-            return new IntPtr(Native.SetWindowLong32(hWnd, nIndex, dwNewLong));
+            return Native.SetWindowLong32(hWnd, nIndex, dwNewLong);
         }
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool IsWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool EnumThreadWindows(int dwThreadId, EnumWindows_CallBackProc lpfn, uint lParam);
+
+        private static object GetMainWindowForProcess_Locker = new object();
+
+        private static IntPtr GetMainWindowForProcess_Value = IntPtr.Zero;
+
+        // Do some preferential treatment to windows
+        private static bool GetMainWindowForProcess_EnumWindows(IntPtr hWndEnumerated, uint lParam)
+        {
+            if (Native.GetMainWindowForProcess_Value == IntPtr.Zero)
+            {
+                WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(hWndEnumerated, WindowsAPI.WindowLongIndex.Style);
+
+                if (lParam == 0) // strict: windows that are visible and have a border
+                {
+                    if (Native.IsWindowVisible(hWndEnumerated))
+                    {
+                        if
+                        (
+                               ((styleCurrentWindow_standard & WindowStyleFlags.Caption) > 0)
+                            && (
+                                    ((styleCurrentWindow_standard & WindowStyleFlags.Border) > 0)
+                                 || ((styleCurrentWindow_standard & WindowStyleFlags.ThickFrame) > 0)
+                               )
+                        )
+                        {
+                            Native.GetMainWindowForProcess_Value = hWndEnumerated;
+                            return false;
+                        }
+                    }
+                }
+                else if (lParam == 1) // loose: windows that are visible
+                {
+                    if (Native.IsWindowVisible(hWndEnumerated))
+                    {
+                        if (((uint)styleCurrentWindow_standard) != 0)
+                        {
+                            Native.GetMainWindowForProcess_Value = hWndEnumerated;
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public static IntPtr GetMainWindowForProcess(Process process)
+        {
+            try
+            {
+                IntPtr hMainWindow = IntPtr.Zero;
+
+                lock (Native.GetMainWindowForProcess_Locker)
+                {
+                    Native.GetMainWindowForProcess_Value = IntPtr.Zero;
+
+                    // Help the UI stay alive
+                    Utilities.Tools.StartMethodMultithreadedAndWait(() =>
+                    {
+                        for (uint i = 0; i <= 1; i++)
+                        {
+                            foreach (ProcessThread thread in process.Threads)
+                            {
+                                if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
+                                    break;
+
+                                Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
+                            }
+                        }
+                    });
+
+                    hMainWindow = Native.GetMainWindowForProcess_Value;
+                }
+
+                if (hMainWindow != IntPtr.Zero)
+                    return hMainWindow;
+            }
+            catch { }
+
+            try
+            {
+                // Failsafe
+                process.Refresh();
+                return process.MainWindowHandle;
+            }
+            catch { }
+
+            return IntPtr.Zero;
+        }
+
+        /// <summary>
+        /// Retrieves the handle to the ancestor of the specified window. 
+        /// </summary>
+        /// <param name="hwnd">A handle to the window whose ancestor is to be retrieved. 
+        /// If this parameter is the desktop window, the function returns NULL. </param>
+        /// <param name="flags">The ancestor to be retrieved.</param>
+        /// <returns>The return value is the handle to the ancestor window.</returns>
+        [DllImport("user32.dll", ExactSpelling = true)]
+        public static extern IntPtr GetAncestor(IntPtr hwnd, GetAncestorFlags flags);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr WindowFromPoint(int xPoint, int yPoint);
     }
 }

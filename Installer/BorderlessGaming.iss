@@ -18,11 +18,11 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=7.6
+AppVersion=7.7
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=7.6.915.629
+VersionInfoVersion=7.7.1015.1177
 ; Other version info
-OutputBaseFilename=BorderlessGaming_7.6__setup
+OutputBaseFilename=BorderlessGaming_7.7__setup
 
 
 ; Shown in the setup program during install only
@@ -36,7 +36,7 @@ AppSupportURL=https://github.com/Codeusa/Borderless-Gaming/issues
 AppUpdatesURL=https://github.com/Codeusa/Borderless-Gaming/releases/latest
 UninstallDisplayName=Borderless Gaming
 ; 691 KB as initial install
-UninstallDisplaySize=707733
+UninstallDisplaySize=720021
 UninstallDisplayIcon={app}\BorderlessGaming.exe
 
 

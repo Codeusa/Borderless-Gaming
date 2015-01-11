@@ -21,6 +21,7 @@ namespace BorderlessGaming.Common
         public IntPtr _WindowHandle = IntPtr.Zero;
         public bool Manageable = false;
         public bool MadeBorderless = false;
+        private bool NoAccess = false;
         public int MadeBorderlessAttempts = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
@@ -31,7 +32,7 @@ namespace BorderlessGaming.Common
         //{
         //    this.Proc = p;
 
-        //    this._WindowHandle = this.Proc.MainWindowHandle;
+        //    this._WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(this.Proc);
         //    this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
         //    //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
         //}
@@ -56,10 +57,7 @@ namespace BorderlessGaming.Common
                         return IntPtr.Zero;
 
                     if (!WindowsAPI.Native.IsWindow(this._WindowHandle))
-                    {
-                        this.Proc.Refresh();
-                        this._WindowHandle = this.Proc.MainWindowHandle;
-                    }
+                        this._WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(this.Proc);
                 }
                 catch { }
 
@@ -77,8 +75,17 @@ namespace BorderlessGaming.Common
             {
                 try
                 {
+                    if (this.NoAccess)
+                        return false;
+
                     if (this.Proc != null)
                         return this.Proc.HasExited;
+                }
+                catch (System.ComponentModel.Win32Exception)
+                {
+                    this.NoAccess = true;
+
+                    return false; // Access is denied
                 }
                 catch { }
 
@@ -90,7 +97,13 @@ namespace BorderlessGaming.Common
         {
             get
             {
-                return this.Proc.ProcessName;
+                try
+                {
+                    return this.Proc.ProcessName;
+                }
+                catch { }
+
+                return "<error>";
             }
         }
 
