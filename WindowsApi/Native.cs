@@ -32,8 +32,21 @@ namespace BorderlessGaming.WindowsAPI
         [DllImport("user32.dll", SetLastError = true)]
         public static extern int GetWindowModuleFileName(IntPtr hWnd, StringBuilder title, int size);
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex);
+        // GetWindowLong has been superseded by the GetWindowLongPtr, which has different functions for x32 and x64
+        public static WindowsAPI.WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex)
+        {
+            if (IntPtr.Size == 4)
+            {
+                return (WindowsAPI.WindowStyleFlags)GetWindowLong32(new HandleRef(null, hWnd), nIndex);
+            }
+            return (WindowsAPI.WindowStyleFlags)GetWindowLongPtr64(new HandleRef(null, hWnd), nIndex);
+        }
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
+        private static extern IntPtr GetWindowLong32(HandleRef hWnd, WindowLongIndex nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr", CharSet = CharSet.Auto)]
+        private static extern IntPtr GetWindowLongPtr64(HandleRef hWnd, WindowLongIndex nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -48,9 +61,6 @@ namespace BorderlessGaming.WindowsAPI
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool IsWindowVisible(IntPtr hWnd);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern WindowStyleFlags GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
