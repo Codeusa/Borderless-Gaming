@@ -52,6 +52,51 @@ namespace BorderlessGaming.Forms
             this.InitializeComponent();
         }
 
+        #region External access and processing
+
+        // Code commented (but not removed) by psouza4 2015/01/10: there were no references to this method, so no need to compile it and bloat the software.
+        //public static MainWindow ext()
+        //{
+        //    foreach (Form form in Application.OpenForms)
+        //    {
+        //        if (form.GetType() == typeof(MainWindow))
+        //            return (MainWindow)form;
+        //    }
+
+        //    return null;
+        //}
+
+        private static object _DoEvents_locker = new object();
+        private static bool _DoEvents_engaged = false;
+        public static void DoEvents()
+        {
+            try
+            {
+                bool local__DoEventsEngaged = false;
+                lock (MainWindow._DoEvents_locker)
+                {
+                    local__DoEventsEngaged = MainWindow._DoEvents_engaged;
+
+                    if (!local__DoEventsEngaged)
+                        MainWindow._DoEvents_engaged = true;
+                }
+
+                if (!local__DoEventsEngaged)
+                {
+                    // hack-y, but it lets the window message pump process user inputs to keep the UI alive on the main thread
+                    Application.DoEvents();
+                }
+
+                lock (MainWindow._DoEvents_locker)
+                {
+                    MainWindow._DoEvents_engaged = false;
+                }
+            }
+            catch { }
+        }
+
+        #endregion
+
         #region Process enumeration and handling
 
         /// <summary>
@@ -118,23 +163,27 @@ namespace BorderlessGaming.Forms
             {
                 ProcessDetails pd = (ProcessDetails)this.lstProcesses.Items[i];
 
-                if ((pd.ProcessHasExited) || (!pd.Manageable) || (!processes.Any(p => p.Id == pd.Proc.Id)) || HiddenProcesses.IsHidden(pd) || (pd.WindowTitle != Native.GetWindowTitle(pd.WindowHandle)))
+                if (pd.ProcessHasExited || (pd.WindowTitle != Native.GetWindowTitle(pd.WindowHandle)))
                 {
                     this.HandlePrunedProcess(pd);
 
                     this.lstProcesses.Items.RemoveAt(i);
 
-                    if (ProcessDetails.List.Contains(pd))
-                        ProcessDetails.List.Remove(pd);
+                    lock (ProcessDetails.List)
+                    {
+                        if (ProcessDetails.List.Contains(pd))
+                            ProcessDetails.List.Remove(pd);
+                    }
                 }
             }
-
-            // Let the user know that we're still alive and well
-            this.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
 
             // add new processes
             foreach (Process process in processes)
             {
+                // Skip the system idle process
+                if (process.Id == 0)
+                    continue;
+
                 // No longer using a sexy linq query, but a case-insensitive text comparison is easier to manage when blacklisting processes.
                 if (HiddenProcesses.IsHidden(process))
                     continue;
@@ -149,7 +198,7 @@ namespace BorderlessGaming.Forms
                 {
                     // moved in here -- if the process list hasn't changed, then the handle isn't even necessary
                     // this will further optimize the loop since 'MainWindowHandle' is expensive
-                    IntPtr pMainWindowHandle = process.MainWindowHandle;
+                    IntPtr pMainWindowHandle = Native.GetMainWindowForProcess(process);
 
                     // If the application doesn't have a primary window handle, we don't display it
                     if (pMainWindowHandle != IntPtr.Zero)
@@ -157,13 +206,19 @@ namespace BorderlessGaming.Forms
                         ProcessDetails curProcess = new ProcessDetails(process, pMainWindowHandle) { Manageable = true };
 
                         this.lstProcesses.Items.Add(curProcess);
-                        ProcessDetails.List.Add(curProcess);
+                        lock (ProcessDetails.List)
+                        {
+                            ProcessDetails.List.Add(curProcess);
+                        }
 
                         // getting MainWindowHandle is expensive -> pause a bit to spread the load
                         Thread.Sleep(10);
                     }
                 }
             }
+
+            // Let the user know that we're still alive and well
+            this.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
         }
 
         #endregion
@@ -184,6 +239,10 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private delegate void Delegate__Void_Bool(bool Bool1);
 
+
+        private delegate void Delegate__Void_ProcessDetails(ProcessDetails pd1);
+
+
         /// <summary>
         ///     Update the processlist and process the favorites
         /// </summary>
@@ -197,14 +256,17 @@ namespace BorderlessGaming.Forms
             {
                 if (!this.ProcessingIsPaused)
                 {
-                    foreach (ProcessDetails pd in ProcessDetails.List)
+                    lock (ProcessDetails.List)
                     {
-                        foreach (Favorites.Favorite fav_process in Favorites.List)
+                        foreach (ProcessDetails pd in ProcessDetails.List)
                         {
-                            if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
-                                ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
+                            foreach (Favorites.Favorite fav_process in Favorites.List)
                             {
-                                this.RemoveBorder(pd, fav_process);
+                                if (((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByBinaryName) && (pd.BinaryName == fav_process.SearchText)) ||
+                                    ((fav_process.Kind == Favorites.Favorite.FavoriteKinds.ByTitleText) && (pd.WindowTitle == fav_process.SearchText)))
+                                {
+                                    this.RemoveBorder(pd, fav_process);
+                                }
                             }
                         }
                     }
@@ -326,6 +388,25 @@ namespace BorderlessGaming.Forms
 
         #region Application Form Events
         
+        private void lstProcesses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool valid_selection = false;
+
+            if (this.lstProcesses.SelectedItem != null)
+            {
+                ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+
+                valid_selection = pd.Manageable;
+            }
+
+            this.btnMakeBorderless.Enabled = this.btnRestoreWindow.Enabled = this.addSelectedItem.Enabled = valid_selection;
+        }
+
+        private void lstFavorites_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.btnRemoveFavorite.Enabled = (this.lstFavorites.SelectedItem != null);
+        }
+
         private void setWindowTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.lstProcesses.SelectedItem == null) return;
@@ -794,6 +875,10 @@ namespace BorderlessGaming.Forms
 
             // initialize lists
             this.UpdateProcessList();
+
+            // Update buttons' enabled/disabled state
+            this.lstProcesses_SelectedIndexChanged(sender, e);
+            this.lstFavorites_SelectedIndexChanged(sender, e);
 
             // Start the background worker
             this.tmrWork.Start();
