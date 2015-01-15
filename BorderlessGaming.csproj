@@ -55,7 +55,7 @@
     <ApplicationIcon>BorderlessGaming.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>app.Launch as User.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>BorderlessGaming.Program</StartupObject>
@@ -147,7 +147,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx" />
-    <None Include="app.manifest" />
+    <None Include="app.Launch as User.manifest" />
+    <None Include="app.Launch as Elevated.manifest" />
     <None Include="data\blank.cur" />
     <None Include="packages.config" />
   </ItemGroup>
