@@ -885,30 +885,50 @@ namespace BorderlessGaming.Forms
         }
 
         /// <summary>
-        ///     Unregisters the hotkeys on closing
+        ///     Cleans up when the application exits (main form closes)
         /// </summary>
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Not allowed to exit the application if we've hidden the Windows taskbar.
+            //
+            // Make them exit the game that triggered the taskbar to be hidden -- or -- use a global hotkey to restore it.
             if (Manipulation.WindowsTaskbarIsHidden)
             {
+                this.ClosingFromExitMenu = false;
                 e.Cancel = true;
                 return;
             }
 
+            // If we're exiting -- or -- if we're closing-to-tray, then restore the mouse cursor.
+            //
+            // This prevents a scenario where the user can't (easily) get back to Borderless Gaming to undo the hidden mouse cursor.
             Manipulation.ToggleMouseCursorVisibility(this, Tools.Boolstate.True);
 
-            if (AppEnvironment.SettingValue("CloseToTray", false))
+            // If the user didn't choose to exit from the tray icon context menu...
+            if (!this.ClosingFromExitMenu)
             {
-                this.WindowState = FormWindowState.Minimized;
-                e.Cancel = true;
-                return;
+                // ... and they have the preference set to close-to-tray ...
+                if (AppEnvironment.SettingValue("CloseToTray", false))
+                {
+                    // ... then minimize the app and do not exit (minimizing will trigger another event to hide the form)
+                    this.WindowState = FormWindowState.Minimized;
+                    e.Cancel = true;
+                    return;
+                }
             }
 
+            // At this point, we're okay to exit the application
+
+            // Unregister all global hotkeys
             this.UnregisterHotkeys();
 
+            // Hide the tray icon.  If we don't do this, then Environment.Exit() can sometimes ghost the icon in the
+            // Windows system tray area.
             this.trayIcon.Visible = false;
             
-            // Overkill... the form should just close naturally.
+            // Overkill... the form should just close naturally.  Ideally we would just allow the form to close and
+            // the remaining code in Program.cs would execute (if there were any), but this is how Borderless Gaming has
+            // always exited and there may be a compatibility reason for it, so leaving it alone for now.
             Environment.Exit(0);
         }
 
@@ -946,8 +966,10 @@ namespace BorderlessGaming.Forms
             this.WindowState = FormWindowState.Normal;
         }
 
+        private bool ClosingFromExitMenu = false;
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.ClosingFromExitMenu = true;
             this.Close();
         }
 
