@@ -37,14 +37,19 @@ namespace BorderlessGaming.Forms
 
         private void OpenOwnerSteam(object sender, EventArgs e)
         {
-            Tools.GotoSite("http://steamcommunity.com/id/Codeusa/");
+            Tools.GotoSite("http://steamcommunity.com/id/Andrewmd5/");
         }
 
         private void OpenGithubRepo(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
         }
-
+       
+        private void _impulserNameTag_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://www.indiegogo.com/projects/the-mad-scientist-scholarship/x/3590458");
+        }
+ 
         #endregion
 
         #region Contributers

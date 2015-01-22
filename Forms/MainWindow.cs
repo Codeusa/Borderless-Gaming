@@ -843,7 +843,7 @@ namespace BorderlessGaming.Forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // set the title
-            this.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+            this.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2) + ((UAC.Elevated) ? " [Administrator]" : "");
 
             // load up settings
 
