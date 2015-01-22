@@ -238,7 +238,7 @@
     <value>True</value>
   </data>
   <data name="_impulserNameTag.Text" xml:space="preserve">
-    <value>Impulser - Alex (RIP 1993- 2015)</value>
+    <value>Impulser - Alex (RIP 1993 - 2015)</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>About...</value>
@@ -1016,7 +1016,7 @@
     <value>60, 216</value>
   </data>
   <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://andrew.im/</value>
+    <value>http://andrew.codeusa.net/</value>
   </data>
   <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 106</value>

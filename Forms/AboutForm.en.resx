@@ -118,11 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_viewBlogLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 13</value>
+  <data name="_ownerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 91</value>
   </data>
-  <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://andrew.im/</value>
+  <data name="_ownerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="_ownerLabel.Text" xml:space="preserve">
+    <value>Maintainers:</value>
   </data>
   <data name="_ownerGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -144,6 +147,9 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="_ownerGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 107</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVtJREFUOE9j
@@ -154,6 +160,15 @@
         1c84ODjMmTJlSh7QdkQgAjksQKwMxCA/ygOxdkNDQyk3N/fvHTt2eAANXKuoqHgRKG4OxKpAzAfVihsA
         FQnFxMR0s7CwvAB65Vl1dXUiVIp4ADREGojdgNgFiPmhwsMLMDAAALg0hCFEe1vEAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 108</value>
+  </data>
+  <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 110</value>
+  </data>
+  <data name="_committersLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 155</value>
   </data>
   <data name="_dmxtGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -175,6 +190,12 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 170</value>
+  </data>
+  <data name="_dmxtNameTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 173</value>
+  </data>
   <data name="_impulserGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -195,11 +216,14 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="_impulserNameTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 13</value>
+  <data name="_impulserGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 188</value>
   </data>
-  <data name="_impulserNameTag.Text" xml:space="preserve">
-    <value>Impulser - Alex (RIP 1993- 2015)</value>
+  <data name="_impulserNameTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 191</value>
+  </data>
+  <data name="_impulserNameTag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 13</value>
   </data>
   <data name="_stackOfPancakesGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -220,6 +244,12 @@
         i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="_stackOfPancakesGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 206</value>
+  </data>
+  <data name="_stackOfPancakesNameTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 209</value>
   </data>
   <data name="_codeusaSoftwareLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -393,6 +423,15 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="_madpewGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 224</value>
+  </data>
+  <data name="_madpewNametag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 226</value>
+  </data>
+  <data name="_psouza4Nametag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 126</value>
+  </data>
   <data name="_psouza4Nametag.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
   </data>
@@ -416,6 +455,9 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="_psouza4GithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 125</value>
+  </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVtJREFUOE9j
@@ -426,6 +468,9 @@
         1c84ODjMmTJlSh7QdkQgAjksQKwMxCA/ygOxdkNDQyk3N/fvHTt2eAANXKuoqHgRKG4OxKpAzAfVihsA
         FQnFxMR0s7CwvAB65Vl1dXUiVIp4ADREGojdgNgFiPmhwsMLMDAAALg0hCFEe1vEAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 126</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

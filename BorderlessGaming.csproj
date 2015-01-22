@@ -117,11 +117,16 @@
     <Compile Include="Utilities\ExceptionHandler.cs" />
     <Compile Include="Utilities\AutoStart.cs" />
     <Compile Include="Utilities\Tools.cs" />
+    <Compile Include="Utilities\UAC.cs" />
     <Compile Include="WindowsAPI\Enumerations.cs" />
     <Compile Include="WindowsAPI\Manipulation.cs" />
     <Compile Include="WindowsAPI\Native.cs" />
     <EmbeddedResource Include="Forms\AboutForm.de.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutForm.en.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>

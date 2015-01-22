@@ -44,7 +44,12 @@ namespace BorderlessGaming.Forms
         {
             Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
         }
-
+       
+        private void _impulserNameTag_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://www.indiegogo.com/projects/the-mad-scientist-scholarship/x/3590458");
+        }
+ 
         #endregion
 
         #region Contributers
@@ -80,10 +85,5 @@ namespace BorderlessGaming.Forms
         }
 
         #endregion
-
-        private void _impulserNameTag_Click(object sender, EventArgs e)
-        {
-            Tools.GotoSite("https://www.indiegogo.com/projects/the-mad-scientist-scholarship/x/3590458");
-        }
     }
 }

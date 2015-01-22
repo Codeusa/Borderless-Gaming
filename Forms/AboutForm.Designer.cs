@@ -149,6 +149,7 @@
             // _impulserNameTag
             // 
             resources.ApplyResources(this._impulserNameTag, "_impulserNameTag");
+            this._impulserNameTag.Cursor = System.Windows.Forms.Cursors.Hand;
             this._impulserNameTag.Name = "_impulserNameTag";
             this._impulserNameTag.Click += new System.EventHandler(this._impulserNameTag_Click);
             // 
