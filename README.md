@@ -1,3 +1,4 @@
+![tip](http://img.shields.io/gratipay/Codeusa.svg "Tips")
 # What is this?
 Borderless Gaming is a simple tool that will allow you to turn your windowed video games into "fullscreen" applications without all of the negative side effects
 
