@@ -299,9 +299,9 @@ namespace BorderlessGaming.Forms
             this.RegisterHotkeys();
         }
 
-        private void useMouseHideKotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
+        private void useMouseHideHotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("UseMouseHideHotkey", this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked);
+            AppEnvironment.Setting("UseMouseHideHotkey", this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked);
 
             this.RegisterHotkeys();
         }
@@ -850,7 +850,7 @@ namespace BorderlessGaming.Forms
             this.toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
             this.toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
             this.toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
             this.startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
             this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
             this.closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
