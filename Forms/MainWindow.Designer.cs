@@ -73,7 +73,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMouseLock = new System.Windows.Forms.ToolStripMenuItem();
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.startMinimizedToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -386,7 +386,7 @@
             this.toolStripMenuItem3,
             this.toolStripGlobalHotkey,
             this.toolStripMouseLock,
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem,
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem,
             this.toolStripMenuItem5,
             this.startMinimizedToTrayToolStripMenuItem,
             this.closeToTrayToolStripMenuItem,
@@ -423,12 +423,12 @@
             resources.ApplyResources(this.toolStripMouseLock, "toolStripMouseLock");
             this.toolStripMouseLock.CheckedChanged += new System.EventHandler(this.toolStripMouseLock_CheckChanged);
             // 
-            // useMouseHideKotkeyWinScrollLockToolStripMenuItem
+            // useMouseHideHotkeyWinScrollLockToolStripMenuItem
             // 
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.CheckOnClick = true;
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.Name = "useMouseHideKotkeyWinScrollLockToolStripMenuItem";
-            resources.ApplyResources(this.useMouseHideKotkeyWinScrollLockToolStripMenuItem, "useMouseHideKotkeyWinScrollLockToolStripMenuItem");
-            this.useMouseHideKotkeyWinScrollLockToolStripMenuItem.CheckedChanged += new System.EventHandler(this.useMouseHideKotkeyWinScrollLockToolStripMenuItem_CheckChanged);
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.CheckOnClick = true;
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Name = "useMouseHideHotkeyWinScrollLockToolStripMenuItem";
+            resources.ApplyResources(this.useMouseHideHotkeyWinScrollLockToolStripMenuItem, "useMouseHideHotkeyWinScrollLockToolStripMenuItem");
+            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.CheckedChanged += new System.EventHandler(this.useMouseHideHotkeyWinScrollLockToolStripMenuItem_CheckChanged);
             // 
             // toolStripMenuItem5
             // 
@@ -698,7 +698,7 @@
         private System.Windows.Forms.ToolStripMenuItem hideWindowsTaskbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideMouseCursorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleMouseCursorVisibilityToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useMouseHideKotkeyWinScrollLockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useMouseHideHotkeyWinScrollLockToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem resToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauseAutomaticProcessingToolStripMenuItem;

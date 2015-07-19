@@ -556,11 +556,11 @@
   <data name="toolStripMouseLock.Text" xml:space="preserve">
     <value>Use Mouse Lock Hotkey      (Scroll Lock)</value>
   </data>
-  <data name="useMouseHideKotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>314, 22</value>
   </data>
-  <data name="useMouseHideKotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use Mouse Hide Kotkey       (Win+Scroll Lock)</value>
+  <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use Mouse Hide Hotkey       (Win+Scroll Lock)</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 6</value>
@@ -1031,10 +1031,10 @@
   <data name="&gt;&gt;toolStripMouseLock.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;useMouseHideKotkeyWinScrollLockToolStripMenuItem.Name" xml:space="preserve">
-    <value>useMouseHideKotkeyWinScrollLockToolStripMenuItem</value>
+  <data name="&gt;&gt;useMouseHideHotkeyWinScrollLockToolStripMenuItem.Name" xml:space="preserve">
+    <value>useMouseHideHotkeyWinScrollLockToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;useMouseHideKotkeyWinScrollLockToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;useMouseHideHotkeyWinScrollLockToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
