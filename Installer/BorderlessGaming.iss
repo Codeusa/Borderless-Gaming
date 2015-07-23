@@ -18,11 +18,11 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=7.9
+AppVersion=8.1
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=7.9.2215.582
+VersionInfoVersion=8.1.525.512
 ; Other version info
-OutputBaseFilename=BorderlessGaming_7.9__setup
+OutputBaseFilename=BorderlessGaming_8.1__setup
 
 
 ; Shown in the setup program during install only

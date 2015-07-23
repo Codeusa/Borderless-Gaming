@@ -22,12 +22,12 @@ namespace BorderlessGaming.Forms
 
         private void OpenBlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Tools.GotoSite("http://andrew.codeusa.net/");
+            Tools.GotoSite("http://blog.andrew.im/");
         }
 
         private void OpenSteamGroup(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Tools.GotoSite("http://steamcommunity.com/groups/borderless-gaming/");
+            Tools.GotoSite("http://steamcommunity.com/app/388080/");
         }
 
         private void OpenOwnerGithub(object sender, EventArgs e)

@@ -371,7 +371,7 @@ namespace BorderlessGaming.Forms
 
         private void toolStripSupportUs_Click(object sender, EventArgs e)
         {
-            Tools.GotoSite("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TWHNPSC7HRNR2");
+            Tools.GotoSite("http://store.steampowered.com/app/388080");
         }
 
         private void toolStripAbout_Click(object sender, EventArgs e)

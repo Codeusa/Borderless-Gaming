@@ -154,8 +154,8 @@
   <data name="&gt;&gt;_ownerLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_dmxtNameTag.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;_psouza4GithubGlobe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_madpewNametag.Parent" xml:space="preserve">
     <value>$this</value>
@@ -200,7 +200,7 @@
     <value>7</value>
   </data>
   <data name="_viewSteamGroupLinkLabel.Text" xml:space="preserve">
-    <value>http://steamcommunity.com/groups/borderless-gaming</value>
+    <value>http://steamcommunity.com/app/388080/</value>
   </data>
   <data name="&gt;&gt;_stackOfPancakesNameTag.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -230,6 +230,9 @@
   </data>
   <data name="_ownerGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 18</value>
+  </data>
+  <data name="_steamGroupLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
   </data>
   <data name="&gt;&gt;_viewBlogLinkLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -419,9 +422,6 @@
   <data name="_ownerNameTag.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="_dmxtGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 18</value>
-  </data>
   <data name="&gt;&gt;_stackOfPancakesGithubGlobe.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -449,9 +449,6 @@
   <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_ownerNameTag.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="_gitHubLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 13</value>
   </data>
@@ -470,6 +467,9 @@
   <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_ownerLabel.Name" xml:space="preserve">
+    <value>_ownerLabel</value>
+  </data>
   <data name="&gt;&gt;_psouza4Nametag.Name" xml:space="preserve">
     <value>_psouza4Nametag</value>
   </data>
@@ -487,9 +487,6 @@
   </data>
   <data name="_gitHubLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 33</value>
-  </data>
-  <data name="&gt;&gt;_gitHubLabel.ZOrder" xml:space="preserve">
-    <value>23</value>
   </data>
   <data name="_viewBlogLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 13</value>
@@ -636,15 +633,11 @@
   <data name="&gt;&gt;_stackOfPancakesNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;_psouza4GithubGlobe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;_impulserGithubGlobe.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="&gt;&gt;_gitHubLabel.ZOrder" xml:space="preserve">
+    <value>23</value>
   </data>
   <data name="_psouza4GithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 215</value>
@@ -654,6 +647,10 @@
   </data>
   <data name="_blogLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -737,14 +734,14 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="&gt;&gt;_dmxtNameTag.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="_psouza4Nametag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="&gt;&gt;_copyrightLabel.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_impulserNameTag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="versionLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14pt</value>
@@ -814,10 +811,10 @@
     <value>True</value>
   </data>
   <data name="_copyrightLabel.Text" xml:space="preserve">
-    <value>Copyright © 2014-2015 Codeusa Software</value>
+    <value>Copyright © 2014-2015 Aurous Group</value>
   </data>
-  <data name="&gt;&gt;_ownerLabel.Name" xml:space="preserve">
-    <value>_ownerLabel</value>
+  <data name="&gt;&gt;_committersLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_viewGithubLinkLabel.Name" xml:space="preserve">
     <value>_viewGithubLinkLabel</value>
@@ -828,10 +825,10 @@
   <data name="&gt;&gt;versionLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_committersLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_impulserNameTag.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_madpewGithubGlobe.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_ownerNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="_viewSteamGroupLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
@@ -860,6 +857,9 @@
   </data>
   <data name="&gt;&gt;_ownerNameTag.Name" xml:space="preserve">
     <value>_ownerNameTag</value>
+  </data>
+  <data name="&gt;&gt;_blogLabel.ZOrder" xml:space="preserve">
+    <value>22</value>
   </data>
   <data name="&gt;&gt;_copyrightLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -948,8 +948,8 @@
   <data name="&gt;&gt;_dmxtGithubGlobe.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="_steamGroupLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="&gt;&gt;_blogLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="_codeusaSoftwareLogo.Location" type="System.Drawing.Point, System.Drawing">
     <value>277, 200</value>
@@ -1016,7 +1016,7 @@
     <value>60, 216</value>
   </data>
   <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://andrew.codeusa.net/</value>
+    <value>http://blog.andrew.im/</value>
   </data>
   <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 106</value>
@@ -1042,11 +1042,11 @@
   <data name="_dmxtNameTag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;_blogLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="_dmxtGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 18</value>
   </data>
-  <data name="&gt;&gt;_blogLabel.ZOrder" xml:space="preserve">
-    <value>22</value>
+  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 143</value>
   </data>
   <data name="&gt;&gt;_dmxtGithubGlobe.Name" xml:space="preserve">
     <value>_dmxtGithubGlobe</value>
@@ -1054,8 +1054,8 @@
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 143</value>
+  <data name="&gt;&gt;_madpewGithubGlobe.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="_committersLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 126</value>
@@ -1078,10 +1078,10 @@
   <data name="_impulserGithubGlobe.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
     <value>en</value>
-  </metadata>
+  </data>
 </root>
