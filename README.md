@@ -25,7 +25,7 @@ The project is open source under the [GNU GENERAL PUBLIC LICENSE](https://github
 #### Usage
 You can simply run the application and manually process games for borderless mode 
 
-Or you can select a game from the process list and click "add to favourites" to have it switched every time the game is run or detected as being active.
+Or you can select a game from the process list and click "add to favorites" to have it switched every time the game is run or detected as being active.
 
 #### Need help?
 contact me on my [blog](http://andrew.codeusa.net/ask) 
