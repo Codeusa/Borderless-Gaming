@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BorderlessGaming.WindowsAPI
 {
@@ -294,6 +295,10 @@ namespace BorderlessGaming.WindowsAPI
             return true;
         }
 
+		/// <summary>
+		/// This method now runs synchronously so it will block the calling thread.
+		/// Dont call this method from the UI thread, instead use a task.
+		/// </summary>
         public static IntPtr GetMainWindowForProcess(Process process)
         {
             try
@@ -304,20 +309,16 @@ namespace BorderlessGaming.WindowsAPI
                 {
                     Native.GetMainWindowForProcess_Value = IntPtr.Zero;
 
-                    // Help the UI stay alive
-                    Utilities.Tools.StartMethodMultithreadedAndWait(() =>
-                    {
-                        for (uint i = 0; i <= 1; i++)
-                        {
-                            foreach (ProcessThread thread in process.Threads)
-                            {
-                                if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
-                                    break;
+					for (uint i = 0; i <= 1; i++)
+					{
+						foreach (ProcessThread thread in process.Threads)
+						{
+							if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
+								break;
 
-                                Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
-                            }
-                        }
-                    });
+							Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
+						}
+					}
 
                     hMainWindow = Native.GetMainWindowForProcess_Value;
                 }
