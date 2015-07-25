@@ -146,6 +146,7 @@
     <Compile Include="WindowsAPI\Enumerations.cs" />
     <Compile Include="WindowsAPI\Manipulation.cs" />
     <Compile Include="WindowsAPI\Native.cs" />
+    <Compile Include="WindowsAPI\Windows.cs" />
     <EmbeddedResource Include="Forms\AboutForm.de.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>

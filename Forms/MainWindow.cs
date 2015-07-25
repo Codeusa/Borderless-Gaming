@@ -48,6 +48,8 @@ namespace BorderlessGaming.Forms
 
 		#endregion
 
+		private Windows windows = new Windows();
+
 		public MainWindow()
 		{
 			this.InitializeComponent();
@@ -192,10 +194,7 @@ namespace BorderlessGaming.Forms
 		{
 			return Task.Factory.StartNew(() =>
 			{
-				// Got rid of the linq query here so we could normalize the list of processes vs. process blacklist.
-				// We want a case-insensitive blacklist.
-				List<Process> processes = new List<Process>(Process.GetProcesses());
-
+				
 				// prune closed and newly-hidden processes or any process where the main window title text changed since last time
 				for (int i = this.lstProcesses.Items.Count - 1; i >= 0; i--)
 				{
@@ -213,9 +212,11 @@ namespace BorderlessGaming.Forms
 					}
 				}
 
+				var processDetails = windows.Get();
 				// add new processes
-				foreach (Process process in processes)
+				foreach (var pd in processDetails)
 				{
+					var process = pd.Proc;
 					// Skip the system idle process
 					if (process.Id == 0)
 						continue;
@@ -226,26 +227,13 @@ namespace BorderlessGaming.Forms
 
 					// Check if the process is already in the list
 					bool bHasProcess = false;
-					foreach (ProcessDetails pd in ProcessDetails.List)
-						if ((pd.Proc.Id == process.Id) && (pd.BinaryName == process.ProcessName))
+					foreach (var checkPd in ProcessDetails.List)
+						if ((checkPd.Proc.Id == process.Id) && (checkPd.BinaryName == process.ProcessName))
 							bHasProcess = true;
 
 					if (!bHasProcess)
 					{
-						// moved in here -- if the process list hasn't changed, then the handle isn't even necessary
-						// this will further optimize the loop since 'MainWindowHandle' is expensive
-						IntPtr pMainWindowHandle = Native.GetMainWindowForProcess(process);
-
-						// If the application doesn't have a primary window handle, we don't display it
-						if (pMainWindowHandle != IntPtr.Zero)
-						{
-							ProcessDetails curProcess = new ProcessDetails(process, pMainWindowHandle) { Manageable = true };
-
-							lock (ProcessDetails.List)
-							{
-								ProcessDetails.List.Add(curProcess);
-							}
-						}
+						ProcessDetails.List.Add(pd);
 					}
 				}
 				return ProcessDetails.List;
