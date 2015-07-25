@@ -8,7 +8,7 @@ using BorderlessGaming.Utilities;
 //
 // Summary: free to do with whatever.
 
-namespace BorderlessGaming.Forms
+namespace BorderlessGaming.View
 {
     public partial class DesktopAreaSelector : Form
     {

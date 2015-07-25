@@ -29,7 +29,7 @@ namespace BorderlessGaming
             }
             catch { }
 
-            Application.Run(new Forms.MainWindow());
+            Application.Run(new View.MainWindow());
         }
     }
 }

@@ -104,29 +104,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AboutForm.cs">
+    <Compile Include="BorderlessGaming.cs" />
+    <Compile Include="Common\ProcessDetailsList.cs" />
+    <Compile Include="Extensions\ProcessDetailsExtensions.cs" />
+    <Compile Include="View\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutForm.Designer.cs">
+    <Compile Include="View\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainWindow.cs">
+    <Compile Include="View\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainWindow.Designer.cs">
+    <Compile Include="View\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Favorites.cs" />
-    <Compile Include="Forms\DesktopAreaSelector.cs">
+    <Compile Include="View\DesktopAreaSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DesktopAreaSelector.designer.cs">
+    <Compile Include="View\DesktopAreaSelector.designer.cs">
       <DependentUpon>DesktopAreaSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InputText.cs">
+    <Compile Include="View\InputText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InputText.designer.cs">
+    <Compile Include="View\InputText.designer.cs">
       <DependentUpon>InputText.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\HiddenProcesses.cs" />
@@ -147,29 +150,29 @@
     <Compile Include="WindowsAPI\Manipulation.cs" />
     <Compile Include="WindowsAPI\Native.cs" />
     <Compile Include="WindowsAPI\Windows.cs" />
-    <EmbeddedResource Include="Forms\AboutForm.de.resx">
+    <EmbeddedResource Include="View\AboutForm.de.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AboutForm.en.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AboutForm.resx">
+    <EmbeddedResource Include="View\AboutForm.en.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainWindow.de.resx">
+    <EmbeddedResource Include="View\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainWindow.de.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainWindow.resx">
+    <EmbeddedResource Include="View\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DesktopAreaSelector.resx">
+    <EmbeddedResource Include="View\DesktopAreaSelector.resx">
       <DependentUpon>DesktopAreaSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InputText.resx">
+    <EmbeddedResource Include="View\InputText.resx">
       <DependentUpon>InputText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
