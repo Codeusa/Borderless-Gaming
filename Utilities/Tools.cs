@@ -186,7 +186,7 @@ namespace BorderlessGaming.Utilities
         }
 
 
-        public static void StartMethodMultithreadedAndWait(Action target)
+        /*public static void StartMethodMultithreadedAndWait(Action target)
         {
             StartMethodMultithreadedAndWait(target, 0);
         }
@@ -298,6 +298,6 @@ namespace BorderlessGaming.Utilities
             Thread trdGenericThread = new Thread(tsGenericMethod);
             trdGenericThread.IsBackground = true;
             trdGenericThread.Start();
-        }
+        }*/
     }
 }

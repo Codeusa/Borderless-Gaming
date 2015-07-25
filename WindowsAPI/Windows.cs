@@ -22,8 +22,15 @@ namespace BorderlessGaming.WindowsAPI
 			return Task.Factory.StartNew(Get);
 		}
 
+		HashSet<long> windowPtrs = new HashSet<long>();
 		public List<ProcessDetails> Get()
 		{
+			//build a cache of current processes to avoid GetWindowThreadProcessId because its very costly
+			//in the future we should introduce state to the app so we dont have to build this every time
+			foreach (var pd in ProcessDetails.List)
+			{
+				windowPtrs.Add(pd.WindowHandle.ToInt64());
+			}
 			var pdList = new List<ProcessDetails>();
 			var ptrList = new List<IntPtr>();
 			EnumWindows_CallBackProc del = (hwnd, lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
@@ -31,10 +38,20 @@ namespace BorderlessGaming.WindowsAPI
 			EnumWindows(del, 1);
 			foreach (var ptr in ptrList)
 			{
+				string windowTitle = GetWindowTitle(ptr);
+				//check the cache for the ptr
+				//also check hiddenprocesses. this will likely not be true but
+				//if it ever is true its worth the trade off of calling GetWindowThreadProcessId
+				if (windowPtrs.Contains(ptr.ToInt64()) || HiddenProcesses.IsHidden(windowTitle))
+					continue;
 				uint processId;
 				GetWindowThreadProcessId(ptr, out processId);
-				pdList.Add(new ProcessDetails(Process.GetProcessById((int)processId), ptr));
+				pdList.Add(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
+								{
+									Manageable = true
+								});
 			}
+			windowPtrs.Clear();
 			return pdList;
 		}
 

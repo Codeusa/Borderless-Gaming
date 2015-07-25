@@ -69,7 +69,7 @@ namespace BorderlessGaming.Forms
 		//    return null;
 		//}
 
-		private static object _DoEvents_locker = new object();
+		/*private static object _DoEvents_locker = new object();
 		private static bool _DoEvents_engaged = false;
 		public static void DoEvents()
 		{
@@ -96,7 +96,7 @@ namespace BorderlessGaming.Forms
 				}
 			}
 			catch { }
-		}
+		}*/
 
 		#endregion
 
@@ -151,14 +151,12 @@ namespace BorderlessGaming.Forms
 		/// <summary>
 		///     Updates the list of processes
 		/// </summary>
-		private async void UpdateProcessList(bool bReset = false)
+		private void UpdateProcessList(List<ProcessDetails> processes, bool bReset = false)
 		{
 			// Reset the list contents if we're doing a full refresh
 			if (bReset)
 				this.lstProcesses.Items.Clear();
-
-			var processes = await GetProcessesAsync();
-
+			
 			var removeProcesses = new List<ProcessDetails>();
 			foreach (var process in processes)
 			{
@@ -256,12 +254,16 @@ namespace BorderlessGaming.Forms
 		/// <summary>
 		///     Update the processlist and process the favorites
 		/// </summary>
-		private async void DoMainWork()
+		private void DoMainWork()
 		{
+			int ticks = Environment.TickCount;
 			while (!workerTaskToken.IsCancellationRequested)
 			{
+				Console.WriteLine("TICK: " + (Environment.TickCount - ticks));
+				ticks = Environment.TickCount;
 				// update the processlist
-				this.lstProcesses.Invoke((Delegate__Void_Bool)UpdateProcessList, false);
+				var processes = GetProcessesAsync().Result;
+                Invoke((MethodInvoker) delegate { UpdateProcessList(processes, false); });
 
 				// check favorites against the cache
 				lock (Favorites.List)
@@ -284,7 +286,7 @@ namespace BorderlessGaming.Forms
 						}
 					}
 				}
-				await TaskEx.Delay(3000);
+				Task.WaitAll(TaskEx.Delay(3000));
 			}
 		}
 
@@ -335,18 +337,18 @@ namespace BorderlessGaming.Forms
 			AppEnvironment.Setting("CloseToTray", this.closeToTrayToolStripMenuItem.Checked);
 		}
 
-		private void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+		private async void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
 		{
 			AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
 
-			this.UpdateProcessList(true);
+			this.UpdateProcessList(await GetProcessesAsync(), true);
 		}
 
-		private void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			HiddenProcesses.Reset();
 
-			this.UpdateProcessList(true);
+			this.UpdateProcessList(await GetProcessesAsync(), true);
 		}
 
 		private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -393,9 +395,9 @@ namespace BorderlessGaming.Forms
 			new AboutForm().ShowDialog();
 		}
 
-		private void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			this.UpdateProcessList(true);
+			this.UpdateProcessList(await GetProcessesAsync(), true);
 		}
 
 		#endregion
@@ -433,7 +435,7 @@ namespace BorderlessGaming.Forms
 			Native.SetWindowText(pd.WindowHandle, Tools.Input_Text("Set Window Title", "Set the new window title text:", Native.GetWindowTitle(pd.WindowHandle)));
 		}
 
-		private void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (this.lstProcesses.SelectedItem == null) return;
 
@@ -444,7 +446,7 @@ namespace BorderlessGaming.Forms
 
 			HiddenProcesses.Add(pd.BinaryName);
 
-			this.UpdateProcessList(true);
+			this.UpdateProcessList(await GetProcessesAsync(), true);
 		}
 
 		/// <summary>
@@ -886,10 +888,7 @@ namespace BorderlessGaming.Forms
 			// hide the window if desired (this doesn't work well in Load)
 			if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
 				this.Hide();
-
-			// initialize lists
-			this.UpdateProcessList();
-
+			
 			// Update buttons' enabled/disabled state
 			this.lstProcesses_SelectedIndexChanged(sender, e);
 			this.lstFavorites_SelectedIndexChanged(sender, e);

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using BorderlessGaming.Utilities;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace BorderlessGaming.Common
 {
     public static class HiddenProcesses
     {
         private static readonly string HiddenFile = Path.Combine(AppEnvironment.DataPath, "HiddenProcesses.json");
-        private static List<string> _List = null;
-
-        /// <summary>
-        ///     AlwaysHiddenProcesses is used to keep processes from showing up in the list no matter what
-        /// </summary>
-        private static readonly string[] AlwaysHiddenProcesses =
+        private static HashSet<string> _List = null;
+		private static HashSet<string> alwaysHiddenDictionary = null;
+	
+		/// <summary>
+		///     AlwaysHiddenProcesses is used to keep processes from showing up in the list no matter what
+		/// </summary>
+		private static readonly string[] AlwaysHiddenProcesses =
         {
             // Skip self
             "BorderlessGaming",
@@ -35,7 +37,14 @@ namespace BorderlessGaming.Common
             // Let them hide the rest manually
         };
 
-        public static List<string> List 
+		static HiddenProcesses()
+		{
+			alwaysHiddenDictionary = new HashSet<string>();
+            foreach (var p in AlwaysHiddenProcesses)
+				alwaysHiddenDictionary.Add(p);
+		}
+
+        public static HashSet<string> List 
         {
             get
             {
@@ -68,35 +77,36 @@ namespace BorderlessGaming.Common
         {
             try
             {
-                File.WriteAllText(HiddenProcesses.HiddenFile, JsonConvert.SerializeObject(HiddenProcesses.List));
+                File.WriteAllText(HiddenProcesses.HiddenFile, JsonConvert.SerializeObject(List.ToList()));
             }
             catch { }
         }
 
         public static void Load()
         {
-            HiddenProcesses._List = new List<string>();
+            HiddenProcesses._List = new HashSet<string>();
 
             try
             {
-                if (File.Exists(HiddenProcesses.HiddenFile))
-                    HiddenProcesses._List.AddRange(JsonConvert.DeserializeObject<List<string>>
-                        (File.ReadAllText(HiddenProcesses.HiddenFile)));
+				if (File.Exists(HiddenProcesses.HiddenFile))
+				{
+					var processes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(HiddenProcesses.HiddenFile));
+					foreach (var p in processes)
+						_List.Add(p.Trim().ToLower());
+				}
             }
             catch { }
         }
 
         public static bool IsHidden(System.Diagnostics.Process process)
         {
-            foreach (string blacklistedProcess in HiddenProcesses.AlwaysHiddenProcesses)
-                if (process.ProcessName.Trim().ToLower() == blacklistedProcess.Trim().ToLower())
-                    return true;
+            return IsHidden(process.ProcessName);
+		}
 
-            foreach (string hiddenProcess in HiddenProcesses.List)
-                if (process.ProcessName.Trim().ToLower() == hiddenProcess.Trim().ToLower())
-                    return true;
-            
-            return false;
-        }
-    }
+		public static bool IsHidden(string processName)
+		{
+			processName = processName.Trim().ToLower();
+			return alwaysHiddenDictionary.Contains(processName) || List.Contains(processName);
+		}
+	}
 }
