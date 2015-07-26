@@ -31,23 +31,23 @@ namespace BorderlessGaming.WindowsAPI
 			EnumWindows_CallBackProc del = (hwnd, lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
             EnumWindows(del, 0);
 			EnumWindows(del, 1);
-			var taskList = new List<Task>();
+			//var taskList = new List<Task>();
 			foreach (var ptr in ptrList)
 			{
 				string windowTitle = GetWindowTitle(ptr);
 				if (string.IsNullOrEmpty(windowTitle) || windowPtrSet.Contains(ptr.ToInt64()) || windowTitleSet.Contains(windowTitle))
 					continue;
-				taskList.Add(Task.Factory.StartNew(() =>
-				{
+				//taskList.Add(Task.Factory.StartNew(() =>
+				//{
 					uint processId;
 					GetWindowThreadProcessId(ptr, out processId);
 					callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
 					{
 						Manageable = true
 					});
-				}, CancellationToken.None, TaskCreationOptions.PreferFairness, _scheduler));
+				//}, CancellationToken.None, TaskCreationOptions.PreferFairness, _scheduler));
 			}
-			Task.WaitAll(taskList.ToArray());
+			//Task.WaitAll(taskList.ToArray());
 		}
 
 		private static bool GetMainWindowForProcess_EnumWindows(List<IntPtr> ptrList, IntPtr hWndEnumerated, uint lParam)

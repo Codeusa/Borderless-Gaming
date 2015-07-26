@@ -54,8 +54,7 @@ namespace BorderlessGaming
 			_processDetails = new ProcessDetailsList();
 			windows = new Windows();
 			AutoHandleFavorites = true;
-			Start();
-        }
+		}
 
 		public void Start()
 		{
@@ -119,20 +118,19 @@ namespace BorderlessGaming
 				{
 					if (_hiddenProcesses.IsHidden(pd.Proc.ProcessName))
 						return;
-					//this runs async so we can sometimes end up trying to add to the list at the same time
-					//which will throw an exception, so we add in a lock
-					lock(_processDetails)
-					{
-						if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
-							_processDetails.Add(pd);
-					}
+					if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
+						_processDetails.Add(pd);
 				}, _processDetails.WindowPtrSet, _processDetails.WindowTitleSet);
 			}
 		}
 
-		public void RefreshProcesses()
+		public Task RefreshProcesses()
 		{
-			Task.Factory.StartNew(UpdateProcesses);
+			lock (updateLock)
+			{
+				_processDetails.ClearProcesses();
+			}
+			return Task.Factory.StartNew(UpdateProcesses);
 		}
 
 		/// <summary>
@@ -178,9 +176,9 @@ namespace BorderlessGaming
 		public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null)
 		{
 			var pd = _processDetails.FromHandle(hWnd);
-            Manipulation.MakeWindowBorderless(pd, window, hWnd, targetFrame, favDetails ?? _favorites.FromProcessDetails(pd));
+			Manipulation.MakeWindowBorderless(pd, window, hWnd, targetFrame, favDetails ?? _favorites.FromProcessDetails(pd));
 		}
-		
+
 	}
 
 }

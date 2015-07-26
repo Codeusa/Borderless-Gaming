@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace BorderlessGaming.Common
 		private readonly HashSet<long> _windowPtrSet;
 		private readonly HashSet<string> _windowTitleSet;
 		private readonly HashSet<string> _processTitleSet;
+
+		//public override event NotifyCollectionChangedEventHandler CollectionChanged;
 
 		public HashSet<long> WindowPtrSet { get { return _windowPtrSet; } }
 		public HashSet<string> WindowTitleSet { get { return _windowTitleSet; } }
@@ -47,6 +50,16 @@ namespace BorderlessGaming.Common
 				}
 			}
 		}
+
+		/// <summary>
+		/// Clear isnt firing the collectionchanged event so i made my own implementation
+		/// </summary>
+		public void ClearProcesses()
+		{
+			var copy = this.ToList();
+			foreach (var pd in copy)
+				Remove(pd);
+        }
 
 		internal ProcessDetails FromHandle(IntPtr hCurrentActiveWindow)
 		{

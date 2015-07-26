@@ -51,40 +51,40 @@ namespace BorderlessGaming.View
 		public MainWindow()
 		{
 			this.controller = new BorderlessGaming(this);
-			this.InitializeComponent();
 			this.controller.Processes.CollectionChanged += Processes_CollectionChanged;
 			this.controller.Favorites.CollectionChanged += Favorites_CollectionChanged;
+			this.InitializeComponent();
 		}
 
 		private void Processes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 			Action action = () =>
 			{
+				lstProcesses.BeginUpdate();
 				if (e.NewItems != null)
 				{
 					//lock(controller.Processes)
 					//{
-						//cast really isnt needed right now.
-						var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
-						foreach (var ni in newItems)
-						{
-							if (!lstProcesses.Items.Contains(ni))
-								lstProcesses.Items.Add(ni);
-						}
+					//cast really isnt needed right now.
+					var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
+					foreach (var ni in newItems)
+					{
+						lstProcesses.Items.Add(ni);
+					}
 					//}
 				}
 				if (e.OldItems != null)
 				{
 					//lock (controller.Processes)
 					//{
-						var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
-						foreach (var oi in oldItems)
-						{
-							if (lstProcesses.Items.Contains(oi))
-								lstProcesses.Items.Remove(oi);
-						}
+					var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
+					foreach (var oi in oldItems)
+					{
+						lstProcesses.Items.Remove(oi);
+					}
 					//}
 				}
+				lstProcesses.EndUpdate();
 			};
 			if (InvokeRequired)
 				Invoke(action);
@@ -101,25 +101,23 @@ namespace BorderlessGaming.View
 				{
 					//lock (controller.Favorites)
 					//{
-						//cast really isnt needed right now.
-						var newItems = e.NewItems.Cast<Favorites.Favorite>().ToArray();
-						foreach (var ni in newItems)
-						{
-							if (!lstFavorites.Items.Contains(ni))
-								lstFavorites.Items.Add(ni);
-						}
+					//cast really isnt needed right now.
+					var newItems = e.NewItems.Cast<Favorites.Favorite>().ToArray();
+					foreach (var ni in newItems)
+					{
+						lstFavorites.Items.Add(ni);
+					}
 					//}
 				}
 				if (e.OldItems != null)
 				{
 					//lock (controller.Favorites)
 					//{
-						var oldItems = e.OldItems.Cast<Favorites.Favorite>().ToArray();
-						foreach (var oi in oldItems)
-						{
-							if (!lstFavorites.Items.Contains(oi))
-								lstFavorites.Items.Remove(oi);
-						}
+					var oldItems = e.OldItems.Cast<Favorites.Favorite>().ToArray();
+					foreach (var oi in oldItems)
+					{
+						lstFavorites.Items.Remove(oi);
+					}
 					//}
 				}
 			};
@@ -178,13 +176,13 @@ namespace BorderlessGaming.View
 		{
 			AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
 
-			controller.RefreshProcesses();
-        }
+			await controller.RefreshProcesses();
+		}
 
 		private async void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			controller.HiddenProcesses.Reset();
-			controller.RefreshProcesses();
+			await controller.RefreshProcesses();
 		}
 
 		private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,7 +231,7 @@ namespace BorderlessGaming.View
 
 		private async void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			controller.RefreshProcesses();
+			await controller.RefreshProcesses();
 		}
 
 		#endregion
@@ -282,7 +280,7 @@ namespace BorderlessGaming.View
 
 			controller.HiddenProcesses.Add(pd.BinaryName);
 
-			controller.RefreshProcesses();
+			await controller.RefreshProcesses();
 		}
 
 		/// <summary>
@@ -376,7 +374,9 @@ namespace BorderlessGaming.View
 
 		private void RefreshFavoritesList(Favorites.Favorite fav = null)
 		{
-			//OnCollectionChanged
+			//refreshing is done through observables so this method just readds the favorite
+			//to make it look like it updated and because i dont want to change all that code
+			controller.Favorites.Add(fav);
 		}
 
 		/// <summary>
@@ -393,9 +393,7 @@ namespace BorderlessGaming.View
 				return;
 
 			controller.Favorites.Remove(fav);
-
-			RefreshFavoritesList(fav);
-        }
+		}
 
 		private void removeMenusToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -698,7 +696,7 @@ namespace BorderlessGaming.View
 			this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
 			this.closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
 			this.viewFullProcessDetailsToolStripMenuItem.Checked = AppEnvironment.SettingValue("ViewAllProcessDetails", false);
-			
+
 			// minimize the window if desired (hiding done in Shown)
 			if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
 				this.WindowState = FormWindowState.Minimized;
@@ -711,7 +709,9 @@ namespace BorderlessGaming.View
 			// hide the window if desired (this doesn't work well in Load)
 			if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
 				this.Hide();
-			
+
+			controller.Start();
+
 			// Update buttons' enabled/disabled state
 			this.lstProcesses_SelectedIndexChanged(sender, e);
 			this.lstFavorites_SelectedIndexChanged(sender, e);
@@ -801,8 +801,6 @@ namespace BorderlessGaming.View
 
 		private bool ClosingFromExitMenu = false;
 
-		private CancellationTokenSource workerTaskToken;
-
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			this.ClosingFromExitMenu = true;
@@ -878,7 +876,14 @@ namespace BorderlessGaming.View
 						// Figure out the process details based on the current window handle
 						ProcessDetails pd = controller.Processes.FromHandle(hCurrentActiveWindow);
 						if (pd == null)
-							return;
+						{
+							//this process isn't in the list, so refresh them and check again
+							Task.WaitAll(controller.RefreshProcesses());
+							pd = controller.Processes.FromHandle(hCurrentActiveWindow);
+							//cant work with this process
+							if (pd == null)
+								return;
+						}
 						// If we have information about this process -and- we've already made it borderless, then reverse the process
 						if (pd.MadeBorderless)
 							Manipulation.RestoreWindow(pd);
