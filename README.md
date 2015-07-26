@@ -45,8 +45,8 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 
 ## Contact info
 
-* **Twitter:** [@CodeusaSoftware](https://twitter.com/andrewmd5)
-* **Blog:** [andrew.codeusa.net](http://blog.andrew.im)
+* **Twitter:** [@AndrewMD5](https://twitter.com/andrewmd5)
+* **Blog:** [blog.andrew.im](http://blog.andrew.im)
 
 # Join our Steam Group!
 [Borderless Gaming on Steam](https://steamcommunity.com/app/388080/discussions/)
