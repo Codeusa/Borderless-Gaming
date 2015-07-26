@@ -1,4 +1,4 @@
-# [Want to support Borderless-Gaming? Buy it on Steam!](http://store.steampowered.com/app/388080).
+# [Want to support Borderless-Gaming? Buy it on Steam!](http://store.steampowered.com/app/388080)
 
 http://store.steampowered.com/app/388080
 
