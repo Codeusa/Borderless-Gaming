@@ -1,4 +1,4 @@
-﻿namespace BorderlessGaming.Forms
+﻿namespace BorderlessGaming.View
 {
     partial class InputText
     {

@@ -19,7 +19,7 @@ namespace BorderlessGaming
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Tools.CheckForUpdates();
+            //Tools.CheckForUpdates();
 
             // create the application data path, if necessary
             try
@@ -29,7 +29,7 @@ namespace BorderlessGaming
             }
             catch { }
 
-            Application.Run(new Forms.MainWindow());
+            Application.Run(new View.MainWindow());
         }
     }
 }

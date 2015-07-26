@@ -119,10 +119,14 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMakeBorderless.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 87</value>
+    <value>4, 135</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnMakeBorderless.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
+    <value>56, 55</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnMakeBorderless.TabIndex" type="System.Int32, mscorlib">
@@ -144,55 +148,55 @@
     <value>394, 23</value>
   </metadata>
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>333, 30</value>
   </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the window title text</value>
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>333, 30</value>
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the process binary name</value>
   </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>265, 30</value>
   </data>
   <data name="contextAddToFavs.Text" xml:space="preserve">
     <value>Add to Favorites...</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>262, 6</value>
   </data>
   <data name="contextBorderless.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>265, 30</value>
   </data>
   <data name="contextBorderless.Text" xml:space="preserve">
     <value>Make Borderless</value>
   </data>
   <data name="contextBorderlessOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>265, 30</value>
   </data>
   <data name="contextBorderlessOn.Text" xml:space="preserve">
     <value>Make Borderless on...</value>
   </data>
   <data name="setWindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>265, 30</value>
   </data>
   <data name="setWindowTitleToolStripMenuItem.Text" xml:space="preserve">
     <value>Set Window Title</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>262, 6</value>
   </data>
   <data name="hideThisProcessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>265, 30</value>
   </data>
   <data name="hideThisProcessToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide This Process</value>
   </data>
   <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 126</value>
+    <value>266, 166</value>
   </data>
   <data name="&gt;&gt;processContext.Name" xml:space="preserve">
     <value>processContext</value>
@@ -200,15 +204,20 @@
   <data name="&gt;&gt;processContext.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="lstProcesses.ItemHeight" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
   <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 21</value>
+    <value>4, 34</value>
+  </data>
+  <data name="lstProcesses.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 216</value>
+    <value>313, 332</value>
   </data>
   <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -225,9 +234,6 @@
   <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="tmrWork.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>281, 19</value>
-  </metadata>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -235,10 +241,13 @@
     <value>True</value>
   </data>
   <data name="addSelectedItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>4, 5</value>
+  </data>
+  <data name="addSelectedItem.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="addSelectedItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
+    <value>56, 55</value>
   </data>
   <data name="addSelectedItem.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -259,76 +268,76 @@
     <value>745, 17</value>
   </metadata>
   <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="fullScreenToolStripMenuItem.Text" xml:space="preserve">
     <value>Full Screen</value>
   </data>
   <data name="noSizeChangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="noSizeChangeToolStripMenuItem.Text" xml:space="preserve">
     <value>No Size Change</value>
   </data>
   <data name="setWindowSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="setWindowSizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Set Window Size</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>282, 6</value>
   </data>
   <data name="automaximizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="automaximizeToolStripMenuItem.Text" xml:space="preserve">
     <value>Auto-Maximize</value>
   </data>
   <data name="adjustWindowBoundsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="adjustWindowBoundsToolStripMenuItem.Text" xml:space="preserve">
     <value>Adjust Window Bounds</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>282, 6</value>
   </data>
   <data name="alwaysOnTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="alwaysOnTopToolStripMenuItem.Text" xml:space="preserve">
     <value>Always On Top</value>
   </data>
   <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="hideMouseCursorToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide Mouse Cursor</value>
   </data>
   <data name="hideWindowsTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="hideWindowsTaskbarToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide Windows Taskbar</value>
   </data>
   <data name="removeMenusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="removeMenusToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove Menus</value>
   </data>
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>282, 6</value>
   </data>
   <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>285, 30</value>
   </data>
   <data name="contextRemoveFromFavs.Text" xml:space="preserve">
     <value>Remove From Favorites</value>
   </data>
   <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 242</value>
+    <value>286, 322</value>
   </data>
   <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
     <value>mnuFavoritesContext</value>
@@ -339,11 +348,17 @@
   <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="lstFavorites.ItemHeight" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
   <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 21</value>
+    <value>388, 34</value>
+  </data>
+  <data name="lstFavorites.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 216</value>
+    <value>314, 332</value>
   </data>
   <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -361,10 +376,13 @@
     <value>3</value>
   </data>
   <data name="btnRemoveFavorite.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 45</value>
+    <value>4, 70</value>
+  </data>
+  <data name="btnRemoveFavorite.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnRemoveFavorite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
+    <value>56, 55</value>
   </data>
   <data name="btnRemoveFavorite.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -388,10 +406,13 @@
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
   <data name="processLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>4, 0</value>
+  </data>
+  <data name="processLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="processLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 18</value>
+    <value>163, 29</value>
   </data>
   <data name="processLabel.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -418,10 +439,13 @@
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
   <data name="favoritesLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 0</value>
+    <value>388, 0</value>
+  </data>
+  <data name="favoritesLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="favoritesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 18</value>
+    <value>265, 29</value>
   </data>
   <data name="favoritesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -448,22 +472,22 @@
     <value>16, 19</value>
   </metadata>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
+    <value>278, 30</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>Show</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 6</value>
+    <value>275, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
+    <value>278, 30</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit Borderless Gaming</value>
   </data>
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 54</value>
+    <value>279, 70</value>
   </data>
   <data name="&gt;&gt;trayIconContextMenu.Name" xml:space="preserve">
     <value>trayIconContextMenu</value>
@@ -503,145 +527,139 @@
     <value>520, 17</value>
   </metadata>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="toolStripRunOnStartup.Text" xml:space="preserve">
     <value>Run On Windows Startup</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 6</value>
+    <value>458, 6</value>
   </data>
   <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
     <value>Use Global Hotkey                (Win+F6)</value>
   </data>
   <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="toolStripMouseLock.Text" xml:space="preserve">
     <value>Use Mouse Lock Hotkey      (Scroll Lock)</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
     <value>Use Mouse Hide Hotkey       (Win+Scroll Lock)</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 6</value>
+    <value>458, 6</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>Start Minimized To Tray</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>Close To Tray</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide Balloon Tips</value>
   </data>
-  <data name="useSlowerWindowDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
-  </data>
-  <data name="useSlowerWindowDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Use Slower Window Detection</value>
-  </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Text" xml:space="preserve">
     <value>View Full Process Details</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 6</value>
+    <value>458, 6</value>
   </data>
   <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>349, 22</value>
+    <value>461, 30</value>
   </data>
   <data name="resToolStripMenuItem.Text" xml:space="preserve">
     <value>Restore All Hidden Applications</value>
   </data>
   <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 27</value>
+    <value>88, 42</value>
   </data>
   <data name="toolStripOptions.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>367, 30</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Text" xml:space="preserve">
     <value>Pause Automatic Processing</value>
   </data>
   <data name="openDataFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>367, 30</value>
   </data>
   <data name="openDataFolderToolStripMenuItem.Text" xml:space="preserve">
     <value>Open Data Folder</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 6</value>
+    <value>364, 6</value>
   </data>
   <data name="toggleMouseCursorVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>367, 30</value>
   </data>
   <data name="toggleMouseCursorVisibilityToolStripMenuItem.Text" xml:space="preserve">
     <value>Toggle Mouse Cursor Visibility</value>
   </data>
   <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>367, 30</value>
   </data>
   <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
     <value>Toggle Windows Taskbar Visibility</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 6</value>
+    <value>364, 6</value>
   </data>
   <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 22</value>
+    <value>367, 30</value>
   </data>
   <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
     <value>Full Application Refresh</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 27</value>
+    <value>67, 42</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>201, 30</value>
   </data>
   <data name="toolStripReportBug.Text" xml:space="preserve">
     <value>Report a Bug</value>
   </data>
   <data name="toolStripSupportUs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>201, 30</value>
   </data>
   <data name="toolStripSupportUs.Text" xml:space="preserve">
     <value>Support Us</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>198, 6</value>
   </data>
   <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>201, 30</value>
   </data>
   <data name="toolStripAbout.Text" xml:space="preserve">
     <value>About...</value>
   </data>
   <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 27</value>
+    <value>61, 42</value>
   </data>
   <data name="toolStripInfo.Text" xml:space="preserve">
     <value>&amp;Help</value>
@@ -650,10 +668,13 @@
     <value>0, 0</value>
   </data>
   <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 31</value>
+    <value>0, 48</value>
+  </data>
+  <data name="mnuMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>9, 3, 0, 3</value>
   </data>
   <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 31</value>
+    <value>706, 48</value>
   </data>
   <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -673,9 +694,6 @@
   <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="wrkBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>628, 17</value>
-  </metadata>
   <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -689,10 +707,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 129</value>
+    <value>4, 200</value>
+  </data>
+  <data name="btnRestoreWindow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
+    <value>56, 55</value>
   </data>
   <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -710,13 +731,13 @@
     <value>3</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 18</value>
+    <value>321, 29</value>
   </data>
   <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 222</value>
+    <value>63, 342</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -734,13 +755,16 @@
     <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 31</value>
+    <value>0, 48</value>
+  </data>
+  <data name="tableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 240</value>
+    <value>706, 369</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -758,22 +782,25 @@
     <value>4</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lstProcesses" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lstFavorites" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,42,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lstProcesses" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lstFavorites" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,63,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>885, 17</value>
   </metadata>
   <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+    <value>88, 25</value>
   </data>
   <data name="lblUpdateStatus.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 274</value>
+    <value>0, 425</value>
+  </data>
+  <data name="statusStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 21, 0</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 22</value>
+    <value>706, 30</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -797,10 +824,10 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>471, 296</value>
+    <value>706, 455</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -884,8 +911,11 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>430, 327</value>
+    <value>634, 473</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -946,12 +976,6 @@
   </data>
   <data name="&gt;&gt;hideThisProcessToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tmrWork.Name" xml:space="preserve">
-    <value>tmrWork</value>
-  </data>
-  <data name="&gt;&gt;tmrWork.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fullScreenToolStripMenuItem.Name" xml:space="preserve">
     <value>fullScreenToolStripMenuItem</value>
@@ -1211,23 +1235,11 @@
   <data name="&gt;&gt;toolStripAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;wrkBackgroundWorker.Name" xml:space="preserve">
-    <value>wrkBackgroundWorker</value>
-  </data>
-  <data name="&gt;&gt;wrkBackgroundWorker.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;lblUpdateStatus.Name" xml:space="preserve">
     <value>lblUpdateStatus</value>
   </data>
   <data name="&gt;&gt;lblUpdateStatus.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>useSlowerWindowDetectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>

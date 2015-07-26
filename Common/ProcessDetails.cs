@@ -7,238 +7,198 @@ using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.Common
 {
-    public class ProcessDetails
-    {
-        /// <summary>
-        ///     Cached list of currently running processes
-        /// </summary>
-        public static List<ProcessDetails> List = new List<ProcessDetails>();
+	public class ProcessDetails
+	{
+		public Process Proc = null;
+		public string DescriptionOverride = "";
+		public string WindowTitle = "<unknown>";
+		//public string WindowClass = ""; // note: this isn't used, currently
+		public IntPtr _WindowHandle = IntPtr.Zero;
+		public bool Manageable = false;
+		public bool MadeBorderless = false;
+		public bool NoAccess = false;
+		public int MadeBorderlessAttempts = 0;
+		public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
+		public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
+		public Rectangle OriginalLocation = new Rectangle();
 
-        public Process Proc = null;
-        public string DescriptionOverride = "";
-        public string WindowTitle = "<unknown>";
-        //public string WindowClass = ""; // note: this isn't used, currently
-        public IntPtr _WindowHandle = IntPtr.Zero;
-        public bool Manageable = false;
-        public bool MadeBorderless = false;
-        public bool NoAccess = false;
-        public int MadeBorderlessAttempts = 0;
-        public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
-        public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
-        public Rectangle OriginalLocation = new Rectangle();
+		public ProcessDetails(Process p, IntPtr hWnd)
+		{
+			this.Proc = p;
 
-        // Code commented (but not removed) by psouza4 2015/01/02: there were no references to this method, so no need to compile it and bloat the software.
-        //public ProcessDetails(Process p)
-        //{
-        //    this.Proc = p;
+			this.WindowHandle = hWnd;
+			this.WindowTitle = WindowsAPI.Native.GetWindowTitle(hWnd);
+		}
 
-        //    this._WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(this.Proc);
-        //    this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
-        //    //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
-        //}
+		// Automatically detects changes to the window handle
+		public IntPtr WindowHandle
+		{
+			get
+			{
+				try
+				{
+					if (this.ProcessHasExited)
+						return IntPtr.Zero;
+					if (!WindowsAPI.Native.IsWindow(_WindowHandle))
+						_WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(Proc);
+				}
+				catch { }
 
-        public ProcessDetails(Process p, IntPtr hWnd)
-        {
-            this.Proc = p;
+				return this._WindowHandle;
+			}
+			set
+			{
+				this._WindowHandle = value;
+			}
+		}
 
-            this.WindowHandle = hWnd;
-            this.WindowTitle = "<error>";
-            //this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
-            Tools.StartMethodMultithreadedAndWait(() => { this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
-            //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
-        }
+		public bool ProcessHasExited
+		{
+			get
+			{
+				try
+				{
+					if (this.NoAccess)
+						return false;
 
-        // Automatically detects changes to the window handle
-        public IntPtr WindowHandle
-        {
-            get
-            {
-                try
-                {
-                    if (this.ProcessHasExited)
-                        return IntPtr.Zero;
+					if (this.Proc != null)
+						return this.Proc.HasExited;
+				}
+				catch (System.ComponentModel.Win32Exception)
+				{
+					this.NoAccess = true;
 
-                    if (!WindowsAPI.Native.IsWindow(this._WindowHandle))
-                        this._WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(this.Proc);
-                }
-                catch { }
+					return false; // Access is denied
+				}
+				catch { }
 
-                return this._WindowHandle;
-            }
-            set
-            {
-                this._WindowHandle = value;
-            }
-        }
+				return true;
+			}
+		}
 
-        public bool ProcessHasExited
-        {
-            get
-            {
-                try
-                {
-                    if (this.NoAccess)
-                        return false;
+		public string BinaryName
+		{
+			get
+			{
+				try
+				{
+					if (this.NoAccess)
+						return "<error>";
 
-                    if (this.Proc != null)
-                        return this.Proc.HasExited;
-                }
-                catch (System.ComponentModel.Win32Exception)
-                {
-                    this.NoAccess = true;
+					return this.Proc.ProcessName;
+				}
+				catch
+				{
+					this.NoAccess = true;
+				}
 
-                    return false; // Access is denied
-                }
-                catch { }
+				return "<error>";
+			}
+		}
 
-                return true;
-            }
-        }
-        
-        public string BinaryName
-        {
-            get
-            {
-                try
-                {
-                    if (this.NoAccess)
-                        return "<error>";
-                    
-                    return this.Proc.ProcessName;
-                }
-                catch
-                {
-                    this.NoAccess = true;
-                }
+		public override string ToString() // so that the ListView control knows how to display this object to the user
+		{
+			try
+			{
+				if (!string.IsNullOrEmpty(this.DescriptionOverride))
+					return this.DescriptionOverride;
 
-                return "<error>";
-            }
-        }
+				if (AppEnvironment.SettingValue("ViewAllProcessDetails", false))
+				{
+					WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
+					WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
 
-        public override string ToString() // so that the ListView control knows how to display this object to the user
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(this.DescriptionOverride))
-                    return this.DescriptionOverride;
+					string extra_details = string.Format(" [{0:X8}.{1:X8}]", (UInt32)styleCurrentWindow_standard, (UInt32)styleCurrentWindow_extended);
 
-                if (AppEnvironment.SettingValue("ViewAllProcessDetails", false))
-                {
-                    WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
-                    WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+					if (this.WindowTitle.Trim().Length == 0)
+						return this.BinaryName + " [#" + this.Proc.Id.ToString() + "]" + extra_details;
 
-                    string extra_details = string.Format(" [{0:X8}.{1:X8}]", (UInt32)styleCurrentWindow_standard, (UInt32)styleCurrentWindow_extended);
+					return this.WindowTitle.Trim() + " [" + this.BinaryName + ", #" + this.Proc.Id.ToString() + "]" + extra_details;
+				}
 
-                    if (this.WindowTitle.Trim().Length == 0)
-                        return this.BinaryName + " [#" + this.Proc.Id.ToString() + "]" + extra_details;
+				if (this.WindowTitle.Trim().Length == 0)
+					return this.BinaryName;
 
-                    return this.WindowTitle.Trim() + " [" + this.BinaryName + ", #" + this.Proc.Id.ToString() + "]" + extra_details;
-                }
+				bool ProcessNameIsDissimilarToWindowTitle = true;
+				if (this.WindowTitle_ForComparison.Length >= 5)
+					if (this.BinaryName_ForComparison.Length >= 5)
+						if (this.BinaryName_ForComparison.Substring(0, 5) == this.WindowTitle_ForComparison.Substring(0, 5))
+							ProcessNameIsDissimilarToWindowTitle = false;
 
-                if (this.WindowTitle.Trim().Length == 0)
-                    return this.BinaryName;
+				if (ProcessNameIsDissimilarToWindowTitle)
+					return this.WindowTitle.Trim() + " [" + this.BinaryName + "]";
 
-                bool ProcessNameIsDissimilarToWindowTitle = true;
-                if (this.WindowTitle_ForComparison.Length >= 5)
-                    if (this.BinaryName_ForComparison.Length >= 5)
-                        if (this.BinaryName_ForComparison.Substring(0, 5) == this.WindowTitle_ForComparison.Substring(0, 5))
-                            ProcessNameIsDissimilarToWindowTitle = false;
+				return this.WindowTitle.Trim();
 
-                if (ProcessNameIsDissimilarToWindowTitle)
-                    return this.WindowTitle.Trim() + " [" + this.BinaryName + "]";
+			}
+			catch { }
 
-                return this.WindowTitle.Trim();
+			return "<error>";
+		}
 
-            }
-            catch { }
+		private string WindowTitle_ForComparison
+		{
+			get
+			{
+				return this.WindowTitle.Trim().ToLower().Replace(" ", "").Replace("_", "");
+			}
+		}
 
-            return "<error>";
-        }
+		private string BinaryName_ForComparison
+		{
+			get
+			{
+				return this.BinaryName.Trim().ToLower().Replace(" ", "").Replace("_", "");
+			}
+		}
 
-        private string WindowTitle_ForComparison
-        {
-            get
-            {
-                return this.WindowTitle.Trim().ToLower().Replace(" ", "").Replace("_", "");
-            }
-        }
+		// Detect whether or not the window needs border changes
+		public bool WindowHasTargetableStyles
+		{
+			get
+			{
+				bool targetable = false;
 
-        private string BinaryName_ForComparison
-        {
-            get
-            {
-                return this.BinaryName.Trim().ToLower().Replace(" ", "").Replace("_", "");
-            }
-        }
+				WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
 
-        // Detect whether or not the window needs border changes
-        public bool WindowHasTargetableStyles
-        {
-            get
-            {
-                bool targetable = false;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.Border) > 0) targetable = true;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.DialogFrame) > 0) targetable = true;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ThickFrame) > 0) targetable = true;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.SystemMenu) > 0) targetable = true;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) targetable = true;
+				if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) targetable = true;
 
-                Tools.StartMethodMultithreadedAndWait(() =>
-                {
-                    WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
+				if (!targetable)
+				{
+					WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
 
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.Border) > 0) targetable = true;
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.DialogFrame) > 0) targetable = true;
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ThickFrame) > 0) targetable = true;
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.SystemMenu) > 0) targetable = true;
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) targetable = true;
-                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_extended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) targetable = true;
+					if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) targetable = true;
+				}
+				return targetable;
+			}
+		}
 
-                    if (!targetable)
-                    {
-                        WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+		public static implicit operator Process(ProcessDetails pd)
+		{
+			if (pd == null)
+				return null;
 
-                        if (!targetable) if ((styleCurrentWindow_extended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) targetable = true;
-                    }
-                }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
-                return targetable;
-            }
-        }
+			return pd.Proc;
+		}
 
-        public static implicit operator ProcessDetails(Process process)
-        {
-            for (int i = 0; i < ProcessDetails.List.Count; i++)
-                if ((ProcessDetails.List[i].Proc.Id == process.Id) && (ProcessDetails.List[i].Proc.ProcessName == process.ProcessName))
-                    return ProcessDetails.List[i];
+		public static implicit operator IntPtr(ProcessDetails pd)
+		{
+			if (pd == null)
+				return IntPtr.Zero;
 
-            return null;
-        }
-
-        public static implicit operator ProcessDetails(IntPtr hWnd)
-        {
-            for (int i = 0; i < ProcessDetails.List.Count; i++)
-                if (ProcessDetails.List[i].WindowHandle == hWnd)
-                    return ProcessDetails.List[i];
-
-            return null;
-        }
-
-        public static implicit operator Process(ProcessDetails pd)
-        {
-            if (pd == null)
-                return null;
-
-            return pd.Proc;
-        }
-
-        public static implicit operator IntPtr(ProcessDetails pd)
-        {
-            if (pd == null)
-                return IntPtr.Zero;
-
-            return pd.WindowHandle;
-        }
-    }
+			return pd.WindowHandle;
+		}
+	}
 }

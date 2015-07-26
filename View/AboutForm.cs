@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
 
-namespace BorderlessGaming.Forms
+namespace BorderlessGaming.View
 {
     public partial class AboutForm : Form
     {
