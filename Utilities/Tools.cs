@@ -142,7 +142,7 @@ namespace BorderlessGaming.Utilities
         {
             try
             {
-                using (Forms.InputText inputForm = new Forms.InputText())
+                using (View.InputText inputForm = new View.InputText())
                 {
                     inputForm.Title = sTitle;
                     inputForm.Instructions = sInstructions;
@@ -185,8 +185,54 @@ namespace BorderlessGaming.Utilities
             }
         }
 
+		public static string GetDataPath()
+		{
 
-        public static void StartMethodMultithreadedAndWait(Action target)
+			try
+			{
+				// No version!
+				return System.Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + System.Windows.Forms.Application.CompanyName + "\\" + System.Windows.Forms.Application.ProductName;
+			}
+			catch { }
+
+			try
+			{
+				// Version, but chopped out
+				return System.Windows.Forms.Application.UserAppDataPath.Substring(0, System.Windows.Forms.Application.UserAppDataPath.LastIndexOf("\\"));
+			}
+			catch
+			{
+				try
+				{
+					// App launch folder
+					return System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf("\\"));
+				}
+				catch
+				{
+					try
+					{
+						// Current working folder
+						return System.Environment.CurrentDirectory;
+					}
+					catch
+					{
+						try
+						{
+							// Desktop
+							return System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+						}
+						catch
+						{
+							// Also current working folder
+							return ".";
+						}
+					}
+				}
+			}
+		}
+
+
+        /*public static void StartMethodMultithreadedAndWait(Action target)
         {
             StartMethodMultithreadedAndWait(target, 0);
         }
@@ -298,6 +344,6 @@ namespace BorderlessGaming.Utilities
             Thread trdGenericThread = new Thread(tsGenericMethod);
             trdGenericThread.IsBackground = true;
             trdGenericThread.Start();
-        }
+        }*/
     }
 }

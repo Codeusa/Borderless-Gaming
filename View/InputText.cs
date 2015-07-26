@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BorderlessGaming.Forms
+namespace BorderlessGaming.View
 {
     public partial class InputText : Form
     {

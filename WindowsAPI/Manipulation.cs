@@ -32,14 +32,8 @@ namespace BorderlessGaming.WindowsAPI
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public static void MakeWindowBorderless(Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails = null)
+        public static void MakeWindowBorderless(ProcessDetails processDetails, View.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
-            // Automatically match a window to favorite details, if that information is available.
-            // Note: if one is not available, the default settings will be used as a new Favorite() object.
-            favDetails = favDetails ?? targetWindow;
-
-            // Automatically match this window to a process
-            ProcessDetails processDetails = targetWindow;
 
             // Failsafe to prevent rapid switching, but also allow a few changes to the window handle (to be persistent)
             if (processDetails != null)
@@ -281,7 +275,7 @@ namespace BorderlessGaming.WindowsAPI
             catch { }  
         }
 
-        public static void ToggleMouseCursorVisibility(Forms.MainWindow frmMain, Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
+        public static void ToggleMouseCursorVisibility(View.MainWindow frmMain, Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
         {
             if (((forced == Tools.Boolstate.True) && (!Manipulation.MouseCursorIsHidden)) || ((forced == Tools.Boolstate.False) && Manipulation.MouseCursorIsHidden))
                 return;
