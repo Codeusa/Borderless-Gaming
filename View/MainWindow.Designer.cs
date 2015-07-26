@@ -673,7 +673,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeToTrayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideBalloonTipsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblUpdateStatus;
+        public System.Windows.Forms.ToolStripStatusLabel lblUpdateStatus;//this might get replaced if you redo anything in the form designer
         private System.Windows.Forms.ToolStripMenuItem viewFullProcessDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWindowSizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;

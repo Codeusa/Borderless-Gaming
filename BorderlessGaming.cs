@@ -63,15 +63,13 @@ namespace BorderlessGaming
 		}
 
 		/// <summary>
-		///     Update the processlist and process the favorites
+		/// Update the processlist and process the favorites
+		/// Invoke this method in a task or it will block
 		/// </summary>
 		private void DoMainWork()
 		{
-			int ticks = Environment.TickCount;
 			while (!workerTaskToken.IsCancellationRequested)
 			{
-				Console.WriteLine("TICK: " + (Environment.TickCount - ticks));
-				ticks = Environment.TickCount;
 				// update the processlist
 				UpdateProcesses();
 
@@ -120,7 +118,9 @@ namespace BorderlessGaming
 						return;
 					if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
 						_processDetails.Add(pd);
-				}, _processDetails.WindowPtrSet, _processDetails.WindowTitleSet);
+				}, _processDetails.WindowPtrSet);
+
+				window.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
 			}
 		}
 

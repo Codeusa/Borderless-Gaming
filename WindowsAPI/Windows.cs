@@ -17,8 +17,8 @@ namespace BorderlessGaming.WindowsAPI
 		/// Query the windows
 		/// </summary>
 		/// <param name="callback">A callback that's called when a new window is found. This way the functionality is the same as before</param>
-		/// <param name="windowPtrSet"></param>
-		public void QueryProcessesWithWindows(Action<ProcessDetails> callback, HashSet<long> windowPtrSet, HashSet<string> windowTitleSet)
+		/// <param name="windowPtrSet">A set of current window ptrs</param>
+		public void QueryProcessesWithWindows(Action<ProcessDetails> callback, HashSet<long> windowPtrSet)
 		{
 			var ptrList = new List<IntPtr>();
 			Native.EnumWindows_CallBackProc del = (hwnd, lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
@@ -27,7 +27,9 @@ namespace BorderlessGaming.WindowsAPI
 			foreach (var ptr in ptrList)
 			{
 				string windowTitle = Native.GetWindowTitle(ptr);
-				if (string.IsNullOrEmpty(windowTitle) || windowPtrSet.Contains(ptr.ToInt64()) || windowTitleSet.Contains(windowTitle))
+				//check if we already have this window in the list so we can avoid calling
+				//GetWindowThreadProcessId(its costly)
+				if (string.IsNullOrEmpty(windowTitle) || windowPtrSet.Contains(ptr.ToInt64()))
 					continue;
 				uint processId;
 				Native.GetWindowThreadProcessId(ptr, out processId);
