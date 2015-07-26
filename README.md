@@ -1,7 +1,5 @@
 # [Want to support Borderless-Gaming? Buy it on Steam!](http://store.steampowered.com/app/388080)
 
-http://store.steampowered.com/app/388080
-
 # What is this?
 
 Borderless Gaming is a simple tool that will allow you to turn your windowed video games into "fullscreen" applications without all of the negative side effects
