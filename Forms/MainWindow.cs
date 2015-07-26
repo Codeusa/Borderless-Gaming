@@ -148,6 +148,12 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void UpdateProcessList(bool bReset = false)
         {
+            // Don't bother refreshing the process list if favorites processing is paused and our UI is minimized or hidden
+            if (!bReset)
+                if (this.ProcessingIsPaused)
+                    if ((this.WindowState == FormWindowState.Minimized) || (!this.Visible))
+                        return;
+
             // Reset the list contents if we're doing a full refresh
             if (bReset)
                 this.lstProcesses.Items.Clear();
@@ -162,8 +168,20 @@ namespace BorderlessGaming.Forms
             for (int i = this.lstProcesses.Items.Count - 1; i >= 0; i--)
             {
                 ProcessDetails pd = (ProcessDetails)this.lstProcesses.Items[i];
+                bool pruned = pd.ProcessHasExited;
 
-                if (pd.ProcessHasExited || (pd.WindowTitle != Native.GetWindowTitle(pd.WindowHandle)))
+                if (!pruned)
+                {
+                    string current_title = "";
+
+                    if (!pd.NoAccess)
+                    {
+                        Tools.StartMethodMultithreadedAndWait(() => { current_title = Native.GetWindowTitle(pd.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
+                        pruned = pruned || (pd.WindowTitle != current_title);
+                    }
+                }
+
+                if (pruned)
                 {
                     this.HandlePrunedProcess(pd);
 
@@ -191,7 +209,7 @@ namespace BorderlessGaming.Forms
                 // Check if the process is already in the list
                 bool bHasProcess = false;
                 foreach (ProcessDetails pd in this.lstProcesses.Items)
-                    if ((pd.Proc.Id == process.Id) && (pd.BinaryName == process.ProcessName))
+                    if (pd.Proc.Id == process.Id)
                         bHasProcess = true;
 
                 if (!bHasProcess)
@@ -321,18 +339,29 @@ namespace BorderlessGaming.Forms
             AppEnvironment.Setting("CloseToTray", this.closeToTrayToolStripMenuItem.Checked);
         }
 
+        private void useSlowerWindowDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppEnvironment.Setting("SlowWindowDetection", this.useSlowerWindowDetectionToolStripMenuItem.Checked);
+        }
+
         private void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
 
-            this.UpdateProcessList(true);
+            Tools.StartMethodMultithreadedAndWait(() =>
+            {
+                this.UpdateProcessList(true);
+            });
         }
         
         private void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HiddenProcesses.Reset();
 
-            this.UpdateProcessList(true);
+            Tools.StartMethodMultithreadedAndWait(() =>
+            {
+                this.UpdateProcessList(true);
+            });
         }
         
         private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -381,7 +410,10 @@ namespace BorderlessGaming.Forms
         
         private void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.UpdateProcessList(true);
+            Tools.StartMethodMultithreadedAndWait(() =>
+            {
+                this.UpdateProcessList(true);
+            });
         }
 
         #endregion
@@ -430,7 +462,10 @@ namespace BorderlessGaming.Forms
 
             HiddenProcesses.Add(pd.BinaryName);
 
-            this.UpdateProcessList(true);
+            Tools.StartMethodMultithreadedAndWait(() =>
+            {
+                this.UpdateProcessList(true);
+            });
         }
 
         /// <summary>
@@ -508,6 +543,32 @@ namespace BorderlessGaming.Forms
         
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
+            /*
+            Rectangle rect = new Rectangle(0, 0, 0, 0);
+
+            if (true)
+            {
+                rect = Screen.PrimaryScreen.Bounds;
+            }
+            else
+            {
+                foreach (Screen screen in Screen.AllScreens)
+                    rect = Tools.GetContainingRectangle(rect, screen.Bounds);
+            }
+
+            Form frm = new Form();
+            frm.Text = "Borderless Gaming Background";
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.BackColor = Color.Black;
+            frm.Show();
+            frm.Location = new Point(rect.X, rect.Y);
+            frm.Size = new System.Drawing.Size(rect.Width, rect.Height);
+            frm.DoubleClick += (Fs, Fe) => { try { ((Form)(Fs)).Close(); } catch { } };
+            //frm.Shown += (Fs, Fe) => { Cursor.Hide(); };
+            //frm.FormClosing += (Fs, Fe) => { Cursor.Show(); };
+            return;
+            */
+
             // assume that the button press to add to favorites will do so by window title (unless it's blank, then go by process name)
 
             if (this.lstProcesses.SelectedItem == null) return;
@@ -855,6 +916,7 @@ namespace BorderlessGaming.Forms
             this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
             this.closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
             this.viewFullProcessDetailsToolStripMenuItem.Checked = AppEnvironment.SettingValue("ViewAllProcessDetails", false);
+            this.useSlowerWindowDetectionToolStripMenuItem.Checked = AppEnvironment.SettingValue("SlowWindowDetection", false);
 
             // load up favorites (automatically imports from v7.0 and earlier)
             if (this.lstFavorites != null)
@@ -874,7 +936,10 @@ namespace BorderlessGaming.Forms
                 this.Hide();
 
             // initialize lists
-            this.UpdateProcessList();
+            Tools.StartMethodMultithreadedAndWait(() =>
+            {
+                this.UpdateProcessList(true);
+            });
 
             // Update buttons' enabled/disabled state
             this.lstProcesses_SelectedIndexChanged(sender, e);

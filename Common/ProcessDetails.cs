@@ -16,12 +16,12 @@ namespace BorderlessGaming.Common
 
         public Process Proc = null;
         public string DescriptionOverride = "";
-        public string WindowTitle = "";
+        public string WindowTitle = "<unknown>";
         //public string WindowClass = ""; // note: this isn't used, currently
         public IntPtr _WindowHandle = IntPtr.Zero;
         public bool Manageable = false;
         public bool MadeBorderless = false;
-        private bool NoAccess = false;
+        public bool NoAccess = false;
         public int MadeBorderlessAttempts = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
@@ -42,7 +42,9 @@ namespace BorderlessGaming.Common
             this.Proc = p;
 
             this.WindowHandle = hWnd;
-            this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
+            this.WindowTitle = "<error>";
+            //this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
+            Tools.StartMethodMultithreadedAndWait(() => { this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
             //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
         }
 
@@ -99,9 +101,15 @@ namespace BorderlessGaming.Common
             {
                 try
                 {
+                    if (this.NoAccess)
+                        return "<error>";
+                    
                     return this.Proc.ProcessName;
                 }
-                catch { }
+                catch
+                {
+                    this.NoAccess = true;
+                }
 
                 return "<error>";
             }
@@ -168,26 +176,34 @@ namespace BorderlessGaming.Common
         {
             get
             {
-                WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
-                WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+                bool targetable = false;
 
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.Border) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.DialogFrame) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ThickFrame) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.SystemMenu) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) return true;
+                Tools.StartMethodMultithreadedAndWait(() =>
+                {
+                    WindowsAPI.WindowStyleFlags styleCurrentWindow_standard = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.Style);
 
-                if ((styleCurrentWindow_extended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) return true;
-                if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) return true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.Border) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.DialogFrame) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ThickFrame) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.SystemMenu) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) targetable = true;
 
-                return false;
+                    if (!targetable)
+                    {
+                        WindowsAPI.WindowStyleFlags styleCurrentWindow_extended = WindowsAPI.Native.GetWindowLong(this.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+
+                        if (!targetable) if ((styleCurrentWindow_extended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) targetable = true;
+                        if (!targetable) if ((styleCurrentWindow_standard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) targetable = true;
+                    }
+                }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
+                return targetable;
             }
         }
 
