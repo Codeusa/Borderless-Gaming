@@ -12,7 +12,7 @@ namespace BorderlessGaming.WindowsAPI
 {
 	public class Windows
 	{
-				
+
 		/// <summary>
 		/// Query the windows
 		/// </summary>
@@ -24,23 +24,18 @@ namespace BorderlessGaming.WindowsAPI
 			Native.EnumWindows_CallBackProc del = (hwnd, lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
 			Native.EnumWindows(del, 0);
 			Native.EnumWindows(del, 1);
-			//var taskList = new List<Task>();
 			foreach (var ptr in ptrList)
 			{
 				string windowTitle = Native.GetWindowTitle(ptr);
 				if (string.IsNullOrEmpty(windowTitle) || windowPtrSet.Contains(ptr.ToInt64()) || windowTitleSet.Contains(windowTitle))
 					continue;
-				//taskList.Add(Task.Factory.StartNew(() =>
-				//{
-					uint processId;
+				uint processId;
 				Native.GetWindowThreadProcessId(ptr, out processId);
-					callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
-					{
-						Manageable = true
-					});
-				//}, CancellationToken.None, TaskCreationOptions.PreferFairness, _scheduler));
+				callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
+				{
+					Manageable = true
+				});
 			}
-			//Task.WaitAll(taskList.ToArray());
 		}
 
 		private static bool GetMainWindowForProcess_EnumWindows(List<IntPtr> ptrList, IntPtr hWndEnumerated, uint lParam)
