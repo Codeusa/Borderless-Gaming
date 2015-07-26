@@ -296,41 +296,44 @@ namespace BorderlessGaming.WindowsAPI
 
         public static IntPtr GetMainWindowForProcess(Process process)
         {
-            try
+            if (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false))
             {
-                IntPtr hMainWindow = IntPtr.Zero;
-
-                lock (Native.GetMainWindowForProcess_Locker)
+                try
                 {
-                    Native.GetMainWindowForProcess_Value = IntPtr.Zero;
+                    IntPtr hMainWindow = IntPtr.Zero;
 
-                    // Help the UI stay alive
-                    Utilities.Tools.StartMethodMultithreadedAndWait(() =>
+                    lock (Native.GetMainWindowForProcess_Locker)
                     {
-                        for (uint i = 0; i <= 1; i++)
+                        Native.GetMainWindowForProcess_Value = IntPtr.Zero;
+
+                        // Help the UI stay alive
+                        Utilities.Tools.StartMethodMultithreadedAndWait(() =>
                         {
-                            foreach (ProcessThread thread in process.Threads)
+                            for (uint i = 0; i <= 1; i++)
                             {
-                                if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
-                                    break;
+                                foreach (ProcessThread thread in process.Threads)
+                                {
+                                    if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
+                                        break;
 
-                                Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
+                                    Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    hMainWindow = Native.GetMainWindowForProcess_Value;
+                        hMainWindow = Native.GetMainWindowForProcess_Value;
+                    }
+
+                    if (hMainWindow != IntPtr.Zero)
+                        return hMainWindow;
                 }
-
-                if (hMainWindow != IntPtr.Zero)
-                    return hMainWindow;
+                catch { }
             }
-            catch { }
 
             try
             {
                 // Failsafe
-                process.Refresh();
+                //process.Refresh();
                 return process.MainWindowHandle;
             }
             catch { }

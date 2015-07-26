@@ -100,6 +100,7 @@
             this.btnRestoreWindow = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.useSlowerWindowDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processContext.SuspendLayout();
             this.mnuFavoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
@@ -391,6 +392,7 @@
             this.startMinimizedToTrayToolStripMenuItem,
             this.closeToTrayToolStripMenuItem,
             this.hideBalloonTipsToolStripMenuItem,
+            this.useSlowerWindowDetectionToolStripMenuItem,
             this.viewFullProcessDetailsToolStripMenuItem,
             this.toolStripMenuItem10,
             this.resToolStripMenuItem});
@@ -605,6 +607,12 @@
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
             // 
+            // useSlowerWindowDetectionToolStripMenuItem
+            // 
+            this.useSlowerWindowDetectionToolStripMenuItem.Name = "useSlowerWindowDetectionToolStripMenuItem";
+            resources.ApplyResources(this.useSlowerWindowDetectionToolStripMenuItem, "useSlowerWindowDetectionToolStripMenuItem");
+            this.useSlowerWindowDetectionToolStripMenuItem.Click += new System.EventHandler(this.useSlowerWindowDetectionToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
@@ -707,5 +715,6 @@
         private System.Windows.Forms.ToolStripMenuItem openDataFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
     }
 }

@@ -52,7 +52,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>^1E88B0EA2F7BF7C7B6008462314A690B4B118E1CCB34DBA5A3^pimgpsh_fullsize_distr.ico</ApplicationIcon>
+    <ApplicationIcon>BorderlessGaming.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.Launch as User.manifest</ApplicationManifest>
@@ -205,7 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BorderlessGaming.ico" />
-    <Content Include="^1E88B0EA2F7BF7C7B6008462314A690B4B118E1CCB34DBA5A3^pimgpsh_fullsize_distr.ico" />
     <None Include="data\bordered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
