@@ -294,6 +294,12 @@ namespace BorderlessGaming.WindowsAPI
             return true;
         }
 
+		/// <summary>
+		/// steveadoo32: I'd like to get rid of this method eventually. there was a big change
+		/// while i was working on the new stuff so I'm keeping this for now.
+		/// </summary>
+		/// <param name="process"></param>
+		/// <returns></returns>
         public static IntPtr GetMainWindowForProcess(Process process)
         {
             if (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false))

@@ -185,6 +185,52 @@ namespace BorderlessGaming.Utilities
             }
         }
 
+		public static string GetDataPath()
+		{
+
+			try
+			{
+				// No version!
+				return System.Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + System.Windows.Forms.Application.CompanyName + "\\" + System.Windows.Forms.Application.ProductName;
+			}
+			catch { }
+
+			try
+			{
+				// Version, but chopped out
+				return System.Windows.Forms.Application.UserAppDataPath.Substring(0, System.Windows.Forms.Application.UserAppDataPath.LastIndexOf("\\"));
+			}
+			catch
+			{
+				try
+				{
+					// App launch folder
+					return System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf("\\"));
+				}
+				catch
+				{
+					try
+					{
+						// Current working folder
+						return System.Environment.CurrentDirectory;
+					}
+					catch
+					{
+						try
+						{
+							// Desktop
+							return System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+						}
+						catch
+						{
+							// Also current working folder
+							return ".";
+						}
+					}
+				}
+			}
+		}
+
 
         public static void StartMethodMultithreadedAndWait(Action target)
         {

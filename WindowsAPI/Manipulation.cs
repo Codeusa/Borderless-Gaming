@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using BorderlessGaming.Forms;
 using BorderlessGaming.Common;
 using BorderlessGaming.Utilities;
 
@@ -32,14 +33,12 @@ namespace BorderlessGaming.WindowsAPI
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public static void MakeWindowBorderless(Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails = null)
+        public static void MakeWindowBorderless(ProcessDetails processDetails, Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
-            favDetails = favDetails ?? targetWindow;
 
             // Automatically match this window to a process
-            ProcessDetails processDetails = targetWindow;
 
             // Failsafe to prevent rapid switching, but also allow a few changes to the window handle (to be persistent)
             if (processDetails != null)

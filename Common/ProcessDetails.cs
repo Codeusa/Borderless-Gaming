@@ -9,11 +9,6 @@ namespace BorderlessGaming.Common
 {
     public class ProcessDetails
     {
-        /// <summary>
-        ///     Cached list of currently running processes
-        /// </summary>
-        public static List<ProcessDetails> List = new List<ProcessDetails>();
-
         public Process Proc = null;
         public string DescriptionOverride = "";
         public string WindowTitle = "<unknown>";
@@ -26,18 +21,8 @@ namespace BorderlessGaming.Common
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Standard = 0;
         public WindowsAPI.WindowStyleFlags OriginalStyleFlags_Extended = 0;
         public Rectangle OriginalLocation = new Rectangle();
-
-        // Code commented (but not removed) by psouza4 2015/01/02: there were no references to this method, so no need to compile it and bloat the software.
-        //public ProcessDetails(Process p)
-        //{
-        //    this.Proc = p;
-
-        //    this._WindowHandle = WindowsAPI.Native.GetMainWindowForProcess(this.Proc);
-        //    this.WindowTitle = WindowsAPI.Native.GetWindowTitle(this.WindowHandle);
-        //    //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
-        //}
-
-        public ProcessDetails(Process p, IntPtr hWnd)
+		
+		public ProcessDetails(Process p, IntPtr hWnd)
         {
             this.Proc = p;
 
@@ -205,24 +190,6 @@ namespace BorderlessGaming.Common
                 }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
                 return targetable;
             }
-        }
-
-        public static implicit operator ProcessDetails(Process process)
-        {
-            for (int i = 0; i < ProcessDetails.List.Count; i++)
-                if ((ProcessDetails.List[i].Proc.Id == process.Id) && (ProcessDetails.List[i].Proc.ProcessName == process.ProcessName))
-                    return ProcessDetails.List[i];
-
-            return null;
-        }
-
-        public static implicit operator ProcessDetails(IntPtr hWnd)
-        {
-            for (int i = 0; i < ProcessDetails.List.Count; i++)
-                if (ProcessDetails.List[i].WindowHandle == hWnd)
-                    return ProcessDetails.List[i];
-
-            return null;
         }
 
         public static implicit operator Process(ProcessDetails pd)

@@ -143,6 +143,46 @@
   <metadata name="processContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>394, 23</value>
   </metadata>
+  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 126</value>
+  </data>
+  <data name="&gt;&gt;processContext.Name" xml:space="preserve">
+    <value>processContext</value>
+  </data>
+  <data name="&gt;&gt;processContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 21</value>
+  </data>
+  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 223</value>
+  </data>
+  <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
+    <value>lstProcesses</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="contextAddToFavs.Text" xml:space="preserve">
+    <value>Add to Favorites...</value>
+  </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 22</value>
   </data>
@@ -154,12 +194,6 @@
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the process binary name</value>
-  </data>
-  <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="contextAddToFavs.Text" xml:space="preserve">
-    <value>Add to Favorites...</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 6</value>
@@ -191,43 +225,6 @@
   <data name="hideThisProcessToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide This Process</value>
   </data>
-  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 126</value>
-  </data>
-  <data name="&gt;&gt;processContext.Name" xml:space="preserve">
-    <value>processContext</value>
-  </data>
-  <data name="&gt;&gt;processContext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lstProcesses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lstProcesses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 21</value>
-  </data>
-  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 216</value>
-  </data>
-  <data name="lstProcesses.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Name" xml:space="preserve">
-    <value>lstProcesses</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="tmrWork.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>281, 19</value>
-  </metadata>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -258,6 +255,39 @@
   <metadata name="mnuFavoritesContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>745, 17</value>
   </metadata>
+  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 242</value>
+  </data>
+  <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
+    <value>mnuFavoritesContext</value>
+  </data>
+  <data name="&gt;&gt;mnuFavoritesContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 21</value>
+  </data>
+  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 223</value>
+  </data>
+  <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Name" xml:space="preserve">
+    <value>lstFavorites</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>212, 22</value>
   </data>
@@ -326,39 +356,6 @@
   </data>
   <data name="contextRemoveFromFavs.Text" xml:space="preserve">
     <value>Remove From Favorites</value>
-  </data>
-  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 242</value>
-  </data>
-  <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
-    <value>mnuFavoritesContext</value>
-  </data>
-  <data name="&gt;&gt;mnuFavoritesContext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 21</value>
-  </data>
-  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 216</value>
-  </data>
-  <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Name" xml:space="preserve">
-    <value>lstFavorites</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="btnRemoveFavorite.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 45</value>
@@ -447,6 +444,103 @@
   <metadata name="trayIconContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 19</value>
   </metadata>
+  <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 54</value>
+  </data>
+  <data name="&gt;&gt;trayIconContextMenu.Name" xml:space="preserve">
+    <value>trayIconContextMenu</value>
+  </data>
+  <data name="&gt;&gt;trayIconContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAIAICAAAAEAGACoDAAAJgAAABAQAAABAAgAaAUAAM4MAAAoAAAAIAAAAEAAAAABABgAAAAAAAAM
+        AAAAAAAAAAAAAAAAAAAAAAAAgyUehiUehiUehiUeiCUeiCUeiCceiCceiCceiikfiicejSkfjiohiice
+        jSkhjisiiScejikhjisiiScejCgfjSkhiSceiSceiSceiCYeiCYeiSceiCYeiCYejCkhiigffyMcorYb
+        pL8bpL8bpL8bnJsbhCQchCQchCQchCQehCQehiQehiQehiQehSYehyYfhSQehygfiikfhSYciSkfiy0i
+        hSYciSkfii0ihCYcvYUkzqImzqImzqImypsmgiYceiMcpL8bpL8bpL8bpL8bm5scfSMcfyMcgSQegSYe
+        fyQcgSYegSYefiQcgyYegSQcgSQcgSQcgCQcgCQcgCQcgCQcgCYcgiYdgycegCQcvIUkzqImzqImzqIm
+        zqImfCMbdiEapL8bpL8beCMbeCMbeCMadyMaeCMbeiMbeyMbeiMafCMdeiIbeiIbfiUefCMdfCMbfyge
+        fycdeyMafycdfSUbeiMaeyMaeiMaeiMaeSMaeiMaeCMazqImzqImdyMacSAapL8bpL8bcyAacyAadSIb
+        cyIacyIadSIadSIadCIadCIadCIadCIadiMbdyIadiIaeiUddyMbdiIaeiYeeSQddSIaeSYeeSQddSIa
+        eCQcdiIbdCEazqImzqImcCEaayAal5obl5obbiAabiAacCEbbiAacCAacSEbbyAabyAacSEbbyEabyEa
+        biEabiEabiEacCEacCEacCEZbyEZbyEZbyEZcyQccSIabiEZciUdciMcbSEZuIUkuIQjaiAYZh4YZh4Y
+        aB4YaB8YaB8YaB8YaB8Yah8Yah8Yah8Yah8YayEZaR8YayEZbCEaaR8YaiAZbiMcah8YayAZbSEaaR8Y
+        aR8YaB4YaB4YaB4YZx4YZx4YZx4YaCAZZiAZZB4YYB0YYh4ZZB4ZYh0YYh0YYh0YYh0YYx0YYx0YYx0Y
+        Yx4YYx4YYx4YZR4YZB4YZB4YZSAZZyEZYx4XZR8YZiIbYx4XZiAZZSIbYh4XYx8YZCAZYB0XYB0XYB0X
+        Xx0XXx0XXBsWXBwWXBwWXBwXXh4YXh4YXBwWXx0YXx0YXRwXXx0YXRwXXRwXXBwXXhwXXRwXXRwXXRwX
+        XRwXXR0XXh4YXB0XXR4XXx8ZWx0XXh8YXyIaWh0VXR8XXiIaWh4WWh4WVRoVVRoVVRoVVRoVVxwVVxwV
+        VxwVclMXqMAbqL0bq7odqrcenpodg2YbWRwWVxsVWh4XWh4XZTAXm3YfsY4isIoioXIgczwZVBsVVBsV
+        VBwWUxsUVBwWVR0XURoUVB0XTxkVURsWURkVURkVUhsWUBkVUBkViYsYwvcdw/QexO8fxuwgx+cgx+Ii
+        nJQeURoUUx0XYTEYx7smzr4nx64lzrAmz6kmzqImfUsbUBwWThsVTBoUTBoUTBoUSxkUSxkUSBgTSBgT
+        ShgTShgTTBoVShgUShgUh4wYwfgcaU8WTRoVSxgUYj8WwNggyd8jYj0XSxgUnYsgz8gnlXgfShkUUSMU
+        hVsdzaUmvo0kSxwXShsWRxkTSRsXSRsWRhkTRxkUQxYSQxYSRBYSRBYSRBgSRRgSRRgSg4wWwfscZFAV
+        RhkTRBcSRRcSh4AayOEid2EYRxkUqqQhz8snRRgUQxcSQxcSQxcTvJUkzqAmSx8TQRcSQRcSRBkUQhgT
+        QBYSQhoVPxcTPxcTPxYSPxYSPxYSPxYSPxYSgIsWwfwbYE8VQBcSQBcSQBcScmYXx+MifG4ZQRkUqKUh
+        zs8nQBoVPhYSPxcSQRoVmXMfzaQmZDkYPRYRPBYRPBYROxYROxYROxYROhUROhUROhUROxYSOxYSOxUR
+        PBYSfosXwf4aXU8VPBYSOxUROxURm6gbx+UhVjwUOxURp6cgzdEnOhYROhYROxcSPBgThWIczqcmYDoZ
+        OhYSOhYSOxkUORYSOBYSOBcTNhQRNhQRNhQRNxQRNxQRNxQRNxQRe4oXwP8bdHoWW04VW0wUh5AZxusf
+        v9sfORYTOBUSpaggzNMmNxUSUzYVzr8nz7gmzrAmzqkmWzcWNRQRNhUSNxYTNRQRNhUSNxgVNRQRMxMQ
+        MxQQNBURMxQRMxQRNBQReYoYwP8bwf0awvkcwvYdw/EeveAePiESNhUSNhUSpakfytUlNhYTPh8Rgm0d
+        gmkdgWQbgWEcNBUQMxQPMxQPMxMPMxMPMxMPMhMPMBMPMBMPMBMPMhQQMRMPMRMPMhUQeIkXv/8ccXwU
+        Vk4ScXgVqMoaxe8fhowZMhMPMhMPpKsfytclMRMPMRMPMxURMxURMRMPMxYSMxURMRMPMxYSMxURMRMP
+        MxURMRQQLxIPLxIPLxIPLxIPLxIPLxIPLxIPd4kXvv8eVU4TMBIPMBIPMRMQuuMds9EdMhURMRQQo6we
+        ytklMBMPMRMPMBMPMBMPOh0QdVgZMBMPMBMPMRQQMRQQMBMPMRYSMRURLhMQLRIPLRIPLxMQLhIPLhIP
+        LhIPdYkXvf8fUk0SLhIPLxIPLxIPnrsaxe4fMRQRLxIPo60eydskOh8RMBMQMhcTMBQQp5EhzrQmOR0Q
+        LxIPMBQQLxIPLxIPLxIPLxIPLBIPLRIPLRMQLRMQLRIPLxMQLxMQdYkYvP8fUk0TLRIPLRIPSj0Ruucc
+        xe8eLxIPLxIPj5Ubyd0jkI4dMBMQMRUSV0AWzr4nnYUhLxMQMBMQMRYTLxMQLRIPLxQRLhMQKxEOLBEP
+        LBIPLBIPLBIPLBIPLBIPc4kYvP8fo9Qbm8QYuPAZwfkcwvUdg5AYLxQRLRIPQS0SwNMiytokytUlxcUm
+        z8gnzsInVTwVLRIPLhMQLxQRLhMQLhMQMBYSLhMPKxEOKxEOKxEOLBEOLBIPLBIPLBIPWVwUmMQbmMQb
+        msQZnMQXk7MYZWgULhMQLxQRLRIPLxUSQi8UhYQbpKcgpqMhk4YeVkAWLhMQLRIPLRIPLRIPLRIOLRIO
+        LRIOLBIOKxEOKxEOKxEOKxEOKxEOLBIPKxEOLBIPLRIQLBIPLBIPLBIPLBIPLBIPLBIOLBIOLBIOLBIP
+        LRMQLBIOLhMQLxQRLBEOLxQRLxUSLRIPLhQRLhURLBIOLRMPLRMPLBIOKhEOKhEOKxEOKxEOKxEOKxEO
+        KxEOKxEOLBIPKxEOLBEOLRIQLBEPLBIOLhQQLRMPLBIOLRMPLBIOLBIOLBEOLRMQLRMQLBEOLBIOLBIO
+        LRMPLhQQLBIOLhQQLhURLBIOKhEOKhEOKhEOKhEOKhEOKxEOKxEOKxEOKxEOKxEOKxEOKxEOKxEOLBEO
+        LRIPLBEOLBEOLhQQLRMPLBIOLhQRLRMQLRMQLBIPLBIOLBIOKxIOKxIOKxIOKxEOKxEOKxEOKhEOmscb
+        msgbKhEOKxIPKxIPKhEOKxIPLBIPKxEOLBIPLBIPKxEOKxEOKxEOKxEOKxEOKxEOKxEOKxEOLRMQLBIP
+        KxEOLRQQLBMPKxEOLRMQLBIPKxEOqJkhqJkhKxEOKREOvP8fvP8fKhEOKhEOKhEOKhEOKxIPKxIPKhEO
+        LBMQLRQRKxEOLRMQLRMQKxEOLBIPLBIPKxEOKxEOKxEOKxEOKxEOKxIPKxIOKxEOLBIPKxEOKxEOzsIn
+        zsInKhEOKREOvP8fvP8fKhEOKhEOKhEOKhEOKhEOKhEOKhEOKxIPKxIPKhEOLBMQLBMQKhEOLRQRLRQR
+        KxEOLRMQLRMQKxEOLBIPKxIPKhEOKhEOKhEOKhEOKhEOzsInzsInKhEOKREOvP8fvP8fvP8fvP8fmsgb
+        KhEOLBMQKhEOKhEOKxIPKhEOKhEOKhEOKhEOKhEOKxIPKxIPKhEOLBMQLBMQKhEOLRQRLRQRKhEOLBMQ
+        qJkizsInzsInzsInzsInKhEOKREOtPIevP8fvP8fvP8fmccbKREOLBQRKxIPKhEOLRQRKxIPKhEOLBMQ
+        KxIPKhEOKxIPKhEOKhEOKhEOKhEOKhEOKhEOKxIPKhEOKxIPqJkhzsInzsInzsInxbgmLRQRKREOKREO
+        KBANKRANKRANKRANKhANKhANKhANKhANKxEOKhANKhANLRMQKxEOKxEOLRQRKxEOKxEOLRMQKxEOKhAN
+        LBIPKxEOKhANKhANKhANKhANKhANKxEOKhANKxEOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAEAAAACAAAAABAAgAAAAAAAAB
+        AAAAAAAAAAAAAAABAAAAAAAAdEAaAGUbGABBGRMAOScQAGYhGABUPhUAKQ4OAEQlEwAqEQ4AKxEOACwU
+        DgAtFA4AdiUbAFcXFgBHMRMAVhoWAFgaFgBXHRYAhJcZAJGDHABkDBkAk4EfADgVEQCgsxsAd34XAK1n
+        IgBpIRkABwAKACgLDwCYmxwAiHYaAEwZFAAqEQ8Au6okAA4ACgB6UhsAb2gVACwUDwBodxUAZjkZAC4U
+        DwCPfR0AWBoXAH4lHAB/JRwAgCUcAIAoHAAhAQ0AOhgSAGhTFgCJKR8AgnwbAAoACwC0cyMAv+ceAEwc
+        FQAQAAsAciQaAHMkGgB0JBoAMBEQAC4UEAAvFBAAMhQQADMUEABjShcAXVsUAGEUGACEnxgAUDcVAIyc
+        GABVNBUAYWQUAGQgGABmIBgAJgoOACkNDgAqEA4ALBMOAJdoHwAtEw4AMA4RAC0WDgB0JBsAa3YUAC4W
+        DgB1JBsAdmMaAH1aGgAWAAwARzMTADoIEQBWHBYAq9waAJxxHwB8JxsAW14VAH9sGgCGJR4ARwwUACUE
+        DwBlYRUAZSAZAHWMFwAmCg8AeUgbAMCXJAAoDQ8AcFwYAFhDFgCRbR0ATxsUACwTDwBoeRUALhYPADAW
+        DwCukCIAfSQcAH4kHABpBRoAXF0TAB8ADQA5FxIAcoIVAE85FAB/bBsAh2MbAD4XEgCy4B4ATj8UAI2k
+        FwCIKB8AiSgfAIooHwCKchsAo9AcADATEAB0aBkAMRMQAC8WEABdDRgAtMUfAIpLHAAzFhAAwrUlAH8k
+        HQCy2RwAYRkYAGMZGABCERMAgmwcAIYnHQAlAw4AJAkOAE5NEgCCeBwAmVgfAJ1YHwCHexwAKxIOADEH
+        EQAsEg4Ah4MZAEgpEwB0IxsANQ0RAFkbFgCMihwAWhsWAJy/GAAhAA8AmYQcAGtPGACZRiAAg24aAGcf
+        GQB6QRsArnEiAGciGQB8hRcAZ2YVACsGDwBvWxgAt6gkAEkaFABtYRgAKxIPACwSDwAtEg8ALhIPAC0V
+        DwAuFQ8ALxUPAKvSGwCfZCAAj34dAJd1HQBcEhcAt8UhAH4jHABZHhcANxYSAH8mHAB4cxgAfXQbACMF
+        DQBBFhIAimUbAG1SGQCIJx8AQhkSAIknHwBiLRcAlaEaAHFgFgBmchYAx5klAHIiGgCUbx4AMBUQADEV
+        EABfDxgAk4MbAIOjGAAfAg4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAI6rxJdi0dPT04SFgzIZNa3eF89fx3Z1kS0syisundixhn53OTs6
+        OtmkVgxWUxScwmayBAHdjEOvGpTFk0oEBEkQpirUHhNYqA0AT7APyBFcH29j1pKija4nIW5qaZU3uM7S
+        WyRGqjEdlhVZI16lAn8WMKBlqXzVy1eeR3TaUXrJio+1Ql2CNg6JM6PQBzxAP73bmEhENLMYuacbRawc
+        3Ii8i2Rgh1TBtFrGm7dBaNs+TQkGA9d7eLxrgcxtaz28uwpVUkwvec2hC0vgmVDAcyhncTi+vnIou7tQ
+        vwsoImx9EoAmck26urq6unC6craQw5rfZyVNn7q6ugifIE5hKQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="trayIcon.Text" xml:space="preserve">
+    <value>Borderless Gaming</value>
+  </data>
+  <data name="trayIcon.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
@@ -462,46 +556,42 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit Borderless Gaming</value>
   </data>
-  <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 54</value>
-  </data>
-  <data name="&gt;&gt;trayIconContextMenu.Name" xml:space="preserve">
-    <value>trayIconContextMenu</value>
-  </data>
-  <data name="&gt;&gt;trayIconContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA
-        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
-        AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAACIiIAACIiIAIAAAAAAAAgAgAAAAAAACACAAAAAAA
-        AIAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAIAAAAAAAAgAgA
-        AAAAAACACAAAAAAAAIAIiIgAAIiIgAAAAAAAAAAA/n8AAIABAAC4HQAAv/0AAL+NAACfaQAAn0kAABF4
-        AAAWiAAAkfkAAJb5AACx/QAAv/0AALgdAACAAQAA/n8AACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAA
-        AAAAAAAAEAAAABAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD/
-        /wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiIgAAAAA
-        iIiIiIgAAIiIiIiIAAAAAIiIiIiIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
-        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
-        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAA
-        AAAAAAAAAACIAACIAAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACI
-        AAAAAAAAAAAAAAAAiAAAiAAAAAAAAAAAAAAAAIgAAIgAAAAAAAAAAAAAAACIAACIiIiIiAAAAACIiIiI
-        iAAAiIiIiIgAAAAAiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//D////w//8AA
-        AAPAAAADz8AD88/AA/PP///zz///88//wPPP/8Dzw/88w8P/PMPD/zDDw/8wwwMDP8ADAz/AAzzAwAM8
-        wMDDA//DwwP/w8M8/8PDPP/DzwP/888D//PP///zz///88/AA/PPwAPzwAAAA8AAAAP//D////w//w==
-</value>
-  </data>
-  <data name="trayIcon.Text" xml:space="preserve">
-    <value>Borderless Gaming</value>
-  </data>
-  <data name="trayIcon.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>520, 17</value>
   </metadata>
+  <data name="mnuMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 31</value>
+  </data>
+  <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mnuMain.Text" xml:space="preserve">
+    <value>mnuMain</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
+    <value>mnuMain</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 27</value>
+  </data>
+  <data name="toolStripOptions.Text" xml:space="preserve">
+    <value>&amp;Options</value>
+  </data>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
     <value>349, 22</value>
   </data>
@@ -571,11 +661,11 @@
   <data name="resToolStripMenuItem.Text" xml:space="preserve">
     <value>Restore All Hidden Applications</value>
   </data>
-  <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 27</value>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 27</value>
   </data>
-  <data name="toolStripOptions.Text" xml:space="preserve">
-    <value>&amp;Options</value>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -613,11 +703,11 @@
   <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
     <value>Full Application Refresh</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 27</value>
+  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 27</value>
   </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
+  <data name="toolStripInfo.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -640,86 +730,11 @@
   <data name="toolStripAbout.Text" xml:space="preserve">
     <value>About...</value>
   </data>
-  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 27</value>
-  </data>
-  <data name="toolStripInfo.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="mnuMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 31</value>
-  </data>
-  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 31</value>
-  </data>
-  <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="mnuMain.Text" xml:space="preserve">
-    <value>mnuMain</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
-    <value>mnuMain</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="wrkBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>628, 17</value>
-  </metadata>
   <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="btnRestoreWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 129</value>
-  </data>
-  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
-  </data>
-  <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
-    <value>btnRestoreWindow</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 18</value>
-  </data>
-  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 222</value>
-  </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
     <value>flowLayoutPanel1</value>
@@ -760,15 +775,72 @@
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lstProcesses" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lstFavorites" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,42,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
+  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
+    <value>btnRestoreWindow</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 18</value>
+  </data>
+  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 229</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnRestoreWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 129</value>
+  </data>
+  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
+  <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
+    <value>btnRestoreWindow</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>885, 17</value>
   </metadata>
-  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="lblUpdateStatus.Text" xml:space="preserve">
-    <value>Loading...</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 274</value>
   </data>
@@ -792,6 +864,12 @@
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="lblUpdateStatus.Text" xml:space="preserve">
+    <value>Loading...</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -885,7 +963,7 @@
 </value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>430, 327</value>
+    <value>425, 318</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -946,12 +1024,6 @@
   </data>
   <data name="&gt;&gt;hideThisProcessToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tmrWork.Name" xml:space="preserve">
-    <value>tmrWork</value>
-  </data>
-  <data name="&gt;&gt;tmrWork.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fullScreenToolStripMenuItem.Name" xml:space="preserve">
     <value>fullScreenToolStripMenuItem</value>
@@ -1115,6 +1187,12 @@
   <data name="&gt;&gt;hideBalloonTipsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>useSlowerWindowDetectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;viewFullProcessDetailsToolStripMenuItem.Name" xml:space="preserve">
     <value>viewFullProcessDetailsToolStripMenuItem</value>
   </data>
@@ -1211,23 +1289,11 @@
   <data name="&gt;&gt;toolStripAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;wrkBackgroundWorker.Name" xml:space="preserve">
-    <value>wrkBackgroundWorker</value>
-  </data>
-  <data name="&gt;&gt;wrkBackgroundWorker.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;lblUpdateStatus.Name" xml:space="preserve">
     <value>lblUpdateStatus</value>
   </data>
   <data name="&gt;&gt;lblUpdateStatus.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>useSlowerWindowDetectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;useSlowerWindowDetectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>

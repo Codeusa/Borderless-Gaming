@@ -42,7 +42,6 @@
             this.setWindowTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.hideThisProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmrWork = new System.Windows.Forms.Timer(this.components);
             this.addSelectedItem = new System.Windows.Forms.Button();
             this.lstFavorites = new System.Windows.Forms.ListBox();
             this.mnuFavoritesContext = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -78,6 +77,7 @@
             this.startMinimizedToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToTrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideBalloonTipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useSlowerWindowDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewFullProcessDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.resToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,13 +94,11 @@
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.wrkBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRestoreWindow = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.useSlowerWindowDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processContext.SuspendLayout();
             this.mnuFavoritesContext.SuspendLayout();
             this.trayIconContextMenu.SuspendLayout();
@@ -195,11 +193,6 @@
             resources.ApplyResources(this.hideThisProcessToolStripMenuItem, "hideThisProcessToolStripMenuItem");
             this.hideThisProcessToolStripMenuItem.Click += new System.EventHandler(this.hideThisProcessToolStripMenuItem_Click);
             // 
-            // tmrWork
-            // 
-            this.tmrWork.Interval = 3000;
-            this.tmrWork.Tick += new System.EventHandler(this.tmrWork_Tick);
-            // 
             // addSelectedItem
             // 
             resources.ApplyResources(this.addSelectedItem, "addSelectedItem");
@@ -220,6 +213,7 @@
             // 
             // mnuFavoritesContext
             // 
+            this.mnuFavoritesContext.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnuFavoritesContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fullScreenToolStripMenuItem,
             this.noSizeChangeToolStripMenuItem,
@@ -347,6 +341,7 @@
             // 
             // trayIconContextMenu
             // 
+            this.trayIconContextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.trayIconContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.toolStripMenuItem7,
@@ -458,6 +453,13 @@
             resources.ApplyResources(this.hideBalloonTipsToolStripMenuItem, "hideBalloonTipsToolStripMenuItem");
             this.hideBalloonTipsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBalloonTipsToolStripMenuItem_CheckedChanged);
             // 
+            // useSlowerWindowDetectionToolStripMenuItem
+            // 
+            this.useSlowerWindowDetectionToolStripMenuItem.CheckOnClick = true;
+            this.useSlowerWindowDetectionToolStripMenuItem.Name = "useSlowerWindowDetectionToolStripMenuItem";
+            resources.ApplyResources(this.useSlowerWindowDetectionToolStripMenuItem, "useSlowerWindowDetectionToolStripMenuItem");
+            this.useSlowerWindowDetectionToolStripMenuItem.Click += new System.EventHandler(this.useSlowerWindowDetectionToolStripMenuItem_Click);
+            // 
             // viewFullProcessDetailsToolStripMenuItem
             // 
             this.viewFullProcessDetailsToolStripMenuItem.CheckOnClick = true;
@@ -563,10 +565,6 @@
             resources.ApplyResources(this.toolStripAbout, "toolStripAbout");
             this.toolStripAbout.Click += new System.EventHandler(this.toolStripAbout_Click);
             // 
-            // wrkBackgroundWorker
-            // 
-            this.wrkBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.wrkBackgroundWorker_DoWork);
-            // 
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
@@ -607,12 +605,6 @@
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
             // 
-            // useSlowerWindowDetectionToolStripMenuItem
-            // 
-            this.useSlowerWindowDetectionToolStripMenuItem.Name = "useSlowerWindowDetectionToolStripMenuItem";
-            resources.ApplyResources(this.useSlowerWindowDetectionToolStripMenuItem, "useSlowerWindowDetectionToolStripMenuItem");
-            this.useSlowerWindowDetectionToolStripMenuItem.Click += new System.EventHandler(this.useSlowerWindowDetectionToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
@@ -647,7 +639,6 @@
 
         private System.Windows.Forms.Button btnMakeBorderless;
         private System.Windows.Forms.ListBox lstProcesses;
-        private System.Windows.Forms.Timer tmrWork;
         private System.Windows.Forms.Button addSelectedItem;
         private System.Windows.Forms.ListBox lstFavorites;
         private System.Windows.Forms.Button btnRemoveFavorite;
@@ -664,7 +655,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripReportBug;
         private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
         private System.Windows.Forms.ToolStripMenuItem toolStripAbout;
-        private System.ComponentModel.BackgroundWorker wrkBackgroundWorker;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ContextMenuStrip processContext;
@@ -689,7 +679,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeToTrayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideBalloonTipsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblUpdateStatus;
+        public System.Windows.Forms.ToolStripStatusLabel lblUpdateStatus;//this might get replaced if you redo anything in the form designer
         private System.Windows.Forms.ToolStripMenuItem viewFullProcessDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWindowSizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
