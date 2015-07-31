@@ -30,7 +30,7 @@ The project is open source under the [GNU General Public License v2.0](https://g
 [A detailed guide can be found here](https://steamcommunity.com/app/388080/discussions/0/535151589899658778/).
 
 #### Need help?
-contact me on my [Website](http://andrew.imk) 
+contact me on my [Website](http://andrew.im) 
 
 or if you're suffering from crashes or bugs submit information [here](https://github.com/Codeusa/Borderless-Gaming/issues?state=open)
 
