@@ -195,6 +195,12 @@
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the process binary name</value>
   </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 22</value>
+  </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
+    <value>... by the window title text (regex)</value>
+  </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 6</value>
   </data>
@@ -987,6 +993,12 @@
     <value>byTheProcessBinaryNameToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Name" xml:space="preserve">
+    <value>byTheWindowTitleTextregexToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">

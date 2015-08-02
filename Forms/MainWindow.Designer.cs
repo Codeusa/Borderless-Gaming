@@ -35,7 +35,8 @@
             this.processContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextAddToFavs = new System.Windows.Forms.ToolStripMenuItem();
             this.byTheWindowTitleTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.byTheWindowTitleTextregexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,7 +145,8 @@
             // 
             this.contextAddToFavs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.byTheWindowTitleTextToolStripMenuItem,
-            this.byTheProcessBinaryNameToolStripMenuItem});
+            this.byTheProcessBinaryNameToolStripMenuItem,
+			this.byTheWindowTitleTextregexToolStripMenuItem});
             this.contextAddToFavs.Name = "contextAddToFavs";
             resources.ApplyResources(this.contextAddToFavs, "contextAddToFavs");
             // 
@@ -158,7 +160,13 @@
             // 
             this.byTheProcessBinaryNameToolStripMenuItem.Name = "byTheProcessBinaryNameToolStripMenuItem";
             resources.ApplyResources(this.byTheProcessBinaryNameToolStripMenuItem, "byTheProcessBinaryNameToolStripMenuItem");
-            this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
+			this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
+			// 
+			// byTheWindowTitleTextregexToolStripMenuItem
+			// 
+			this.byTheWindowTitleTextregexToolStripMenuItem.Name = "byTheWindowTitleTextregexToolStripMenuItem";
+			resources.ApplyResources(this.byTheWindowTitleTextregexToolStripMenuItem, "byTheWindowTitleTextregexToolStripMenuItem");
+			this.byTheWindowTitleTextregexToolStripMenuItem.Click += new System.EventHandler(this.byTheWindowTitleTextregexToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -666,7 +674,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripGlobalHotkey;
         private System.Windows.Forms.ToolStripMenuItem toolStripMouseLock;
         private System.Windows.Forms.ToolStripMenuItem byTheWindowTitleTextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem byTheProcessBinaryNameToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem byTheProcessBinaryNameToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem byTheWindowTitleTextregexToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
@@ -705,6 +714,6 @@
         private System.Windows.Forms.ToolStripMenuItem openDataFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
     }
 }

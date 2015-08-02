@@ -403,6 +403,37 @@ namespace BorderlessGaming.Forms
 				controller.Favorites.Add(fav);
 			}
         }
+
+		/// <summary>
+		///     adds the currently selected process to the favorites (by window title text)
+		/// </summary>
+		private void byTheWindowTitleTextregexToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.lstProcesses.SelectedItem == null) return;
+
+			ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+
+			if (!pd.Manageable)
+				return;
+
+			//TODO move to controller
+			if (controller.Favorites.CanAdd(pd.WindowTitle))
+			{
+				InputText it = new InputText();
+				it.Text = "Add to favorites by regex string";
+				it.Input = pd.WindowTitle;
+				it.Instructions = "Regex string (reference is in the Help menu)";
+
+				it.ShowDialog();
+				if (it.DialogResult != DialogResult.OK)
+					return;
+
+				Favorites.Favorite fav = new Favorites.Favorite();
+				fav.Kind = Favorites.Favorite.FavoriteKinds.ByTitleText;
+				fav.SearchText = pd.WindowTitle;
+				controller.Favorites.Add(fav);
+			}
+		}
         
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
