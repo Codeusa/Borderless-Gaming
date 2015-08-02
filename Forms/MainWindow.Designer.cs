@@ -92,7 +92,8 @@
             this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -545,6 +546,7 @@
             this.toolStripInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripReportBug,
             this.toolStripSupportUs,
+            this.toolStripRegexReference,
             this.toolStripMenuItem2,
             this.toolStripAbout});
             this.toolStripInfo.Name = "toolStripInfo";
@@ -560,7 +562,13 @@
             // 
             this.toolStripSupportUs.Name = "toolStripSupportUs";
             resources.ApplyResources(this.toolStripSupportUs, "toolStripSupportUs");
-            this.toolStripSupportUs.Click += new System.EventHandler(this.toolStripSupportUs_Click);
+			this.toolStripSupportUs.Click += new System.EventHandler(this.toolStripSupportUs_Click);
+			// 
+			// toolStripRegexReference
+			// 
+			this.toolStripRegexReference.Name = "toolStripRegexReference";
+			resources.ApplyResources(this.toolStripRegexReference, "toolStripRegexReference");
+			this.toolStripRegexReference.Click += new System.EventHandler(this.toolStripRegexReference_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -661,7 +669,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripRunOnStartup;
         private System.Windows.Forms.ToolStripMenuItem toolStripInfo;
         private System.Windows.Forms.ToolStripMenuItem toolStripReportBug;
-        private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
+		private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
+		private System.Windows.Forms.ToolStripMenuItem toolStripRegexReference;
         private System.Windows.Forms.ToolStripMenuItem toolStripAbout;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

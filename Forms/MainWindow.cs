@@ -274,6 +274,11 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("http://store.steampowered.com/app/388080");
         }
 
+		private void toolStripRegexReference_Click(object sender, EventArgs e)
+		{
+			Tools.GotoSite("http://store.steampowered.com/app/388080");
+		}
+
         private void toolStripAbout_Click(object sender, EventArgs e)
         {
             new AboutForm().ShowDialog();
