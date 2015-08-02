@@ -8,6 +8,7 @@ using BorderlessGaming.Properties;
 using BorderlessGaming.Utilities;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BorderlessGaming.Common
 {
@@ -105,6 +106,7 @@ namespace BorderlessGaming.Common
 			{
 				ByBinaryName = 0,
 				ByTitleText = 1,
+        ByRegexString = 2,
 			}
 
 			public SizeModes SizeMode = SizeModes.FullScreen;
@@ -145,6 +147,8 @@ namespace BorderlessGaming.Common
 						extra_details += " [Process]";
 					else if (this.Kind != FavoriteKinds.ByTitleText)
 						extra_details += " [?]";
+          else if (this.Kind != FavoriteKinds.ByRegexString)
+            extra_details += " [Regex]";
 
 					extra_details += ((this.ShouldMaximize) ? " [Max]" : "");
 					extra_details += ((this.SizeMode == SizeModes.NoChange) ? " [NoSize]" : "");
@@ -170,8 +174,9 @@ namespace BorderlessGaming.Common
 
 			public bool Matches(ProcessDetails pd)
 			{
-				return (((Kind == FavoriteKinds.ByBinaryName) && (pd.BinaryName == SearchText)) ||
-							((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)));
+        return (((Kind == FavoriteKinds.ByBinaryName) && (pd.BinaryName == SearchText)) || 
+          ((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)) ||
+          ((Kind == FavoriteKinds.ByRegexString) && (Regex.IsMatch(pd.WindowTitle, SearchText))));
 			}
 		}
 	}
