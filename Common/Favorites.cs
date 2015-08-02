@@ -145,10 +145,10 @@ namespace BorderlessGaming.Common
 
 					if (this.Kind == FavoriteKinds.ByBinaryName)
 						extra_details += " [Process]";
+					else if (this.Kind == FavoriteKinds.ByRegexString)
+						extra_details += " [Regex]";
 					else if (this.Kind != FavoriteKinds.ByTitleText)
 						extra_details += " [?]";
-          else if (this.Kind != FavoriteKinds.ByRegexString)
-            extra_details += " [Regex]";
 
 					extra_details += ((this.ShouldMaximize) ? " [Max]" : "");
 					extra_details += ((this.SizeMode == SizeModes.NoChange) ? " [NoSize]" : "");
