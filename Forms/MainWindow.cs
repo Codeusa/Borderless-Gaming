@@ -434,8 +434,8 @@ namespace BorderlessGaming.Forms
 					return;
 
 				Favorites.Favorite fav = new Favorites.Favorite();
-				fav.Kind = Favorites.Favorite.FavoriteKinds.ByTitleText;
-				fav.SearchText = pd.WindowTitle;
+				fav.Kind = Favorites.Favorite.FavoriteKinds.ByRegexString;
+				fav.SearchText = it.Input;
 				controller.Favorites.Add(fav);
 			}
 		}
