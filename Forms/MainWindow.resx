@@ -195,6 +195,12 @@
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the process binary name</value>
   </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 22</value>
+  </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
+    <value>... by the window title text (regex)</value>
+  </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 6</value>
   </data>
@@ -721,6 +727,12 @@
   <data name="toolStripSupportUs.Text" xml:space="preserve">
     <value>Support Us</value>
   </data>
+  <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="toolStripRegexReference.Text" xml:space="preserve">
+    <value>Regex Reference</value>
+  </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 6</value>
   </data>
@@ -987,6 +999,12 @@
     <value>byTheProcessBinaryNameToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Name" xml:space="preserve">
+    <value>byTheWindowTitleTextregexToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
@@ -1275,6 +1293,12 @@
     <value>toolStripSupportUs</value>
   </data>
   <data name="&gt;&gt;toolStripSupportUs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripRegexReference.Name" xml:space="preserve">
+    <value>toolStripRegexReference</value>
+  </data>
+  <data name="&gt;&gt;toolStripRegexReference.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
