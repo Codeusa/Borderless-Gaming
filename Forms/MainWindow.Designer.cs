@@ -35,8 +35,8 @@
             this.processContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextAddToFavs = new System.Windows.Forms.ToolStripMenuItem();
             this.byTheWindowTitleTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.byTheWindowTitleTextregexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.byTheWindowTitleTextregexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +70,7 @@
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.toolStripOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRunOnStartup = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMouseLock = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,8 +93,8 @@
             this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -147,7 +148,7 @@
             this.contextAddToFavs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.byTheWindowTitleTextToolStripMenuItem,
             this.byTheProcessBinaryNameToolStripMenuItem,
-			this.byTheWindowTitleTextregexToolStripMenuItem});
+            this.byTheWindowTitleTextregexToolStripMenuItem});
             this.contextAddToFavs.Name = "contextAddToFavs";
             resources.ApplyResources(this.contextAddToFavs, "contextAddToFavs");
             // 
@@ -161,13 +162,13 @@
             // 
             this.byTheProcessBinaryNameToolStripMenuItem.Name = "byTheProcessBinaryNameToolStripMenuItem";
             resources.ApplyResources(this.byTheProcessBinaryNameToolStripMenuItem, "byTheProcessBinaryNameToolStripMenuItem");
-			this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
-			// 
-			// byTheWindowTitleTextregexToolStripMenuItem
-			// 
-			this.byTheWindowTitleTextregexToolStripMenuItem.Name = "byTheWindowTitleTextregexToolStripMenuItem";
-			resources.ApplyResources(this.byTheWindowTitleTextregexToolStripMenuItem, "byTheWindowTitleTextregexToolStripMenuItem");
-			this.byTheWindowTitleTextregexToolStripMenuItem.Click += new System.EventHandler(this.byTheWindowTitleTextregexToolStripMenuItem_Click);
+            this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
+            // 
+            // byTheWindowTitleTextregexToolStripMenuItem
+            // 
+            this.byTheWindowTitleTextregexToolStripMenuItem.Name = "byTheWindowTitleTextregexToolStripMenuItem";
+            resources.ApplyResources(this.byTheWindowTitleTextregexToolStripMenuItem, "byTheWindowTitleTextregexToolStripMenuItem");
+            this.byTheWindowTitleTextregexToolStripMenuItem.Click += new System.EventHandler(this.byTheWindowTitleTextregexToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -388,6 +389,7 @@
             // 
             this.toolStripOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRunOnStartup,
+            this.toolStripCheckForUpdates,
             this.toolStripMenuItem3,
             this.toolStripGlobalHotkey,
             this.toolStripMouseLock,
@@ -409,6 +411,13 @@
             this.toolStripRunOnStartup.Name = "toolStripRunOnStartup";
             resources.ApplyResources(this.toolStripRunOnStartup, "toolStripRunOnStartup");
             this.toolStripRunOnStartup.CheckedChanged += new System.EventHandler(this.toolStripRunOnStartup_CheckChanged);
+            // 
+            // toolStripCheckForUpdates
+            // 
+            this.toolStripCheckForUpdates.CheckOnClick = true;
+            this.toolStripCheckForUpdates.Name = "toolStripCheckForUpdates";
+            resources.ApplyResources(this.toolStripCheckForUpdates, "toolStripCheckForUpdates");
+            this.toolStripCheckForUpdates.CheckedChanged += new System.EventHandler(this.toolStripCheckForUpdates_CheckedChanged);
             // 
             // toolStripMenuItem3
             // 
@@ -562,13 +571,13 @@
             // 
             this.toolStripSupportUs.Name = "toolStripSupportUs";
             resources.ApplyResources(this.toolStripSupportUs, "toolStripSupportUs");
-			this.toolStripSupportUs.Click += new System.EventHandler(this.toolStripSupportUs_Click);
-			// 
-			// toolStripRegexReference
-			// 
-			this.toolStripRegexReference.Name = "toolStripRegexReference";
-			resources.ApplyResources(this.toolStripRegexReference, "toolStripRegexReference");
-			this.toolStripRegexReference.Click += new System.EventHandler(this.toolStripRegexReference_Click);
+            this.toolStripSupportUs.Click += new System.EventHandler(this.toolStripSupportUs_Click);
+            // 
+            // toolStripRegexReference
+            // 
+            this.toolStripRegexReference.Name = "toolStripRegexReference";
+            resources.ApplyResources(this.toolStripRegexReference, "toolStripRegexReference");
+            this.toolStripRegexReference.Click += new System.EventHandler(this.toolStripRegexReference_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -724,5 +733,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripCheckForUpdates;
     }
 }

@@ -148,6 +148,10 @@
   <data name="toolStripRunOnStartup.Text" xml:space="preserve">
     <value>Automatisch starten</value>
   </data>
+  <data name="toolStripCheckForUpdates.Text" xml:space="preserve">
+    <value>Beim Start nach Updates suchen</value>
+  </data>
+
   <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
     <value>Globalen Hotkey verwenden (WIN+F6)</value>
   </data>
