@@ -45,7 +45,7 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 
 # Code of Conduct
 
-Don't be dumb. Don't be sensetive. Don't be a baby. This is not a "safe space", it is programming. Present yourself how you want to be treated. 
+Don't be dumb. Don't be sensetive. Don't be a baby. This is not a "safe space", it is programming. Present yourself how you want to be treated. See the [NCoC](https://github.com/Codeusa/NCoC/blob/master/CODE_OF_CONDUCT.md)
 
 ## Contact info
 
