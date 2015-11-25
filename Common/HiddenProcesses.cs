@@ -16,20 +16,20 @@ namespace BorderlessGaming.Common
 		private static readonly string[] AlwaysHiddenProcesses =
         {
             // Skip self
-            "BorderlessGaming",
+            "borderlessgaming",
 
             // Skip Windows core system processes
             "csrss", "smss", "lsass", "wininit", "svchost", "services", "winlogon", "dwm",
             "explorer", "taskmgr", "mmc", "rundll32", "vcredist_x86", "vcredist_x64", "msiexec", 
 
             // Skip common video streaming software
-            "XSplit",
+            "xsplit",
 
             // Skip common web browsers
             "iexplore", "firefox", "chrome", "safari",
         
             // Skip launchers/misc.
-            "IW4 Console", "Steam", "Origin", "Uplay"
+            "iw4 console", "steam", "origin", "uplay"
 
             // Let them hide the rest manually
         };
@@ -99,21 +99,32 @@ namespace BorderlessGaming.Common
 		{
 			foreach (var p in AlwaysHiddenProcesses)
 				alwaysHideSet.Add(p);
-			try
+
+            if (File.Exists(path))
 			{
-				if (File.Exists(path))
-				{
-					var processes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(path));
-					foreach (var p in processes)
-						userHideSet.Add(p.Trim().ToLower());
-				} else
-				{
-					Save();
-				}
+                string jsonDoc = File.ReadAllText(path);
+
+                try
+                {
+                    var processes = JsonConvert.DeserializeObject<List<string>>(jsonDoc);
+                    foreach (var p in processes)
+                        userHideSet.Add(p.Trim().ToLower());
+                }
+                catch
+                {
+                    try
+                    {
+                        var hiddenStringList = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
+
+                        foreach (string oldHidden in hiddenStringList)
+                            userHideSet.Add(oldHidden);
+                    }
+                    catch { }
+                }
 			}
-			catch
+            else
 			{
-				//log
+				Save();
 			}
 		}
 		

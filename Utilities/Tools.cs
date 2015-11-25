@@ -32,7 +32,7 @@ namespace BorderlessGaming.Utilities
 
         private static bool HasInternetConnection
         {
-            //There is absolutely no way you can reliably check if there is an internet connection
+            // There is no way you can reliably check if there is an internet connection, but we can come close
             get
             {
                 bool result = false;

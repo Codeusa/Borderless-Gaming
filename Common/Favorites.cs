@@ -8,6 +8,7 @@ using BorderlessGaming.Properties;
 using BorderlessGaming.Utilities;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BorderlessGaming.Common
 {
@@ -56,15 +57,23 @@ namespace BorderlessGaming.Common
 				}
 				catch
 				{
-					var favsStringList = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
+                    try
+                    {
+                        var favsStringList = new List<string>(JsonConvert.DeserializeObject<List<string>>(jsonDoc));
 
-					foreach (string oldFav in favsStringList)
-					{
-						Favorite fav = new Favorite();
-						fav.Kind = Favorite.FavoriteKinds.ByBinaryName;
-						fav.SearchText = oldFav;
-						Add(fav);
-					}
+                        foreach (string oldFav in favsStringList)
+                        {
+                            try
+                            {
+                                Favorite fav = new Favorite();
+                                fav.Kind = Favorite.FavoriteKinds.ByBinaryName;
+                                fav.SearchText = oldFav;
+                                Add(fav);
+                            }
+                            catch { } // blindly read favorites -- if one is corrupt, read the rest: resolves issue #191
+                        }
+                    }
+                    catch { } // blindly read favorites -- if one is corrupt, read the rest: resolves issue #191
 				}
 			}
 			else
@@ -105,6 +114,7 @@ namespace BorderlessGaming.Common
 			{
 				ByBinaryName = 0,
 				ByTitleText = 1,
+				ByRegexString = 2,
 			}
 
 			public SizeModes SizeMode = SizeModes.FullScreen;
@@ -143,6 +153,8 @@ namespace BorderlessGaming.Common
 
 					if (this.Kind == FavoriteKinds.ByBinaryName)
 						extra_details += " [Process]";
+					else if (this.Kind == FavoriteKinds.ByRegexString)
+						extra_details += " [Regex]";
 					else if (this.Kind != FavoriteKinds.ByTitleText)
 						extra_details += " [?]";
 
@@ -171,7 +183,8 @@ namespace BorderlessGaming.Common
 			public bool Matches(ProcessDetails pd)
 			{
 				return (((Kind == FavoriteKinds.ByBinaryName) && (pd.BinaryName == SearchText)) ||
-							((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)));
+		          ((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)) ||
+		          ((Kind == FavoriteKinds.ByRegexString) && (Regex.IsMatch(pd.WindowTitle, SearchText))));
 			}
 		}
 	}

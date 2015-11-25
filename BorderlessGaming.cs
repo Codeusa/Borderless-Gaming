@@ -68,12 +68,12 @@ namespace BorderlessGaming
 		/// </summary>
 		private void DoMainWork()
 		{
-			while (!workerTaskToken.IsCancellationRequested)
+			while (!this.workerTaskToken.IsCancellationRequested)
 			{
 				// update the processlist
-				UpdateProcesses();
+				this.UpdateProcesses();
 
-				if (AutoHandleFavorites)
+				if (this.AutoHandleFavorites)
 				{
 					// check favorites against the cache
 					foreach (var pd in _processDetails)
@@ -95,63 +95,87 @@ namespace BorderlessGaming
 
 		private void UpdateProcesses()
 		{
-            if (!this.AutoHandleFavorites)
+            // Note: additional try/catch blocks were added here to prevent stalls when Windows is put into
+            //       suspend or hibernation.
+
+            try
             {
-                MainWindow frm = MainWindow.ext();
+                if (!this.AutoHandleFavorites)
+                {
+                    MainWindow frm = MainWindow.ext();
 
-                if (frm != null)
-                    if ((frm.WindowState == FormWindowState.Minimized) || (!frm.Visible))
-                        return;
+                    if (frm != null)
+                        if ((frm.WindowState == FormWindowState.Minimized) || (!frm.Visible))
+                            return;
+                }
             }
+            catch { } // swallow any exceptions in attempting to check window minimize/visibility state
 
-			lock (updateLock)
+			lock (this.updateLock)
 			{
-				for (int i = 0; i < _processDetails.Count;)
+                // check existing processes for changes (auto-prune)
+				for (int i = 0; i < this._processDetails.Count;)
 				{
-					var pd = _processDetails[i];
-
-                    bool should_be_pruned = pd.ProcessHasExited;
-
-                    if (!should_be_pruned)
+                    try
                     {
-                        string current_title = "";
+                        ProcessDetails pd = this._processDetails[i];
 
-                        if (!pd.NoAccess)
+                        bool should_be_pruned = pd.ProcessHasExited;
+
+                        if (!should_be_pruned)
                         {
-                            Tools.StartMethodMultithreadedAndWait(() => { current_title = Native.GetWindowTitle(pd.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
-                            should_be_pruned = should_be_pruned || (pd.WindowTitle != current_title);
-                        }
-                    }
+                            string current_title = "";
 
-					if (should_be_pruned)
-					{
-						if (pd.MadeBorderless)
-							HandlePrunedProcess(pd);
-						_processDetails.RemoveAt(i);
-					}
-                    else
-						i++;
+                            if (!pd.NoAccess)
+                            {
+                                // 2 or 10 seconds until window title timeout, depending on slow-window detection mode
+                                Tools.StartMethodMultithreadedAndWait(() => { current_title = Native.GetWindowTitle(pd.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
+                                should_be_pruned = should_be_pruned || (pd.WindowTitle != current_title);
+                            }
+                        }
+
+                        if (should_be_pruned)
+                        {
+                            if (pd.MadeBorderless)
+                                HandlePrunedProcess(pd);
+                            _processDetails.RemoveAt(i);
+                        }
+                        else
+                            i++;
+                    }
+                    catch
+                    {
+                        // swallow any exceptions and move to the next item in the array
+                        i++;
+                    }
 				}
 
-				windows.QueryProcessesWithWindows((pd) =>
-				{
-					if (_hiddenProcesses.IsHidden(pd.Proc.ProcessName))
-						return;
-					if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
-						_processDetails.Add(pd);
-				}, _processDetails.WindowPtrSet);
+                // add new process windows
+                try
+                {
+                    windows.QueryProcessesWithWindows((pd) =>
+                    {
+                        if (_hiddenProcesses.IsHidden(pd.Proc.ProcessName))
+                            return;
+                        if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
+                            _processDetails.Add(pd);
+                    }, _processDetails.WindowPtrSet);
+                }
+                catch { } // swallow any exceptions in attempting to add new windows
 
+                // update window
 				window.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
 			}
 		}
 
 		public Task RefreshProcesses()
 		{
-			lock (updateLock)
+			lock (this.updateLock)
 			{
-				_processDetails.ClearProcesses();
+				this._processDetails.ClearProcesses();
 			}
-			return Task.Factory.StartNew(UpdateProcesses);
+
+			return Task.Factory.StartNew(this.UpdateProcesses);
 		}
 
 		/// <summary>

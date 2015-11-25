@@ -84,6 +84,11 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("http://steamcommunity.com/id/psouza4/");
         }
 
+        private void OpenSecretOnlineGithub(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://github.com/SecretOnline/");
+        }
+
         #endregion
     }
 }

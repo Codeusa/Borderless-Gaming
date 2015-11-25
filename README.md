@@ -30,7 +30,7 @@ The project is open source under the [GNU General Public License v2.0](https://g
 [A detailed guide can be found here](https://steamcommunity.com/app/388080/discussions/0/535151589899658778/).
 
 #### Need help?
-contact me on my [Website](http://andrew.imk) 
+contact me on my [Website](http://andrew.im) 
 
 or if you're suffering from crashes or bugs submit information [here](https://github.com/Codeusa/Borderless-Gaming/issues?state=open)
 
@@ -42,6 +42,10 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 **I found a bug:** File it as an [issue](https://github.com/Codeusa/Borderless-Gaming/issues) and please describe as much as possible the bug and the context.
 
 **I have a new suggestion:** For feature requests please first check [the issues list](https://github.com/Codeusa/Borderless-Gaming/issues) to see if it's already there. If not, feel free to file it as an issue and to define the label **enhancement**.
+
+# Code of Conduct
+
+You are an adult and the expectation is that we all act like it.  This is not a "safe space"; it is programming, so present yourself how you want to be treated.  See the [NCoC](https://github.com/Codeusa/NCoC/blob/master/CODE_OF_CONDUCT.md)
 
 ## Contact info
 

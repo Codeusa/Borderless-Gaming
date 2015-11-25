@@ -143,7 +143,7 @@ namespace BorderlessGaming.WindowsAPI
                         targetFrame.Y + favDetails.OffsetT,
                         targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
                         targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
-                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
+                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
 
                     // And auto-maximize
@@ -161,7 +161,7 @@ namespace BorderlessGaming.WindowsAPI
                         favDetails.PositionY,
                         favDetails.PositionW,
                         favDetails.PositionH,
-                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder
+                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
                 }
             }
@@ -177,7 +177,7 @@ namespace BorderlessGaming.WindowsAPI
                     0,
                     0,
                     0,
-                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize
+                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize | SetWindowPosFlags.NoSendChanging
                 );
             }
 

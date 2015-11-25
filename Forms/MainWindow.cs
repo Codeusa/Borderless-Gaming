@@ -44,8 +44,6 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private const int MouseHide_HotKeyModifier = 0x008;      // WIN-Key
 
-        private bool ProcessingIsPaused = false;
-
         #endregion
 
 		private BorderlessGaming controller;
@@ -181,6 +179,10 @@ namespace BorderlessGaming.Forms
             AppEnvironment.Setting("RunOnStartup", this.toolStripRunOnStartup.Checked);
         }
 
+        private void toolStripCheckForUpdates_CheckedChanged(object sender, EventArgs e)
+        {
+            AppEnvironment.Setting("CheckForUpdates", this.toolStripCheckForUpdates.Checked);
+        }
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
             AppEnvironment.Setting("UseGlobalHotkey", this.toolStripGlobalHotkey.Checked);
@@ -274,6 +276,11 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("http://store.steampowered.com/app/388080");
         }
 
+		private void toolStripRegexReference_Click(object sender, EventArgs e)
+		{
+			Tools.GotoSite("www.regular-expressions.info/reference.html");
+		}
+
         private void toolStripAbout_Click(object sender, EventArgs e)
         {
             new AboutForm().ShowDialog();
@@ -328,7 +335,7 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-			controller.HiddenProcesses.Add(pd.BinaryName);
+			controller.HiddenProcesses.Add(pd.BinaryName.Trim().ToLower());
 
 			await controller.RefreshProcesses();
         }
@@ -403,6 +410,33 @@ namespace BorderlessGaming.Forms
 				controller.Favorites.Add(fav);
 			}
         }
+		
+		/// <summary>
+		///     adds the currently selected process to the favorites (by window title text)
+		/// </summary>
+		private void byTheWindowTitleTextregexToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (this.lstProcesses.SelectedItem == null) return;
+
+			ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+
+			if (!pd.Manageable)
+				return;
+
+			//TODO move to controller
+			if (controller.Favorites.CanAdd(pd.WindowTitle))
+			{
+                string res = Tools.Input_Text("Add to favorites by RegEx string", "Regex string (see the Help menu for reference)", pd.WindowTitle);
+
+                if (res.Trim().Length > 0)
+                {
+                    Favorites.Favorite fav = new Favorites.Favorite();
+                    fav.Kind = Favorites.Favorite.FavoriteKinds.ByRegexString;
+                    fav.SearchText = res;
+                    controller.Favorites.Add(fav);
+                }
+			}
+		}
         
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
@@ -767,6 +801,7 @@ namespace BorderlessGaming.Forms
             this.toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
             this.toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
             this.toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
+            this.toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
             this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
             this.startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
             this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);

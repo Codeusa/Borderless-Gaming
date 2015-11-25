@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Codeusa Software")]
 [assembly: AssemblyProduct("Borderless Gaming")]
-[assembly: AssemblyCopyright("Copyright © 2014-2015 Codeusa Software")]
+[assembly: AssemblyCopyright("Copyright © 2014-2016 Codeusa Software")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,6 +36,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("8.2.20815.846")]
-[assembly: AssemblyFileVersion("8.2.20815.846")]
+[assembly: AssemblyVersion("8.3.32915.682")]
+[assembly: AssemblyFileVersion("8.3.32915.682")]
 [assembly: NeutralResourcesLanguage("en-US")]
