@@ -213,10 +213,9 @@
   <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-<<<<<<< HEAD
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
-=======
+  </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
@@ -225,29 +224,21 @@
   </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
->>>>>>> origin/master
   </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the window title text</value>
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-<<<<<<< HEAD
-    <value>231, 22</value>
-=======
     <value>248, 22</value>
->>>>>>> origin/master
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the process binary name</value>
   </data>
   <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-<<<<<<< HEAD
     <value>251, 22</value>
   </data>
   <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the window title text (RegEx)</value>
-=======
-    <value>248, 22</value>
   </data>
   <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
     <value>... by the window title text (regex)</value>
@@ -281,7 +272,6 @@
   </data>
   <data name="hideThisProcessToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide This Process</value>
->>>>>>> origin/master
   </data>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1027,37 +1017,22 @@
     <value>Run On Windows Startup</value>
   </data>
   <data name="toolStripCheckForUpdates.Size" type="System.Drawing.Size, System.Drawing">
-<<<<<<< HEAD
     <value>341, 22</value>
   </data>
   <data name="toolStripCheckForUpdates.Text" xml:space="preserve">
     <value>Check For Updates When Borderless Gaming Starts</value>
-=======
-    <value>316, 22</value>
-  </data>
-  <data name="toolStripCheckForUpdates.Text" xml:space="preserve">
-    <value>Check for Updates on Startup</value>
->>>>>>> origin/master
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 6</value>
   </data>
   <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-<<<<<<< HEAD
     <value>341, 22</value>
-=======
-    <value>316, 22</value>
->>>>>>> origin/master
   </data>
   <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
     <value>Use Global Hotkey                 (Win+F6)</value>
   </data>
   <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
-<<<<<<< HEAD
     <value>341, 22</value>
-=======
-    <value>316, 22</value>
->>>>>>> origin/master
   </data>
   <data name="toolStripMouseLock.Text" xml:space="preserve">
     <value>Use Mouse Lock Hotkey       (Scroll Lock)</value>
@@ -1207,11 +1182,7 @@
     <value>160, 22</value>
   </data>
   <data name="toolStripRegexReference.Text" xml:space="preserve">
-<<<<<<< HEAD
-    <value>RegEx Reference</value>
-=======
     <value>Regex Reference</value>
->>>>>>> origin/master
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>

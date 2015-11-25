@@ -147,13 +147,8 @@
             // 
             this.contextAddToFavs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.byTheWindowTitleTextToolStripMenuItem,
-<<<<<<< HEAD
             this.byTheWindowTitleTextregexToolStripMenuItem,
             this.byTheProcessBinaryNameToolStripMenuItem});
-=======
-            this.byTheProcessBinaryNameToolStripMenuItem,
-            this.byTheWindowTitleTextregexToolStripMenuItem});
->>>>>>> origin/master
             this.contextAddToFavs.Name = "contextAddToFavs";
             resources.ApplyResources(this.contextAddToFavs, "contextAddToFavs");
             // 
@@ -683,11 +678,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripRunOnStartup;
         private System.Windows.Forms.ToolStripMenuItem toolStripInfo;
         private System.Windows.Forms.ToolStripMenuItem toolStripReportBug;
-<<<<<<< HEAD
         private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
-=======
-		private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
->>>>>>> origin/master
 		private System.Windows.Forms.ToolStripMenuItem toolStripRegexReference;
         private System.Windows.Forms.ToolStripMenuItem toolStripAbout;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -701,11 +692,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripGlobalHotkey;
         private System.Windows.Forms.ToolStripMenuItem toolStripMouseLock;
         private System.Windows.Forms.ToolStripMenuItem byTheWindowTitleTextToolStripMenuItem;
-<<<<<<< HEAD
         private System.Windows.Forms.ToolStripMenuItem byTheProcessBinaryNameToolStripMenuItem;
-=======
-		private System.Windows.Forms.ToolStripMenuItem byTheProcessBinaryNameToolStripMenuItem;
->>>>>>> origin/master
 		private System.Windows.Forms.ToolStripMenuItem byTheWindowTitleTextregexToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
@@ -745,11 +732,7 @@
         private System.Windows.Forms.ToolStripMenuItem openDataFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
-<<<<<<< HEAD
         private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
-=======
-		private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
->>>>>>> origin/master
         private System.Windows.Forms.ToolStripMenuItem toolStripCheckForUpdates;
     }
 }
