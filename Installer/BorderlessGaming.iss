@@ -1,7 +1,7 @@
 [Setup]
 AppName=Borderless Gaming
 AppPublisher=Codeusa Software
-AppCopyright=Copyright (C) 2014-2015 Codeusa Software
+AppCopyright=Copyright (C) 2014-2016 Codeusa Software
 DefaultDirName={pf}\Borderless Gaming
 DefaultGroupName=Borderless Gaming
 OutputDir=./
@@ -18,11 +18,11 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=8.2
+AppVersion=8.3
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=8.2.20715.805
+VersionInfoVersion=8.3.32915.682
 ; Other version info
-OutputBaseFilename=BorderlessGaming_8.2__admin_setup
+OutputBaseFilename=BorderlessGaming_8.3__setup
 
 
 ; Shown in the setup program during install only
