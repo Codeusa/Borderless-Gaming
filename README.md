@@ -45,11 +45,7 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 
 # Code of Conduct
 
-<<<<<<< HEAD
 You are an adult and the expectation is that we all act like it.  This is not a "safe space"; it is programming, so present yourself how you want to be treated.  See the [NCoC](https://github.com/Codeusa/NCoC/blob/master/CODE_OF_CONDUCT.md)
-=======
-Don't be dumb. Don't be sensetive. Don't be a baby. This is not a "safe space", it is programming. Present yourself how you want to be treated. See the [NCoC](https://github.com/Codeusa/NCoC/blob/master/CODE_OF_CONDUCT.md)
->>>>>>> origin/master
 
 ## Contact info
 
