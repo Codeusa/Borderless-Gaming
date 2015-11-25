@@ -183,6 +183,10 @@ namespace BorderlessGaming.Forms
         {
             AppEnvironment.Setting("CheckForUpdates", this.toolStripCheckForUpdates.Checked);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
             AppEnvironment.Setting("UseGlobalHotkey", this.toolStripGlobalHotkey.Checked);
@@ -278,7 +282,11 @@ namespace BorderlessGaming.Forms
 
 		private void toolStripRegexReference_Click(object sender, EventArgs e)
 		{
+<<<<<<< HEAD
 			Tools.GotoSite("www.regular-expressions.info/reference.html");
+=======
+			Tools.GotoSite("http://store.steampowered.com/app/388080");
+>>>>>>> origin/master
 		}
 
         private void toolStripAbout_Click(object sender, EventArgs e)
@@ -410,7 +418,11 @@ namespace BorderlessGaming.Forms
 				controller.Favorites.Add(fav);
 			}
         }
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> origin/master
 		/// <summary>
 		///     adds the currently selected process to the favorites (by window title text)
 		/// </summary>
@@ -426,6 +438,7 @@ namespace BorderlessGaming.Forms
 			//TODO move to controller
 			if (controller.Favorites.CanAdd(pd.WindowTitle))
 			{
+<<<<<<< HEAD
                 string res = Tools.Input_Text("Add to favorites by RegEx string", "Regex string (see the Help menu for reference)", pd.WindowTitle);
 
                 if (res.Trim().Length > 0)
@@ -435,6 +448,21 @@ namespace BorderlessGaming.Forms
                     fav.SearchText = res;
                     controller.Favorites.Add(fav);
                 }
+=======
+				InputText it = new InputText();
+				it.Text = "Add to favorites by regex string";
+				it.Input = pd.WindowTitle;
+				it.Instructions = "Regex string (reference is in the Help menu)";
+
+				it.ShowDialog();
+				if (it.DialogResult != DialogResult.OK)
+					return;
+
+				Favorites.Favorite fav = new Favorites.Favorite();
+				fav.Kind = Favorites.Favorite.FavoriteKinds.ByRegexString;
+				fav.SearchText = it.Input;
+				controller.Favorites.Add(fav);
+>>>>>>> origin/master
 			}
 		}
         
@@ -1040,5 +1068,7 @@ namespace BorderlessGaming.Forms
         }
 
         #endregion
+
+
     }
 }

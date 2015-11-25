@@ -114,7 +114,11 @@ namespace BorderlessGaming.Common
 			{
 				ByBinaryName = 0,
 				ByTitleText = 1,
+<<<<<<< HEAD
 				ByRegexString = 2,
+=======
+        ByRegexString = 2,
+>>>>>>> origin/master
 			}
 
 			public SizeModes SizeMode = SizeModes.FullScreen;
@@ -182,9 +186,15 @@ namespace BorderlessGaming.Common
 
 			public bool Matches(ProcessDetails pd)
 			{
+<<<<<<< HEAD
 				return (((Kind == FavoriteKinds.ByBinaryName) && (pd.BinaryName == SearchText)) ||
 		          ((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)) ||
 		          ((Kind == FavoriteKinds.ByRegexString) && (Regex.IsMatch(pd.WindowTitle, SearchText))));
+=======
+        return (((Kind == FavoriteKinds.ByBinaryName) && (pd.BinaryName == SearchText)) || 
+          ((Kind == FavoriteKinds.ByTitleText) && (pd.WindowTitle == SearchText)) ||
+          ((Kind == FavoriteKinds.ByRegexString) && (Regex.IsMatch(pd.WindowTitle, SearchText))));
+>>>>>>> origin/master
 			}
 		}
 	}

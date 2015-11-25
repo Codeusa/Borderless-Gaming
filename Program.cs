@@ -21,7 +21,11 @@ namespace BorderlessGaming
             Application.SetCompatibleTextRenderingDefault(false);
 
             if (AppEnvironment.SettingValue("CheckForUpdates", true))
+<<<<<<< HEAD
 	            Tools.CheckForUpdates();
+=======
+                Tools.CheckForUpdates();
+>>>>>>> origin/master
 
             // create the application data path, if necessary
             try
