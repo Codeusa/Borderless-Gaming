@@ -20,9 +20,9 @@ DirExistsWarning=no
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
 AppVersion=8.3
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=8.3.32915.682
+VersionInfoVersion=8.3.33015.555
 ; Other version info
-OutputBaseFilename=BorderlessGaming_8.3__setup
+OutputBaseFilename=BorderlessGaming_8.3.33015.555__setup
 
 
 ; Shown in the setup program during install only
@@ -49,6 +49,7 @@ Name: english; MessagesFile: compiler:Default.isl
 [Files]
 Source: ../bin/Release/BorderlessGaming.exe; DestDir: {app}; Flags: ignoreversion
 Source: ../bin/Release/Interop.IWshRuntimeLibrary.dll; DestDir: {app}
+Source: ../bin/Release/Microsoft.Threading.Tasks.dll; DestDir: {app}
 Source: ../bin/Release/Newtonsoft.Json.dll; DestDir: {app}
 
 Source: ../LICENSE; DestName: License.txt; DestDir: {app}
