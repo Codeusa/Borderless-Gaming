@@ -191,6 +191,11 @@ namespace BorderlessGaming.Forms
             this.RegisterHotkeys();
         }
 
+        private void disableSteamIntegrationToolStripMenuItem_CheckChanged(object sender, EventArgs e)
+        {
+            AppEnvironment.Setting("UseSteamFeatures", disableSteamIntegrationToolStripMenuItem.Checked);
+        }
+
         private void toolStripMouseLock_CheckChanged(object sender, EventArgs e)
         {
             AppEnvironment.Setting("UseMouseLockHotkey", this.toolStripMouseLock.Checked);
@@ -802,6 +807,7 @@ namespace BorderlessGaming.Forms
             this.toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
             this.toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
             this.toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
+            this.disableSteamIntegrationToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseSteamFeatures", false);
             this.toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
             this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
             this.startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);

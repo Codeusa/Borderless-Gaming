@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
+using Steamworks;
 
 namespace BorderlessGaming
 {
@@ -19,6 +20,20 @@ namespace BorderlessGaming
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            if (AppEnvironment.SettingValue("UseSteamFeatures", false) == false)
+            {
+                if (!SteamAPI.Init())
+                {
+                    MessageBox.Show("Steam API Failed to Load");
+                    //  return;
+                }
+                if (!Packsize.Test())
+                {
+                    MessageBox.Show("Steam failed to Pack");
+                    //   return;
+                }
+            }
 
             if (AppEnvironment.SettingValue("CheckForUpdates", true))
 	            Tools.CheckForUpdates();

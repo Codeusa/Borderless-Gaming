@@ -84,6 +84,7 @@
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.resToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableSteamIntegrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseAutomaticProcessingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
@@ -499,6 +500,7 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.disableSteamIntegrationToolStripMenuItem,
             this.pauseAutomaticProcessingToolStripMenuItem,
             this.openDataFolderToolStripMenuItem,
             this.toolStripMenuItem11,
@@ -508,6 +510,13 @@
             this.fullApplicationRefreshToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            // 
+            // disableSteamIntegrationToolStripMenuItem
+            // 
+            this.disableSteamIntegrationToolStripMenuItem.CheckOnClick = true;
+            this.disableSteamIntegrationToolStripMenuItem.Name = "disableSteamIntegrationToolStripMenuItem";
+            resources.ApplyResources(this.disableSteamIntegrationToolStripMenuItem, "disableSteamIntegrationToolStripMenuItem");
+            this.disableSteamIntegrationToolStripMenuItem.CheckedChanged += new System.EventHandler(this.disableSteamIntegrationToolStripMenuItem_CheckChanged);
             // 
             // pauseAutomaticProcessingToolStripMenuItem
             // 
@@ -718,6 +727,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disableSteamIntegrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleWindowsTaskbarVisibilityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWindowTitleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideWindowsTaskbarToolStripMenuItem;

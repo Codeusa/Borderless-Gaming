@@ -187,6 +187,12 @@ namespace BorderlessGaming.WindowsAPI
                 processDetails.MadeBorderless = true;
                 processDetails.MadeBorderlessAttempts++;
             }
+            if (AppEnvironment.SettingValue("UseSteamFeatures", false) == false)
+            {
+                var manager = new AchievementManager();
+                manager.enable();
+                manager.UnlockBorderlessAchivement();
+            }
             return;
         }
 

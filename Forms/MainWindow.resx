@@ -1130,6 +1130,15 @@
   <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="disableSteamIntegrationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="disableSteamIntegrationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Disable Steam Hook</value>
+  </data>
+  <data name="disableSteamIntegrationToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Prevents "In-App" on Steam</value>
+  </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
