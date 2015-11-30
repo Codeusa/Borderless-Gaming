@@ -292,6 +292,11 @@ namespace BorderlessGaming.Forms
 			await controller.RefreshProcesses();
         }
 
+        private void usageGuideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("http://steamcommunity.com/app/388080/discussions/0/535151589899658778/");
+        }
+
         #endregion
 
         #region Application Form Events
@@ -789,6 +794,8 @@ namespace BorderlessGaming.Forms
                 this.contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
         }
+        
+        private System.Windows.Forms.ToolStripMenuItem disableSteamIntegrationToolStripMenuItem = null;
 
         /// <summary>
         ///     Sets up the form
@@ -815,6 +822,24 @@ namespace BorderlessGaming.Forms
                 this.WindowState = FormWindowState.Minimized;
             else
                 this.WindowState = FormWindowState.Normal;
+
+            if (Program.Steam_Loaded && this.disableSteamIntegrationToolStripMenuItem == null)
+            {
+                this.disableSteamIntegrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+                this.disableSteamIntegrationToolStripMenuItem.Name = "disableSteamIntegrationToolStripMenuItem";
+                this.disableSteamIntegrationToolStripMenuItem.Size = new Size(254, 22);
+                this.disableSteamIntegrationToolStripMenuItem.Text = "Disable Steam integration/hook";
+                this.disableSteamIntegrationToolStripMenuItem.ToolTipText = "Prevents \"In-App\" on Steam";
+                this.disableSteamIntegrationToolStripMenuItem.Checked = AppEnvironment.SettingValue("DisableSteamIntegration", false);
+                this.disableSteamIntegrationToolStripMenuItem.CheckOnClick = true; // let's do this before registering the CheckedChanged event
+                this.disableSteamIntegrationToolStripMenuItem.CheckedChanged += new System.EventHandler(this.disableSteamIntegrationToolStripMenuItem_CheckChanged);
+                this.toolsToolStripMenuItem.DropDownItems.Insert(0, this.disableSteamIntegrationToolStripMenuItem);
+            }
+        }
+
+        private void disableSteamIntegrationToolStripMenuItem_CheckChanged(object sender, EventArgs e)
+        {
+            AppEnvironment.Setting("DisableSteamIntegration", this.disableSteamIntegrationToolStripMenuItem.Checked);
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
@@ -1041,7 +1066,5 @@ namespace BorderlessGaming.Forms
         }
 
         #endregion
-
-
     }
 }

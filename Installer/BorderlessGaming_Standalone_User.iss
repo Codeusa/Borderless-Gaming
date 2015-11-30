@@ -1,13 +1,13 @@
 [Setup]
 AppName=Borderless Gaming
 AppPublisher=Codeusa Software
-AppCopyright=Copyright (C) 2014-2016 Codeusa Software
+AppCopyright=Copyright (C) 2014-2015 Codeusa Software
 DefaultDirName={pf}\Borderless Gaming
 DefaultGroupName=Borderless Gaming
 OutputDir=./
 DisableReadyMemo=yes
 DisableReadyPage=yes
-SetupIconFile=../BorderlessGaming.ico
+SetupIconFile=../BorderlessGaming_new.ico
 Compression=lzma/ultra64
 SolidCompression=yes
 LicenseFile=../LICENSE
@@ -18,15 +18,15 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=8.3
+AppVersion=8.4
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=8.3.33015.555
+VersionInfoVersion=8.4.33315.1328
 ; Other version info
-OutputBaseFilename=BorderlessGaming_8.3.33015.555__setup
+OutputBaseFilename=BorderlessGaming_8.4__setup
 
 
 ; Shown in the setup program during install only
-AppVerName=Borderless Gaming v{param:AppVersion}
+AppVerName=Borderless Gaming v8.4
 
 ; Shown only in Programs & Features
 AppContact=Borderless Gaming on Github
@@ -36,21 +36,21 @@ AppSupportURL=https://github.com/Codeusa/Borderless-Gaming/issues
 AppUpdatesURL=https://github.com/Codeusa/Borderless-Gaming/releases/latest
 UninstallDisplayName=Borderless Gaming
 ; 691 KB as initial install
-UninstallDisplaySize=720021
+UninstallDisplaySize=929008
 UninstallDisplayIcon={app}\BorderlessGaming.exe
 
 
 [Messages]
-BeveledLabel=Borderless Gaming {ini:Borderless Gaming.ini,Setup,Version} Setup
+BeveledLabel=Borderless Gaming 8.4 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
 
 [Files]
-Source: ../bin/Release/BorderlessGaming.exe; DestDir: {app}; Flags: ignoreversion
-Source: ../bin/Release/Interop.IWshRuntimeLibrary.dll; DestDir: {app}
-Source: ../bin/Release/Microsoft.Threading.Tasks.dll; DestDir: {app}
-Source: ../bin/Release/Newtonsoft.Json.dll; DestDir: {app}
+Source: ../bin/Standalone_User/Release/BorderlessGaming.exe; DestDir: {app}; Flags: ignoreversion
+Source: ../bin/Standalone_User/Release/Interop.IWshRuntimeLibrary.dll; DestDir: {app}
+Source: ../bin/Standalone_User/Release/Microsoft.Threading.Tasks.dll; DestDir: {app}
+Source: ../bin/Standalone_User/Release/Newtonsoft.Json.dll; DestDir: {app}
 
 Source: ../LICENSE; DestName: License.txt; DestDir: {app}
 Source: ../README.md; DestName: Read Me.txt; DestDir: {app}

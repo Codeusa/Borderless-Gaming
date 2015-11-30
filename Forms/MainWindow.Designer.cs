@@ -35,8 +35,8 @@
             this.processContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextAddToFavs = new System.Windows.Forms.ToolStripMenuItem();
             this.byTheWindowTitleTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.byTheWindowTitleTextregexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.byTheProcessBinaryNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,9 +92,11 @@
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.fullApplicationRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.usageGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSupportUs = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -158,17 +160,17 @@
             resources.ApplyResources(this.byTheWindowTitleTextToolStripMenuItem, "byTheWindowTitleTextToolStripMenuItem");
             this.byTheWindowTitleTextToolStripMenuItem.Click += new System.EventHandler(this.byTheWindowTitleTextToolStripMenuItem_Click);
             // 
-            // byTheProcessBinaryNameToolStripMenuItem
-            // 
-            this.byTheProcessBinaryNameToolStripMenuItem.Name = "byTheProcessBinaryNameToolStripMenuItem";
-            resources.ApplyResources(this.byTheProcessBinaryNameToolStripMenuItem, "byTheProcessBinaryNameToolStripMenuItem");
-            this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
-            // 
             // byTheWindowTitleTextregexToolStripMenuItem
             // 
             this.byTheWindowTitleTextregexToolStripMenuItem.Name = "byTheWindowTitleTextregexToolStripMenuItem";
             resources.ApplyResources(this.byTheWindowTitleTextregexToolStripMenuItem, "byTheWindowTitleTextregexToolStripMenuItem");
             this.byTheWindowTitleTextregexToolStripMenuItem.Click += new System.EventHandler(this.byTheWindowTitleTextregexToolStripMenuItem_Click);
+            // 
+            // byTheProcessBinaryNameToolStripMenuItem
+            // 
+            this.byTheProcessBinaryNameToolStripMenuItem.Name = "byTheProcessBinaryNameToolStripMenuItem";
+            resources.ApplyResources(this.byTheProcessBinaryNameToolStripMenuItem, "byTheProcessBinaryNameToolStripMenuItem");
+            this.byTheProcessBinaryNameToolStripMenuItem.Click += new System.EventHandler(this.byTheProcessBinaryNameToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -223,7 +225,6 @@
             // 
             // mnuFavoritesContext
             // 
-            this.mnuFavoritesContext.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnuFavoritesContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fullScreenToolStripMenuItem,
             this.noSizeChangeToolStripMenuItem,
@@ -351,7 +352,6 @@
             // 
             // trayIconContextMenu
             // 
-            this.trayIconContextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.trayIconContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.toolStripMenuItem7,
@@ -553,13 +553,32 @@
             // toolStripInfo
             // 
             this.toolStripInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usageGuideToolStripMenuItem,
+            this.toolStripRegexReference,
+            this.toolStripMenuItem13,
             this.toolStripReportBug,
             this.toolStripSupportUs,
-            this.toolStripRegexReference,
             this.toolStripMenuItem2,
             this.toolStripAbout});
             this.toolStripInfo.Name = "toolStripInfo";
             resources.ApplyResources(this.toolStripInfo, "toolStripInfo");
+            // 
+            // usageGuideToolStripMenuItem
+            // 
+            this.usageGuideToolStripMenuItem.Name = "usageGuideToolStripMenuItem";
+            resources.ApplyResources(this.usageGuideToolStripMenuItem, "usageGuideToolStripMenuItem");
+            this.usageGuideToolStripMenuItem.Click += new System.EventHandler(this.usageGuideToolStripMenuItem_Click);
+            // 
+            // toolStripRegexReference
+            // 
+            this.toolStripRegexReference.Name = "toolStripRegexReference";
+            resources.ApplyResources(this.toolStripRegexReference, "toolStripRegexReference");
+            this.toolStripRegexReference.Click += new System.EventHandler(this.toolStripRegexReference_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            resources.ApplyResources(this.toolStripMenuItem13, "toolStripMenuItem13");
             // 
             // toolStripReportBug
             // 
@@ -572,12 +591,6 @@
             this.toolStripSupportUs.Name = "toolStripSupportUs";
             resources.ApplyResources(this.toolStripSupportUs, "toolStripSupportUs");
             this.toolStripSupportUs.Click += new System.EventHandler(this.toolStripSupportUs_Click);
-            // 
-            // toolStripRegexReference
-            // 
-            this.toolStripRegexReference.Name = "toolStripRegexReference";
-            resources.ApplyResources(this.toolStripRegexReference, "toolStripRegexReference");
-            this.toolStripRegexReference.Click += new System.EventHandler(this.toolStripRegexReference_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -734,5 +747,7 @@
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripCheckForUpdates;
+        private System.Windows.Forms.ToolStripMenuItem usageGuideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
     }
 }

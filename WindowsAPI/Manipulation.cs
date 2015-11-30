@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using BorderlessGaming.Forms;
 using BorderlessGaming.Common;
 using BorderlessGaming.Utilities;
+using BorderlessGaming.Steam;
 
 namespace BorderlessGaming.WindowsAPI
 {
@@ -187,6 +188,10 @@ namespace BorderlessGaming.WindowsAPI
                 processDetails.MadeBorderless = true;
                 processDetails.MadeBorderlessAttempts++;
             }
+		
+            if (Program.Steam_Loaded)
+                BorderlessGamingSteam.Achievement_Unlock(0);
+		
             return;
         }
 

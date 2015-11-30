@@ -143,6 +143,24 @@
   <metadata name="processContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>394, 23</value>
   </metadata>
+  <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 22</value>
+  </data>
+  <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
+    <value>... by the window title text</value>
+  </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 22</value>
+  </data>
+  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
+    <value>... by the window title text (regex)</value>
+  </data>
+  <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 22</value>
+  </data>
+  <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
+    <value>... by the process binary name</value>
+  </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
@@ -213,66 +231,6 @@
   <data name="&gt;&gt;lstProcesses.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
-  <data name="contextAddToFavs.Text" xml:space="preserve">
-    <value>Add to Favorites...</value>
-  </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
-  </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>... by the window title text</value>
-  </data>
-  <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
-  </data>
-  <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
-    <value>... by the process binary name</value>
-  </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 22</value>
-  </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
-    <value>... by the window title text (RegEx)</value>
-  </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
-    <value>... by the window title text (regex)</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 6</value>
-  </data>
-  <data name="contextBorderless.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
-  <data name="contextBorderless.Text" xml:space="preserve">
-    <value>Make Borderless</value>
-  </data>
-  <data name="contextBorderlessOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
-  <data name="contextBorderlessOn.Text" xml:space="preserve">
-    <value>Make Borderless on...</value>
-  </data>
-  <data name="setWindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
-  <data name="setWindowTitleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set Window Title</value>
-  </data>
-  <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 6</value>
-  </data>
-  <data name="hideThisProcessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
-  <data name="hideThisProcessToolStripMenuItem.Text" xml:space="preserve">
-    <value>Hide This Process</value>
-  </data>
   <data name="addSelectedItem.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -303,39 +261,6 @@
   <metadata name="mnuFavoritesContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>745, 17</value>
   </metadata>
-  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 242</value>
-  </data>
-  <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
-    <value>mnuFavoritesContext</value>
-  </data>
-  <data name="&gt;&gt;mnuFavoritesContext.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 21</value>
-  </data>
-  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 223</value>
-  </data>
-  <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Name" xml:space="preserve">
-    <value>lstFavorites</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lstFavorites.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 22</value>
   </data>
@@ -404,6 +329,39 @@
   </data>
   <data name="contextRemoveFromFavs.Text" xml:space="preserve">
     <value>Remove From Favorites</value>
+  </data>
+  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 242</value>
+  </data>
+  <data name="&gt;&gt;mnuFavoritesContext.Name" xml:space="preserve">
+    <value>mnuFavoritesContext</value>
+  </data>
+  <data name="&gt;&gt;mnuFavoritesContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lstFavorites.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lstFavorites.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 21</value>
+  </data>
+  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 223</value>
+  </data>
+  <data name="lstFavorites.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Name" xml:space="preserve">
+    <value>lstFavorites</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lstFavorites.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnRemoveFavorite.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 45</value>
@@ -492,8 +450,23 @@
   <metadata name="trayIconContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 19</value>
   </metadata>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 6</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit Borderless Gaming</value>
+  </data>
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 54</value>
+    <value>195, 76</value>
   </data>
   <data name="&gt;&gt;trayIconContextMenu.Name" xml:space="preserve">
     <value>trayIconContextMenu</value>
@@ -992,26 +965,11 @@
   <data name="trayIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show</value>
-  </data>
-  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exit Borderless Gaming</value>
-  </data>
   <metadata name="mnuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>520, 17</value>
   </metadata>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="toolStripRunOnStartup.Text" xml:space="preserve">
     <value>Run On Windows Startup</value>
@@ -1023,7 +981,7 @@
     <value>Check For Updates When Borderless Gaming Starts</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 6</value>
+    <value>338, 6</value>
   </data>
   <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
     <value>341, 22</value>
@@ -1038,49 +996,49 @@
     <value>Use Mouse Lock Hotkey       (Scroll Lock)</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
     <value>Use Mouse Hide Hotkey       (Win+Scroll Lock)</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 6</value>
+    <value>338, 6</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>Start Minimized To Tray</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>Close To Tray</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide Balloon Tips</value>
   </data>
   <data name="useSlowerWindowDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="useSlowerWindowDetectionToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Use Slower Window Detection</value>
   </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Text" xml:space="preserve">
     <value>View Full Process Details</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 6</value>
+    <value>338, 6</value>
   </data>
   <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 22</value>
+    <value>341, 22</value>
   </data>
   <data name="resToolStripMenuItem.Text" xml:space="preserve">
     <value>Restore All Hidden Applications</value>
@@ -1090,45 +1048,6 @@
   </data>
   <data name="toolStripOptions.Text" xml:space="preserve">
     <value>&amp;Options</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 27</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tools</value>
-  </data>
-  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 27</value>
-  </data>
-  <data name="toolStripInfo.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="mnuMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 31</value>
-  </data>
-  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 31</value>
-  </data>
-  <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="mnuMain.Text" xml:space="preserve">
-    <value>mnuMain</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
-    <value>mnuMain</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
@@ -1166,6 +1085,27 @@
   <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
     <value>Full Application Refresh</value>
   </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 27</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="usageGuideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="usageGuideToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usage Guide</value>
+  </data>
+  <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripRegexReference.Text" xml:space="preserve">
+    <value>Regex Reference</value>
+  </data>
+  <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 6</value>
+  </data>
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
@@ -1178,12 +1118,6 @@
   <data name="toolStripSupportUs.Text" xml:space="preserve">
     <value>Support Us</value>
   </data>
-  <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripRegexReference.Text" xml:space="preserve">
-    <value>Regex Reference</value>
-  </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
@@ -1193,11 +1127,83 @@
   <data name="toolStripAbout.Text" xml:space="preserve">
     <value>About...</value>
   </data>
+  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 27</value>
+  </data>
+  <data name="toolStripInfo.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="mnuMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 31</value>
+  </data>
+  <data name="mnuMain.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mnuMain.Text" xml:space="preserve">
+    <value>mnuMain</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Name" xml:space="preserve">
+    <value>mnuMain</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mnuMain.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="btnRestoreWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 129</value>
+  </data>
+  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
+  <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
+    <value>btnRestoreWindow</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 18</value>
+  </data>
+  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 229</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
     <value>flowLayoutPanel1</value>
@@ -1238,72 +1244,15 @@
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="processLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="favoritesLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lstProcesses" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lstFavorites" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="flowLayoutPanel1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Absolute,42,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
-    <value>btnRestoreWindow</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 18</value>
-  </data>
-  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 229</value>
-  </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnRestoreWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 129</value>
-  </data>
-  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
-  </data>
-  <data name="btnRestoreWindow.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Name" xml:space="preserve">
-    <value>btnRestoreWindow</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;btnRestoreWindow.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>885, 17</value>
   </metadata>
+  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="lblUpdateStatus.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 274</value>
   </data>
@@ -1327,12 +1276,6 @@
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 17</value>
-  </data>
-  <data name="lblUpdateStatus.Text" xml:space="preserve">
-    <value>Loading...</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1849,16 +1792,16 @@
   <data name="&gt;&gt;byTheWindowTitleTextToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Name" xml:space="preserve">
-    <value>byTheProcessBinaryNameToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Name" xml:space="preserve">
     <value>byTheWindowTitleTextregexToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;byTheWindowTitleTextregexToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Name" xml:space="preserve">
+    <value>byTheProcessBinaryNameToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;byTheProcessBinaryNameToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
@@ -2143,6 +2086,24 @@
   <data name="&gt;&gt;toolStripInfo.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;usageGuideToolStripMenuItem.Name" xml:space="preserve">
+    <value>usageGuideToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;usageGuideToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripRegexReference.Name" xml:space="preserve">
+    <value>toolStripRegexReference</value>
+  </data>
+  <data name="&gt;&gt;toolStripRegexReference.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem13.Name" xml:space="preserve">
+    <value>toolStripMenuItem13</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripReportBug.Name" xml:space="preserve">
     <value>toolStripReportBug</value>
   </data>
@@ -2153,12 +2114,6 @@
     <value>toolStripSupportUs</value>
   </data>
   <data name="&gt;&gt;toolStripSupportUs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripRegexReference.Name" xml:space="preserve">
-    <value>toolStripRegexReference</value>
-  </data>
-  <data name="&gt;&gt;toolStripRegexReference.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">

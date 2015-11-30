@@ -164,7 +164,7 @@ namespace BorderlessGaming
                 catch { } // swallow any exceptions in attempting to add new windows
 
                 // update window
-				window.lblUpdateStatus.Text = "Last updated " + DateTime.Now.ToString();
+				window.lblUpdateStatus.Text = "Right-click for more options.  Last updated " + DateTime.Now.ToString();
 			}
 		}
 
