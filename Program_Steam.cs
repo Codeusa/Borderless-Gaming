@@ -39,9 +39,6 @@ namespace BorderlessGaming
                 }
             }
 
-            if (AppEnvironment.SettingValue("CheckForUpdates", true))
-	            Tools.CheckForUpdates();
-
             // create the application data path, if necessary
             try
             {
