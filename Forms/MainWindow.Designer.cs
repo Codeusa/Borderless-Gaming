@@ -54,6 +54,7 @@
             this.adjustWindowBoundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.delayBorderlessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideMouseCursorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowsTaskbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeMenusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -234,6 +235,7 @@
             this.adjustWindowBoundsToolStripMenuItem,
             this.toolStripMenuItem4,
             this.alwaysOnTopToolStripMenuItem,
+            this.delayBorderlessToolStripMenuItem,
             this.hideMouseCursorToolStripMenuItem,
             this.hideWindowsTaskbarToolStripMenuItem,
             this.removeMenusToolStripMenuItem,
@@ -292,6 +294,13 @@
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
             resources.ApplyResources(this.alwaysOnTopToolStripMenuItem, "alwaysOnTopToolStripMenuItem");
             this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
+            //
+            // delayBorderlessToolStripMenuItem
+            //
+            this.delayBorderlessToolStripMenuItem.CheckOnClick = true;
+            this.delayBorderlessToolStripMenuItem.Name = "delayBorderlessToolStripMenuItem";
+            resources.ApplyResources(this.delayBorderlessToolStripMenuItem, "delayBorderlessToolStripMenuItem");
+            this.delayBorderlessToolStripMenuItem.Click += new System.EventHandler(this.delayBorderlessToolStripMenuItem_Click);
             // 
             // hideMouseCursorToolStripMenuItem
             // 
@@ -730,6 +739,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeMenusToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem delayBorderlessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleWindowsTaskbarVisibilityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setWindowTitleToolStripMenuItem;

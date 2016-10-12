@@ -201,26 +201,45 @@ namespace BorderlessGaming
 		/// <summary>
 		///     remove the menu, resize the window, remove border, and maximize
 		/// </summary>
-		public void RemoveBorder(ProcessDetails pd, Favorites.Favorite favDetails = null)
+		public void RemoveBorder(ProcessDetails pd, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
 		{
-			Manipulation.MakeWindowBorderless(pd, window, pd.WindowHandle, new Rectangle(), favDetails ?? _favorites.FromProcessDetails(pd));
+            if(favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
+            {
+                //Wait 10 seconds before removing the border.
+                Task task = new Task(() => RemoveBorder(pd, favDetails, true));
+                task.Wait(TimeSpan.FromSeconds(10));
+            }
+            Manipulation.MakeWindowBorderless(pd, window, pd.WindowHandle, new Rectangle(), favDetails ?? _favorites.FromProcessDetails(pd));
 		}
 
 		/// <summary>
 		///     remove the menu, resize the window, remove border, and maximize
 		/// </summary>
-		public void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorites.Favorite favDetails = null)
+		public void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
 		{
-			var pd = _processDetails.FromHandle(hWnd);
+            if (favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
+            {
+                //Wait 10 seconds before removing the border.
+                Task task = new Task(() => RemoveBorder_ToSpecificScreen(hWnd, screen, favDetails, true));
+                task.Wait(TimeSpan.FromSeconds(10));
+            }
+
+            var pd = _processDetails.FromHandle(hWnd);
 			Manipulation.MakeWindowBorderless(pd, window, hWnd, screen.Bounds, favDetails ?? _favorites.FromProcessDetails(pd));
 		}
 
 		/// <summary>
 		///     remove the menu, resize the window, remove border, and maximize
 		/// </summary>
-		public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null)
+		public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
 		{
-			var pd = _processDetails.FromHandle(hWnd);
+            if (favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
+            {
+                //Wait 10 seconds before removing the border.
+                Task task = new Task(() => RemoveBorder_ToSpecificRect(hWnd, targetFrame, favDetails, true));
+                task.Wait(TimeSpan.FromSeconds(10));
+            }
+            var pd = _processDetails.FromHandle(hWnd);
 			Manipulation.MakeWindowBorderless(pd, window, hWnd, targetFrame, favDetails ?? _favorites.FromProcessDetails(pd));
 		}
 

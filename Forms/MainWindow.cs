@@ -443,7 +443,7 @@ namespace BorderlessGaming.Forms
                 }
 			}
 		}
-        
+
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
             /*
@@ -708,6 +708,20 @@ namespace BorderlessGaming.Forms
             }
             
             this.RefreshFavoritesList(fav);
+        }
+
+        private void delayBorderlessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+
+            if (!controller.Favorites.CanRemove(fav.SearchText))
+                return;
+
+            controller.Favorites.Remove(fav);
+
+            fav.DelayBorderless = this.delayBorderlessToolStripMenuItem.Checked;
+            RefreshFavoritesList(fav);
+
         }
 
         /// <summary>
