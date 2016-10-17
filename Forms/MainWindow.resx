@@ -303,6 +303,12 @@
   <data name="alwaysOnTopToolStripMenuItem.Text" xml:space="preserve">
     <value>Always On Top</value>
   </data>
+  <data name="delayBorderlessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="delayBorderlessToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delay Borderless Window</value>
+  </data>
   <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 22</value>
   </data>

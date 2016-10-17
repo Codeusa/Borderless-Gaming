@@ -144,8 +144,10 @@ namespace BorderlessGaming.Common
 			public bool TopMost = false;
 			public bool HideWindowsTaskbar = false;
 			public bool HideMouseCursor = false;
+            public bool DelayBorderless = false;
 
-			public override string ToString() // so that the ListView control knows how to display this object to the user
+
+            public override string ToString() // so that the ListView control knows how to display this object to the user
 			{
 				try
 				{
@@ -164,6 +166,7 @@ namespace BorderlessGaming.Common
 					extra_details += ((this.RemoveMenus) ? " [NoMenu]" : "");
 					extra_details += ((this.HideWindowsTaskbar) ? " [NoTaskbar]" : "");
 					extra_details += ((this.HideMouseCursor) ? " [NoMouse]" : "");
+                    extra_details += ((this.DelayBorderless) ? " [Delay]" : "");
 
 					if (this.OffsetL != 0 || this.OffsetR != 0 || this.OffsetT != 0 || this.OffsetB != 0)
 						extra_details += " [" + this.OffsetL.ToString() + "L," + this.OffsetR.ToString() + "R," +
