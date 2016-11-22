@@ -87,7 +87,7 @@ namespace BorderlessGaming
 						}
 					}
 				}
-				Task.WaitAll(TaskEx.Delay(3000));
+				Task.WaitAll(Task.Delay(3000));
 			}
 		}
 
