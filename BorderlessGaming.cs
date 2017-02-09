@@ -157,7 +157,8 @@ namespace BorderlessGaming
                     {
                         if (_hiddenProcesses.IsHidden(pd.Proc.ProcessName))
                             return;
-                        if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id))
+                        if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id) ||
+                            !_processDetails.Select(p => p.WindowTitle).Contains(pd.WindowTitle))
                             _processDetails.Add(pd);
                     }, _processDetails.WindowPtrSet);
                 }
