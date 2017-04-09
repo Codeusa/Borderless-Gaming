@@ -18,15 +18,15 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=8.4
+AppVersion=9.0
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=8.4.33315.1328
+VersionInfoVersion=9.0.33315.1328
 ; Other version info
-OutputBaseFilename=BorderlessGaming_8.4__setup
+OutputBaseFilename=BorderlessGaming_9.0__setup
 
 
 ; Shown in the setup program during install only
-AppVerName=Borderless Gaming v8.4
+AppVerName=Borderless Gaming v9.0
 
 ; Shown only in Programs & Features
 AppContact=Borderless Gaming on Github
@@ -41,7 +41,7 @@ UninstallDisplayIcon={app}\BorderlessGaming.exe
 
 
 [Messages]
-BeveledLabel=Borderless Gaming 8.4 Setup
+BeveledLabel=Borderless Gaming 9.0 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
@@ -49,7 +49,6 @@ Name: english; MessagesFile: compiler:Default.isl
 [Files]
 Source: ../bin/Standalone_User/Release/BorderlessGaming.exe; DestDir: {app}; Flags: ignoreversion
 Source: ../bin/Standalone_User/Release/Interop.IWshRuntimeLibrary.dll; DestDir: {app}
-Source: ../bin/Standalone_User/Release/Microsoft.Threading.Tasks.dll; DestDir: {app}
 Source: ../bin/Standalone_User/Release/Newtonsoft.Json.dll; DestDir: {app}
 
 Source: ../LICENSE; DestName: License.txt; DestDir: {app}
