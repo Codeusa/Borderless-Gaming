@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 
 Installer/*setup.exe
+.vs/

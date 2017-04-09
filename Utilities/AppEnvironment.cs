@@ -11,7 +11,7 @@ namespace BorderlessGaming.Utilities
                 try
                 {
                     // No version!
-                    return System.Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + System.Windows.Forms.Application.CompanyName + "\\" + System.Windows.Forms.Application.ProductName;
+                    return Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + System.Windows.Forms.Application.CompanyName + "\\" + System.Windows.Forms.Application.ProductName;
                 }
                 catch { }
 
@@ -32,14 +32,14 @@ namespace BorderlessGaming.Utilities
                         try
                         {
                             // Current working folder
-                            return System.Environment.CurrentDirectory;
+                            return Environment.CurrentDirectory;
                         }
                         catch
                         {
                             try
                             {
                                 // Desktop
-                                return System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                                return Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                             }
                             catch
                             {
@@ -78,7 +78,7 @@ namespace BorderlessGaming.Utilities
 
             try
             {
-                sVal = AppEnvironment.RegistryKey.GetValue(sKeyName, string.Empty).ToString();
+                sVal = RegistryKey.GetValue(sKeyName, string.Empty).ToString();
             }
             catch { }
 
@@ -91,11 +91,11 @@ namespace BorderlessGaming.Utilities
             {
                 if ((oKeyValue == null) || (oKeyValue.ToString() == ""))
                 {
-                    AppEnvironment.RegistryKey.SetValue(sKeyName, string.Empty, Microsoft.Win32.RegistryValueKind.String);
-                    AppEnvironment.RegistryKey.DeleteValue(sKeyName);
+                    RegistryKey.SetValue(sKeyName, string.Empty, Microsoft.Win32.RegistryValueKind.String);
+                    RegistryKey.DeleteValue(sKeyName);
                 }
                 else
-                    AppEnvironment.RegistryKey.SetValue(sKeyName, oKeyValue.ToString());
+                    RegistryKey.SetValue(sKeyName, oKeyValue.ToString());
 
                 return;
             }
@@ -125,14 +125,14 @@ namespace BorderlessGaming.Utilities
         {
             try
             {
-                string s = AppEnvironment.Setting(sAppKey);
+                string s = Setting(sAppKey);
 
                 if (string.IsNullOrEmpty(s))
                     return bDefault;
 
                 bool bRet = false;
 
-                if (bool.TryParse(AppEnvironment.Setting(sAppKey.Trim()).Trim().ToLower(), out bRet))
+                if (bool.TryParse(Setting(sAppKey.Trim()).Trim().ToLower(), out bRet))
                     return bRet;
             }
             catch { }

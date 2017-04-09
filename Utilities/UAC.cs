@@ -18,7 +18,7 @@ namespace BorderlessGaming.Utilities
             {
                 try
                 {
-                    return UAC.IsElevated();
+                    return IsElevated();
                 }
                 catch { }
 
@@ -239,7 +239,7 @@ namespace BorderlessGaming.Utilities
 
         internal SafeTokenHandle(IntPtr handle) : base(true)
         {
-            base.SetHandle(handle);
+            SetHandle(handle);
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -247,7 +247,7 @@ namespace BorderlessGaming.Utilities
 
         protected override bool ReleaseHandle()
         {
-            return CloseHandle(base.handle);
+            return CloseHandle(handle);
         }
     }
 

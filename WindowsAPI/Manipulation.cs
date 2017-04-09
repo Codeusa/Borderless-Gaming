@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
 using BorderlessGaming.Common;
@@ -22,7 +23,7 @@ namespace BorderlessGaming.WindowsAPI
         private class OriginalScreenInfo
         {
             public Screen screen;
-            public Native.RECT workarea; // with Windows taskbar
+            public Native.Rect workarea; // with Windows taskbar
         }
 
         // Windows taskbar hidden data
@@ -34,7 +35,7 @@ namespace BorderlessGaming.WindowsAPI
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public static void MakeWindowBorderless(ProcessDetails processDetails, Forms.MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
+        public static void MakeWindowBorderless(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
@@ -52,17 +53,17 @@ namespace BorderlessGaming.WindowsAPI
                 targetFrame = Screen.FromHandle(targetWindow).Bounds;
 
             // Get window styles
-            WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(targetWindow, WindowLongIndex.Style);
-            WindowStyleFlags styleCurrentWindow_extended = Native.GetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle);
+            var styleCurrentWindowStandard = Native.GetWindowLong(targetWindow, WindowLongIndex.Style);
+            var styleCurrentWindowExtended = Native.GetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle);
 
             // Compute new styles (XOR of the inverse of all the bits to filter)
-            WindowStyleFlags styleNewWindow_standard =
+            var styleNewWindowStandard =
             (
-                styleCurrentWindow_standard
+                styleCurrentWindowStandard
              & ~(
                     WindowStyleFlags.Caption // composite of Border and DialogFrame
-             //   | WindowStyleFlags.Border
-             //   | WindowStyleFlags.DialogFrame                  
+               // | WindowStyleFlags.Border
+               //| WindowStyleFlags.DialogFrame                  
                   | WindowStyleFlags.ThickFrame
                   | WindowStyleFlags.SystemMenu
                   | WindowStyleFlags.MaximizeBox // same as TabStop
@@ -70,9 +71,9 @@ namespace BorderlessGaming.WindowsAPI
                 )
             );
 
-            WindowStyleFlags styleNewWindow_extended = 
+            var styleNewWindowExtended = 
             (
-                styleCurrentWindow_extended
+                styleCurrentWindowExtended
              & ~(
                     WindowStyleFlags.ExtendedDlgModalFrame
                   | WindowStyleFlags.ExtendedComposited
@@ -89,10 +90,9 @@ namespace BorderlessGaming.WindowsAPI
             if (processDetails != null)
             {
                 // Save original details on this window so that we have a chance at undoing the process
-                processDetails.OriginalStyleFlags_Standard = styleCurrentWindow_standard;
-                processDetails.OriginalStyleFlags_Extended = styleCurrentWindow_extended;
-                Native.RECT rect_temp = new Native.RECT();
-                Native.GetWindowRect(processDetails.WindowHandle, out rect_temp);
+                processDetails.OriginalStyleFlags_Standard = styleCurrentWindowStandard;
+                processDetails.OriginalStyleFlags_Extended = styleCurrentWindowExtended;
+                Native.GetWindowRect(processDetails.WindowHandle, out Native.Rect rect_temp);
                 processDetails.OriginalLocation = new Rectangle(rect_temp.Left, rect_temp.Top, rect_temp.Right - rect_temp.Left, rect_temp.Bottom - rect_temp.Top);
             }
 
@@ -119,16 +119,14 @@ namespace BorderlessGaming.WindowsAPI
                 if (frmMain.WindowState == FormWindowState.Minimized)
                     frmMain.WindowState = FormWindowState.Normal;
 
-                Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.False);
+                ToggleWindowsTaskbarVisibility(Tools.Boolstate.False);
             }
 
             // auto-hide the mouse cursor
             if (favDetails.HideMouseCursor)
-                Manipulation.ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
+                ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
 
-            // update window styles
-            Native.SetWindowLong(targetWindow, WindowLongIndex.Style,         styleNewWindow_standard);
-            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindow_extended);
+            
 
             // update window position
             if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
@@ -182,6 +180,11 @@ namespace BorderlessGaming.WindowsAPI
                 );
             }
 
+            Thread.Sleep(1000);
+            // update window styles
+            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
+            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
+
             // Make a note that we attempted to make the window borderless
             if (processDetails != null)
             {
@@ -200,10 +203,10 @@ namespace BorderlessGaming.WindowsAPI
             if ((pd == null) || (!pd.MadeBorderless) || (pd.OriginalStyleFlags_Standard == 0))
                 return;
 
-            WindowsAPI.Native.SetWindowLong(pd.WindowHandle, WindowsAPI.WindowLongIndex.Style, pd.OriginalStyleFlags_Standard);
-            WindowsAPI.Native.SetWindowLong(pd.WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle, pd.OriginalStyleFlags_Extended);
-            WindowsAPI.Native.SetWindowPos(pd.WindowHandle, IntPtr.Zero, pd.OriginalLocation.X, pd.OriginalLocation.Y, pd.OriginalLocation.Width, pd.OriginalLocation.Height, WindowsAPI.SetWindowPosFlags.ShowWindow | WindowsAPI.SetWindowPosFlags.NoZOrder);
-            WindowsAPI.Native.SetWindowPos(pd.WindowHandle, WindowsAPI.Native.HWND_NOTTOPMOST, 0, 0, 0, 0, WindowsAPI.SetWindowPosFlags.NoActivate | WindowsAPI.SetWindowPosFlags.NoMove | WindowsAPI.SetWindowPosFlags.NoSize);
+            Native.SetWindowLong(pd.WindowHandle, WindowLongIndex.Style, pd.OriginalStyleFlags_Standard);
+            Native.SetWindowLong(pd.WindowHandle, WindowLongIndex.ExtendedStyle, pd.OriginalStyleFlags_Extended);
+            Native.SetWindowPos(pd.WindowHandle, IntPtr.Zero, pd.OriginalLocation.X, pd.OriginalLocation.Y, pd.OriginalLocation.Width, pd.OriginalLocation.Height, SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoZOrder);
+            Native.SetWindowPos(pd.WindowHandle, Native.HWND_NOTTOPMOST, 0, 0, 0, 0, SetWindowPosFlags.NoActivate | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize);
             pd.MadeBorderless = false;
             pd.MadeBorderlessAttempts = 0;
         }
@@ -235,12 +238,12 @@ namespace BorderlessGaming.WindowsAPI
                     {
                         OriginalScreenInfo osi = new OriginalScreenInfo();
                         osi.screen = screen;
-                        osi.workarea = new Native.RECT();
+                        osi.workarea = new Native.Rect();
                         osi.workarea.Left = screen.WorkingArea.Left;
                         osi.workarea.Top = screen.WorkingArea.Top;
                         osi.workarea.Right = screen.WorkingArea.Right;
                         osi.workarea.Bottom = screen.WorkingArea.Bottom;
-                        Manipulation.OriginalScreens.Add(osi);
+                        OriginalScreens.Add(osi);
                     }
                 }
 
@@ -248,29 +251,29 @@ namespace BorderlessGaming.WindowsAPI
                 Native.ShowWindow(hTaskBar, (WantToMakeWindowsTaskbarVisible) ? WindowShowStyle.ShowNoActivate : WindowShowStyle.Hide);
 
                 // Keep track of the taskbar state so we don't let the user accidentally close Borderless Gaming
-                Manipulation.WindowsTaskbarIsHidden = !WantToMakeWindowsTaskbarVisible;
+                WindowsTaskbarIsHidden = !WantToMakeWindowsTaskbarVisible;
 
                 if (WantToMakeWindowsTaskbarVisible)
                 {
                     // If we're showing the taskbar, let's restore the original screen desktop work areas...
-                    foreach (OriginalScreenInfo osi in Manipulation.OriginalScreens)
+                    foreach (OriginalScreenInfo osi in OriginalScreens)
                         Native.SystemParametersInfo(SPI.SPI_SETWORKAREA, 0, ref osi.workarea, SPIF.SPIF_SENDCHANGE);
 
                     // ...and then forget them (we don't need them anymore)
-                    Manipulation.OriginalScreens.Clear();
+                    OriginalScreens.Clear();
 
                     // And we need to redraw the system tray in case tray icons from other applications did something while the
                     // taskbar was hidden.  Simulating mouse movement over the system tray seems to be the best way to get this
                     // done.
-                    Manipulation.RedrawWindowsSystemTrayArea();
+                    RedrawWindowsSystemTrayArea();
                 }
                 else
                 {
                     // If we're hiding the taskbar, let's set the screen desktop work area over the entire screen so that 
                     // maximizing windows works as expected.
-                    foreach (OriginalScreenInfo osi in Manipulation.OriginalScreens)
+                    foreach (OriginalScreenInfo osi in OriginalScreens)
                     {
-                        Native.RECT rect = new Native.RECT();
+                        Native.Rect rect = new Native.Rect();
                         rect.Left = osi.screen.Bounds.Left;
                         rect.Top = osi.screen.Bounds.Top;
                         rect.Right = osi.screen.Bounds.Right;
@@ -285,18 +288,18 @@ namespace BorderlessGaming.WindowsAPI
             catch { }  
         }
 
-        public static void ToggleMouseCursorVisibility(Forms.MainWindow frmMain, Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
+        public static void ToggleMouseCursorVisibility(MainWindow frmMain, Tools.Boolstate forced = Tools.Boolstate.Indeterminate)
         {
-            if (((forced == Tools.Boolstate.True) && (!Manipulation.MouseCursorIsHidden)) || ((forced == Tools.Boolstate.False) && Manipulation.MouseCursorIsHidden))
+            if (((forced == Tools.Boolstate.True) && (!MouseCursorIsHidden)) || ((forced == Tools.Boolstate.False) && MouseCursorIsHidden))
                 return;
 
-            if ((forced == Tools.Boolstate.True) || Manipulation.MouseCursorIsHidden)
+            if ((forced == Tools.Boolstate.True) || MouseCursorIsHidden)
             {
-                Native.SetSystemCursor(Manipulation.hCursorOriginal, OCR_SYSTEM_CURSORS.OCR_NORMAL);
-                Native.DestroyIcon(Manipulation.hCursorOriginal);
-                Manipulation.hCursorOriginal = IntPtr.Zero;
+                Native.SetSystemCursor(hCursorOriginal, OCR_SYSTEM_CURSORS.OCR_NORMAL);
+                Native.DestroyIcon(hCursorOriginal);
+                hCursorOriginal = IntPtr.Zero;
 
-                Manipulation.MouseCursorIsHidden = false;
+                MouseCursorIsHidden = false;
             }
             else
             {                
@@ -304,9 +307,9 @@ namespace BorderlessGaming.WindowsAPI
 
                 try
                 {
-                    Manipulation.hCursorOriginal = frmMain.Cursor.CopyHandle();
+                    hCursorOriginal = frmMain.Cursor.CopyHandle();
 
-                    if (Manipulation.curInvisibleCursor == null)
+                    if (curInvisibleCursor == null)
                     {
                         // Can't load from a memory stream because the constructor new Cursor() does not accept animated or non-monochrome cursors
                         fileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".cur";
@@ -322,12 +325,12 @@ namespace BorderlessGaming.WindowsAPI
                             fileStream.Close();
                         }
 
-                        Manipulation.curInvisibleCursor = new Cursor(Native.LoadCursorFromFile(fileName));
+                        curInvisibleCursor = new Cursor(Native.LoadCursorFromFile(fileName));
                     }
 
-                    Native.SetSystemCursor(Manipulation.curInvisibleCursor.CopyHandle(), OCR_SYSTEM_CURSORS.OCR_NORMAL);
+                    Native.SetSystemCursor(curInvisibleCursor.CopyHandle(), OCR_SYSTEM_CURSORS.OCR_NORMAL);
 
-                    Manipulation.MouseCursorIsHidden = true;
+                    MouseCursorIsHidden = true;
                 }
                 catch
                 {
@@ -375,7 +378,7 @@ namespace BorderlessGaming.WindowsAPI
                     return;
 
                 // Get the notification bounds
-                Native.RECT rect = new Native.RECT();
+                Native.Rect rect = new Native.Rect();
                 Native.GetClientRect(hNotificationArea, ref rect);
 
                 // Wiggle the mouse over the notification area

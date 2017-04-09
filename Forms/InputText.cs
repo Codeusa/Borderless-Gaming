@@ -12,18 +12,18 @@ namespace BorderlessGaming.Forms
 
         private void frmInputText_Shown(object sender, EventArgs e)
         {
-            this.txtInput.Focus();
+            txtInput.Focus();
         }
 
         public string Title
         {
             get
             {
-                return this.Text.Trim();
+                return Text.Trim();
             }
             set
             {
-                this.Text = value.Trim();
+                Text = value.Trim();
             }
         }
 
@@ -31,11 +31,11 @@ namespace BorderlessGaming.Forms
         {
             get
             {
-                return this.txtInput.Text.Trim();
+                return txtInput.Text.Trim();
             }
             set
             {
-                this.txtInput.Text = value.Trim();
+                txtInput.Text = value.Trim();
             }
         }
 
@@ -43,11 +43,11 @@ namespace BorderlessGaming.Forms
         {
             get
             {
-                return this.lblInstructions.Text.Trim();
+                return lblInstructions.Text.Trim();
             }
             set
             {
-                this.lblInstructions.Text = value.Trim();
+                lblInstructions.Text = value.Trim();
             }
         }
     }

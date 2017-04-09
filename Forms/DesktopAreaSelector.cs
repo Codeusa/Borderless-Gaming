@@ -66,11 +66,11 @@ namespace BorderlessGaming.Forms
         public DesktopAreaSelector()
         {
             InitializeComponent();
-            this.MouseDown += new MouseEventHandler(OnMouseClick);
-            this.MouseDoubleClick += new MouseEventHandler(OnMouseDoubleClick);
-            this.MouseUp += new MouseEventHandler(OnMouseUp);
-            this.MouseMove += new MouseEventHandler(OnMouseMove);
-            this.KeyUp += new KeyEventHandler(OnKeyPress);
+            MouseDown += new MouseEventHandler(OnMouseClick);
+            MouseDoubleClick += new MouseEventHandler(OnMouseDoubleClick);
+            MouseUp += new MouseEventHandler(OnMouseUp);
+            MouseMove += new MouseEventHandler(OnMouseMove);
+            KeyUp += new KeyEventHandler(OnKeyPress);
         }
         
         private void DesktopAreaSelector_Load(object sender, EventArgs e)
@@ -80,10 +80,10 @@ namespace BorderlessGaming.Forms
             foreach (Screen screen in Screen.AllScreens)
                 rect = Tools.GetContainingRectangle(rect, screen.WorkingArea);
 
-            this.Location = new Point(rect.Left, rect.Top);
-            this.Size = new Size(rect.Width, rect.Height);
+            Location = new Point(rect.Left, rect.Top);
+            Size = new Size(rect.Width, rect.Height);
 
-            this.grfxDrawingSurface = this.CreateGraphics();
+            grfxDrawingSurface = CreateGraphics();
         }
 
         private void DesktopAreaSelector_Shown(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace BorderlessGaming.Forms
 
         private Point TranslateRealPointToDrawn(Point p)
         {
-            return new Point(p.X - this.Location.X, p.Y - this.Location.Y);
+            return new Point(p.X - Location.X, p.Y - Location.Y);
         }
 
         /*
@@ -123,8 +123,8 @@ namespace BorderlessGaming.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                this.Close();
+                DialogResult = DialogResult.Cancel;
+                Close();
             }
 
         }
@@ -139,11 +139,11 @@ namespace BorderlessGaming.Forms
         {
 
             if (RectangleDrawn && CursorPosition() == CursPos.WithinSelectionArea)
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                DialogResult = DialogResult.OK;
             else
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
 
-            this.Close();
+            Close();
         }
 
         private void OnMouseClick(object sender, MouseEventArgs e)
@@ -161,8 +161,8 @@ namespace BorderlessGaming.Forms
 
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
-                    DragClickRelative.X = this.RealCursorPosition.X;
-                    DragClickRelative.Y = this.RealCursorPosition.Y;
+                    DragClickRelative.X = RealCursorPosition.X;
+                    DragClickRelative.Y = RealCursorPosition.Y;
                     DragTopLeft = CurrentTopLeft;
                 }
 
@@ -198,53 +198,53 @@ namespace BorderlessGaming.Forms
 
         private CursPos CursorPosition()
         {
-            if (((this.RealCursorPosition.X > CurrentTopLeft.X - 10 && this.RealCursorPosition.X < CurrentTopLeft.X + 10)) && ((this.RealCursorPosition.Y > CurrentTopLeft.Y + 10) && (this.RealCursorPosition.Y < CurrentBottomRight.Y - 10)))
+            if (((RealCursorPosition.X > CurrentTopLeft.X - 10 && RealCursorPosition.X < CurrentTopLeft.X + 10)) && ((RealCursorPosition.Y > CurrentTopLeft.Y + 10) && (RealCursorPosition.Y < CurrentBottomRight.Y - 10)))
             {
-                this.Cursor = Cursors.SizeWE;
+                Cursor = Cursors.SizeWE;
                 return CursPos.LeftLine;
             }
-            if (((this.RealCursorPosition.X >= CurrentTopLeft.X - 10 && this.RealCursorPosition.X <= CurrentTopLeft.X + 10)) && ((this.RealCursorPosition.Y >= CurrentTopLeft.Y - 10) && (this.RealCursorPosition.Y <= CurrentTopLeft.Y + 10)))
+            if (((RealCursorPosition.X >= CurrentTopLeft.X - 10 && RealCursorPosition.X <= CurrentTopLeft.X + 10)) && ((RealCursorPosition.Y >= CurrentTopLeft.Y - 10) && (RealCursorPosition.Y <= CurrentTopLeft.Y + 10)))
             {
-                this.Cursor = Cursors.SizeNWSE;
+                Cursor = Cursors.SizeNWSE;
                 return CursPos.TopLeft;
             }
-            if (((this.RealCursorPosition.X >= CurrentTopLeft.X - 10 && this.RealCursorPosition.X <= CurrentTopLeft.X + 10)) && ((this.RealCursorPosition.Y >= CurrentBottomRight.Y - 10) && (this.RealCursorPosition.Y <= CurrentBottomRight.Y + 10)))
+            if (((RealCursorPosition.X >= CurrentTopLeft.X - 10 && RealCursorPosition.X <= CurrentTopLeft.X + 10)) && ((RealCursorPosition.Y >= CurrentBottomRight.Y - 10) && (RealCursorPosition.Y <= CurrentBottomRight.Y + 10)))
             {
-                this.Cursor = Cursors.SizeNESW;
+                Cursor = Cursors.SizeNESW;
                 return CursPos.BottomLeft;
             }
-            if (((this.RealCursorPosition.X > CurrentBottomRight.X - 10 && this.RealCursorPosition.X < CurrentBottomRight.X + 10)) && ((this.RealCursorPosition.Y > CurrentTopLeft.Y + 10) && (this.RealCursorPosition.Y < CurrentBottomRight.Y - 10)))
+            if (((RealCursorPosition.X > CurrentBottomRight.X - 10 && RealCursorPosition.X < CurrentBottomRight.X + 10)) && ((RealCursorPosition.Y > CurrentTopLeft.Y + 10) && (RealCursorPosition.Y < CurrentBottomRight.Y - 10)))
             {
-                this.Cursor = Cursors.SizeWE;
+                Cursor = Cursors.SizeWE;
                 return CursPos.RightLine;
             }
-            if (((this.RealCursorPosition.X >= CurrentBottomRight.X - 10 && this.RealCursorPosition.X <= CurrentBottomRight.X + 10)) && ((this.RealCursorPosition.Y >= CurrentTopLeft.Y - 10) && (this.RealCursorPosition.Y <= CurrentTopLeft.Y + 10)))
+            if (((RealCursorPosition.X >= CurrentBottomRight.X - 10 && RealCursorPosition.X <= CurrentBottomRight.X + 10)) && ((RealCursorPosition.Y >= CurrentTopLeft.Y - 10) && (RealCursorPosition.Y <= CurrentTopLeft.Y + 10)))
             {
-                this.Cursor = Cursors.SizeNESW;
+                Cursor = Cursors.SizeNESW;
                 return CursPos.TopRight;
             }
-            if (((this.RealCursorPosition.X >= CurrentBottomRight.X - 10 && this.RealCursorPosition.X <= CurrentBottomRight.X + 10)) && ((this.RealCursorPosition.Y >= CurrentBottomRight.Y - 10) && (this.RealCursorPosition.Y <= CurrentBottomRight.Y + 10)))
+            if (((RealCursorPosition.X >= CurrentBottomRight.X - 10 && RealCursorPosition.X <= CurrentBottomRight.X + 10)) && ((RealCursorPosition.Y >= CurrentBottomRight.Y - 10) && (RealCursorPosition.Y <= CurrentBottomRight.Y + 10)))
             {
-                this.Cursor = Cursors.SizeNWSE;
+                Cursor = Cursors.SizeNWSE;
                 return CursPos.BottomRight;
             }
-            if (((this.RealCursorPosition.Y > CurrentTopLeft.Y - 10) && (this.RealCursorPosition.Y < CurrentTopLeft.Y + 10)) && ((this.RealCursorPosition.X > CurrentTopLeft.X + 10 && this.RealCursorPosition.X < CurrentBottomRight.X - 10)))
+            if (((RealCursorPosition.Y > CurrentTopLeft.Y - 10) && (RealCursorPosition.Y < CurrentTopLeft.Y + 10)) && ((RealCursorPosition.X > CurrentTopLeft.X + 10 && RealCursorPosition.X < CurrentBottomRight.X - 10)))
             {
-                this.Cursor = Cursors.SizeNS;
+                Cursor = Cursors.SizeNS;
                 return CursPos.TopLine;
             }
-            if (((this.RealCursorPosition.Y > CurrentBottomRight.Y - 10) && (this.RealCursorPosition.Y < CurrentBottomRight.Y + 10)) && ((this.RealCursorPosition.X > CurrentTopLeft.X + 10 && this.RealCursorPosition.X < CurrentBottomRight.X - 10)))
+            if (((RealCursorPosition.Y > CurrentBottomRight.Y - 10) && (RealCursorPosition.Y < CurrentBottomRight.Y + 10)) && ((RealCursorPosition.X > CurrentTopLeft.X + 10 && RealCursorPosition.X < CurrentBottomRight.X - 10)))
             {
-                this.Cursor = Cursors.SizeNS;
+                Cursor = Cursors.SizeNS;
                 return CursPos.BottomLine;
             }
-            if ((this.RealCursorPosition.X >= CurrentTopLeft.X + 10 && this.RealCursorPosition.X <= CurrentBottomRight.X - 10) && (this.RealCursorPosition.Y >= CurrentTopLeft.Y + 10 && this.RealCursorPosition.Y <= CurrentBottomRight.Y - 10))
+            if ((RealCursorPosition.X >= CurrentTopLeft.X + 10 && RealCursorPosition.X <= CurrentBottomRight.X - 10) && (RealCursorPosition.Y >= CurrentTopLeft.Y + 10 && RealCursorPosition.Y <= CurrentBottomRight.Y - 10))
             {
-                this.Cursor = Cursors.Hand;
+                Cursor = Cursors.Hand;
                 return CursPos.WithinSelectionArea;
             }
 
-            this.Cursor = Cursors.No;
+            Cursor = Cursors.No;
             return CursPos.OutsideSelectionArea;
         }
 
@@ -298,23 +298,23 @@ namespace BorderlessGaming.Forms
         {
             if (CurrentAction == ClickAction.LeftSizing)
             {
-                if (this.RealCursorPosition.X < CurrentBottomRight.X - 10)
+                if (RealCursorPosition.X < CurrentBottomRight.X - 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentTopLeft.X = this.RealCursorPosition.X;
+                    CurrentTopLeft.X = RealCursorPosition.X;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
                 }
             }
             if (CurrentAction == ClickAction.TopLeftSizing)
             {
-                if (this.RealCursorPosition.X < CurrentBottomRight.X - 10 && this.RealCursorPosition.Y < CurrentBottomRight.Y - 10)
+                if (RealCursorPosition.X < CurrentBottomRight.X - 10 && RealCursorPosition.Y < CurrentBottomRight.Y - 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentTopLeft.X = this.RealCursorPosition.X;
-                    CurrentTopLeft.Y = this.RealCursorPosition.Y;
+                    CurrentTopLeft.X = RealCursorPosition.X;
+                    CurrentTopLeft.Y = RealCursorPosition.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
@@ -322,12 +322,12 @@ namespace BorderlessGaming.Forms
             }
             if (CurrentAction == ClickAction.BottomLeftSizing)
             {
-                if (this.RealCursorPosition.X < CurrentBottomRight.X - 10 && this.RealCursorPosition.Y > CurrentTopLeft.Y + 10)
+                if (RealCursorPosition.X < CurrentBottomRight.X - 10 && RealCursorPosition.Y > CurrentTopLeft.Y + 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentTopLeft.X = this.RealCursorPosition.X;
-                    CurrentBottomRight.Y = this.RealCursorPosition.Y;
+                    CurrentTopLeft.X = RealCursorPosition.X;
+                    CurrentBottomRight.Y = RealCursorPosition.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
@@ -335,23 +335,23 @@ namespace BorderlessGaming.Forms
             }
             if (CurrentAction == ClickAction.RightSizing)
             {
-                if (this.RealCursorPosition.X > CurrentTopLeft.X + 10)
+                if (RealCursorPosition.X > CurrentTopLeft.X + 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentBottomRight.X = this.RealCursorPosition.X;
+                    CurrentBottomRight.X = RealCursorPosition.X;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
                 }
             }
             if (CurrentAction == ClickAction.TopRightSizing)
             {
-                if (this.RealCursorPosition.X > CurrentTopLeft.X + 10 && this.RealCursorPosition.Y < CurrentBottomRight.Y - 10)
+                if (RealCursorPosition.X > CurrentTopLeft.X + 10 && RealCursorPosition.Y < CurrentBottomRight.Y - 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentBottomRight.X = this.RealCursorPosition.X;
-                    CurrentTopLeft.Y = this.RealCursorPosition.Y;
+                    CurrentBottomRight.X = RealCursorPosition.X;
+                    CurrentTopLeft.Y = RealCursorPosition.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
@@ -359,12 +359,12 @@ namespace BorderlessGaming.Forms
             }
             if (CurrentAction == ClickAction.BottomRightSizing)
             {
-                if (this.RealCursorPosition.X > CurrentTopLeft.X + 10 && this.RealCursorPosition.Y > CurrentTopLeft.Y + 10)
+                if (RealCursorPosition.X > CurrentTopLeft.X + 10 && RealCursorPosition.Y > CurrentTopLeft.Y + 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentBottomRight.X = this.RealCursorPosition.X;
-                    CurrentBottomRight.Y = this.RealCursorPosition.Y;
+                    CurrentBottomRight.X = RealCursorPosition.X;
+                    CurrentBottomRight.Y = RealCursorPosition.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
@@ -372,22 +372,22 @@ namespace BorderlessGaming.Forms
             }
             if (CurrentAction == ClickAction.TopSizing)
             {
-                if (this.RealCursorPosition.Y < CurrentBottomRight.Y - 10)
+                if (RealCursorPosition.Y < CurrentBottomRight.Y - 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentTopLeft.Y = this.RealCursorPosition.Y;
+                    CurrentTopLeft.Y = RealCursorPosition.Y;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
                 }
             }
             if (CurrentAction == ClickAction.BottomSizing)
             {
-                if (this.RealCursorPosition.Y > CurrentTopLeft.Y + 10)
+                if (RealCursorPosition.Y > CurrentTopLeft.Y + 10)
                 {
                     //Erase the previous rectangle
                     grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
-                    CurrentBottomRight.Y = this.RealCursorPosition.Y;
+                    CurrentBottomRight.Y = RealCursorPosition.Y;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
                     grfxDrawingSurface.DrawRectangle(MyPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
                 }
@@ -401,8 +401,8 @@ namespace BorderlessGaming.Forms
             //Erase the previous rectangle
             grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, RectangleWidth, RectangleHeight);
 
-            CurrentTopLeft.X = this.DragTopLeft.X + (this.RealCursorPosition.X - DragClickRelative.X);
-            CurrentTopLeft.Y = this.DragTopLeft.Y + (this.RealCursorPosition.Y - DragClickRelative.Y);
+            CurrentTopLeft.X = DragTopLeft.X + (RealCursorPosition.X - DragClickRelative.X);
+            CurrentTopLeft.Y = DragTopLeft.Y + (RealCursorPosition.Y - DragClickRelative.Y);
 
             CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
             CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
@@ -414,33 +414,33 @@ namespace BorderlessGaming.Forms
 
         private void DrawSelection()
         {
-            this.Cursor = Cursors.Arrow;
+            Cursor = Cursors.Arrow;
 
             //Erase the previous rectangle
             grfxDrawingSurface.DrawRectangle(EraserPen, TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentTopLeft).Y, TranslateRealPointToDrawn(CurrentBottomRight).X - TranslateRealPointToDrawn(CurrentTopLeft).X, TranslateRealPointToDrawn(CurrentBottomRight).Y - TranslateRealPointToDrawn(CurrentTopLeft).Y);
 
             //Calculate X Coordinates
-            if (this.RealCursorPosition.X < ClickPoint.X)
+            if (RealCursorPosition.X < ClickPoint.X)
             {
-                CurrentTopLeft.X = this.RealCursorPosition.X;
+                CurrentTopLeft.X = RealCursorPosition.X;
                 CurrentBottomRight.X = ClickPoint.X;
             }
             else
             {
                 CurrentTopLeft.X = ClickPoint.X;
-                CurrentBottomRight.X = this.RealCursorPosition.X;
+                CurrentBottomRight.X = RealCursorPosition.X;
             }
 
             //Calculate Y Coordinates
-            if (this.RealCursorPosition.Y < ClickPoint.Y)
+            if (RealCursorPosition.Y < ClickPoint.Y)
             {
-                CurrentTopLeft.Y = this.RealCursorPosition.Y;
+                CurrentTopLeft.Y = RealCursorPosition.Y;
                 CurrentBottomRight.Y = ClickPoint.Y;
             }
             else
             {
                 CurrentTopLeft.Y = ClickPoint.Y;
-                CurrentBottomRight.Y = this.RealCursorPosition.Y;
+                CurrentBottomRight.Y = RealCursorPosition.Y;
             }
 
             //Draw a new rectangle

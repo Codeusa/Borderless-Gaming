@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -88,7 +89,7 @@ namespace BorderlessGaming.WindowsAPI
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool GetClientRect(IntPtr hWnd, ref RECT lpRect);
+        public static extern bool GetClientRect(IntPtr hWnd, ref Rect lpRect);
 
         [DllImport("user32.dll")]
         public static extern int ClientToScreen(IntPtr hwnd, [MarshalAs(UnmanagedType.Struct)] ref POINTAPI lpPoint);
@@ -111,12 +112,99 @@ namespace BorderlessGaming.WindowsAPI
         #region Nested type: RECT
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        public struct Rect
         {
-            public int Left;
-            public int Top;
-            public int Right;
-            public int Bottom;
+            public int Left, Top, Right, Bottom;
+
+            public Rect(int left, int top, int right, int bottom)
+            {
+                Left = left;
+                Top = top;
+                Right = right;
+                Bottom = bottom;
+            }
+
+            public Rect(Rectangle r) : this(r.Left, r.Top, r.Right, r.Bottom) { }
+
+            public int X
+            {
+                get { return Left; }
+                set { Right -= (Left - value); Left = value; }
+            }
+
+            public int Y
+            {
+                get { return Top; }
+                set { Bottom -= (Top - value); Top = value; }
+            }
+
+            public int Height
+            {
+                get { return Bottom - Top; }
+                set { Bottom = value + Top; }
+            }
+
+            public int Width
+            {
+                get { return Right - Left; }
+                set { Right = value + Left; }
+            }
+
+            public Point Location
+            {
+                get { return new Point(Left, Top); }
+                set { X = value.X; Y = value.Y; }
+            }
+
+            public Size Size
+            {
+                get { return new Size(Width, Height); }
+                set { Width = value.Width; Height = value.Height; }
+            }
+
+            public static implicit operator Rectangle(Rect r)
+            {
+                return new Rectangle(r.Left, r.Top, r.Width, r.Height);
+            }
+
+            public static implicit operator Rect(Rectangle r)
+            {
+                return new Rect(r);
+            }
+
+            public static bool operator ==(Rect r1, Rect r2)
+            {
+                return r1.Equals(r2);
+            }
+
+            public static bool operator !=(Rect r1, Rect r2)
+            {
+                return !r1.Equals(r2);
+            }
+
+            public bool Equals(Rect r)
+            {
+                return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is Rect)
+                    return Equals((Rect)obj);
+                if (obj is Rectangle)
+                    return Equals(new Rect((Rectangle)obj));
+                return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return ((Rectangle)this).GetHashCode();
+            }
+
+            public override string ToString()
+            {
+                return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
+            }
         }
 
         #endregion
@@ -165,18 +253,18 @@ namespace BorderlessGaming.WindowsAPI
         public static string GetWindowTitle(IntPtr hWnd)
         {
             // Allocate correct string length first
-            int length = (int)Native.SendMessage(hWnd, Native.WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+            int length = (int)SendMessage(hWnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
             StringBuilder sbWindowTitle = new StringBuilder(length + 1);
-            Native.SendMessage(hWnd, Native.WM_GETTEXT, (IntPtr)sbWindowTitle.Capacity, sbWindowTitle);
+            SendMessage(hWnd, WM_GETTEXT, (IntPtr)sbWindowTitle.Capacity, sbWindowTitle);
             return sbWindowTitle.ToString();
         }
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
+        public static extern bool GetWindowRect(IntPtr hwnd, out Rect lpRect);
 
         public static IntPtr FW(IntPtr hwndParent, string lpszClass)
         {
-            return Native.FindWindowEx(hwndParent, IntPtr.Zero, lpszClass, string.Empty);
+            return FindWindowEx(hwndParent, IntPtr.Zero, lpszClass, string.Empty);
         }
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -190,7 +278,7 @@ namespace BorderlessGaming.WindowsAPI
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, ref RECT pvParam, SPIF fWinIni);
+        public static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, ref Rect pvParam, SPIF fWinIni);
  
         [DllImport("user32.dll")]
         public static extern bool SetSystemCursor(IntPtr hcur, OCR_SYSTEM_CURSORS id);
@@ -216,9 +304,9 @@ namespace BorderlessGaming.WindowsAPI
         public static WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex)
         {
             if (IntPtr.Size == 8)
-                return Native.GetWindowLong64(hWnd, nIndex);
+                return GetWindowLong64(hWnd, nIndex);
 
-            return Native.GetWindowLong32(hWnd, nIndex);
+            return GetWindowLong32(hWnd, nIndex);
         }
         
         [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
@@ -233,9 +321,9 @@ namespace BorderlessGaming.WindowsAPI
         public static WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong)
         {
             if (IntPtr.Size == 8)
-                return Native.SetWindowLong64(hWnd, nIndex, dwNewLong);
+                return SetWindowLong64(hWnd, nIndex, dwNewLong);
 
-            return Native.SetWindowLong32(hWnd, nIndex, dwNewLong);
+            return SetWindowLong32(hWnd, nIndex, dwNewLong);
         }
 
         [DllImport("user32.dll")]
@@ -256,13 +344,13 @@ namespace BorderlessGaming.WindowsAPI
         // Do some preferential treatment to windows
         private static bool GetMainWindowForProcess_EnumWindows(IntPtr hWndEnumerated, uint lParam)
         {
-            if (Native.GetMainWindowForProcess_Value == IntPtr.Zero)
+            if (GetMainWindowForProcess_Value == IntPtr.Zero)
             {
-                WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(hWndEnumerated, WindowsAPI.WindowLongIndex.Style);
+                WindowStyleFlags styleCurrentWindow_standard = GetWindowLong(hWndEnumerated, WindowLongIndex.Style);
 
                 if (lParam == 0) // strict: windows that are visible and have a border
                 {
-                    if (Native.IsWindowVisible(hWndEnumerated))
+                    if (IsWindowVisible(hWndEnumerated))
                     {
                         if
                         (
@@ -273,18 +361,18 @@ namespace BorderlessGaming.WindowsAPI
                                )
                         )
                         {
-                            Native.GetMainWindowForProcess_Value = hWndEnumerated;
+                            GetMainWindowForProcess_Value = hWndEnumerated;
                             return false;
                         }
                     }
                 }
                 else if (lParam == 1) // loose: windows that are visible
                 {
-                    if (Native.IsWindowVisible(hWndEnumerated))
+                    if (IsWindowVisible(hWndEnumerated))
                     {
                         if (((uint)styleCurrentWindow_standard) != 0)
                         {
-                            Native.GetMainWindowForProcess_Value = hWndEnumerated;
+                            GetMainWindowForProcess_Value = hWndEnumerated;
                             return false;
                         }
                     }
@@ -308,9 +396,9 @@ namespace BorderlessGaming.WindowsAPI
                 {
                     IntPtr hMainWindow = IntPtr.Zero;
 
-                    lock (Native.GetMainWindowForProcess_Locker)
+                    lock (GetMainWindowForProcess_Locker)
                     {
-                        Native.GetMainWindowForProcess_Value = IntPtr.Zero;
+                        GetMainWindowForProcess_Value = IntPtr.Zero;
 
                         // Help the UI stay alive
                         Utilities.Tools.StartMethodMultithreadedAndWait(() =>
@@ -319,15 +407,15 @@ namespace BorderlessGaming.WindowsAPI
                             {
                                 foreach (ProcessThread thread in process.Threads)
                                 {
-                                    if (Native.GetMainWindowForProcess_Value != IntPtr.Zero)
+                                    if (GetMainWindowForProcess_Value != IntPtr.Zero)
                                         break;
 
-                                    Native.EnumThreadWindows(thread.Id, Native.GetMainWindowForProcess_EnumWindows, i);
+                                    EnumThreadWindows(thread.Id, GetMainWindowForProcess_EnumWindows, i);
                                 }
                             }
                         });
 
-                        hMainWindow = Native.GetMainWindowForProcess_Value;
+                        hMainWindow = GetMainWindowForProcess_Value;
                     }
 
                     if (hMainWindow != IntPtr.Zero)

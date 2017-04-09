@@ -31,7 +31,7 @@ namespace BorderlessGaming
                     else if (!Steamworks.Packsize.Test())
                         MessageBox.Show("Steam failed to PackTest!", "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else
-                        Program.Steam_Loaded = true;
+                        Steam_Loaded = true;
                 }
                 catch (Exception ex)
                 {

@@ -15,8 +15,8 @@ namespace BorderlessGaming.Forms
         private void AboutFormLoad(object sender, EventArgs e)
         {
             // removed .Version.ToString(2) in favor of just .ToString() here so we can see the build number now
-            this.versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            this._copyrightLabel.Text = "Copyright © 2014-" + DateTime.Now.Year.ToString() + " Andrew Sampson";
+            versionLabel.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            _copyrightLabel.Text = "Copyright © 2014-" + DateTime.Now.Year.ToString() + " Andrew Sampson";
         }
 
         #region Project and Maintainer Links

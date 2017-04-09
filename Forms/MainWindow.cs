@@ -49,10 +49,10 @@ namespace BorderlessGaming.Forms
 		private BorderlessGaming controller;
         public MainWindow()
         {
-			this.controller = new BorderlessGaming(this);
-			this.controller.Processes.CollectionChanged += Processes_CollectionChanged;
-			this.controller.Favorites.CollectionChanged += Favorites_CollectionChanged;
-            this.InitializeComponent();
+			controller = new BorderlessGaming(this);
+			controller.Processes.CollectionChanged += Processes_CollectionChanged;
+			controller.Favorites.CollectionChanged += Favorites_CollectionChanged;
+            InitializeComponent();
         }
 
         #region External access and processing
@@ -75,12 +75,12 @@ namespace BorderlessGaming.Forms
             try
             {
                 bool local__DoEventsEngaged = false;
-                lock (MainWindow._DoEvents_locker)
+                lock (_DoEvents_locker)
                 {
-                    local__DoEventsEngaged = MainWindow._DoEvents_engaged;
+                    local__DoEventsEngaged = _DoEvents_engaged;
 
                     if (!local__DoEventsEngaged)
-                        MainWindow._DoEvents_engaged = true;
+                        _DoEvents_engaged = true;
                 }
 
                 if (!local__DoEventsEngaged)
@@ -89,9 +89,9 @@ namespace BorderlessGaming.Forms
                     Application.DoEvents();
                 }
 
-                lock (MainWindow._DoEvents_locker)
+                lock (_DoEvents_locker)
                 {
-                    MainWindow._DoEvents_engaged = false;
+                    _DoEvents_engaged = false;
                 }
             }
             catch { }
@@ -174,60 +174,60 @@ namespace BorderlessGaming.Forms
 
         private void toolStripRunOnStartup_CheckChanged(object sender, EventArgs e)
         {
-            AutoStart.SetShortcut(this.toolStripRunOnStartup.Checked, Environment.SpecialFolder.Startup, "-silent -minimize");
+            AutoStart.SetShortcut(toolStripRunOnStartup.Checked, Environment.SpecialFolder.Startup, "-silent -minimize");
 
-            AppEnvironment.Setting("RunOnStartup", this.toolStripRunOnStartup.Checked);
+            AppEnvironment.Setting("RunOnStartup", toolStripRunOnStartup.Checked);
         }
 
         private void toolStripCheckForUpdates_CheckedChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("CheckForUpdates", this.toolStripCheckForUpdates.Checked);
+            AppEnvironment.Setting("CheckForUpdates", toolStripCheckForUpdates.Checked);
         }
 
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("UseGlobalHotkey", this.toolStripGlobalHotkey.Checked);
+            AppEnvironment.Setting("UseGlobalHotkey", toolStripGlobalHotkey.Checked);
 
-            this.RegisterHotkeys();
+            RegisterHotkeys();
         }
 
         private void toolStripMouseLock_CheckChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("UseMouseLockHotkey", this.toolStripMouseLock.Checked);
+            AppEnvironment.Setting("UseMouseLockHotkey", toolStripMouseLock.Checked);
 
-            this.RegisterHotkeys();
+            RegisterHotkeys();
         }
 
         private void useMouseHideHotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("UseMouseHideHotkey", this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked);
+            AppEnvironment.Setting("UseMouseHideHotkey", useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked);
 
-            this.RegisterHotkeys();
+            RegisterHotkeys();
         }
 
         private void startMinimizedToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("StartMinimized", this.startMinimizedToTrayToolStripMenuItem.Checked);
+            AppEnvironment.Setting("StartMinimized", startMinimizedToTrayToolStripMenuItem.Checked);
         }
 
         private void hideBalloonTipsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("HideBalloonTips", this.hideBalloonTipsToolStripMenuItem.Checked);
+            AppEnvironment.Setting("HideBalloonTips", hideBalloonTipsToolStripMenuItem.Checked);
         }
 
         private void closeToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("CloseToTray", this.closeToTrayToolStripMenuItem.Checked);
+            AppEnvironment.Setting("CloseToTray", closeToTrayToolStripMenuItem.Checked);
         }
 
         private void useSlowerWindowDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("SlowWindowDetection", this.useSlowerWindowDetectionToolStripMenuItem.Checked);
+            AppEnvironment.Setting("SlowWindowDetection", useSlowerWindowDetectionToolStripMenuItem.Checked);
         }
 
         private async void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("ViewAllProcessDetails", this.viewFullProcessDetailsToolStripMenuItem.Checked);
+            AppEnvironment.Setting("ViewAllProcessDetails", viewFullProcessDetailsToolStripMenuItem.Checked);
 
 			await controller.RefreshProcesses();
         }
@@ -242,7 +242,7 @@ namespace BorderlessGaming.Forms
         {
             try
             {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                Process.Start(new ProcessStartInfo
                 (
                     "explorer.exe",
                     "/e,\"" + AppEnvironment.DataPath + "\",\"" + AppEnvironment.DataPath + "\"")
@@ -258,7 +258,7 @@ namespace BorderlessGaming.Forms
 
         private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Manipulation.MouseCursorIsHidden || (MessageBox.Show("Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.", "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes))
+            if (Manipulation.MouseCursorIsHidden || (MessageBox.Show("Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.", "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
                 Manipulation.ToggleMouseCursorVisibility(this);
         }
 
@@ -305,26 +305,26 @@ namespace BorderlessGaming.Forms
         {
             bool valid_selection = false;
 
-            if (this.lstProcesses.SelectedItem != null)
+            if (lstProcesses.SelectedItem != null)
             {
-                ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+                ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
                 valid_selection = pd.Manageable;
             }
 
-            this.btnMakeBorderless.Enabled = this.btnRestoreWindow.Enabled = this.addSelectedItem.Enabled = valid_selection;
+            btnMakeBorderless.Enabled = btnRestoreWindow.Enabled = addSelectedItem.Enabled = valid_selection;
         }
 
         private void lstFavorites_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.btnRemoveFavorite.Enabled = (this.lstFavorites.SelectedItem != null);
+            btnRemoveFavorite.Enabled = (lstFavorites.SelectedItem != null);
         }
 
         private void setWindowTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -334,9 +334,9 @@ namespace BorderlessGaming.Forms
 
 		private async void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -351,9 +351,9 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void btnMakeBorderless_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -363,9 +363,9 @@ namespace BorderlessGaming.Forms
 
         private void btnRestoreWindow_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -378,9 +378,9 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void byTheWindowTitleTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -400,9 +400,9 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void byTheProcessBinaryNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
@@ -422,9 +422,9 @@ namespace BorderlessGaming.Forms
 		/// </summary>
 		private void byTheWindowTitleTextregexToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (this.lstProcesses.SelectedItem == null) return;
+			if (lstProcesses.SelectedItem == null) return;
 
-			ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+			ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
 			if (!pd.Manageable)
 				return;
@@ -474,17 +474,17 @@ namespace BorderlessGaming.Forms
 
             // assume that the button press to add to favorites will do so by window title (unless it's blank, then go by process name)
 
-            if (this.lstProcesses.SelectedItem == null) return;
+            if (lstProcesses.SelectedItem == null) return;
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
                 return;
 
             if (!string.IsNullOrEmpty(pd.WindowTitle))
-                this.byTheWindowTitleTextToolStripMenuItem_Click(sender, e);
+                byTheWindowTitleTextToolStripMenuItem_Click(sender, e);
             else
-                this.byTheProcessBinaryNameToolStripMenuItem_Click(sender, e);
+                byTheProcessBinaryNameToolStripMenuItem_Click(sender, e);
         }
 
         private void RefreshFavoritesList(Favorites.Favorite fav = null)
@@ -499,10 +499,10 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void btnRemoveFavorite_Click(object sender, EventArgs e)
         {
-            if (this.lstFavorites.SelectedItem == null) return;
+            if (lstFavorites.SelectedItem == null) return;
 
 			//TODO move to controller.
-			Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+			Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
 				return;
@@ -512,37 +512,37 @@ namespace BorderlessGaming.Forms
         
         private void removeMenusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstFavorites.SelectedItem == null) return;
+            if (lstFavorites.SelectedItem == null) return;
 
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
 				return;
 
 			controller.Favorites.Remove(fav);
 
-			fav.RemoveMenus = this.removeMenusToolStripMenuItem.Checked;
+			fav.RemoveMenus = removeMenusToolStripMenuItem.Checked;
 			RefreshFavoritesList(fav);
         }
 
         private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.lstFavorites.SelectedItem == null) return;
+            if (lstFavorites.SelectedItem == null) return;
 
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.TopMost = this.alwaysOnTopToolStripMenuItem.Checked;
+            fav.TopMost = alwaysOnTopToolStripMenuItem.Checked;
 			RefreshFavoritesList(fav);
         }
 
         private void adjustWindowBoundsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
@@ -559,14 +559,14 @@ namespace BorderlessGaming.Forms
         
         private void automaximizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.ShouldMaximize = this.automaximizeToolStripMenuItem.Checked;
+            fav.ShouldMaximize = automaximizeToolStripMenuItem.Checked;
 
             if (fav.ShouldMaximize)
             {
@@ -582,48 +582,48 @@ namespace BorderlessGaming.Forms
         
         private void hideMouseCursorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.HideMouseCursor = this.hideMouseCursorToolStripMenuItem.Checked;
+            fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
 			RefreshFavoritesList(fav);
         }
 
         private void hideWindowsTaskbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.HideWindowsTaskbar = this.hideWindowsTaskbarToolStripMenuItem.Checked;
+            fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
 
-            this.RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
 
         private void setWindowSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
             DialogResult result = MessageBox.Show("Would you like to select the area using your mouse cursor?\r\n\r\nIf you answer No, you will be prompted for specific pixel dimensions.", "Select Area?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            if (result == System.Windows.Forms.DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
                 return;
 
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 using (DesktopAreaSelector frmSelectArea = new DesktopAreaSelector())
                 {
-                    if (frmSelectArea.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                    if (frmSelectArea.ShowDialog() != DialogResult.OK)
                         return;
 
                     // Temporarily disable compiler warning CS1690: http://msdn.microsoft.com/en-us/library/x524dkh4.aspx
@@ -655,19 +655,19 @@ namespace BorderlessGaming.Forms
                 fav.ShouldMaximize = false;
             }
 
-            this.RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
         
         private void fullScreenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.SizeMode = (this.fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
+            fav.SizeMode = (fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
 
             if (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen)
             {
@@ -679,20 +679,20 @@ namespace BorderlessGaming.Forms
             else
                 fav.ShouldMaximize = false;
 
-            this.RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
 
         
         private void noSizeChangeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
 			if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
 			controller.Favorites.Remove(fav);
 
-            fav.SizeMode = (this.noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
+            fav.SizeMode = (noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
 
             if (fav.SizeMode == Favorites.Favorite.SizeModes.NoChange)
             {
@@ -707,19 +707,19 @@ namespace BorderlessGaming.Forms
                 fav.PositionH = 0;
             }
             
-            this.RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
 
         private void delayBorderlessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
             if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
             controller.Favorites.Remove(fav);
 
-            fav.DelayBorderless = this.delayBorderlessToolStripMenuItem.Checked;
+            fav.DelayBorderless = delayBorderlessToolStripMenuItem.Checked;
             RefreshFavoritesList(fav);
 
         }
@@ -729,25 +729,25 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void mnuFavoritesContext_Opening(object sender, CancelEventArgs e)
         {
-            if (this.lstFavorites.SelectedItem == null)
+            if (lstFavorites.SelectedItem == null)
             {
                 e.Cancel = true;
                 return;
             }
 
-            Favorites.Favorite fav = (Favorites.Favorite)this.lstFavorites.SelectedItem;
-            this.fullScreenToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
-            this.automaximizeToolStripMenuItem.Checked = fav.ShouldMaximize;
-            this.alwaysOnTopToolStripMenuItem.Checked = fav.TopMost;
-            this.hideMouseCursorToolStripMenuItem.Checked = fav.HideMouseCursor;
-            this.hideWindowsTaskbarToolStripMenuItem.Checked = fav.HideWindowsTaskbar;
-            this.removeMenusToolStripMenuItem.Checked = fav.RemoveMenus;
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
+            fullScreenToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
+            automaximizeToolStripMenuItem.Checked = fav.ShouldMaximize;
+            alwaysOnTopToolStripMenuItem.Checked = fav.TopMost;
+            hideMouseCursorToolStripMenuItem.Checked = fav.HideMouseCursor;
+            hideWindowsTaskbarToolStripMenuItem.Checked = fav.HideWindowsTaskbar;
+            removeMenusToolStripMenuItem.Checked = fav.RemoveMenus;
 
-            this.automaximizeToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
-            this.adjustWindowBoundsToolStripMenuItem.Enabled = (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen) && (!fav.ShouldMaximize);
-            this.setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
-            this.setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
-            this.noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
+            automaximizeToolStripMenuItem.Enabled = fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen;
+            adjustWindowBoundsToolStripMenuItem.Enabled = (fav.SizeMode == Favorites.Favorite.SizeModes.FullScreen) && (!fav.ShouldMaximize);
+            setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
+            setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
+            noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
         }
 
         /// <summary>
@@ -755,13 +755,13 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void processContext_Opening(object sender, CancelEventArgs e)
         {
-            if (this.lstProcesses.SelectedItem == null)
+            if (lstProcesses.SelectedItem == null)
             {
                 e.Cancel = true;
                 return;
             }
 
-            ProcessDetails pd = ((ProcessDetails)this.lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
             if (!pd.Manageable)
             {
@@ -769,18 +769,18 @@ namespace BorderlessGaming.Forms
                 return;
             }
 
-			this.contextAddToFavs.Enabled = controller.Favorites.CanAdd(pd.BinaryName) && controller.Favorites.CanAdd(pd.WindowTitle);
+			contextAddToFavs.Enabled = controller.Favorites.CanAdd(pd.BinaryName) && controller.Favorites.CanAdd(pd.WindowTitle);
 
             if (Screen.AllScreens.Length < 2)
             {
-                this.contextBorderlessOn.Visible = false;
+                contextBorderlessOn.Visible = false;
             }
             else
             {
-                this.contextBorderlessOn.Visible = true;
+                contextBorderlessOn.Visible = true;
 
-                if (this.contextBorderlessOn.HasDropDownItems)
-                    this.contextBorderlessOn.DropDownItems.Clear();
+                if (contextBorderlessOn.HasDropDownItems)
+                    contextBorderlessOn.DropDownItems.Clear();
 
                 Rectangle superSize = Screen.PrimaryScreen.Bounds;
 
@@ -795,21 +795,21 @@ namespace BorderlessGaming.Forms
                     string label = fixedDeviceName + ((screen.Primary) ? " (P)" : string.Empty);
 
                     ToolStripMenuItem tsi = new ToolStripMenuItem(label);
-					tsi.Click += (s, ea) => { this.controller.RemoveBorder_ToSpecificScreen(pd, screen); };
+					tsi.Click += (s, ea) => { controller.RemoveBorder_ToSpecificScreen(pd, screen); };
 
-                    this.contextBorderlessOn.DropDownItems.Add(tsi);
+                    contextBorderlessOn.DropDownItems.Add(tsi);
                 }
 
                 // add supersize Option
                 ToolStripMenuItem superSizeItem = new ToolStripMenuItem("SuperSize!");
 
-				superSizeItem.Click += (s, ea) => { this.controller.RemoveBorder_ToSpecificRect(pd, superSize); };
+				superSizeItem.Click += (s, ea) => { controller.RemoveBorder_ToSpecificRect(pd, superSize); };
 
-                this.contextBorderlessOn.DropDownItems.Add(superSizeItem);
+                contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
         }
         
-        private System.Windows.Forms.ToolStripMenuItem disableSteamIntegrationToolStripMenuItem = null;
+        private ToolStripMenuItem disableSteamIntegrationToolStripMenuItem = null;
 
         /// <summary>
         ///     Sets up the form
@@ -817,61 +817,61 @@ namespace BorderlessGaming.Forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // set the title
-            this.Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2) + ((UAC.Elevated) ? " [Administrator]" : "");
+            Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2) + ((UAC.Elevated) ? " [Administrator]" : "");
 
             // load up settings
-            this.toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
-            this.toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
-            this.toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
-            this.toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
-            this.useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
-            this.startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
-            this.hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
-            this.closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
-            this.viewFullProcessDetailsToolStripMenuItem.Checked = AppEnvironment.SettingValue("ViewAllProcessDetails", false);
-            this.useSlowerWindowDetectionToolStripMenuItem.Checked = AppEnvironment.SettingValue("SlowWindowDetection", false);
+            toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
+            toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
+            toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
+            toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
+            useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
+            startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
+            hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
+            closeToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("CloseToTray", false);
+            viewFullProcessDetailsToolStripMenuItem.Checked = AppEnvironment.SettingValue("ViewAllProcessDetails", false);
+            useSlowerWindowDetectionToolStripMenuItem.Checked = AppEnvironment.SettingValue("SlowWindowDetection", false);
 
             // minimize the window if desired (hiding done in Shown)
             if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
-                this.WindowState = FormWindowState.Minimized;
+                WindowState = FormWindowState.Minimized;
             else
-                this.WindowState = FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
 
-            if (Program.Steam_Loaded && this.disableSteamIntegrationToolStripMenuItem == null)
+            if (Program.Steam_Loaded && disableSteamIntegrationToolStripMenuItem == null)
             {
-                this.disableSteamIntegrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-                this.disableSteamIntegrationToolStripMenuItem.Name = "disableSteamIntegrationToolStripMenuItem";
-                this.disableSteamIntegrationToolStripMenuItem.Size = new Size(254, 22);
-                this.disableSteamIntegrationToolStripMenuItem.Text = "Disable Steam integration/hook";
-                this.disableSteamIntegrationToolStripMenuItem.ToolTipText = "Prevents \"In-App\" on Steam";
-                this.disableSteamIntegrationToolStripMenuItem.Checked = AppEnvironment.SettingValue("DisableSteamIntegration", false);
-                this.disableSteamIntegrationToolStripMenuItem.CheckOnClick = true; // let's do this before registering the CheckedChanged event
-                this.disableSteamIntegrationToolStripMenuItem.CheckedChanged += new System.EventHandler(this.disableSteamIntegrationToolStripMenuItem_CheckChanged);
-                this.toolsToolStripMenuItem.DropDownItems.Insert(0, this.disableSteamIntegrationToolStripMenuItem);
+                disableSteamIntegrationToolStripMenuItem = new ToolStripMenuItem();
+                disableSteamIntegrationToolStripMenuItem.Name = "disableSteamIntegrationToolStripMenuItem";
+                disableSteamIntegrationToolStripMenuItem.Size = new Size(254, 22);
+                disableSteamIntegrationToolStripMenuItem.Text = "Disable Steam integration/hook";
+                disableSteamIntegrationToolStripMenuItem.ToolTipText = "Prevents \"In-App\" on Steam";
+                disableSteamIntegrationToolStripMenuItem.Checked = AppEnvironment.SettingValue("DisableSteamIntegration", false);
+                disableSteamIntegrationToolStripMenuItem.CheckOnClick = true; // let's do this before registering the CheckedChanged event
+                disableSteamIntegrationToolStripMenuItem.CheckedChanged += new EventHandler(disableSteamIntegrationToolStripMenuItem_CheckChanged);
+                toolsToolStripMenuItem.DropDownItems.Insert(0, disableSteamIntegrationToolStripMenuItem);
             }
         }
 
         private void disableSteamIntegrationToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            AppEnvironment.Setting("DisableSteamIntegration", this.disableSteamIntegrationToolStripMenuItem.Checked);
+            AppEnvironment.Setting("DisableSteamIntegration", disableSteamIntegrationToolStripMenuItem.Checked);
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             // hide the window if desired (this doesn't work well in Load)
             if (AppEnvironment.SettingValue("StartMinimized", false) || Tools.StartupParameters.Contains("-minimize"))
-                this.Hide();
+                Hide();
 
             // initialize favorite list
-			foreach (var ni in this.controller.Favorites)
+			foreach (var ni in controller.Favorites)
 				lstFavorites.Items.Add(ni);
 
             // start Task API controller
 			controller.Start();
 
             // Update buttons' enabled/disabled state
-            this.lstProcesses_SelectedIndexChanged(sender, e);
-            this.lstFavorites_SelectedIndexChanged(sender, e);
+            lstProcesses_SelectedIndexChanged(sender, e);
+            lstFavorites_SelectedIndexChanged(sender, e);
         }
 
         /// <summary>
@@ -884,7 +884,7 @@ namespace BorderlessGaming.Forms
             // Make them exit the game that triggered the taskbar to be hidden -- or -- use a global hotkey to restore it.
             if (Manipulation.WindowsTaskbarIsHidden)
             {
-                this.ClosingFromExitMenu = false;
+                ClosingFromExitMenu = false;
                 e.Cancel = true;
                 return;
             }
@@ -895,13 +895,13 @@ namespace BorderlessGaming.Forms
             Manipulation.ToggleMouseCursorVisibility(this, Tools.Boolstate.True);
 
             // If the user didn't choose to exit from the tray icon context menu...
-            if (!this.ClosingFromExitMenu)
+            if (!ClosingFromExitMenu)
             {
                 // ... and they have the preference set to close-to-tray ...
                 if (AppEnvironment.SettingValue("CloseToTray", false))
                 {
                     // ... then minimize the app and do not exit (minimizing will trigger another event to hide the form)
-                    this.WindowState = FormWindowState.Minimized;
+                    WindowState = FormWindowState.Minimized;
                     e.Cancel = true;
                     return;
                 }
@@ -910,11 +910,11 @@ namespace BorderlessGaming.Forms
             // At this point, we're okay to exit the application
 
             // Unregister all global hotkeys
-            this.UnregisterHotkeys();
+            UnregisterHotkeys();
 
             // Hide the tray icon.  If we don't do this, then Environment.Exit() can sometimes ghost the icon in the
             // Windows system tray area.
-            this.trayIcon.Visible = false;
+            trayIcon.Visible = false;
             
             // Overkill... the form should just close naturally.  Ideally we would just allow the form to close and
             // the remaining code in Program.cs would execute (if there were any), but this is how Borderless Gaming has
@@ -952,32 +952,32 @@ namespace BorderlessGaming.Forms
 
         private void trayIcon_DoubleClick(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private bool ClosingFromExitMenu = false;
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ClosingFromExitMenu = true;
-            this.Close();
+            ClosingFromExitMenu = true;
+            Close();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (WindowState == FormWindowState.Minimized)
             {
-                this.trayIcon.Visible = true;
+                trayIcon.Visible = true;
 
                 if (!AppEnvironment.SettingValue("HideBalloonTips", false) && !Tools.StartupParameters.Contains("-silent"))
                 {
                     // Display a balloon tooltip message for 2 seconds
-                    this.trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
-                    this.trayIcon.ShowBalloonTip(2000);
+                    trayIcon.BalloonTipText = string.Format(Resources.TrayMinimized, "Borderless Gaming");
+                    trayIcon.ShowBalloonTip(2000);
                 }
 
                 if (!Manipulation.WindowsTaskbarIsHidden)
-                    this.Hide();
+                    Hide();
             }
         }
 
@@ -990,16 +990,16 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void RegisterHotkeys()
         {
-            this.UnregisterHotkeys();
+            UnregisterHotkeys();
 
             if (AppEnvironment.SettingValue("UseGlobalHotkey", false))
-                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), MainWindow.MakeBorderless_HotKeyModifier, MainWindow.MakeBorderless_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MakeBorderless_HotKeyModifier, MakeBorderless_HotKey);
 
             if (AppEnvironment.SettingValue("UseMouseLockHotkey", false))
-                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), 0, MainWindow.MouseLock_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), 0, MouseLock_HotKey);
 
             if (AppEnvironment.SettingValue("UseMouseHideHotkey", false))
-                Native.RegisterHotKey(this.Handle, this.GetType().GetHashCode(), MainWindow.MouseHide_HotKeyModifier, MainWindow.MouseHide_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MouseHide_HotKeyModifier, MouseHide_HotKey);
         }
 
         /// <summary>
@@ -1007,7 +1007,7 @@ namespace BorderlessGaming.Forms
         /// </summary>
         private void UnregisterHotkeys()
         {
-            Native.UnregisterHotKey(this.Handle, this.GetType().GetHashCode());
+            Native.UnregisterHotKey(Handle, GetType().GetHashCode());
         }
 
         /// <summary>
@@ -1027,7 +1027,7 @@ namespace BorderlessGaming.Forms
                     IntPtr hCurrentActiveWindow = Native.GetForegroundWindow();
 
                     // Only if that window isn't Borderless Windows itself
-                    if (hCurrentActiveWindow != this.Handle)
+                    if (hCurrentActiveWindow != Handle)
                     {
                         // Figure out the process details based on the current window handle
 						ProcessDetails pd = controller.Processes.FromHandle(hCurrentActiveWindow);
@@ -1043,7 +1043,7 @@ namespace BorderlessGaming.Forms
                             Manipulation.RestoreWindow(pd);
                         // Otherwise, this is a fresh request to remove the border from the current window
                         else
-							this.controller.RemoveBorder(pd);
+							controller.RemoveBorder(pd);
                     }
 
                     return; // handled the message, do not call base WndProc for this message
@@ -1061,7 +1061,7 @@ namespace BorderlessGaming.Forms
                     IntPtr hWnd = Native.GetForegroundWindow();
 
                     // get size of clientarea
-                    Native.RECT rect = new Native.RECT();
+                    Native.Rect rect = new Native.Rect();
                     Native.GetClientRect(hWnd, ref rect);
 
                     // get top,left point of clientarea

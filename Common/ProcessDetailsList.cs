@@ -15,19 +15,19 @@ namespace BorderlessGaming.Common
 
 		//public override event NotifyCollectionChangedEventHandler CollectionChanged;
 
-		public HashSet<long> WindowPtrSet { get { return _windowPtrSet; } }
-		public HashSet<string> WindowTitleSet { get { return _windowTitleSet; } }
-		public HashSet<string> ProcessTitleSet { get { return _windowTitleSet; } }
+		public HashSet<long> WindowPtrSet => _windowPtrSet;
+	    public HashSet<string> WindowTitleSet => _windowTitleSet;
+	    public HashSet<string> ProcessTitleSet => _windowTitleSet;
 
-		public ProcessDetailsList()
+	    public ProcessDetailsList()
 		{
-			this._windowPtrSet = new HashSet<long>();
-			this._windowTitleSet = new HashSet<string>();
-			this._processTitleSet = new HashSet<string>();
-			this.CollectionChanged += OnCollectionChanged;
+			_windowPtrSet = new HashSet<long>();
+			_windowTitleSet = new HashSet<string>();
+			_processTitleSet = new HashSet<string>();
+			CollectionChanged += OnCollectionChanged;
 		}
 
-		private void OnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			if (e.NewItems != null)
 			{
@@ -63,7 +63,7 @@ namespace BorderlessGaming.Common
 
 		internal ProcessDetails FromHandle(IntPtr hCurrentActiveWindow)
 		{
-			return this.Where(pd => pd.WindowHandle == hCurrentActiveWindow).FirstOrDefault();
+			return this.FirstOrDefault(pd => pd.WindowHandle == hCurrentActiveWindow);
 		}
 	}
 }

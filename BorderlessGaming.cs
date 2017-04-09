@@ -68,12 +68,12 @@ namespace BorderlessGaming
 		/// </summary>
 		private void DoMainWork()
 		{
-			while (!this.workerTaskToken.IsCancellationRequested)
+			while (!workerTaskToken.IsCancellationRequested)
 			{
 				// update the processlist
-				this.UpdateProcesses();
+				UpdateProcesses();
 
-				if (this.AutoHandleFavorites)
+				if (AutoHandleFavorites)
 				{
 					// check favorites against the cache
 					foreach (var pd in _processDetails)
@@ -100,7 +100,7 @@ namespace BorderlessGaming
 
             try
             {
-                if (!this.AutoHandleFavorites)
+                if (!AutoHandleFavorites)
                 {
                     MainWindow frm = MainWindow.ext();
 
@@ -111,30 +111,30 @@ namespace BorderlessGaming
             }
             catch { } // swallow any exceptions in attempting to check window minimize/visibility state
 
-			lock (this.updateLock)
+			lock (updateLock)
 			{
                 // check existing processes for changes (auto-prune)
-				for (int i = 0; i < this._processDetails.Count;)
+				for (int i = 0; i < _processDetails.Count;)
 				{
                     try
                     {
-                        ProcessDetails pd = this._processDetails[i];
+                        var pd = _processDetails[i];
 
-                        bool should_be_pruned = pd.ProcessHasExited;
+                        var shouldBePruned = pd.ProcessHasExited;
 
-                        if (!should_be_pruned)
+                        if (!shouldBePruned)
                         {
-                            string current_title = "";
+                            var currentTitle = "";
 
                             if (!pd.NoAccess)
                             {
                                 // 2 or 10 seconds until window title timeout, depending on slow-window detection mode
-                                Tools.StartMethodMultithreadedAndWait(() => { current_title = Native.GetWindowTitle(pd.WindowHandle); }, (Utilities.AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
-                                should_be_pruned = should_be_pruned || (pd.WindowTitle != current_title);
+                                Tools.StartMethodMultithreadedAndWait(() => { currentTitle = Native.GetWindowTitle(pd.WindowHandle); }, (AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
+                                shouldBePruned = shouldBePruned || (pd.WindowTitle != currentTitle);
                             }
                         }
 
-                        if (should_be_pruned)
+                        if (shouldBePruned)
                         {
                             if (pd.MadeBorderless)
                                 HandlePrunedProcess(pd);
@@ -160,6 +160,7 @@ namespace BorderlessGaming
                         if (!_processDetails.Select(p => p.Proc.Id).Contains(pd.Proc.Id) ||
                             !_processDetails.Select(p => p.WindowTitle).Contains(pd.WindowTitle))
                             _processDetails.Add(pd);
+
                     }, _processDetails.WindowPtrSet);
                 }
                 catch { } // swallow any exceptions in attempting to add new windows
@@ -171,12 +172,12 @@ namespace BorderlessGaming
 
 		public Task RefreshProcesses()
 		{
-			lock (this.updateLock)
+			lock (updateLock)
 			{
-				this._processDetails.ClearProcesses();
+				_processDetails.ClearProcesses();
 			}
 
-			return Task.Factory.StartNew(this.UpdateProcesses);
+			return Task.Factory.StartNew(UpdateProcesses);
 		}
 
 		/// <summary>

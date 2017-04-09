@@ -45,7 +45,7 @@ namespace BorderlessGaming.Common
 			alwaysHideSet = new HashSet<string>();
 			userHideSet = new HashSet<string>();
 			Init();
-			this.CollectionChanged += OnCollectionChanged;
+			CollectionChanged += OnCollectionChanged;
 		}
 
 		private void OnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

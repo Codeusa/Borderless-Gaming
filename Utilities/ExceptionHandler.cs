@@ -15,10 +15,10 @@ namespace BorderlessGaming.Utilities
             {
                 try
                 {
-                    if (!Directory.Exists(ExceptionHandler.LogsPath))
-                        Directory.CreateDirectory(ExceptionHandler.LogsPath);
+                    if (!Directory.Exists(LogsPath))
+                        Directory.CreateDirectory(LogsPath);
 
-                    string filePath = Path.Combine(ExceptionHandler.LogsPath, string.Format("UnhandledException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
+                    string filePath = Path.Combine(LogsPath, string.Format("UnhandledException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
 
                     File.AppendAllText(filePath, JsonConvert.SerializeObject(args.ExceptionObject, Formatting.Indented) + "\r\n\r\n");
 
@@ -33,10 +33,10 @@ namespace BorderlessGaming.Utilities
             {
                 try
                 {
-                    if (!Directory.Exists(ExceptionHandler.LogsPath))
-                        Directory.CreateDirectory(ExceptionHandler.LogsPath);
+                    if (!Directory.Exists(LogsPath))
+                        Directory.CreateDirectory(LogsPath);
 
-                    string filePath = Path.Combine(ExceptionHandler.LogsPath, string.Format("ThreadException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
+                    string filePath = Path.Combine(LogsPath, string.Format("ThreadException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
 
                     File.AppendAllText(filePath, JsonConvert.SerializeObject(args.Exception, Formatting.Indented) + "\r\n\r\n");
 

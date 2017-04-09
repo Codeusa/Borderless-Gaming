@@ -55,7 +55,7 @@ namespace BorderlessGaming.Utilities
 
         public static void CheckForUpdates()
         {
-            if (Tools.HasInternetConnection)
+            if (HasInternetConnection)
             {
                 try
                 {
@@ -110,7 +110,7 @@ namespace BorderlessGaming.Utilities
                         if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
                             MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            Tools.GotoSite(_releasePageURL);
+                            GotoSite(_releasePageURL);
                         }
                     }
                 }
@@ -191,35 +191,35 @@ namespace BorderlessGaming.Utilities
 			try
 			{
 				// No version!
-				return System.Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + System.Windows.Forms.Application.CompanyName + "\\" + System.Windows.Forms.Application.ProductName;
+				return Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + Application.CompanyName + "\\" + Application.ProductName;
 			}
 			catch { }
 
 			try
 			{
 				// Version, but chopped out
-				return System.Windows.Forms.Application.UserAppDataPath.Substring(0, System.Windows.Forms.Application.UserAppDataPath.LastIndexOf("\\"));
+				return Application.UserAppDataPath.Substring(0, Application.UserAppDataPath.LastIndexOf("\\"));
 			}
 			catch
 			{
 				try
 				{
 					// App launch folder
-					return System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf("\\"));
+					return Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\"));
 				}
 				catch
 				{
 					try
 					{
 						// Current working folder
-						return System.Environment.CurrentDirectory;
+						return Environment.CurrentDirectory;
 					}
 					catch
 					{
 						try
 						{
 							// Desktop
-							return System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+							return Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 						}
 						catch
 						{
@@ -241,14 +241,13 @@ namespace BorderlessGaming.Utilities
         {
             try
             {
-                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
-                Thread trdGenericThread = new Thread(tsGenericMethod);
-                trdGenericThread.IsBackground = true;
+                var tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
+                var trdGenericThread = new Thread(tsGenericMethod) {IsBackground = true};
                 trdGenericThread.Start();
 
-                DateTime dtStartTime = DateTime.Now;
+                var dtStartTime = DateTime.Now;
 
-                for (; ; )
+                for (;;)
                 {
                     if (iHowLongToWait > 0)
                     {
@@ -268,7 +267,10 @@ namespace BorderlessGaming.Utilities
                     Forms.MainWindow.DoEvents();
                 }
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
 
         public static void StartMethodMultithreadedAndWait(Action target, double dHowLongToWait)

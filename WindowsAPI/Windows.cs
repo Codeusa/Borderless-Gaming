@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using BorderlessGaming.WindowsAPI;
 
 namespace BorderlessGaming.WindowsAPI
@@ -24,25 +26,33 @@ namespace BorderlessGaming.WindowsAPI
 			Native.EnumWindows_CallBackProc del = (hwnd, lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
 			Native.EnumWindows(del, 0);
 			Native.EnumWindows(del, 1);
-			foreach (var ptr in ptrList)
+		    
+		    foreach (var ptr in ptrList)
 			{
-				string windowTitle = Native.GetWindowTitle(ptr);
-				//check if we already have this window in the list so we can avoid calling
-				//GetWindowThreadProcessId(its costly)
-				if (string.IsNullOrEmpty(windowTitle) || windowPtrSet.Contains(ptr.ToInt64()))
-					continue;
-				uint processId;
-				Native.GetWindowThreadProcessId(ptr, out processId);
-				callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
-				{
-					Manageable = true
-				});
+
+			    if (Native.GetWindowRect(ptr, out Native.Rect rect))
+			    {
+			        if (((Rectangle)rect).IsEmpty)
+			        {
+			            continue;
+			        }
+                    //check if we already have this window in the list so we can avoid calling
+                    //GetWindowThreadProcessId(its costly)
+                    if (windowPtrSet.Contains(ptr.ToInt64()))
+                        continue;
+                    uint processId;
+                    Native.GetWindowThreadProcessId(ptr, out processId);
+                    callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
+                    {
+                        Manageable = true
+                    });
+                }
 			}
 		}
 
 		private static bool GetMainWindowForProcess_EnumWindows(List<IntPtr> ptrList, IntPtr hWndEnumerated, uint lParam)
 		{
-			WindowStyleFlags styleCurrentWindow_standard = Native.GetWindowLong(hWndEnumerated, WindowLongIndex.Style);
+			WindowStyleFlags styleCurrentWindowStandard = Native.GetWindowLong(hWndEnumerated, WindowLongIndex.Style);
 
 			if (lParam == 0) // strict: windows that are visible and have a border
 			{
@@ -50,10 +60,10 @@ namespace BorderlessGaming.WindowsAPI
 				{
 					if
 					(
-						   ((styleCurrentWindow_standard & WindowStyleFlags.Caption) > 0)
+						   ((styleCurrentWindowStandard & WindowStyleFlags.Caption) > 0)
 						&& (
-								((styleCurrentWindow_standard & WindowStyleFlags.Border) > 0)
-							 || ((styleCurrentWindow_standard & WindowStyleFlags.ThickFrame) > 0)
+								((styleCurrentWindowStandard & WindowStyleFlags.Border) > 0)
+							 || ((styleCurrentWindowStandard & WindowStyleFlags.ThickFrame) > 0)
 						   )
 					)
 					{
@@ -65,7 +75,7 @@ namespace BorderlessGaming.WindowsAPI
 			{
 				if (Native.IsWindowVisible(hWndEnumerated))
 				{
-					if (((uint)styleCurrentWindow_standard) != 0)
+					if (((uint)styleCurrentWindowStandard) != 0)
 					{
 						ptrList.Add(hWndEnumerated);
 					}

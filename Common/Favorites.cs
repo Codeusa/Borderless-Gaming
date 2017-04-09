@@ -19,7 +19,7 @@ namespace BorderlessGaming.Common
 		public Favorites(string path)
 		{
 			this.path = path;
-			this.CollectionChanged += OnCollectionChanged;
+			CollectionChanged += OnCollectionChanged;
 			Load();
 		}
 
@@ -84,10 +84,7 @@ namespace BorderlessGaming.Common
 
 		public bool CanAdd(string item)
 		{
-			foreach (var fav in this)
-				if (fav.SearchText == item)
-					return false;
-			return true;
+		    return this.All(fav => fav.SearchText != item);
 		}
 
 		public bool CanRemove(string item)
@@ -153,30 +150,37 @@ namespace BorderlessGaming.Common
 				{
 					string extra_details = "";
 
-					if (this.Kind == FavoriteKinds.ByBinaryName)
-						extra_details += " [Process]";
-					else if (this.Kind == FavoriteKinds.ByRegexString)
-						extra_details += " [Regex]";
-					else if (this.Kind != FavoriteKinds.ByTitleText)
-						extra_details += " [?]";
+					switch (Kind)
+					{
+					    case FavoriteKinds.ByBinaryName:
+					        extra_details += " [Process]";
+					        break;
+					    case FavoriteKinds.ByRegexString:
+					        extra_details += " [Regex]";
+					        break;
+					    default:
+					        if (Kind != FavoriteKinds.ByTitleText)
+					            extra_details += " [?]";
+					        break;
+					}
 
-					extra_details += ((this.ShouldMaximize) ? " [Max]" : "");
-					extra_details += ((this.SizeMode == SizeModes.NoChange) ? " [NoSize]" : "");
-					extra_details += ((this.TopMost) ? " [Top]" : "");
-					extra_details += ((this.RemoveMenus) ? " [NoMenu]" : "");
-					extra_details += ((this.HideWindowsTaskbar) ? " [NoTaskbar]" : "");
-					extra_details += ((this.HideMouseCursor) ? " [NoMouse]" : "");
-                    extra_details += ((this.DelayBorderless) ? " [Delay]" : "");
+					extra_details += ((ShouldMaximize) ? " [Max]" : "");
+					extra_details += ((SizeMode == SizeModes.NoChange) ? " [NoSize]" : "");
+					extra_details += ((TopMost) ? " [Top]" : "");
+					extra_details += ((RemoveMenus) ? " [NoMenu]" : "");
+					extra_details += ((HideWindowsTaskbar) ? " [NoTaskbar]" : "");
+					extra_details += ((HideMouseCursor) ? " [NoMouse]" : "");
+                    extra_details += ((DelayBorderless) ? " [Delay]" : "");
 
-					if (this.OffsetL != 0 || this.OffsetR != 0 || this.OffsetT != 0 || this.OffsetB != 0)
-						extra_details += " [" + this.OffsetL.ToString() + "L," + this.OffsetR.ToString() + "R," +
-							this.OffsetT.ToString() + "T," + this.OffsetB.ToString() + "B]";
+					if (OffsetL != 0 || OffsetR != 0 || OffsetT != 0 || OffsetB != 0)
+						extra_details += " [" + OffsetL.ToString() + "L," + OffsetR.ToString() + "R," +
+							OffsetT.ToString() + "T," + OffsetB.ToString() + "B]";
 
-					if (this.PositionX != 0 || this.PositionY != 0 || this.PositionW != 0 || this.PositionH != 0)
-						extra_details += " [" + this.PositionX.ToString() + "x" + this.PositionY.ToString() + "-" +
-							(this.PositionX + this.PositionW).ToString() + "x" + (this.PositionY + this.PositionH).ToString() + "]";
+					if (PositionX != 0 || PositionY != 0 || PositionW != 0 || PositionH != 0)
+						extra_details += " [" + PositionX.ToString() + "x" + PositionY.ToString() + "-" +
+							(PositionX + PositionW).ToString() + "x" + (PositionY + PositionH).ToString() + "]";
 
-					return this.SearchText + extra_details;
+					return SearchText + extra_details;
 				}
 				catch { }
 
