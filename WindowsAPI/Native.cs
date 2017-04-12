@@ -320,10 +320,7 @@ namespace BorderlessGaming.WindowsAPI
         /// </summary>
         public static WindowStyleFlags SetWindowLong(IntPtr hWnd, WindowLongIndex nIndex, WindowStyleFlags dwNewLong)
         {
-            if (IntPtr.Size == 8)
-                return SetWindowLong64(hWnd, nIndex, dwNewLong);
-
-            return SetWindowLong32(hWnd, nIndex, dwNewLong);
+            return IntPtr.Size == 8 ? SetWindowLong64(hWnd, nIndex, dwNewLong) : SetWindowLong32(hWnd, nIndex, dwNewLong);
         }
 
         [DllImport("user32.dll")]

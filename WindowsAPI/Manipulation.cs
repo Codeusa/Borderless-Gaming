@@ -65,6 +65,7 @@ namespace BorderlessGaming.WindowsAPI
                // | WindowStyleFlags.Border
                //| WindowStyleFlags.DialogFrame                  
                   | WindowStyleFlags.ThickFrame
+                  | WindowStyleFlags.OverlappedWindow
                   | WindowStyleFlags.SystemMenu
                   | WindowStyleFlags.MaximizeBox // same as TabStop
                   | WindowStyleFlags.MinimizeBox // same as Group
@@ -126,7 +127,9 @@ namespace BorderlessGaming.WindowsAPI
             if (favDetails.HideMouseCursor)
                 ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
 
-            
+            // update window styles
+            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
+            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
 
             // update window position
             if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
@@ -180,11 +183,7 @@ namespace BorderlessGaming.WindowsAPI
                 );
             }
 
-            Thread.Sleep(1000);
-            // update window styles
-            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
-            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
-
+         
             // Make a note that we attempted to make the window borderless
             if (processDetails != null)
             {

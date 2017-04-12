@@ -199,6 +199,11 @@ namespace BorderlessGaming.WindowsAPI
         REMOTECONTROL = 0x2001, // 0x2001
     }
 
+    public enum WindowMessages : int
+    {
+        WM_SETREDRAW = 0xB
+    }    
+    
     /// <summary>
     /// Enumeration of the different ways of showing a window using ShowWindow
     /// </summary>
