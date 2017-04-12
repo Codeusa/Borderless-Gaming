@@ -18,15 +18,15 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=9.0
+AppVersion=9.1
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=9.0.33315.1328
+VersionInfoVersion=9.1.33315.1328
 ; Other version info
-OutputBaseFilename=BorderlessGaming_9.0__setup
+OutputBaseFilename=BorderlessGaming_9.1__setup
 
 
 ; Shown in the setup program during install only
-AppVerName=Borderless Gaming v9.0
+AppVerName=Borderless Gaming v9.1
 
 ; Shown only in Programs & Features
 AppContact=Borderless Gaming on Github
@@ -41,7 +41,7 @@ UninstallDisplayIcon={app}\BorderlessGaming.exe
 
 
 [Messages]
-BeveledLabel=Borderless Gaming 9.0 Setup
+BeveledLabel=Borderless Gaming 9.1 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
