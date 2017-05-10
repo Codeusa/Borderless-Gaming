@@ -117,38 +117,5 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InfoUpdatesHeader" xml:space="preserve">
-    <value>Update available</value>
-  </data>
-  <data name="ErrorUpdates" xml:space="preserve">
-    <value>Borderless Gaming encountered an error checking for updates. Restart the program to try again.</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TrayMinimized" xml:space="preserve">
-    <value>{0} is minimized.</value>
-  </data>
-  <data name="InfoUpdateAvailable" xml:space="preserve">
-    <value>A new version of Borderless Gaming is available. Would you like to go to the release page?</value>
-  </data>
-  <data name="ErrorFavoritesSave" xml:space="preserve">
-    <value>Unable to save favorites. Do you have permission?\r\n\r\nDetailed Error: {0}</value>
-  </data>
-  <data name="borderless" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\borderless.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ErrorHeader" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="bordered" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\bordered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\data\blank.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 </root>

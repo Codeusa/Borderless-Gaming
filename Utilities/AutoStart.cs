@@ -1,12 +1,14 @@
-﻿#if !__MonoCS__
-using IWshRuntimeLibrary;
-#endif
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
+
+#if !__MonoCS__
+    using IWshRuntimeLibrary;
+#endif
+
 using File = System.IO.File;
 
-namespace Utilities
+namespace BorderlessGaming.Utilities
 {
     public static class AutoStart
     {
@@ -18,7 +20,7 @@ namespace Utilities
                 try
                 {
                     IWshShell wsh = new WshShellClass();
-                    var shortcut = (IWshShortcut) wsh.CreateShortcut(shortcutPath);
+                    var shortcut = (IWshShortcut)wsh.CreateShortcut(shortcutPath);
                     shortcut.TargetPath = targetPath;
                     shortcut.Arguments = arguments;
                     shortcut.WorkingDirectory = Path.GetDirectoryName(targetPath);
@@ -26,9 +28,7 @@ namespace Utilities
 
                     return true;
                 }
-                catch (Exception e)
-                {
-                }
+                catch { }
             }
 #endif
             return false;
@@ -47,31 +47,28 @@ namespace Utilities
 
         public static bool SetShortcut(bool create, Environment.SpecialFolder specialFolder, string arguments = "")
         {
-            var shortcutPath = GetShortcutPath(specialFolder);
+            string shortcutPath = GetShortcutPath(specialFolder);
 
             if (create)
-            {
                 return Create(shortcutPath, Application.ExecutablePath, arguments);
-            }
 
             return Delete(shortcutPath);
         }
 
-        public static bool CheckShortcut(Environment.SpecialFolder specialFolder)
-        {
-            var shortcutPath = GetShortcutPath(specialFolder);
-            return File.Exists(shortcutPath);
-        }
+        // Code commented (but not removed) by psouza4 2015/01/01: there were no references to this method, so no need to compile it and bloat the software.
+        //public static bool CheckShortcut(Environment.SpecialFolder specialFolder)
+        //{
+        //    string shortcutPath = GetShortcutPath(specialFolder);
+        //    return File.Exists(shortcutPath);
+        //}
 
         private static string GetShortcutPath(Environment.SpecialFolder specialFolder)
         {
-            var folderPath = Environment.GetFolderPath(specialFolder);
-            var shortcutPath = Path.Combine(folderPath, Application.ProductName);
+            string folderPath = Environment.GetFolderPath(specialFolder);
+            string shortcutPath = Path.Combine(folderPath, Application.ProductName);
 
             if (!Path.GetExtension(shortcutPath).Equals(".lnk", StringComparison.InvariantCultureIgnoreCase))
-            {
                 shortcutPath = Path.ChangeExtension(shortcutPath, "lnk");
-            }
 
             return shortcutPath;
         }

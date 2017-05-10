@@ -22,8 +22,22 @@ namespace BorderlessGaming
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (AppEnvironment.SettingValue("CheckForUpdates", true))
-	            Tools.CheckForUpdates();
+            if (!AppEnvironment.SettingValue("DisableSteamIntegration", false))
+            {
+                try
+                {
+                    if (!Steamworks.SteamAPI.Init())
+                        MessageBox.Show("Steam API failed to initialize!", "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else if (!Steamworks.Packsize.Test())
+                        MessageBox.Show("Steam failed to PackTest!", "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                        Steam_Loaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetType().ToString() + "\r\n" + ex.Message, "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
 
             // create the application data path, if necessary
             try

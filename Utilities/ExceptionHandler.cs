@@ -1,35 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace BorderlessGaming.Utilities
 {
-    public static class 
-        ExceptionHandler
+    public static class ExceptionHandler
     {
-        public static void AddHandlers()
+        private static readonly string LogsPath = Path.Combine(AppEnvironment.DataPath, "Logs");
+
+        public static void AddGlobalHandlers()
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
-                Directory.CreateDirectory("./Logs");
-                var filePath = string.Format("Logs/UnhandledException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
-                File.WriteAllText("./" + filePath, JsonConvert.SerializeObject(args.ExceptionObject, Formatting.Indented));
-                MessageBox.Show(string.Format("An Unhandled Exception was Caught and Logged to:\r\n{0}", filePath), "Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    if (!Directory.Exists(LogsPath))
+                        Directory.CreateDirectory(LogsPath);
+
+                    string filePath = Path.Combine(LogsPath, string.Format("UnhandledException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
+
+                    File.AppendAllText(filePath, JsonConvert.SerializeObject(args.ExceptionObject, Formatting.Indented) + "\r\n\r\n");
+
+                    MessageBox.Show(string.Format("An Unhandled Exception was Caught and Logged to:\r\n{0}", filePath),
+                        "Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch { }
             };
 
 
             Application.ThreadException += (sender, args) =>
             {
-                Directory.CreateDirectory("./Logs");
-                var filePath = string.Format("Logs/ThreadException{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-"));
-                File.WriteAllText("./" + filePath, JsonConvert.SerializeObject(args.Exception, Formatting.Indented));
-                MessageBox.Show(string.Format("An Unhandled Thread Exception was Caught and Logged to:\r\n{0}", filePath), "Thread Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
+                try
+                {
+                    if (!Directory.Exists(LogsPath))
+                        Directory.CreateDirectory(LogsPath);
+
+                    string filePath = Path.Combine(LogsPath, string.Format("ThreadException_{0}.json", DateTime.Now.ToShortDateString().Replace("/", "-")));
+
+                    File.AppendAllText(filePath, JsonConvert.SerializeObject(args.Exception, Formatting.Indented) + "\r\n\r\n");
+
+                    MessageBox.Show(string.Format("An Unhandled Thread Exception was Caught and Logged to:\r\n{0}", filePath),
+                        "Thread Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 }
+                catch { }
+           };
         }
     }
 }
