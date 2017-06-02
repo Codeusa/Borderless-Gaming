@@ -7,12 +7,12 @@ namespace BorderlessGaming.Steam
 	{
 		public static void Achievement_Unlock(int id)
 		{
-            if (!Program.Steam_Loaded)
+            if (!Program.SteamLoaded)
                 return;
 
             // Note: do not .Dispose()
             var manager = new AchievementManager();
-            manager.enable();
+            manager.Enable();
 
             if (id == 0)
                 manager.UnlockBorderlessAchievement();

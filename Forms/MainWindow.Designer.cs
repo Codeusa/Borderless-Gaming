@@ -71,7 +71,6 @@
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.toolStripOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRunOnStartup = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripGlobalHotkey = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMouseLock = new System.Windows.Forms.ToolStripMenuItem();
@@ -294,9 +293,9 @@
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
             resources.ApplyResources(this.alwaysOnTopToolStripMenuItem, "alwaysOnTopToolStripMenuItem");
             this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
-            //
+            // 
             // delayBorderlessToolStripMenuItem
-            //
+            // 
             this.delayBorderlessToolStripMenuItem.CheckOnClick = true;
             this.delayBorderlessToolStripMenuItem.Name = "delayBorderlessToolStripMenuItem";
             resources.ApplyResources(this.delayBorderlessToolStripMenuItem, "delayBorderlessToolStripMenuItem");
@@ -398,7 +397,6 @@
             // 
             this.toolStripOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRunOnStartup,
-            this.toolStripCheckForUpdates,
             this.toolStripMenuItem3,
             this.toolStripGlobalHotkey,
             this.toolStripMouseLock,
@@ -420,13 +418,6 @@
             this.toolStripRunOnStartup.Name = "toolStripRunOnStartup";
             resources.ApplyResources(this.toolStripRunOnStartup, "toolStripRunOnStartup");
             this.toolStripRunOnStartup.CheckedChanged += new System.EventHandler(this.toolStripRunOnStartup_CheckChanged);
-            // 
-            // toolStripCheckForUpdates
-            // 
-            this.toolStripCheckForUpdates.CheckOnClick = true;
-            this.toolStripCheckForUpdates.Name = "toolStripCheckForUpdates";
-            resources.ApplyResources(this.toolStripCheckForUpdates, "toolStripCheckForUpdates");
-            this.toolStripCheckForUpdates.CheckedChanged += new System.EventHandler(this.toolStripCheckForUpdates_CheckedChanged);
             // 
             // toolStripMenuItem3
             // 
@@ -756,7 +747,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem fullApplicationRefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripCheckForUpdates;
         private System.Windows.Forms.ToolStripMenuItem usageGuideToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
     }

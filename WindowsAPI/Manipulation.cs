@@ -191,10 +191,8 @@ namespace BorderlessGaming.WindowsAPI
                 processDetails.MadeBorderlessAttempts++;
             }
 		
-            if (Program.Steam_Loaded)
+            if (Program.SteamLoaded)
                 BorderlessGamingSteam.Achievement_Unlock(0);
-		
-            return;
         }
 
         public static void RestoreWindow(ProcessDetails pd)

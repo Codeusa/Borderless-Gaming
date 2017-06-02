@@ -68,7 +68,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Steamworks.NET">
-      <HintPath>..\..\Repositories\Steam\Steamworks.NET.dll</HintPath>
+      <HintPath>SteamLibs\Steamworks.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -223,6 +223,9 @@
     <None Include="data\bordered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)SteamLibs\* $(ProjectDir)$(OutDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -3,12 +3,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
+using Steamworks;
 
 namespace BorderlessGaming
 {
     static class Program
     {
-        public static bool Steam_Loaded = false;
+        public static bool SteamLoaded;
 	    
         /// <summary>
         ///     The main entry point for the application.
@@ -26,16 +27,11 @@ namespace BorderlessGaming
             {
                 try
                 {
-                    if (!Steamworks.SteamAPI.Init())
-                        MessageBox.Show("Steam API failed to initialize!", "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    else if (!Steamworks.Packsize.Test())
-                        MessageBox.Show("Steam failed to PackTest!", "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    else
-                        Steam_Loaded = true;
+                    SteamLoaded = SteamAPI.Init();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.GetType().ToString() + "\r\n" + ex.Message, "Error Loading Steam", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Debug.WriteLine(ex.GetType().ToString() + "\r\n" + ex.Message);
                 }
             }
 
@@ -45,7 +41,10 @@ namespace BorderlessGaming
                 if (!Directory.Exists(AppEnvironment.DataPath))
                     Directory.CreateDirectory(AppEnvironment.DataPath);
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
 
             Application.Run(new Forms.MainWindow());
         }

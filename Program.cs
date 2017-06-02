@@ -8,8 +8,9 @@ namespace BorderlessGaming
 {
     static class Program
     {
-        public static bool Steam_Loaded = false;
-	    
+
+        public static bool SteamLoaded;
+
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
@@ -21,9 +22,6 @@ namespace BorderlessGaming
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            if (AppEnvironment.SettingValue("CheckForUpdates", true))
-	            Tools.CheckForUpdates();
 
             // create the application data path, if necessary
             try

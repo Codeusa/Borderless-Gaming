@@ -179,11 +179,6 @@ namespace BorderlessGaming.Forms
             AppEnvironment.Setting("RunOnStartup", toolStripRunOnStartup.Checked);
         }
 
-        private void toolStripCheckForUpdates_CheckedChanged(object sender, EventArgs e)
-        {
-            AppEnvironment.Setting("CheckForUpdates", toolStripCheckForUpdates.Checked);
-        }
-
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
             AppEnvironment.Setting("UseGlobalHotkey", toolStripGlobalHotkey.Checked);
@@ -823,7 +818,6 @@ namespace BorderlessGaming.Forms
             toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
             toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
             toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
-            toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
             useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
             startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
             hideBalloonTipsToolStripMenuItem.Checked = AppEnvironment.SettingValue("HideBalloonTips", false);
@@ -837,15 +831,19 @@ namespace BorderlessGaming.Forms
             else
                 WindowState = FormWindowState.Normal;
 
-            if (Program.Steam_Loaded && disableSteamIntegrationToolStripMenuItem == null)
+            if (Program.SteamLoaded && disableSteamIntegrationToolStripMenuItem == null)
             {
-                disableSteamIntegrationToolStripMenuItem = new ToolStripMenuItem();
-                disableSteamIntegrationToolStripMenuItem.Name = "disableSteamIntegrationToolStripMenuItem";
-                disableSteamIntegrationToolStripMenuItem.Size = new Size(254, 22);
-                disableSteamIntegrationToolStripMenuItem.Text = "Disable Steam integration/hook";
-                disableSteamIntegrationToolStripMenuItem.ToolTipText = "Prevents \"In-App\" on Steam";
-                disableSteamIntegrationToolStripMenuItem.Checked = AppEnvironment.SettingValue("DisableSteamIntegration", false);
-                disableSteamIntegrationToolStripMenuItem.CheckOnClick = true; // let's do this before registering the CheckedChanged event
+                disableSteamIntegrationToolStripMenuItem =
+                    new ToolStripMenuItem
+                    {
+                        Name = "disableSteamIntegrationToolStripMenuItem",
+                        Size = new Size(254, 22),
+                        Text = "Disable Steam integration/hook",
+                        ToolTipText = "Prevents \"In-App\" on Steam",
+                        Checked = AppEnvironment.SettingValue("DisableSteamIntegration", false),
+                        CheckOnClick = true
+                    };
+                // let's do this before registering the CheckedChanged event
                 disableSteamIntegrationToolStripMenuItem.CheckedChanged += new EventHandler(disableSteamIntegrationToolStripMenuItem_CheckChanged);
                 toolsToolStripMenuItem.DropDownItems.Insert(0, disableSteamIntegrationToolStripMenuItem);
             }
