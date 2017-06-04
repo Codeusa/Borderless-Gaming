@@ -1,4 +1,4 @@
-# [Want to support Borderless-Gaming? Buy it on Steam!](http://store.steampowered.com/app/388080)
+# [Buy it on Steam!](http://store.steampowered.com/app/388080)
 
 # What is this?
 
@@ -15,16 +15,20 @@ The project is open source under the [GNU General Public License v2.0](https://g
 
 
 ## How to install and run Borderless-Gaming
+
 #### Buy through Steam and run it
 [Can be purchased here](http://store.steampowered.com/app/388080).
 
-#### Install from Releases
+#### Install from Source
 
-- Download the latest build from: https://github.com/Codeusa/Borderless-Gaming/releases/latest
+- Clone with repository 
 
-- Install it
+- Open the solution inside Visual Studio 2017
 
-- Run it
+- Select the "Release" option 
+
+- Build the projects and use the generated executable
+
 
 #### Usage
 [A detailed guide can be found here](https://steamcommunity.com/app/388080/discussions/0/535151589899658778/).
