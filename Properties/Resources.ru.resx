@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ErrorFavoritesSave" xml:space="preserve">
-    <value>Невозможно добавить в избранное. У вас есть разрешение?\r\n\r\nПодробности: {0}</value>
+    <value>Невозможно добавить в избранное. У вас есть привилегии?\r\n\r\nПодробности: {0}</value>
   </data>
   <data name="ErrorHeader" xml:space="preserve">
     <value>Ошибка</value>
@@ -133,6 +133,6 @@
     <value>Доступно обновление</value>
   </data>
   <data name="TrayMinimized" xml:space="preserve">
-    <value>{0} свернуто в трей.</value>
+    <value>{0} свернут в трей.</value>
   </data>
 </root>
