@@ -205,7 +205,7 @@ namespace BorderlessGaming.WindowsAPI
 
         private static bool NeedsDelay(IntPtr handle)
         {
-            var classNames = new List<string>() { "YYGameMakerYY", "LaunchUnrealUWindowsClient" };
+            var classNames = new List<string>() { "YYGameMakerYY", "LaunchUnrealUWindowsClient", "PCLaunchUnrealUWindowsClient" };
             var className = Native.GetWindowClassName(handle);
             return classNames.Any(name => name.Equals(className));
         }
