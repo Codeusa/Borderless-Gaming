@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
@@ -37,7 +38,7 @@ namespace BorderlessGaming.WindowsAPI
         /// </summary>
         public static void MakeWindowBorderless(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
-            var isUnrealEngine = IsUnrealEngine(targetWindow);
+            var isUnrealEngine = NeedsDelay(targetWindow);
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
 
@@ -202,11 +203,13 @@ namespace BorderlessGaming.WindowsAPI
            
         }
 
-        private static bool IsUnrealEngine(IntPtr handle)
+        private static bool NeedsDelay(IntPtr handle)
         {
+            var classNames = new List<string>() { "YYGameMakerYY", "LaunchUnrealUWindowsClient" };
             var className = Native.GetWindowClassName(handle);
-            return className.Equals("LaunchUnrealUWindowsClient");
+            return classNames.Any(name => name.Equals(className));
         }
+
         public static void RestoreWindow(ProcessDetails pd)
         {
             if ((pd == null) || (!pd.MadeBorderless) || (pd.OriginalStyleFlags_Standard == 0))
