@@ -78,13 +78,20 @@ namespace BorderlessGaming
 					// check favorites against the cache
 					foreach (var pd in _processDetails)
 					{
-						foreach (var fav_process in Favorites)
-						{
-							if (fav_process.Matches(pd))
-							{
-								RemoveBorder(pd, fav_process);
-							}
-						}
+                        try
+                        {
+                            foreach (var favProcess in Favorites)
+                            {
+                                if (favProcess.Matches(pd))
+                                {
+                                    RemoveBorder(pd, favProcess);
+                                }
+                            }
+                        }
+                        catch 
+                        {
+                           continue;
+                        }
 					}
 				}
 				Task.WaitAll(Task.Delay(3000));

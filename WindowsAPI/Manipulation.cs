@@ -37,6 +37,7 @@ namespace BorderlessGaming.WindowsAPI
         /// </summary>
         public static void MakeWindowBorderless(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
+            var isUnrealEngine = IsUnrealEngine(targetWindow);
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
 
@@ -98,7 +99,7 @@ namespace BorderlessGaming.WindowsAPI
             }
 
             // remove the menu and menuitems and force a redraw
-            if (favDetails.RemoveMenus)
+            if (favDetails.RemoveMenus || isUnrealEngine)
             {
                 // unfortunately, menus can't be re-added easily so they aren't removed by default anymore
                 IntPtr menuHandle = Native.GetMenu(targetWindow);
@@ -127,9 +128,7 @@ namespace BorderlessGaming.WindowsAPI
             if (favDetails.HideMouseCursor)
                 ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
 
-            // update window styles
-            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
-            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
+          
 
             // update window position
             if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
@@ -137,7 +136,7 @@ namespace BorderlessGaming.WindowsAPI
                 if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
                 {
                     // Set the window size to the biggest possible, using bounding adjustments
-                    Native.SetWindowPos
+                   Native.SetWindowPos
                     (
                         targetWindow,
                         0,
@@ -145,11 +144,11 @@ namespace BorderlessGaming.WindowsAPI
                         targetFrame.Y + favDetails.OffsetT,
                         targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
                         targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
-                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
+                        SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
 
                     // And auto-maximize
-                    if (favDetails.ShouldMaximize)
+                    if (favDetails.ShouldMaximize && !isUnrealEngine)
                         Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
                 }
                 else
@@ -163,7 +162,7 @@ namespace BorderlessGaming.WindowsAPI
                         favDetails.PositionY,
                         favDetails.PositionW,
                         favDetails.PositionH,
-                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
+                        SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
                 }
             }
@@ -179,11 +178,18 @@ namespace BorderlessGaming.WindowsAPI
                     0,
                     0,
                     0,
-                    SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize | SetWindowPosFlags.NoSendChanging
+                    SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize | SetWindowPosFlags.NoSendChanging
                 );
             }
+            //wait before applying styles
+            if (isUnrealEngine)
+            {
+                Thread.Sleep(4200);
+            }
+            // update window styles
+            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
+            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
 
-         
             // Make a note that we attempted to make the window borderless
             if (processDetails != null)
             {
@@ -193,8 +199,14 @@ namespace BorderlessGaming.WindowsAPI
 		
             if (Program.SteamLoaded)
                 BorderlessGamingSteam.Achievement_Unlock(0);
+           
         }
 
+        private static bool IsUnrealEngine(IntPtr handle)
+        {
+            var className = Native.GetWindowClassName(handle);
+            return className.Equals("LaunchUnrealUWindowsClient");
+        }
         public static void RestoreWindow(ProcessDetails pd)
         {
             if ((pd == null) || (!pd.MadeBorderless) || (pd.OriginalStyleFlags_Standard == 0))
