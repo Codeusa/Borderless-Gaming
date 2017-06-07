@@ -97,6 +97,7 @@ namespace BorderlessGaming.WindowsAPI
                 processDetails.OriginalStyleFlags_Extended = styleCurrentWindowExtended;
                 Native.GetWindowRect(processDetails.WindowHandle, out Native.Rect rect_temp);
                 processDetails.OriginalLocation = new Rectangle(rect_temp.Left, rect_temp.Top, rect_temp.Right - rect_temp.Left, rect_temp.Bottom - rect_temp.Top);
+
             }
 
             // remove the menu and menuitems and force a redraw
@@ -203,11 +204,23 @@ namespace BorderlessGaming.WindowsAPI
            
         }
 
+        /// <summary>
+        /// Check if a window class contains Unreal because it differs per game.
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <returns></returns>
+        private static bool IsUnreal(IntPtr handle)
+        {
+            return Native.GetWindowClassName(handle).ToLower().Contains("unreal");
+        }
+
         private static bool NeedsDelay(IntPtr handle)
         {
-            var classNames = new List<string>() { "YYGameMakerYY", "LaunchUnrealUWindowsClient", "PCLaunchUnrealUWindowsClient" };
+           
+            //other game engines
+            var classNames = new List<string>() { "YYGameMakerYY"};
             var className = Native.GetWindowClassName(handle);
-            return classNames.Any(name => name.Equals(className));
+            return IsUnreal(handle) || classNames.Any(name => name.Equals(className));
         }
 
         public static void RestoreWindow(ProcessDetails pd)

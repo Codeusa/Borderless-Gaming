@@ -171,19 +171,17 @@ namespace BorderlessGaming.Common
                     if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.MaximizeBox) > 0) targetable = true;
                     if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.MinimizeBox) > 0) targetable = true;
 
-                    if (!targetable)
-                    {
-                        var styleCurrentWindowExtended = WindowsAPI.Native.GetWindowLong(WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
+                    if (targetable) return;
+                    var styleCurrentWindowExtended = WindowsAPI.Native.GetWindowLong(WindowHandle, WindowsAPI.WindowLongIndex.ExtendedStyle);
 
-                        if (!targetable) if ((styleCurrentWindowExtended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) targetable = true;
-                        if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) targetable = true;
-                    }
+                    if (!targetable) if ((styleCurrentWindowExtended | WindowsAPI.WindowStyleFlags.ExtendedDlgModalFrame) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedComposited) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedWindowEdge) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedClientEdge) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedLayered) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedStaticEdge) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedToolWindow) > 0) targetable = true;
+                    if (!targetable) if ((styleCurrentWindowStandard | WindowsAPI.WindowStyleFlags.ExtendedAppWindow) > 0) targetable = true;
                 }, (AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
                 return targetable;
             }
