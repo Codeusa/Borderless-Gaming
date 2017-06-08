@@ -130,7 +130,7 @@ namespace BorderlessGaming.Common
 			public int OffsetR = 0;
 			public int OffsetB = 0;
 
-			public bool ShouldMaximize = true;
+			public bool ShouldMaximize;
 
 			public int PositionX = 0;
 			public int PositionY = 0;

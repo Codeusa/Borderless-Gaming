@@ -980,6 +980,12 @@
   <data name="toolStripRunOnStartup.Text" xml:space="preserve">
     <value>Run On Windows Startup</value>
   </data>
+  <data name="toolStripCheckForUpdates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 22</value>
+  </data>
+  <data name="toolStripCheckForUpdates.Text" xml:space="preserve">
+    <value>Check For Updates</value>
+  </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 6</value>
   </data>
@@ -1958,6 +1964,12 @@
     <value>toolStripRunOnStartup</value>
   </data>
   <data name="&gt;&gt;toolStripRunOnStartup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripCheckForUpdates.Name" xml:space="preserve">
+    <value>toolStripCheckForUpdates</value>
+  </data>
+  <data name="&gt;&gt;toolStripCheckForUpdates.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">

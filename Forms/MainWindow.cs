@@ -817,6 +817,7 @@ namespace BorderlessGaming.Forms
             // load up settings
             toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
             toolStripGlobalHotkey.Checked = AppEnvironment.SettingValue("UseGlobalHotkey", false);
+            toolStripCheckForUpdates.Checked = AppEnvironment.SettingValue("CheckForUpdates", true);
             toolStripMouseLock.Checked = AppEnvironment.SettingValue("UseMouseLockHotkey", false);
             useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = AppEnvironment.SettingValue("UseMouseHideHotkey", false);
             startMinimizedToTrayToolStripMenuItem.Checked = AppEnvironment.SettingValue("StartMinimized", false);
@@ -1078,5 +1079,10 @@ namespace BorderlessGaming.Forms
         }
 
         #endregion
+
+        private void toolStripCheckForUpdates_CheckedChanged(object sender, EventArgs e)
+        {
+            AppEnvironment.Setting("CheckForUpdates", this.toolStripCheckForUpdates.Checked);
+        }
     }
 }
