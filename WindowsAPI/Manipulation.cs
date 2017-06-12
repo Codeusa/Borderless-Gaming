@@ -38,7 +38,173 @@ namespace BorderlessGaming.WindowsAPI
         /// </summary>
         public static void MakeWindowBorderless(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
         {
-            var isUnrealEngine = NeedsDelay(targetWindow);
+
+            if (NeedsDelay(targetWindow))
+            {
+                MakeWindowBorderlessDelayed(processDetails, frmMain, targetWindow, targetFrame, favDetails);
+            }
+            else
+            {
+                // Automatically match a window to favorite details, if that information is available.
+                // Note: if one is not available, the default settings will be used as a new Favorite() object.
+
+                // Automatically match this window to a process
+
+                // Failsafe to prevent rapid switching, but also allow a few changes to the window handle (to be persistent)
+                if (processDetails != null)
+                    if (processDetails.MadeBorderless)
+                        if ((processDetails.MadeBorderlessAttempts > 3) || (!processDetails.WindowHasTargetableStyles))
+                            return;
+
+                // If no target frame was specified, assume the entire space on the primary screen
+                if ((targetFrame.Width == 0) || (targetFrame.Height == 0))
+                    targetFrame = Screen.FromHandle(targetWindow).Bounds;
+
+                // Get window styles
+                WindowStyleFlags styleCurrentWindowStandard = Native.GetWindowLong(targetWindow, WindowLongIndex.Style);
+                WindowStyleFlags styleCurrentWindowExtended = Native.GetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle);
+
+                // Compute new styles (XOR of the inverse of all the bits to filter)
+                WindowStyleFlags styleNewWindowStandard =
+                (
+                    styleCurrentWindowStandard
+                    & ~(
+                        WindowStyleFlags.Caption // composite of Border and DialogFrame
+                        //   | WindowStyleFlags.Border
+                        //   | WindowStyleFlags.DialogFrame                  
+                        | WindowStyleFlags.ThickFrame
+                        | WindowStyleFlags.SystemMenu
+                        | WindowStyleFlags.MaximizeBox // same as TabStop
+                        | WindowStyleFlags.MinimizeBox // same as Group
+                    )
+                );
+
+                WindowStyleFlags styleNewWindowExtended =
+                (
+                    styleCurrentWindowExtended
+                    & ~(
+                        WindowStyleFlags.ExtendedDlgModalFrame
+                        | WindowStyleFlags.ExtendedComposited
+                        | WindowStyleFlags.ExtendedWindowEdge
+                        | WindowStyleFlags.ExtendedClientEdge
+                        | WindowStyleFlags.ExtendedLayered
+                        | WindowStyleFlags.ExtendedStaticEdge
+                        | WindowStyleFlags.ExtendedToolWindow
+                        | WindowStyleFlags.ExtendedAppWindow
+                    )
+                );
+
+                // Should have process details by now
+                if (processDetails != null)
+                {
+                    // Save original details on this window so that we have a chance at undoing the process
+                    processDetails.OriginalStyleFlags_Standard = styleCurrentWindowStandard;
+                    processDetails.OriginalStyleFlags_Extended = styleCurrentWindowExtended;
+                    Native.Rect rectTemp;
+                    Native.GetWindowRect(processDetails.WindowHandle, out rectTemp);
+                    processDetails.OriginalLocation = new Rectangle(rectTemp.Left, rectTemp.Top, rectTemp.Right - rectTemp.Left, rectTemp.Bottom - rectTemp.Top);
+                }
+
+                // remove the menu and menuitems and force a redraw
+                if (favDetails.RemoveMenus)
+                {
+                    // unfortunately, menus can't be re-added easily so they aren't removed by default anymore
+                    IntPtr menuHandle = Native.GetMenu(targetWindow);
+                    if (menuHandle != IntPtr.Zero)
+                    {
+                        int menuItemCount = Native.GetMenuItemCount(menuHandle);
+
+                        for (int i = 0; i < menuItemCount; i++)
+                            Native.RemoveMenu(menuHandle, 0, MenuFlags.ByPosition | MenuFlags.Remove);
+
+                        Native.DrawMenuBar(targetWindow);
+                    }
+                }
+
+                // auto-hide the Windows taskbar (do this before resizing the window)
+                if (favDetails.HideWindowsTaskbar)
+                {
+                    Native.ShowWindow(frmMain.Handle, WindowShowStyle.ShowNoActivate);
+                    if (frmMain.WindowState == FormWindowState.Minimized)
+                        frmMain.WindowState = FormWindowState.Normal;
+
+                    Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.False);
+                }
+
+                // auto-hide the mouse cursor
+                if (favDetails.HideMouseCursor)
+                    Manipulation.ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
+
+                // update window styles
+                Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
+                Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
+
+                // update window position
+                if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
+                {
+                    if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
+                    {
+                        // Set the window size to the biggest possible, using bounding adjustments
+                        Native.SetWindowPos
+                        (
+                            targetWindow,
+                            0,
+                            targetFrame.X + favDetails.OffsetL,
+                            targetFrame.Y + favDetails.OffsetT,
+                            targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
+                            targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
+                            SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
+                        );
+
+                        // And auto-maximize
+                        if (favDetails.ShouldMaximize)
+                            Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
+                    }
+                    else
+                    {
+                        // Set the window size to the exact position specified by the user
+                        Native.SetWindowPos
+                        (
+                            targetWindow,
+                            0,
+                            favDetails.PositionX,
+                            favDetails.PositionY,
+                            favDetails.PositionW,
+                            favDetails.PositionH,
+                            SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
+                        );
+                    }
+                }
+
+                // Set topmost
+                if (favDetails.TopMost)
+                {
+                    Native.SetWindowPos
+                    (
+                        targetWindow,
+                        Native.HWND_TOPMOST,
+                        0,
+                        0,
+                        0,
+                        0,
+                        SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoSize | SetWindowPosFlags.NoSendChanging
+                    );
+                }
+            }
+
+            // Make a note that we attempted to make the window borderless
+            if (processDetails != null)
+            {
+                processDetails.MadeBorderless = true;
+                processDetails.MadeBorderlessAttempts++;
+            }
+            if (Program.SteamLoaded)
+                BorderlessGamingSteam.Achievement_Unlock(0);
+           
+        }
+
+        private static void MakeWindowBorderlessDelayed(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)
+        {
             // Automatically match a window to favorite details, if that information is available.
             // Note: if one is not available, the default settings will be used as a new Favorite() object.
 
@@ -62,30 +228,30 @@ namespace BorderlessGaming.WindowsAPI
             var styleNewWindowStandard =
             (
                 styleCurrentWindowStandard
-             & ~(
+                & ~(
                     WindowStyleFlags.Caption // composite of Border and DialogFrame
-               // | WindowStyleFlags.Border
-               //| WindowStyleFlags.DialogFrame                  
-                  | WindowStyleFlags.ThickFrame
-                  | WindowStyleFlags.OverlappedWindow
-                  | WindowStyleFlags.SystemMenu
-                  | WindowStyleFlags.MaximizeBox // same as TabStop
-                  | WindowStyleFlags.MinimizeBox // same as Group
+                    // | WindowStyleFlags.Border
+                    //| WindowStyleFlags.DialogFrame                  
+                    | WindowStyleFlags.ThickFrame
+                    | WindowStyleFlags.OverlappedWindow
+                    | WindowStyleFlags.SystemMenu
+                    | WindowStyleFlags.MaximizeBox // same as TabStop
+                    | WindowStyleFlags.MinimizeBox // same as Group
                 )
             );
 
-            var styleNewWindowExtended = 
+            var styleNewWindowExtended =
             (
                 styleCurrentWindowExtended
-             & ~(
+                & ~(
                     WindowStyleFlags.ExtendedDlgModalFrame
-                  | WindowStyleFlags.ExtendedComposited
-                  | WindowStyleFlags.ExtendedWindowEdge
-                  | WindowStyleFlags.ExtendedClientEdge
-                  | WindowStyleFlags.ExtendedLayered
-                  | WindowStyleFlags.ExtendedStaticEdge
-                  | WindowStyleFlags.ExtendedToolWindow
-                  | WindowStyleFlags.ExtendedAppWindow
+                    | WindowStyleFlags.ExtendedComposited
+                    | WindowStyleFlags.ExtendedWindowEdge
+                    | WindowStyleFlags.ExtendedClientEdge
+                    | WindowStyleFlags.ExtendedLayered
+                    | WindowStyleFlags.ExtendedStaticEdge
+                    | WindowStyleFlags.ExtendedToolWindow
+                    | WindowStyleFlags.ExtendedAppWindow
                 )
             );
 
@@ -101,8 +267,7 @@ namespace BorderlessGaming.WindowsAPI
             }
 
             // remove the menu and menuitems and force a redraw
-            if (favDetails.RemoveMenus || isUnrealEngine)
-            {
+ 
                 // unfortunately, menus can't be re-added easily so they aren't removed by default anymore
                 IntPtr menuHandle = Native.GetMenu(targetWindow);
                 if (menuHandle != IntPtr.Zero)
@@ -114,7 +279,7 @@ namespace BorderlessGaming.WindowsAPI
 
                     Native.DrawMenuBar(targetWindow);
                 }
-            }
+            
 
             // auto-hide the Windows taskbar (do this before resizing the window)
             if (favDetails.HideWindowsTaskbar)
@@ -130,7 +295,7 @@ namespace BorderlessGaming.WindowsAPI
             if (favDetails.HideMouseCursor)
                 ToggleMouseCursorVisibility(frmMain, Tools.Boolstate.False);
 
-          
+
 
             // update window position
             if (favDetails.SizeMode != Favorites.Favorite.SizeModes.NoChange)
@@ -138,7 +303,7 @@ namespace BorderlessGaming.WindowsAPI
                 if ((favDetails.SizeMode == Favorites.Favorite.SizeModes.FullScreen) || (favDetails.PositionW == 0) || (favDetails.PositionH == 0))
                 {
                     // Set the window size to the biggest possible, using bounding adjustments
-                   Native.SetWindowPos
+                    Native.SetWindowPos
                     (
                         targetWindow,
                         0,
@@ -148,10 +313,6 @@ namespace BorderlessGaming.WindowsAPI
                         targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
                         SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
-
-                    // And auto-maximize
-                    if (favDetails.ShouldMaximize && !isUnrealEngine)
-                        Native.ShowWindow(targetWindow, WindowShowStyle.Maximize);
                 }
                 else
                 {
@@ -184,26 +345,13 @@ namespace BorderlessGaming.WindowsAPI
                 );
             }
             //wait before applying styles
-            if (isUnrealEngine)
-            {
-                Thread.Sleep(4200);
-            }
+            Thread.Sleep(4200);
             // update window styles
             Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
             Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
-
-            // Make a note that we attempted to make the window borderless
-            if (processDetails != null)
-            {
-                processDetails.MadeBorderless = true;
-                processDetails.MadeBorderlessAttempts++;
-            }
-		
-            if (Program.SteamLoaded)
-                BorderlessGamingSteam.Achievement_Unlock(0);
-           
         }
 
+     
         /// <summary>
         /// Check if a window class contains Unreal because it differs per game.
         /// </summary>
