@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
 using Steamworks;
@@ -45,6 +47,10 @@ namespace BorderlessGaming
             {
                 // ignored
             }
+
+            //localization
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InstalledUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
 
             Application.Run(new Forms.MainWindow());
         }

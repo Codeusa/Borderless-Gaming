@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.Utilities;
 
@@ -30,7 +32,7 @@ namespace BorderlessGaming
                     Directory.CreateDirectory(AppEnvironment.DataPath);
             }
             catch { }
-
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
             Application.Run(new Forms.MainWindow());
         }
     }
