@@ -16,86 +16,86 @@ using BorderlessGaming.Properties;
 
 namespace BorderlessGaming
 {
-	/// <summary>
-	/// Basically the Controller for the app, everything is just tightly coupled
-	/// </summary>
-	public class BorderlessGaming
-	{
-		public const string HiddenFile = "HiddenProcesses.json";
-		public const string FavoritesFile = "Favorites.json";
+    /// <summary>
+    /// Basically the Controller for the app, everything is just tightly coupled
+    /// </summary>
+    public class BorderlessGaming
+    {
+        public const string HiddenFile = "HiddenProcesses.json";
+        public const string FavoritesFile = "Favorites.json";
 
-		public static readonly string DataPath;
+        public static readonly string DataPath;
 
-		static BorderlessGaming()
-		{
-			DataPath = Tools.GetDataPath();
-		}
+        static BorderlessGaming()
+        {
+            DataPath = Tools.GetDataPath();
+        }
 
-		private readonly MainWindow window;
-		private readonly Favorites _favorites;
-		private readonly HiddenProcesses _hiddenProcesses;
-		private readonly ProcessDetailsList _processDetails;
-		private readonly Windows windows;
+        private readonly MainWindow window;
+        private readonly Favorites _favorites;
+        private readonly HiddenProcesses _hiddenProcesses;
+        private readonly ProcessDetailsList _processDetails;
+        private readonly Windows windows;
 
-		private CancellationTokenSource workerTaskToken;
+        private CancellationTokenSource workerTaskToken;
 
-		public Favorites Favorites { get { return _favorites; } }
+        public Favorites Favorites { get { return _favorites; } }
 
-		public HiddenProcesses HiddenProcesses { get { return _hiddenProcesses; } }
+        public HiddenProcesses HiddenProcesses { get { return _hiddenProcesses; } }
 
-		public ProcessDetailsList Processes { get { return _processDetails; } }
+        public ProcessDetailsList Processes { get { return _processDetails; } }
 
-		public bool AutoHandleFavorites { get; set; }
+        public bool AutoHandleFavorites { get; set; }
 
-		public BorderlessGaming(MainWindow window)
-		{
-			this.window = window;
-			_favorites = new Favorites(Path.Combine(DataPath, FavoritesFile));
-			_hiddenProcesses = new HiddenProcesses(Path.Combine(DataPath, HiddenFile));
-			_processDetails = new ProcessDetailsList();
-			windows = new Windows();
-			AutoHandleFavorites = true;
-		}
+        public BorderlessGaming(MainWindow window)
+        {
+            this.window = window;
+            _favorites = new Favorites(Path.Combine(DataPath, FavoritesFile));
+            _hiddenProcesses = new HiddenProcesses(Path.Combine(DataPath, HiddenFile));
+            _processDetails = new ProcessDetailsList();
+            windows = new Windows();
+            AutoHandleFavorites = true;
+        }
 
-		public void Start()
-		{
-			workerTaskToken = new CancellationTokenSource();
-			Task.Factory.StartNew(DoMainWork, workerTaskToken.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-		}
+        public void Start()
+        {
+            workerTaskToken = new CancellationTokenSource();
+            Task.Factory.StartNew(DoMainWork, workerTaskToken.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
 
-		/// <summary>
-		/// Update the processlist and process the favorites
-		/// Invoke this method in a task or it will block
-		/// </summary>
-		private void DoMainWork()
-		{
-			while (!workerTaskToken.IsCancellationRequested)
-			{
-				// update the processlist
-				UpdateProcesses();
+        /// <summary>
+        /// Update the processlist and process the favorites
+        /// Invoke this method in a task or it will block
+        /// </summary>
+        private void DoMainWork()
+        {
+            while (!workerTaskToken.IsCancellationRequested)
+            {
+                // update the processlist
+                UpdateProcesses();
 
-				if (AutoHandleFavorites)
-				{
-					// check favorites against the cache
-					foreach (var pd in _processDetails)
-					{
-						foreach (var fav_process in Favorites)
-						{
-							if (fav_process.Matches(pd))
-							{
-								RemoveBorder(pd, fav_process);
-							}
-						}
-					}
-				}
-				Task.WaitAll(Task.Delay(3000));
-			}
-		}
+                if (AutoHandleFavorites)
+                {
+                    // check favorites against the cache
+                    foreach (var pd in _processDetails)
+                    {
+                        foreach (var fav_process in Favorites)
+                        {
+                            if (fav_process.Matches(pd))
+                            {
+                                RemoveBorder(pd, fav_process);
+                            }
+                        }
+                    }
+                }
+                Task.WaitAll(Task.Delay(3000));
+            }
+        }
 
-		private object updateLock = new object();
+        private object updateLock = new object();
 
-		private void UpdateProcesses()
-		{
+        private void UpdateProcesses()
+        {
             // Note: additional try/catch blocks were added here to prevent stalls when Windows is put into
             //       suspend or hibernation.
 
@@ -112,11 +112,11 @@ namespace BorderlessGaming
             }
             catch { } // swallow any exceptions in attempting to check window minimize/visibility state
 
-			lock (updateLock)
-			{
+            lock (updateLock)
+            {
                 // check existing processes for changes (auto-prune)
-				for (int i = 0; i < _processDetails.Count;)
-				{
+                for (int i = 0; i < _processDetails.Count;)
+                {
                     try
                     {
                         var pd = _processDetails[i];
@@ -149,7 +149,7 @@ namespace BorderlessGaming
                         // swallow any exceptions and move to the next item in the array
                         i++;
                     }
-				}
+                }
 
                 // add new process windows
                 try
@@ -167,45 +167,45 @@ namespace BorderlessGaming
                 catch { } // swallow any exceptions in attempting to add new windows
 
                 // update window
-				window.lblUpdateStatus.Text = "Right-click for more options.  Last updated " + DateTime.Now.ToString();
-			}
-		}
+                window.lblUpdateStatus.Text = "Right-click for more options.  Last updated " + DateTime.Now.ToString();
+            }
+        }
 
-		public Task RefreshProcesses()
-		{
-			lock (updateLock)
-			{
-				_processDetails.ClearProcesses();
-			}
+        public Task RefreshProcesses()
+        {
+            lock (updateLock)
+            {
+                _processDetails.ClearProcesses();
+            }
 
-			return Task.Factory.StartNew(UpdateProcesses);
-		}
+            return Task.Factory.StartNew(UpdateProcesses);
+        }
 
-		/// <summary>
-		/// Handle a removed process
-		/// </summary>
-		/// <param name="pd"></param>
-		private void HandlePrunedProcess(ProcessDetails pd)
-		{
-			// If we made this process borderless at some point, then check for a favorite that matches and undo
-			// some stuff to Windows.
-			foreach (var fav in _favorites)
-			{
-				if (fav.Matches(pd))
-				{
-					if (fav.HideWindowsTaskbar)
-						Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.True);
-					if (fav.HideMouseCursor)
-						Manipulation.ToggleMouseCursorVisibility(window, Tools.Boolstate.True);
-				}
-			}
-		}
+        /// <summary>
+        /// Handle a removed process
+        /// </summary>
+        /// <param name="pd"></param>
+        private void HandlePrunedProcess(ProcessDetails pd)
+        {
+            // If we made this process borderless at some point, then check for a favorite that matches and undo
+            // some stuff to Windows.
+            foreach (var fav in _favorites)
+            {
+                if (fav.Matches(pd))
+                {
+                    if (fav.HideWindowsTaskbar)
+                        Manipulation.ToggleWindowsTaskbarVisibility(Tools.Boolstate.True);
+                    if (fav.HideMouseCursor)
+                        Manipulation.ToggleMouseCursorVisibility(window, Tools.Boolstate.True);
+                }
+            }
+        }
 
-		/// <summary>
-		///     remove the menu, resize the window, remove border, and maximize
-		/// </summary>
-		public void RemoveBorder(ProcessDetails pd, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
-		{
+        /// <summary>
+        ///     remove the menu, resize the window, remove border, and maximize
+        /// </summary>
+        public void RemoveBorder(ProcessDetails pd, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
+        {
             if(favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
@@ -213,13 +213,13 @@ namespace BorderlessGaming
                 task.Wait(TimeSpan.FromSeconds(10));
             }
             Manipulation.MakeWindowBorderless(pd, window, pd.WindowHandle, new Rectangle(), favDetails ?? _favorites.FromProcessDetails(pd));
-		}
+        }
 
-		/// <summary>
-		///     remove the menu, resize the window, remove border, and maximize
-		/// </summary>
-		public void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
-		{
+        /// <summary>
+        ///     remove the menu, resize the window, remove border, and maximize
+        /// </summary>
+        public void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
+        {
             if (favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
@@ -228,14 +228,14 @@ namespace BorderlessGaming
             }
 
             var pd = _processDetails.FromHandle(hWnd);
-			Manipulation.MakeWindowBorderless(pd, window, hWnd, screen.Bounds, favDetails ?? _favorites.FromProcessDetails(pd));
-		}
+            Manipulation.MakeWindowBorderless(pd, window, hWnd, screen.Bounds, favDetails ?? _favorites.FromProcessDetails(pd));
+        }
 
-		/// <summary>
-		///     remove the menu, resize the window, remove border, and maximize
-		/// </summary>
-		public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
-		{
+        /// <summary>
+        ///     remove the menu, resize the window, remove border, and maximize
+        /// </summary>
+        public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorites.Favorite favDetails = null, Boolean overrideTimeout = false)
+        {
             if (favDetails != null && favDetails.DelayBorderless == true && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
@@ -243,10 +243,10 @@ namespace BorderlessGaming
                 task.Wait(TimeSpan.FromSeconds(10));
             }
             var pd = _processDetails.FromHandle(hWnd);
-			Manipulation.MakeWindowBorderless(pd, window, hWnd, targetFrame, favDetails ?? _favorites.FromProcessDetails(pd));
-		}
+            Manipulation.MakeWindowBorderless(pd, window, hWnd, targetFrame, favDetails ?? _favorites.FromProcessDetails(pd));
+        }
 
-	}
+    }
 
 }
 

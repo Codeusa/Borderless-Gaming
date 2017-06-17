@@ -46,12 +46,12 @@ namespace BorderlessGaming.Forms
 
         #endregion
 
-		private BorderlessGaming controller;
+        private BorderlessGaming controller;
         public MainWindow()
         {
-			controller = new BorderlessGaming(this);
-			controller.Processes.CollectionChanged += Processes_CollectionChanged;
-			controller.Favorites.CollectionChanged += Favorites_CollectionChanged;
+            controller = new BorderlessGaming(this);
+            controller.Processes.CollectionChanged += Processes_CollectionChanged;
+            controller.Favorites.CollectionChanged += Favorites_CollectionChanged;
             InitializeComponent();
         }
 
@@ -99,76 +99,76 @@ namespace BorderlessGaming.Forms
 
         #endregion
 
-		private void Processes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			Action action = () =>
-			{
-				lstProcesses.BeginUpdate();
-				if (e.NewItems != null)
-				{
-					//lock(controller.Processes)
-					//{
-					//cast really isnt needed right now.
-					var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
-					foreach (var ni in newItems)
-					{
-						lstProcesses.Items.Add(ni);
-					}
-					//}
-				}
-				if (e.OldItems != null)
-				{
-					//lock (controller.Processes)
-					//{
-					var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
-					foreach (var oi in oldItems)
-					{
-						lstProcesses.Items.Remove(oi);
-					}
-					//}
-				}
-				lstProcesses.EndUpdate();
-			};
-			if (InvokeRequired)
-				Invoke(action);
-			else
-				action();
-		}
+        private void Processes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Action action = () =>
+            {
+                lstProcesses.BeginUpdate();
+                if (e.NewItems != null)
+                {
+                    //lock(controller.Processes)
+                    //{
+                    //cast really isnt needed right now.
+                    var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
+                    foreach (var ni in newItems)
+                    {
+                        lstProcesses.Items.Add(ni);
+                    }
+                    //}
+                }
+                if (e.OldItems != null)
+                {
+                    //lock (controller.Processes)
+                    //{
+                    var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
+                    foreach (var oi in oldItems)
+                    {
+                        lstProcesses.Items.Remove(oi);
+                    }
+                    //}
+                }
+                lstProcesses.EndUpdate();
+            };
+            if (InvokeRequired)
+                Invoke(action);
+            else
+                action();
+        }
 
 
-		private void Favorites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			Action action = () =>
-			{
-				if (e.NewItems != null)
-				{
-					//lock (controller.Favorites)
-					//{
-					//cast really isnt needed right now.
-					var newItems = e.NewItems.Cast<Favorites.Favorite>().ToArray();
-					foreach (var ni in newItems)
-					{
-						lstFavorites.Items.Add(ni);
-					}
-					//}
-				}
-				if (e.OldItems != null)
-				{
-					//lock (controller.Favorites)
-					//{
-					var oldItems = e.OldItems.Cast<Favorites.Favorite>().ToArray();
-					foreach (var oi in oldItems)
-					{
-						lstFavorites.Items.Remove(oi);
-					}
-					//}
-				}
-			};
-			if (InvokeRequired)
-				Invoke(action);
-			else
-				action();
-		}
+        private void Favorites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Action action = () =>
+            {
+                if (e.NewItems != null)
+                {
+                    //lock (controller.Favorites)
+                    //{
+                    //cast really isnt needed right now.
+                    var newItems = e.NewItems.Cast<Favorites.Favorite>().ToArray();
+                    foreach (var ni in newItems)
+                    {
+                        lstFavorites.Items.Add(ni);
+                    }
+                    //}
+                }
+                if (e.OldItems != null)
+                {
+                    //lock (controller.Favorites)
+                    //{
+                    var oldItems = e.OldItems.Cast<Favorites.Favorite>().ToArray();
+                    foreach (var oi in oldItems)
+                    {
+                        lstFavorites.Items.Remove(oi);
+                    }
+                    //}
+                }
+            };
+            if (InvokeRequired)
+                Invoke(action);
+            else
+                action();
+        }
 
         #region Application Menu Events
 
@@ -224,13 +224,13 @@ namespace BorderlessGaming.Forms
         {
             AppEnvironment.Setting("ViewAllProcessDetails", viewFullProcessDetailsToolStripMenuItem.Checked);
 
-			await controller.RefreshProcesses();
+            await controller.RefreshProcesses();
         }
         
-		private async void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			controller.HiddenProcesses.Reset();
-			await controller.RefreshProcesses();
+            controller.HiddenProcesses.Reset();
+            await controller.RefreshProcesses();
         }
         
         private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,7 +248,7 @@ namespace BorderlessGaming.Forms
 
         private void pauseAutomaticProcessingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			controller.AutoHandleFavorites = false;
+            controller.AutoHandleFavorites = false;
         }
 
         private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -272,19 +272,19 @@ namespace BorderlessGaming.Forms
             Tools.GotoSite("http://store.steampowered.com/app/388080");
         }
 
-		private void toolStripRegexReference_Click(object sender, EventArgs e)
-		{
-			Tools.GotoSite("www.regular-expressions.info/reference.html");
-		}
+        private void toolStripRegexReference_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("www.regular-expressions.info/reference.html");
+        }
 
         private void toolStripAbout_Click(object sender, EventArgs e)
         {
             new AboutForm().ShowDialog();
         }
         
-		private async void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			await controller.RefreshProcesses();
+            await controller.RefreshProcesses();
         }
 
         private void usageGuideToolStripMenuItem_Click(object sender, EventArgs e)
@@ -327,7 +327,7 @@ namespace BorderlessGaming.Forms
             Native.SetWindowText(pd.WindowHandle, Tools.Input_Text("Set Window Title", "Set the new window title text:", Native.GetWindowTitle(pd.WindowHandle)));
         }
 
-		private async void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void hideThisProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lstProcesses.SelectedItem == null) return;
 
@@ -336,9 +336,9 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-			controller.HiddenProcesses.Add(pd.BinaryName.Trim().ToLower());
+            controller.HiddenProcesses.Add(pd.BinaryName.Trim().ToLower());
 
-			await controller.RefreshProcesses();
+            await controller.RefreshProcesses();
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-			controller.RemoveBorder(pd);
+            controller.RemoveBorder(pd);
         }
 
         private void btnRestoreWindow_Click(object sender, EventArgs e)
@@ -380,14 +380,14 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-			//TODO move to controller
-			if (controller.Favorites.CanAdd(pd.WindowTitle))
-			{
-				Favorites.Favorite fav = new Favorites.Favorite();
-				fav.Kind = Favorites.Favorite.FavoriteKinds.ByTitleText;
-				fav.SearchText = pd.WindowTitle;
-				controller.Favorites.Add(fav);
-			}
+            //TODO move to controller
+            if (controller.Favorites.CanAdd(pd.WindowTitle))
+            {
+                Favorites.Favorite fav = new Favorites.Favorite();
+                fav.Kind = Favorites.Favorite.FavoriteKinds.ByTitleText;
+                fav.SearchText = pd.WindowTitle;
+                controller.Favorites.Add(fav);
+            }
         }
 
         /// <summary>
@@ -402,31 +402,31 @@ namespace BorderlessGaming.Forms
             if (!pd.Manageable)
                 return;
 
-			//TODO move to controller
-			if (controller.Favorites.CanAdd(pd.BinaryName))
-			{
-				Favorites.Favorite fav = new Favorites.Favorite();
-				fav.Kind = Favorites.Favorite.FavoriteKinds.ByBinaryName;
-				fav.SearchText = pd.BinaryName;
-				controller.Favorites.Add(fav);
-			}
+            //TODO move to controller
+            if (controller.Favorites.CanAdd(pd.BinaryName))
+            {
+                Favorites.Favorite fav = new Favorites.Favorite();
+                fav.Kind = Favorites.Favorite.FavoriteKinds.ByBinaryName;
+                fav.SearchText = pd.BinaryName;
+                controller.Favorites.Add(fav);
+            }
         }
 
         /// <summary>
-		///     adds the currently selected process to the favorites (by window title text)
-		/// </summary>
-		private void byTheWindowTitleTextregexToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			if (lstProcesses.SelectedItem == null) return;
+        ///     adds the currently selected process to the favorites (by window title text)
+        /// </summary>
+        private void byTheWindowTitleTextregexToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstProcesses.SelectedItem == null) return;
 
-			ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
+            ProcessDetails pd = ((ProcessDetails)lstProcesses.SelectedItem);
 
-			if (!pd.Manageable)
-				return;
+            if (!pd.Manageable)
+                return;
 
-			//TODO move to controller
-			if (controller.Favorites.CanAdd(pd.WindowTitle))
-			{
+            //TODO move to controller
+            if (controller.Favorites.CanAdd(pd.WindowTitle))
+            {
                 string res = Tools.Input_Text("Add to favorites by RegEx string", "Regex string (see the Help menu for reference)", pd.WindowTitle);
 
                 if (res.Trim().Length > 0)
@@ -436,8 +436,8 @@ namespace BorderlessGaming.Forms
                     fav.SearchText = res;
                     controller.Favorites.Add(fav);
                 }
-			}
-		}
+            }
+        }
 
         private void addSelectedItem_Click(object sender, EventArgs e)
         {
@@ -484,9 +484,9 @@ namespace BorderlessGaming.Forms
 
         private void RefreshFavoritesList(Favorites.Favorite fav = null)
         {
-			//refreshing is done through observables so this method just readds the favorite
-			//to make it look like it updated and because i dont want to change all that code
-			controller.Favorites.Add(fav);
+            //refreshing is done through observables so this method just readds the favorite
+            //to make it look like it updated and because i dont want to change all that code
+            controller.Favorites.Add(fav);
         }
 
         /// <summary>
@@ -496,13 +496,13 @@ namespace BorderlessGaming.Forms
         {
             if (lstFavorites.SelectedItem == null) return;
 
-			//TODO move to controller.
-			Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
+            //TODO move to controller.
+            Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
-				return;
+            if (!controller.Favorites.CanRemove(fav.SearchText))
+                return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
         }        
         
         private void removeMenusToolStripMenuItem_Click(object sender, EventArgs e)
@@ -511,13 +511,13 @@ namespace BorderlessGaming.Forms
 
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
-				return;
+            if (!controller.Favorites.CanRemove(fav.SearchText))
+                return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
-			fav.RemoveMenus = removeMenusToolStripMenuItem.Checked;
-			RefreshFavoritesList(fav);
+            fav.RemoveMenus = removeMenusToolStripMenuItem.Checked;
+            RefreshFavoritesList(fav);
         }
 
         private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -526,40 +526,40 @@ namespace BorderlessGaming.Forms
 
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.TopMost = alwaysOnTopToolStripMenuItem.Checked;
-			RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
 
         private void adjustWindowBoundsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the left window edge (0 pixels = no adjustment):", fav.OffsetL.ToString()), out fav.OffsetL);
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the right window edge (0 pixels = no adjustment):", fav.OffsetR.ToString()), out fav.OffsetR);
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the top window edge (0 pixels = no adjustment):", fav.OffsetT.ToString()), out fav.OffsetT);
             int.TryParse(Tools.Input_Text("Adjust Window Bounds", "Pixel adjustment for the bottom window edge (0 pixels = no adjustment):", fav.OffsetB.ToString()), out fav.OffsetB);
 
-			RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
         
         private void automaximizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.ShouldMaximize = automaximizeToolStripMenuItem.Checked;
 
@@ -572,30 +572,30 @@ namespace BorderlessGaming.Forms
                 fav.PositionH = 0;
             }
 
-			RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }        
         
         private void hideMouseCursorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
-			RefreshFavoritesList(fav);
+            RefreshFavoritesList(fav);
         }
 
         private void hideWindowsTaskbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
 
@@ -606,7 +606,7 @@ namespace BorderlessGaming.Forms
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
             DialogResult result = MessageBox.Show("Would you like to select the area using your mouse cursor?\r\n\r\nIf you answer No, you will be prompted for specific pixel dimensions.", "Select Area?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -640,7 +640,7 @@ namespace BorderlessGaming.Forms
                 int.TryParse(Tools.Input_Text("Set Window Size", "Window height (in pixels):", fav.PositionH.ToString()), out fav.PositionH);
             }
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             if ((fav.PositionW == 0) || (fav.PositionH == 0))
                 fav.SizeMode = Favorites.Favorite.SizeModes.FullScreen;
@@ -657,10 +657,10 @@ namespace BorderlessGaming.Forms
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.SizeMode = (fullScreenToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.FullScreen : Favorites.Favorite.SizeModes.NoChange;
 
@@ -682,10 +682,10 @@ namespace BorderlessGaming.Forms
         {
             Favorites.Favorite fav = (Favorites.Favorite)lstFavorites.SelectedItem;
 
-			if (!controller.Favorites.CanRemove(fav.SearchText))
+            if (!controller.Favorites.CanRemove(fav.SearchText))
                 return;
 
-			controller.Favorites.Remove(fav);
+            controller.Favorites.Remove(fav);
 
             fav.SizeMode = (noSizeChangeToolStripMenuItem.Checked) ? Favorites.Favorite.SizeModes.NoChange : Favorites.Favorite.SizeModes.FullScreen;
 
@@ -764,7 +764,7 @@ namespace BorderlessGaming.Forms
                 return;
             }
 
-			contextAddToFavs.Enabled = controller.Favorites.CanAdd(pd.BinaryName) && controller.Favorites.CanAdd(pd.WindowTitle);
+            contextAddToFavs.Enabled = controller.Favorites.CanAdd(pd.BinaryName) && controller.Favorites.CanAdd(pd.WindowTitle);
 
             if (Screen.AllScreens.Length < 2)
             {
@@ -790,7 +790,7 @@ namespace BorderlessGaming.Forms
                     string label = fixedDeviceName + ((screen.Primary) ? " (P)" : string.Empty);
 
                     ToolStripMenuItem tsi = new ToolStripMenuItem(label);
-					tsi.Click += (s, ea) => { controller.RemoveBorder_ToSpecificScreen(pd, screen); };
+                    tsi.Click += (s, ea) => { controller.RemoveBorder_ToSpecificScreen(pd, screen); };
 
                     contextBorderlessOn.DropDownItems.Add(tsi);
                 }
@@ -798,7 +798,7 @@ namespace BorderlessGaming.Forms
                 // add supersize Option
                 ToolStripMenuItem superSizeItem = new ToolStripMenuItem("SuperSize!");
 
-				superSizeItem.Click += (s, ea) => { controller.RemoveBorder_ToSpecificRect(pd, superSize); };
+                superSizeItem.Click += (s, ea) => { controller.RemoveBorder_ToSpecificRect(pd, superSize); };
 
                 contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
@@ -861,11 +861,11 @@ namespace BorderlessGaming.Forms
                 Hide();
 
             // initialize favorite list
-			foreach (var ni in controller.Favorites)
-				lstFavorites.Items.Add(ni);
+            foreach (var ni in controller.Favorites)
+                lstFavorites.Items.Add(ni);
 
             // start Task API controller
-			controller.Start();
+            controller.Start();
 
             // Update buttons' enabled/disabled state
             lstProcesses_SelectedIndexChanged(sender, e);
@@ -1028,20 +1028,20 @@ namespace BorderlessGaming.Forms
                     if (hCurrentActiveWindow != Handle)
                     {
                         // Figure out the process details based on the current window handle
-						ProcessDetails pd = controller.Processes.FromHandle(hCurrentActiveWindow);
-						if (pd == null)
-						{
-							Task.WaitAll(controller.RefreshProcesses());
-							pd = controller.Processes.FromHandle(hCurrentActiveWindow);
-							if (pd == null)
-								return;
-						}
+                        ProcessDetails pd = controller.Processes.FromHandle(hCurrentActiveWindow);
+                        if (pd == null)
+                        {
+                            Task.WaitAll(controller.RefreshProcesses());
+                            pd = controller.Processes.FromHandle(hCurrentActiveWindow);
+                            if (pd == null)
+                                return;
+                        }
                         // If we have information about this process -and- we've already made it borderless, then reverse the process
-						if (pd.MadeBorderless)
+                        if (pd.MadeBorderless)
                             Manipulation.RestoreWindow(pd);
                         // Otherwise, this is a fresh request to remove the border from the current window
                         else
-							controller.RemoveBorder(pd);
+                            controller.RemoveBorder(pd);
                     }
 
                     return; // handled the message, do not call base WndProc for this message

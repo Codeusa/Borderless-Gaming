@@ -12,7 +12,7 @@ namespace BorderlessGaming
     static class Program
     {
         public static bool SteamLoaded;
-	    
+        
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
