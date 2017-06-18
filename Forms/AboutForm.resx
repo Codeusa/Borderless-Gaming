@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_ownerGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 103</value>
+    <value>9, 107</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 16</value>
@@ -151,8 +151,8 @@
   <data name="&gt;&gt;_ownerLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_dmxtNameTag.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;_psouza4GithubGlobe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_madpewNametag.Parent" xml:space="preserve">
     <value>$this</value>
@@ -167,7 +167,7 @@
     <value>16, 18</value>
   </data>
   <data name="_psouza4Nametag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 216</value>
+    <value>60, 126</value>
   </data>
   <data name="&gt;&gt;_madpewGithubGlobe.Name" xml:space="preserve">
     <value>_madpewGithubGlobe</value>
@@ -184,6 +184,9 @@
   <data name="&gt;&gt;_codeusaSoftwareLogo.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="_SecretOnlineNametag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
   <data name="_blogLabel.Text" xml:space="preserve">
     <value>Blog:</value>
   </data>
@@ -194,7 +197,7 @@
     <value>6</value>
   </data>
   <data name="_psouza4Nametag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
+    <value>78, 13</value>
   </data>
   <data name="_copyrightLabel.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -202,8 +205,25 @@
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;_madpewGithubGlobe.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="_SecretOnlineGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
+        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
+        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
+        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
+        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
+        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
+        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
+        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
+        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
+        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
+        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
+        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
+        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
+        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
+        FkJonTZMAAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="_psouza4GithubGlobe.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -213,6 +233,10 @@
   </data>
   <data name="_viewGithubLinkLabel.Text" xml:space="preserve">
     <value>https://github.com/Codeusa/Borderless-Gaming</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_SecretOnlineGithubGlobe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;_stackOfPancakesNameTag.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -232,7 +256,7 @@
     <value>$this</value>
   </data>
   <data name="_dmxtNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 146</value>
+    <value>60, 173</value>
   </data>
   <data name="&gt;&gt;_stackOfPancakesGithubGlobe.Name" xml:space="preserve">
     <value>_stackOfPancakesGithubGlobe</value>
@@ -240,11 +264,11 @@
   <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
     <value>pictureBox2</value>
   </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>384, 287</value>
+  </data>
   <data name="_ownerGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 18</value>
-  </data>
-  <data name="_steamGroupLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
   </data>
   <data name="&gt;&gt;_viewBlogLinkLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -429,7 +453,10 @@
     <value>True</value>
   </data>
   <data name="_impulserNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 164</value>
+    <value>60, 191</value>
+  </data>
+  <data name="&gt;&gt;_viewGithubLinkLabel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="_ownerNameTag.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -443,6 +470,9 @@
   <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
     <value>pictureBox1</value>
   </data>
+  <data name="&gt;&gt;_committersLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_copyrightLabel.Name" xml:space="preserve">
     <value>_copyrightLabel</value>
   </data>
@@ -454,6 +484,9 @@
   </data>
   <data name="&gt;&gt;_steamGroupLabel.ZOrder" xml:space="preserve">
     <value>23</value>
+  </data>
+  <data name="_stackOfPancakesNameTag.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;_gitHubLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -479,12 +512,6 @@
   <data name="&gt;&gt;_stackOfPancakesNameTag.Name" xml:space="preserve">
     <value>_stackOfPancakesNameTag</value>
   </data>
-  <data name="&gt;&gt;_ownerLabel.Name" xml:space="preserve">
-    <value>_ownerLabel</value>
-  </data>
-  <data name="&gt;&gt;_psouza4GithubGlobe.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;_psouza4Nametag.Name" xml:space="preserve">
     <value>_psouza4Nametag</value>
   </data>
@@ -504,25 +531,22 @@
     <value>5, 33</value>
   </data>
   <data name="_viewBlogLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 13</value>
+    <value>109, 13</value>
   </data>
   <data name="_dmxtGithubGlobe.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;_steamGroupLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="_steamGroupLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="_gitHubLabel.Text" xml:space="preserve">
     <value>Github:</value>
   </data>
   <data name="_ownerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 86</value>
+    <value>6, 91</value>
   </data>
   <data name="&gt;&gt;_dmxtGithubGlobe.ZOrder" xml:space="preserve">
     <value>15</value>
-  </data>
-  <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 106</value>
   </data>
   <data name="_impulserNameTag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -542,6 +566,9 @@
   <data name="_stackOfPancakesNameTag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;_dmxtGithubGlobe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_ownerLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -559,6 +586,9 @@
   </data>
   <data name="_viewSteamGroupLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="_SecretOnlineNametag.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;_SecretOnlineNametag.Parent" xml:space="preserve">
     <value>$this</value>
@@ -578,11 +608,11 @@
   <data name="&gt;&gt;_madpewGithubGlobe.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="_ownerLabel.Text" xml:space="preserve">
+    <value>Maintainers:</value>
+  </data>
   <data name="&gt;&gt;_stackOfPancakesGithubGlobe.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="_steamGroupLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;_codeusaSoftwareLogo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -654,18 +684,17 @@
   <data name="&gt;&gt;_stackOfPancakesNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="_dmxtNameTag.Text" xml:space="preserve">
-    <value>dmxt - Dana</value>
+  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 170</value>
   </data>
   <data name="&gt;&gt;_impulserGithubGlobe.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="&gt;&gt;_gitHubLabel.ZOrder" xml:space="preserve">
+    <value>25</value>
   </data>
   <data name="_psouza4GithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 215</value>
+    <value>9, 125</value>
   </data>
   <data name="&gt;&gt;_dmxtGithubGlobe.Parent" xml:space="preserve">
     <value>$this</value>
@@ -675,6 +704,9 @@
   </data>
   <data name="_blogLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -695,13 +727,13 @@
     <value>7</value>
   </data>
   <data name="_madpewGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 197</value>
+    <value>9, 224</value>
   </data>
   <data name="_viewBlogLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="_ownerNameTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 13</value>
+    <value>158, 13</value>
   </data>
   <data name="_dmxtNameTag.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 13</value>
@@ -711,6 +743,9 @@
   </data>
   <data name="&gt;&gt;_impulserNameTag.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="&gt;&gt;_blogLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="_viewGithubLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 13</value>
@@ -762,10 +797,7 @@
 </value>
   </data>
   <data name="_committersLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 126</value>
-  </data>
-  <data name="&gt;&gt;_psouza4Nametag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>6, 155</value>
   </data>
   <data name="&gt;&gt;_SecretOnlineGithubGlobe.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -773,20 +805,20 @@
   <data name="&gt;&gt;_copyrightLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="versionLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14pt</value>
+  <data name="&gt;&gt;_steamGroupLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_stackOfPancakesGithubGlobe.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="_stackOfPancakesNameTag.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="_psouza4Nametag.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="_SecretOnlineGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 242</value>
   </data>
-  <data name="&gt;&gt;_dmxtGithubGlobe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="versionLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt</value>
   </data>
   <data name="_stackOfPancakesGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -808,14 +840,11 @@
         FkJonTZMAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="_blogLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 49</value>
-  </data>
   <data name="&gt;&gt;_ownerLabel.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
   <data name="_stackOfPancakesGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 179</value>
+    <value>9, 206</value>
   </data>
   <data name="&gt;&gt;_madpewGithubGlobe.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -846,14 +875,17 @@
   <data name="_copyrightLabel.Text" xml:space="preserve">
     <value>FILLED VIA CODE</value>
   </data>
-  <data name="&gt;&gt;_committersLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;_ownerLabel.Name" xml:space="preserve">
+    <value>_ownerLabel</value>
+  </data>
+  <data name="_SecretOnlineGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 18</value>
   </data>
   <data name="_viewGithubLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;versionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;_viewGithubLinkLabel.Name" xml:space="preserve">
+    <value>_viewGithubLinkLabel</value>
   </data>
   <data name="&gt;&gt;_impulserNameTag.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -861,8 +893,8 @@
   <data name="&gt;&gt;_ownerNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;_viewGithubLinkLabel.Name" xml:space="preserve">
-    <value>_viewGithubLinkLabel</value>
+  <data name="_SecretOnlineNametag.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -874,7 +906,10 @@
     <value>True</value>
   </data>
   <data name="_ownerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
+    <value>64, 13</value>
+  </data>
+  <data name="_SecretOnlineNametag.Text" xml:space="preserve">
+    <value>SecretOnline</value>
   </data>
   <data name="&gt;&gt;_copyrightLabel.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -912,14 +947,14 @@
   <data name="&gt;&gt;_ownerNameTag.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_psouza4GithubGlobe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;_psouza4Nametag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 216</value>
+    <value>32, 126</value>
   </data>
   <data name="_impulserGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 161</value>
+    <value>9, 188</value>
   </data>
   <data name="&gt;&gt;_psouza4GithubGlobe.Name" xml:space="preserve">
     <value>_psouza4GithubGlobe</value>
@@ -942,7 +977,7 @@
   <data name="_psouza4Nametag.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;_viewGithubLinkLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_dmxtNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;versionLabel.Parent" xml:space="preserve">
@@ -952,7 +987,7 @@
     <value>14</value>
   </data>
   <data name="_viewSteamGroupLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 13</value>
+    <value>208, 13</value>
   </data>
   <data name="&gt;&gt;_viewGithubLinkLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -967,22 +1002,22 @@
     <value>7</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 104</value>
+    <value>32, 108</value>
   </data>
   <data name="&gt;&gt;_impulserNameTag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="_stackOfPancakesNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 182</value>
+    <value>60, 209</value>
   </data>
-  <data name="_ownerLabel.Text" xml:space="preserve">
-    <value>Maintainer:</value>
+  <data name="_blogLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 49</value>
   </data>
   <data name="&gt;&gt;_impulserNameTag.Name" xml:space="preserve">
     <value>_impulserNameTag</value>
   </data>
-  <data name="&gt;&gt;_blogLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="_steamGroupLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
   </data>
   <data name="_codeusaSoftwareLogo.Location" type="System.Drawing.Point, System.Drawing">
     <value>277, 162</value>
@@ -994,397 +1029,16 @@
     <value>True</value>
   </data>
   <data name="_ownerNameTag.Text" xml:space="preserve">
-    <value>Codeusa - Andrew</value>
+    <value>Codeusa/AndrewMD5 - Andrew</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>355, 275</value>
+  <data name="&gt;&gt;_psouza4GithubGlobe.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="versionLabel.Text" xml:space="preserve">
     <value>Borderless Gaming</value>
   </data>
   <data name="&gt;&gt;_blogLabel.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA
-        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
-        AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAACIiIAACIiIAIAAAAAAAAgAgAAAAAAACACAAAAAAA
-        AIAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAIAAAAAAAAgAgA
-        AAAAAACACAAAAAAAAIAIiIgAAIiIgAAAAAAAAAAA/n8AAIABAAC4HQAAv/0AAL+NAACfaQAAn0kAABF4
-        AAAWiAAAkfkAAJb5AACx/QAAv/0AALgdAACAAQAA/n8AACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAA
-        AAAAAAAAEAAAABAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD/
-        /wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIiIiIiAAAAI
-        iIiIiIgAAIAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAA
-        AAAAAAAAAAAIAACAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAAIAACA
-        AAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAA
-        AAAAAAAAAAAIAACAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAAIAACA
-        AAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAAAAAAAA
-        CAAAiIiIiIiAAAAIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//n////w//8AA
-        AAPf8A/73/AP+9////vf///73//A+9//gHvf/5573/+ee9//mHvH/5hjx/+f44f/nmEGB4BgBgPA4IZz
-        /+HGc//jxgP/494H//vec//73nP/+94D//veB//73///+9////vf8A/73/AP+8AAAAP//D////5//w==
-</value>
-  </data>
-  <data name="&gt;&gt;_ownerGithubGlobe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="_madpewNametag.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;_SecretOnlineGithubGlobe.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="_codeusaSoftwareLogo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 65</value>
-  </data>
-  <data name="_steamGroupLabel.Text" xml:space="preserve">
-    <value>Steam group:</value>
-  </data>
-  <data name="&gt;&gt;_dmxtNameTag.Name" xml:space="preserve">
-    <value>_dmxtNameTag</value>
-  </data>
-  <data name="_ownerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://blog.andrew.im/</value>
-  </data>
-  <data name="_psouza4Nametag.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;_SecretOnlineNametag.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;_impulserGithubGlobe.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_gitHubLabel.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="_madpewNametag.Text" xml:space="preserve">
-    <value>madpew</value>
-  </data>
-  <data name="_madpewNametag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 199</value>
-  </data>
-  <data name="_dmxtNameTag.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;_steamGroupLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_blogLabel.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;_dmxtGithubGlobe.Name" xml:space="preserve">
-    <value>_dmxtGithubGlobe</value>
-  </data>
-  <data name="&gt;&gt;_psouza4Nametag.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 143</value>
-  </data>
-  <data name="_viewSteamGroupLinkLabel.Text" xml:space="preserve">
-    <value>http://steamcommunity.com/app/388080/</value>
-  </data>
-  <data name="_copyrightLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 13</value>
-  </data>
-  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 16</value>
-  </data>
-  <data name="_copyrightLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 253</value>
-  </data>
-  <data name="_impulserNameTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
-  </data>
-  <data name="&gt;&gt;_dmxtNameTag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="_impulserGithubGlobe.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="_viewBlogLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 13</value>
-  </data>
-  <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://blog.andrew.im</value>
-  </data>
-  <data name="_ownerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 91</value>
-  </data>
-  <data name="_ownerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
-  </data>
-  <data name="_ownerLabel.Text" xml:space="preserve">
-    <value>Maintainers:</value>
-  </data>
-  <data name="_ownerGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_ownerGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 107</value>
-  </data>
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVtJREFUOE9j
-        GAXEA15e3nBhYeFXIiIi/wUFBbdwcXFJQ6UIA6BmAwkJiV9xcXGT582bl6+np3dITExsD1SagYGTkzOZ
-        h4fnG1DhKyDbGCoMBwoKCrVATRf+//+vAMR8U6dODQEa8B+ohxOsQEhI6NW1a9dCDQ0NjwLZD4DOEwVL
-        QIGamtoqWVnZN0BNQiC+qqpqlqSk5AegYcxgBUCB00D/HRcXF/8KNOA/Pz//I6AhpUDXhPPx8bUA/f1X
-        VFT0P1DNN6D/LwHl/8THx3eANYPAxYsXHRwdHaeGhoZOiYyMnGJubr4O6LzvQPxfWlr6KNDgD0CN/9XV
-        1c84ODjMmTJlSh7QdkQgAjksQKwMxCA/ygOxdkNDQyk3N/fvHTt2eAANXKuoqHgRKG4OxKpAzAfVihsA
-        FQnFxMR0s7CwvAB65Vl1dXUiVIp4ADREGojdgNgFiPmhwsMLMDAAALg0hCFEe1vEAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 108</value>
-  </data>
-  <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 110</value>
-  </data>
-  <data name="_ownerNameTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 13</value>
-  </data>
-  <data name="_ownerNameTag.Text" xml:space="preserve">
-    <value>Codeusa/AndrewMD5 - Andrew</value>
-  </data>
-  <data name="_committersLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 155</value>
-  </data>
-  <data name="_dmxtGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_dmxtGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 170</value>
-  </data>
-  <data name="_dmxtNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 173</value>
-  </data>
-  <data name="_impulserGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_impulserGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 188</value>
-  </data>
-  <data name="_impulserNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 191</value>
-  </data>
-  <data name="_impulserNameTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 13</value>
-  </data>
-  <data name="_stackOfPancakesGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_stackOfPancakesGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 206</value>
-  </data>
-  <data name="_stackOfPancakesNameTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 209</value>
-  </data>
-  <data name="_copyrightLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 268</value>
-  </data>
-  <data name="_copyrightLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 13</value>
-  </data>
-  <data name="_steamGroupLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="_steamGroupLabel.Text" xml:space="preserve">
-    <value>Steam Page</value>
-  </data>
-  <data name="_viewSteamGroupLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 13</value>
-  </data>
-  <data name="_madpewGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_madpewGithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 224</value>
-  </data>
-  <data name="_madpewNametag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 226</value>
-  </data>
-  <data name="_psouza4Nametag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 126</value>
-  </data>
-  <data name="_psouza4Nametag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 13</value>
-  </data>
-  <data name="_psouza4GithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_psouza4GithubGlobe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 125</value>
-  </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVtJREFUOE9j
-        GAXEA15e3nBhYeFXIiIi/wUFBbdwcXFJQ6UIA6BmAwkJiV9xcXGT582bl6+np3dITExsD1SagYGTkzOZ
-        h4fnG1DhKyDbGCoMBwoKCrVATRf+//+vAMR8U6dODQEa8B+ohxOsQEhI6NW1a9dCDQ0NjwLZD4DOEwVL
-        QIGamtoqWVnZN0BNQiC+qqpqlqSk5AegYcxgBUCB00D/HRcXF/8KNOA/Pz//I6AhpUDXhPPx8bUA/f1X
-        VFT0P1DNN6D/LwHl/8THx3eANYPAxYsXHRwdHaeGhoZOiYyMnGJubr4O6LzvQPxfWlr6KNDgD0CN/9XV
-        1c84ODjMmTJlSh7QdkQgAjksQKwMxCA/ygOxdkNDQyk3N/fvHTt2eAANXKuoqHgRKG4OxKpAzAfVihsA
-        FQnFxMR0s7CwvAB65Vl1dXUiVIp4ADREGojdgNgFiPmhwsMLMDAAALg0hCFEe1vEAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 126</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_SecretOnlineNametag.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_SecretOnlineNametag.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="_SecretOnlineNametag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="_SecretOnlineNametag.Text" xml:space="preserve">
-    <value>SecretOnline</value>
-  </data>
-  <data name="_SecretOnlineGithubGlobe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMoSURBVDhPjY9dSJNhGIbftg6S8CAoJBWMnPhTkBlk
-        mWVpNCu0PygTkyLKUosym1GY2Y/p5lzNv+Z0UxuWmjV1pk0tdFrM6VZuK3/KnOS0voNWQcgOvPvereig
-        k164efie57ov+Agn8xXhZBkI98Y44d62LeIKp7dzRXYhm0dsOn9PoWtP7yxHedoDQP4Kro+uYI+ycLnN
-        dK3XxlS+mZqrs07O19t1cyLLIBOpGjHRO+X+FQj0KzxzDOpTT97ZS00GKKdbUW78gJL+z6iZ7MZ9pgl1
-        TDMu9vXbKUf5v4KUNg9OqlZx9JFuJqPrOQrfP0DVbCPKjG9RYX4Npa0dlfZGSGcUENrLcLpbM0N52nMJ
-        FiTV8QMvtVoTayw43KSDwCqHoGsAl9snkW9tgXhWhjNPtMg0l+Ds1FVkTuSDl9lmpT23YF+5NE55/+tG
-        uQbRFWbE1Zhx8MEYEuvHkaR+gf2KLuwQdyBxJAO7X2YhSl2IuEr1V9pzCQi/oCNed8W5WlmMNWIDwsuH
-        sanCgs1sIqRD2PIsFzHjBxFpSkKItBRB+RrwpXon7bkF23L167OfzvNa0uGf14NA0SCCC40IERtZWA+e
-        RAH/mvMIHIjF8rRm+JWLEFHQOU97bsHWa8/WSqqdfjn9rMCAgAIjAoW/kz8E/5w++KrS4PMyEsvO3YP3
-        8CqEdiU4ac8tiLlVEixocQTkmRAkMmN1kQWhEgvC7lpdWSMyIaBKAj+xEF5Nu7DUwIN//QEH7bkFseKd
-        S5Jqx8IkY2zhPSJKJxAt+wh+5UfEVk1ih3wCUcWjCMvVwbsnCL49IfBMF4zRnlsQX+ZB9spUQdl6Jlo2
-        g/jqzzhc9wVHGxgcb2RcM0E1C37ROwS3r8NyaSJDedpzCw7VEpKgWrnwSIM27LaFSX7oQJr6Oy5ofkDQ
-        9sM1Ux87kCCzgXcnheEmK7WUpz23gD6vEPZXbq4kx5pVvoL+0T3yaUdq0zfnRc3PeTr3VHxy+GT0jtK7
-        i6M8+/4IuGyWsQkmnl4byMaTJ0hyg4Kc7OgkKVq9a9Jvuqd3Qmib8tw/Ag6bxWzo0vs/QjnKcwCQXyFm
-        FkJonTZMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_SecretOnlineGithubGlobe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="_SecretOnlineGithubGlobe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 18</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>384, 287</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1871,10 +1525,100 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
+  <data name="&gt;&gt;_ownerGithubGlobe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_madpewNametag.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;_SecretOnlineGithubGlobe.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="_codeusaSoftwareLogo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 65</value>
+  </data>
+  <data name="&gt;&gt;_SecretOnlineNametag.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;_dmxtNameTag.Name" xml:space="preserve">
+    <value>_dmxtNameTag</value>
+  </data>
+  <data name="_ownerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
+    <value>http://blog.andrew.im</value>
+  </data>
+  <data name="_ownerNameTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 110</value>
+  </data>
+  <data name="&gt;&gt;versionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_impulserGithubGlobe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="_dmxtNameTag.Text" xml:space="preserve">
+    <value>dmxt - Dana</value>
+  </data>
+  <data name="&gt;&gt;_dmxtNameTag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_madpewNametag.Text" xml:space="preserve">
+    <value>madpew</value>
+  </data>
+  <data name="_madpewNametag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 226</value>
+  </data>
+  <data name="_dmxtNameTag.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;_steamGroupLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_blogLabel.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;_dmxtGithubGlobe.Name" xml:space="preserve">
+    <value>_dmxtGithubGlobe</value>
+  </data>
+  <data name="&gt;&gt;_psouza4Nametag.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;_madpewGithubGlobe.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="_viewSteamGroupLinkLabel.Text" xml:space="preserve">
+    <value>http://steamcommunity.com/app/388080/</value>
+  </data>
+  <data name="_copyrightLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 13</value>
+  </data>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 16</value>
+  </data>
+  <data name="_copyrightLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 268</value>
+  </data>
+  <data name="_impulserNameTag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 13</value>
+  </data>
+  <data name="_steamGroupLabel.Text" xml:space="preserve">
+    <value>Steam Page</value>
+  </data>
+  <data name="_impulserGithubGlobe.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
+    <value>zh-CN</value>
   </metadata>
 </root>
