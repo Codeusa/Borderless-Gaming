@@ -743,7 +743,7 @@ namespace BorderlessGaming.Forms
             setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
             setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
             noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
-            
+
             if (Screen.AllScreens.Length < 2)
             {
                 contextFavScreen.Visible = false;
@@ -778,12 +778,12 @@ namespace BorderlessGaming.Forms
 
                     contextFavScreen.DropDownItems.Add(tsi);
                 }
-                
+
                 // add supersize Option
                 ToolStripMenuItem superSizeItem = new ToolStripMenuItem("SuperSize!");
 
                 superSizeItem.Click += (s, ea) => { fav.favScreen = superSize; };
-                
+
                 contextFavScreen.DropDownItems.Add(superSizeItem);
             }
         }
