@@ -102,7 +102,7 @@ namespace BorderlessGaming.Utilities
 
 			try
 			{
-				// No version!
+                // No version!
 				return Environment.GetEnvironmentVariable("AppData").Trim() + "\\" + Application.CompanyName + "\\" + Application.ProductName;
 			}
 			catch { }
@@ -116,7 +116,7 @@ namespace BorderlessGaming.Utilities
 			{
 				try
 				{
-					// App launch folder
+                    // App launch folder
 					return Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\"));
 				}
 				catch

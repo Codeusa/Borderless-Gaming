@@ -182,6 +182,9 @@
   <data name="contextBorderlessOn.Text" xml:space="preserve">
     <value>Make Borderless on...</value>
   </data>
+  <data name="contextFavScreen.Text" xml:space="preserve">
+    <value>Select Favorite Screen...</value>
+  </data>
   <data name="setWindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>

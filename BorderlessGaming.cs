@@ -218,6 +218,14 @@ namespace BorderlessGaming
                 Task task = new Task(() => RemoveBorder(pd, favDetails, true));
                 task.Wait(TimeSpan.FromSeconds(10));
             }
+            
+            // If a Favorite screen exists, use the Rect from that, instead
+            if (null != favDetails && null != favDetails.favScreen)
+            {
+                RemoveBorder_ToSpecificRect(pd, favDetails.favScreen, favDetails, overrideTimeout);
+                return;
+            }
+
             Manipulation.MakeWindowBorderless(pd, window, pd.WindowHandle, new Rectangle(), favDetails ?? _favorites.FromProcessDetails(pd));
 		}
 

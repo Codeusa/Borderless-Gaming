@@ -40,6 +40,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextFavScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.setWindowTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.hideThisProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -189,6 +190,11 @@
             this.contextBorderlessOn.Name = "contextBorderlessOn";
             resources.ApplyResources(this.contextBorderlessOn, "contextBorderlessOn");
             // 
+            // contextFavScreen
+            // 
+            this.contextFavScreen.Name = "contextFavScreen";
+            resources.ApplyResources(this.contextFavScreen, "contextFavScreen");
+            // 
             // setWindowTitleToolStripMenuItem
             // 
             this.setWindowTitleToolStripMenuItem.Name = "setWindowTitleToolStripMenuItem";
@@ -240,6 +246,7 @@
             this.hideWindowsTaskbarToolStripMenuItem,
             this.removeMenusToolStripMenuItem,
             this.toolStripMenuItem9,
+            this.contextFavScreen,
             this.contextRemoveFromFavs});
             this.mnuFavoritesContext.Name = "mnuFavoritesRightClick";
             resources.ApplyResources(this.mnuFavoritesContext, "mnuFavoritesContext");
@@ -709,6 +716,7 @@
         private System.Windows.Forms.ToolStripMenuItem contextAddToFavs;
         private System.Windows.Forms.ToolStripMenuItem contextBorderless;
         private System.Windows.Forms.ToolStripMenuItem contextBorderlessOn;
+        private System.Windows.Forms.ToolStripMenuItem contextFavScreen;
         private System.Windows.Forms.ContextMenuStrip mnuFavoritesContext;
         private System.Windows.Forms.ToolStripMenuItem contextRemoveFromFavs;
         private System.Windows.Forms.ToolStripMenuItem toolStripGlobalHotkey;
