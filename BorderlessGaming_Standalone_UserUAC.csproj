@@ -242,7 +242,19 @@
     <None Include="data\bordered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="$([System.Text.RegularExpressions.Regex]::Replace(&quot;%(Targets.Version)&quot;, &quot;^([^\.]+)\.([^\.]+)\.([^\.]+)(.*)$&quot;, &quot;$1.$2.$3&quot;))" />
+    </ItemGroup>
+  </Target>
   <PropertyGroup>
+  <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
     <PostBuildEvent>call "$(SolutionDir)Tools\DigiCertUtil.exe" sign /noInput /sha1 "CB509F61A8A3B970790F0E2C695A3782F101FF22" "$(ProjectDir)$(OutDir)$(TargetFileName)"
 call iscc /Qp "$(ProjectDir)\Installers\BorderlessGaming_Standalone_User.iss"
 call "$(SolutionDir)Tools\DigiCertUtil.exe" sign /noInput /sha1 "CB509F61A8A3B970790F0E2C695A3782F101FF22" "$(ProjectDir)Installers\BorderlessGaming@(VersionNumber)_setup.exe"</PostBuildEvent>
