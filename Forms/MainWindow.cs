@@ -743,6 +743,49 @@ namespace BorderlessGaming.Forms
             setWindowSizeToolStripMenuItem.Enabled = fav.SizeMode != Favorites.Favorite.SizeModes.FullScreen;
             setWindowSizeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.SpecificSize;
             noSizeChangeToolStripMenuItem.Checked = fav.SizeMode == Favorites.Favorite.SizeModes.NoChange;
+
+            if (Screen.AllScreens.Length < 2)
+            {
+                contextFavScreen.Visible = false;
+            }
+            else
+            {
+                contextFavScreen.Visible = true;
+
+                if (contextFavScreen.HasDropDownItems)
+                    contextFavScreen.DropDownItems.Clear();
+
+                Rectangle superSize = Screen.PrimaryScreen.Bounds;
+
+                foreach (Screen screen in Screen.AllScreens)
+                {
+                    superSize = Tools.GetContainingRectangle(superSize, screen.Bounds);
+
+                    // fix for a .net-bug on Windows XP
+                    int idx = screen.DeviceName.IndexOf('\0');
+                    string fixedDeviceName = (idx > 0) ? screen.DeviceName.Substring(0, idx) : screen.DeviceName;
+
+                    string label = fixedDeviceName + ((screen.Primary) ? " (P)" : string.Empty);
+
+                    ToolStripMenuItem tsi = new ToolStripMenuItem(label);
+                    tsi.Checked = fav.favScreen.Equals(screen.Bounds);
+                    tsi.Click += (s, ea) =>
+                    {
+                        if (tsi.Checked) fav.favScreen = new Rectangle(); // Can't null a Rectangle, so can never fully un-favorite a screen without removing the favorite.
+                        else fav.favScreen = screen.Bounds;
+                        controller.Favorites.Save();
+                    };
+
+                    contextFavScreen.DropDownItems.Add(tsi);
+                }
+
+                // add supersize Option
+                ToolStripMenuItem superSizeItem = new ToolStripMenuItem("SuperSize!");
+
+                superSizeItem.Click += (s, ea) => { fav.favScreen = superSize; };
+
+                contextFavScreen.DropDownItems.Add(superSizeItem);
+            }
         }
 
         /// <summary>

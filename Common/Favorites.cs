@@ -9,6 +9,7 @@ using BorderlessGaming.Utilities;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace BorderlessGaming.Common
 {
@@ -143,6 +144,7 @@ namespace BorderlessGaming.Common
 			public bool HideMouseCursor = false;
             public bool DelayBorderless = false;
 
+            public Rectangle favScreen; // Not using Screen as it has no default constructor, and doesn't successfully deserialize
 
             public override string ToString() // so that the ListView control knows how to display this object to the user
 			{
