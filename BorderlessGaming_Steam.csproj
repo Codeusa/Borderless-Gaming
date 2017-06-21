@@ -68,6 +68,12 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>BGKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>CB509F61A8A3B970790F0E2C695A3782F101FF22</ManifestCertificateThumbprint>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facepunch.Steamworks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9ebfc627c4b782a, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -242,7 +248,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)SteamLibs\* $(ProjectDir)$(OutDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)SteamLibs\* $(ProjectDir)$(OutDir)
+call "$(SolutionDir)Tools\DigiCertUtil.exe" sign /noInput /sha1 "CB509F61A8A3B970790F0E2C695A3782F101FF22" "$(ProjectDir)$(OutDir)$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

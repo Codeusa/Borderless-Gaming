@@ -1,4 +1,11 @@
 [Setup]
+#define MainProg "../bin/Standalone_Admin/Release/BorderlessGaming.exe"
+#define Major
+#define Minor
+#define Rev
+#define Build
+#define Version ParseVersion(MainProg, Major, Minor, Rev, Build)
+#define AppVersion Str(Major)+"."+Str(Minor)+(Rev > 0 ? "."+Str(Rev) : "")
 AppName=Borderless Gaming
 AppPublisher=Andrew Sampson
 AppCopyright=Copyright (C) 2014-2018 Andrew Sampson
@@ -18,15 +25,15 @@ DisableProgramGroupPage=yes
 DirExistsWarning=no
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=9.3
+AppVersion={#AppVersion}
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=9.3.33315.1328
+VersionInfoVersion={#Version}
 ; Other version info
-OutputBaseFilename=BorderlessGaming_9.3__admin_setup
+OutputBaseFilename=BorderlessGaming{#AppVersion}_admin_setup
 
 
 ; Shown in the setup program during install only
-AppVerName=Borderless Gaming v9.3
+AppVerName=Borderless Gaming v{#AppVersion}
 
 ; Shown only in Programs & Features
 AppContact=Borderless Gaming on Github
@@ -41,7 +48,7 @@ UninstallDisplayIcon={app}\BorderlessGaming.exe
 
 
 [Messages]
-BeveledLabel=Borderless Gaming 9.3 Setup
+BeveledLabel=Borderless Gaming {#AppVersion} Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
