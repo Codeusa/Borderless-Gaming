@@ -2,11 +2,11 @@ using System;
 
 namespace BorderlessGaming.Steam
 {
-	public static class BorderlessGamingSteam
+	public static class SteamApi
 	{
-		public static void Achievement_Unlock(int id)
-		{
-			return;
-		}
+	    public static bool UnlockAchievement(string firstTimeBorderless)
+	    {
+	        return false;
+	    }
 	}
 }

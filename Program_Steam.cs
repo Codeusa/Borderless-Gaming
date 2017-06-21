@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using BorderlessGaming.Steam;
 using BorderlessGaming.Utilities;
-using Steamworks;
+
 
 namespace BorderlessGaming
 {
@@ -27,11 +28,13 @@ namespace BorderlessGaming
             {
                 try
                 {
-                    SteamLoaded = SteamAPI.Init();
+
+                    SteamLoaded = SteamApi.Init();
+
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.GetType().ToString() + "\r\n" + ex.Message);
+                    MessageBox.Show(ex.GetType().ToString() + "\r\n" + ex.Message, "A fatal Steam error was detected");
                 }
             }
 

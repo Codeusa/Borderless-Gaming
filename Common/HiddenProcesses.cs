@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using BorderlessGaming.Utilities;
-using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace BorderlessGaming.Common
 {

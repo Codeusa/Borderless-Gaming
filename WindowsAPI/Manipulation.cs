@@ -199,8 +199,13 @@ namespace BorderlessGaming.WindowsAPI
                 processDetails.MadeBorderlessAttempts++;
             }
             if (Program.SteamLoaded)
-                BorderlessGamingSteam.Achievement_Unlock(0);
-           
+            {
+                if(SteamApi.UnlockAchievement("FIRST_TIME_BORDERLESS"))
+                {
+                        Console.WriteLine("Great!");
+                }
+            }
+            
         }
 
         private static void MakeWindowBorderlessDelayed(ProcessDetails processDetails, MainWindow frmMain, IntPtr targetWindow, Rectangle targetFrame, Favorites.Favorite favDetails)

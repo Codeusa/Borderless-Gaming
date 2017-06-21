@@ -855,7 +855,7 @@ namespace BorderlessGaming.Forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // set the title
-            Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(2) + ((UAC.Elevated) ? " [Administrator]" : "");
+            Text = "Borderless Gaming " + Assembly.GetExecutingAssembly().GetName().Version.ToString(3) + ((UAC.Elevated) ? " [Administrator]" : "");
 
             // load up settings
             toolStripRunOnStartup.Checked = AppEnvironment.SettingValue("RunOnStartup", false);
