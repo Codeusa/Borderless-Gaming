@@ -171,6 +171,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <None Include="app.config" />
     <None Include="app.Launch as User.manifest" />
     <None Include="app.Launch as Elevated.manifest" />
