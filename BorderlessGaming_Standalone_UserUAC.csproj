@@ -75,6 +75,12 @@
     <ManifestCertificateThumbprint>CB509F61A8A3B970790F0E2C695A3782F101FF22</ManifestCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.5.27\lib\net40\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.5.27.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.5.27\lib\net40\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -251,7 +257,7 @@
     </ItemGroup>
   </Target>
   <PropertyGroup>
-  <PostBuildEventDependsOn>
+    <PostBuildEventDependsOn>
       $(PostBuildEventDependsOn);
       PostBuildMacros;
     </PostBuildEventDependsOn>

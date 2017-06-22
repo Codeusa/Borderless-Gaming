@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace BorderlessGaming.Utilities
 {
@@ -71,6 +72,8 @@ namespace BorderlessGaming.Utilities
                 }
             }
         }
+
+        public static string Path = Assembly.GetEntryAssembly().Location;
 
         public static string Setting(string sKeyName)
         {

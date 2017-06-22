@@ -34,7 +34,7 @@ namespace BorderlessGaming
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.GetType().ToString() + "\r\n" + ex.Message, "A fatal Steam error was detected");
+                   Console.WriteLine(ex.GetType().ToString() + "\r\n" + ex.Message, "A fatal Steam error was detected");
                 }
             }
 

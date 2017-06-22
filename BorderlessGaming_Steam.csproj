@@ -57,7 +57,7 @@
     <ApplicationIcon>BorderlessGaming_new.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.Launch as User.manifest</ApplicationManifest>
+    <ApplicationManifest>app.Launch as Elevated.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>BorderlessGaming.Program</StartupObject>
@@ -78,6 +78,12 @@
     <Reference Include="Facepunch.Steamworks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9ebfc627c4b782a, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>SteamLibs\Facepunch.Steamworks.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.5.27\lib\net40\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.5.27.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.5.27\lib\net40\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -189,8 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx" />
-    <None Include="app.config" />
-    <None Include="app.Launch as User.manifest" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.Launch as User.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.Launch as Elevated.manifest" />
     <None Include="BGKey.pfx" />
     <None Include="data\blank.cur" />

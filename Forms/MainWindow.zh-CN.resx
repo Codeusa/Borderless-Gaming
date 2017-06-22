@@ -118,20 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMakeBorderless.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 87</value>
+  </data>
+  <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
     <value>... 以窗口标题识别</value>
   </data>
   <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
     <value>... 以窗口标题识别 (使用正则表达式)</value>
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
     <value>... 以进程可执行文件名识别</value>
@@ -175,29 +181,99 @@
   <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 126</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lstProcesses.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 224</value>
+  </data>
+  <data name="contextFavScreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="addSelectedItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
+  <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
   <data name="fullScreenToolStripMenuItem.Text" xml:space="preserve">
     <value>全屏</value>
+  </data>
+  <data name="noSizeChangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
   <data name="noSizeChangeToolStripMenuItem.Text" xml:space="preserve">
     <value>尺寸不改变</value>
   </data>
+  <data name="setWindowSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
   <data name="setWindowSizeToolStripMenuItem.Text" xml:space="preserve">
     <value>设置窗口尺寸</value>
+  </data>
+  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 6</value>
+  </data>
+  <data name="automaximizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
   <data name="automaximizeToolStripMenuItem.Text" xml:space="preserve">
     <value>自动最大化</value>
   </data>
+  <data name="adjustWindowBoundsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
   <data name="adjustWindowBoundsToolStripMenuItem.Text" xml:space="preserve">
     <value>调整窗口边框</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 6</value>
+  </data>
+  <data name="alwaysOnTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
   <data name="alwaysOnTopToolStripMenuItem.Text" xml:space="preserve">
     <value>保持窗口在顶部</value>
   </data>
+  <data name="delayBorderlessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
   <data name="hideMouseCursorToolStripMenuItem.Text" xml:space="preserve">
     <value>隐藏鼠标指针</value>
   </data>
+  <data name="hideWindowsTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
   <data name="hideWindowsTaskbarToolStripMenuItem.Text" xml:space="preserve">
     <value>隐藏Windows任务栏</value>
+  </data>
+  <data name="removeMenusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 6</value>
+  </data>
+  <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 286</value>
+  </data>
+  <data name="lstFavorites.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 224</value>
+  </data>
+  <data name="btnRemoveFavorite.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 45</value>
+  </data>
+  <data name="btnRemoveFavorite.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
   </data>
   <data name="processLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 18</value>
@@ -212,22 +288,22 @@
     <value>自动处理列表:</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>200, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>显示</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 6</value>
+    <value>197, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>200, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>退出 Borderless Gaming</value>
   </data>
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 54</value>
+    <value>201, 54</value>
   </data>
   <data name="trayIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -715,169 +791,202 @@
 </value>
   </data>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="toolStripRunOnStartup.Text" xml:space="preserve">
     <value>随Windows启动而启动</value>
   </data>
+  <data name="toolStripCheckForUpdates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 22</value>
+  </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 6</value>
+    <value>286, 6</value>
   </data>
   <data name="toolStripGlobalHotkey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="toolStripGlobalHotkey.Text" xml:space="preserve">
     <value>使用全局热键                 (Win+F6)</value>
   </data>
   <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="toolStripMouseLock.Text" xml:space="preserve">
     <value>使用热键锁定鼠标       (Scroll Lock)</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
     <value>使用热键隐藏鼠标       (Win+Scroll Lock)</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 6</value>
+    <value>286, 6</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="startMinimizedToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>开启时最小化到托盘</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="closeToTrayToolStripMenuItem.Text" xml:space="preserve">
     <value>关闭时最小化到托盘</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="hideBalloonTipsToolStripMenuItem.Text" xml:space="preserve">
     <value>隐藏气泡提示</value>
   </data>
   <data name="useSlowerWindowDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="useSlowerWindowDetectionToolStripMenuItem.Text" xml:space="preserve">
     <value>(&amp;U)使用更慢的窗口检测</value>
   </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="viewFullProcessDetailsToolStripMenuItem.Text" xml:space="preserve">
     <value>查看详细进程信息</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 6</value>
+    <value>286, 6</value>
   </data>
   <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>289, 22</value>
   </data>
   <data name="resToolStripMenuItem.Text" xml:space="preserve">
     <value>恢复所有隐藏的应用</value>
   </data>
   <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 25</value>
+    <value>62, 27</value>
   </data>
   <data name="toolStripOptions.Text" xml:space="preserve">
     <value>(&amp;O)选项</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Text" xml:space="preserve">
     <value>暂停自动处理</value>
   </data>
   <data name="openDataFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="openDataFolderToolStripMenuItem.Text" xml:space="preserve">
     <value>打开数据文件夹</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 6</value>
+    <value>220, 6</value>
   </data>
   <data name="toggleMouseCursorVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="toggleMouseCursorVisibilityToolStripMenuItem.Text" xml:space="preserve">
     <value>切换鼠标可见性</value>
   </data>
   <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
     <value>切换Windows任务栏可见性</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 6</value>
+    <value>220, 6</value>
   </data>
   <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
     <value>完全刷新应用程序</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 25</value>
+    <value>58, 27</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>(&amp;T)工具</value>
   </data>
   <data name="usageGuideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>159, 22</value>
   </data>
   <data name="usageGuideToolStripMenuItem.Text" xml:space="preserve">
     <value>使用手册</value>
   </data>
   <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>159, 22</value>
   </data>
   <data name="toolStripRegexReference.Text" xml:space="preserve">
     <value>正则表达式参考</value>
   </data>
   <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
+    <value>156, 6</value>
   </data>
   <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>159, 22</value>
   </data>
   <data name="toolStripReportBug.Text" xml:space="preserve">
     <value>反馈一个Bug</value>
   </data>
   <data name="toolStripSupportUs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>159, 22</value>
   </data>
   <data name="toolStripSupportUs.Text" xml:space="preserve">
     <value>支持我们</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
+    <value>156, 6</value>
   </data>
   <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>159, 22</value>
   </data>
   <data name="toolStripAbout.Text" xml:space="preserve">
     <value>关于...</value>
   </data>
   <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 25</value>
+    <value>60, 27</value>
   </data>
   <data name="toolStripInfo.Text" xml:space="preserve">
     <value>(&amp;H)帮助</value>
+  </data>
+  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 31</value>
+  </data>
+  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 129</value>
+  </data>
+  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 230</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 241</value>
   </data>
   <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
   </data>
   <data name="lblUpdateStatus.Text" xml:space="preserve">
     <value>加载中...</value>
+  </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 274</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>471, 296</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1363,5 +1472,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>425, 319</value>
   </data>
 </root>

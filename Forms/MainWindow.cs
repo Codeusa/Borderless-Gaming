@@ -174,7 +174,8 @@ namespace BorderlessGaming.Forms
 
         private void toolStripRunOnStartup_CheckChanged(object sender, EventArgs e)
         {
-            AutoStart.SetShortcut(toolStripRunOnStartup.Checked, Environment.SpecialFolder.Startup, "-silent -minimize");
+       
+            AutoStart.Setup(toolStripRunOnStartup.Checked, "-silent -minimize");
 
             AppEnvironment.Setting("RunOnStartup", toolStripRunOnStartup.Checked);
         }
