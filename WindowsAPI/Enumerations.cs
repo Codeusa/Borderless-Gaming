@@ -2,6 +2,7 @@
 
 namespace BorderlessGaming.WindowsAPI
 {
+ 
     [Flags]
     public enum WindowStyleFlags : uint
     {

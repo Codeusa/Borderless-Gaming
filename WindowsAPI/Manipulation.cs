@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
 using BorderlessGaming.Common;
@@ -350,10 +351,11 @@ namespace BorderlessGaming.WindowsAPI
                 );
             }
             //wait before applying styles
-            Thread.Sleep(4200);
-            // update window styles
-            Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
-            Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
+            Tools.WaitAndStartTask(() =>
+            {
+                Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
+                Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);
+            }, 4);
         }
 
      

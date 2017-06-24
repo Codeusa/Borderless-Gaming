@@ -135,9 +135,9 @@ namespace BorderlessGaming
 
                             if (!pd.NoAccess)
                             {
-                                // 2 or 10 seconds until window title timeout, depending on slow-window detection mode
-                                Tools.StartMethodMultithreadedAndWait(() => { currentTitle = Native.GetWindowTitle(pd.WindowHandle); }, (AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
+                                Tools.StartTaskAndWait(() => { currentTitle = Native.GetWindowTitle(pd.WindowHandle); }, (AppEnvironment.SettingValue("SlowWindowDetection", false)) ? 10 : 2);
                                 shouldBePruned = shouldBePruned || (pd.WindowTitle != currentTitle);
+
                             }
                         }
 

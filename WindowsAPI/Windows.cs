@@ -26,7 +26,6 @@ namespace BorderlessGaming.WindowsAPI
             bool Del(IntPtr hwnd, uint lParam) => GetMainWindowForProcess_EnumWindows(ptrList, hwnd, lParam);
             Native.EnumWindows(Del, 0);
             Native.EnumWindows(Del, 1);
-
             foreach (var ptr in ptrList)
             {
 

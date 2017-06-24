@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using BorderlessGaming.Properties;
@@ -144,121 +145,8 @@ namespace BorderlessGaming.Utilities
 		}
 
 
-        public static void StartMethodMultithreadedAndWait(Action target)
-        {
-            StartMethodMultithreadedAndWait(target, 0);
-        }
-
-        public static void StartMethodMultithreadedAndWait(Action target, int iHowLongToWait)
-        {
-            try
-            {
-                var tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
-                var trdGenericThread = new Thread(tsGenericMethod) {IsBackground = true};
-                trdGenericThread.Start();
-
-                var dtStartTime = DateTime.Now;
-
-                for (;;)
-                {
-                    if (iHowLongToWait > 0)
-                    {
-                        if ((DateTime.Now - dtStartTime).TotalSeconds > iHowLongToWait)
-                        {
-                            try { trdGenericThread.Abort(); } catch { }
-                            break;
-                        }
-                    }
-
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
-
-                    Thread.Sleep(15);
-                    Forms.MainWindow.DoEvents();
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-        }
-
-        public static void StartMethodMultithreadedAndWait(Action target, double dHowLongToWait)
-        {
-            try
-            {
-                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
-                Thread trdGenericThread = new Thread(tsGenericMethod);
-                trdGenericThread.IsBackground = true;
-                trdGenericThread.Start();
-
-                DateTime dtStartTime = DateTime.Now;
-
-                for (; ; )
-                {
-                    if (dHowLongToWait > 0.0)
-                    {
-                        if ((DateTime.Now - dtStartTime).TotalMilliseconds > dHowLongToWait)
-                        {
-                            try { trdGenericThread.Abort(); } catch { }
-                            break;
-                        }
-                    }
-
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
-
-                    Thread.Sleep(15);
-                    Forms.MainWindow.DoEvents();
-                }
-            }
-            catch { }
-        }
-
-        public static void StartMethodAndWait(Action target, double dHowLongToWait)
-        {
-            try
-            {
-                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
-                Thread trdGenericThread = new Thread(tsGenericMethod);
-                trdGenericThread.IsBackground = false;
-                trdGenericThread.Start();
-
-                DateTime dtStartTime = DateTime.Now;
-
-                for (; ; )
-                {
-                    if (dHowLongToWait > 0.0)
-                    {
-                        if ((DateTime.Now - dtStartTime).TotalMilliseconds > dHowLongToWait)
-                        {
-                            try { trdGenericThread.Abort(); } catch { }
-                            break;
-                        }
-                    }
-
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
-                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
-
-                    Thread.Sleep(15);
-                }
-            }
-            catch { }
-        }
-
-        public static void StartMethodMultithreaded(Action target)
-        {
-            ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch { } });
-            Thread trdGenericThread = new Thread(tsGenericMethod);
-            trdGenericThread.IsBackground = true;
-            trdGenericThread.Start();
-        }
+       
+   
         private static bool HasInternetConnection
         {
             // There is no way you can reliably check if there is an internet connection, but we can come close
@@ -343,7 +231,68 @@ namespace BorderlessGaming.Utilities
                         }
                     }
                 }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
+            }
+        }
+
+
+
+        public static void StartTaskAndWait(Action target)
+        {
+            StartTaskAndWait(target, 0);
+        }
+
+        public static void WaitAndStartTask(Action target, int iHowLongToWait)
+        {
+            var ts = new CancellationTokenSource();
+            var ct = ts.Token;
+            Task.Run(async () =>
+            {
+                await Task.Delay(TimeSpan.FromSeconds(iHowLongToWait), ct);
+                target();
+            }, ct).Wait(ct);
+        }
+
+        public static void StartTaskAndWait(Action target, int iHowLongToWait)
+        {
+            try
+            {
+                Task.Run(async () =>
+                {
+                    var ts = new CancellationTokenSource();
+                    var ct = ts.Token;
+                    var task = Task.Factory.StartNew(target, ct);
+                    var dtStartTime = DateTime.Now;
+                    while (true)
+                    {
+                        if (task.IsCompleted || task.IsCanceled || task.IsFaulted)
+                        {
+                            break;
+                        }
+                        if (iHowLongToWait > 0)
+                        {
+                            if ((DateTime.Now - dtStartTime).TotalSeconds > iHowLongToWait)
+                            {
+                                try { ts.Cancel(); }
+                                catch
+                                {
+                                    // ignored
+                                }
+                                break;
+                            }
+                        }
+                        await Task.Delay(15, ct);
+                        Forms.MainWindow.DoEvents();
+                    }
+
+                }).Wait();
+            }
+            catch (Exception)
+            {
+              //
             }
         }
     }

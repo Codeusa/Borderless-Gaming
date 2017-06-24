@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using BorderlessGaming.Utilities;
 
 namespace BorderlessGaming.WindowsAPI
@@ -17,11 +20,32 @@ namespace BorderlessGaming.WindowsAPI
         #endregion
 
         public const int INVALID_HANDLE_VALUE = -1;
-
         private const uint WM_GETTEXT = 0x0000000D;
         private const uint WM_GETTEXTLENGTH = 0x0000000E;
         public const uint WM_MOUSEMOVE = 0x00000200;
         public const uint WM_HOTKEY = 0x00000312;
+
+        public static List<WindowStyleFlags> TargetStyles = new List<WindowStyleFlags>
+        {
+            WindowStyleFlags.Border,
+            WindowStyleFlags.DialogFrame,
+            WindowStyleFlags.ThickFrame,
+            WindowStyleFlags.SystemMenu,
+            WindowStyleFlags.MaximizeBox,
+            WindowStyleFlags.MinimizeBox
+        };
+
+        public static List<WindowStyleFlags> ExtendedStyles = new List<WindowStyleFlags>
+        {
+            WindowStyleFlags.ExtendedDlgModalFrame,
+            WindowStyleFlags.ExtendedComposited,
+            WindowStyleFlags.ExtendedWindowEdge,
+            WindowStyleFlags.ExtendedClientEdge,
+            WindowStyleFlags.ExtendedLayered,
+            WindowStyleFlags.ExtendedStaticEdge,
+            WindowStyleFlags.ExtendedToolWindow,
+            WindowStyleFlags.ExtendedAppWindow
+        };
 
         public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         public static readonly IntPtr HWND_NOTTOPMOST = new IntPtr(-2);
@@ -29,6 +53,16 @@ namespace BorderlessGaming.WindowsAPI
         private static readonly object GetMainWindowForProcess_Locker = new object();
 
         private static IntPtr GetMainWindowForProcess_Value = IntPtr.Zero;
+
+        public static bool HasTargetStyles(this WindowStyleFlags flags)
+        {
+            return TargetStyles.Any(style => flags.HasFlag(style));
+        }
+
+        public static bool HasExtendedStyles(this WindowStyleFlags flags)
+        {
+            return ExtendedStyles.Any(style => flags.HasFlag(style));
+        }
 
         /// <summary>
         ///     This is the raw WinAPI.  You may want to use GetWindowTitle instead, since it will automatically
@@ -133,7 +167,9 @@ namespace BorderlessGaming.WindowsAPI
                 GetClassName(hwnd, classText, cls_max_length + 2);
 
                 if (!string.IsNullOrEmpty(classText.ToString()) && !string.IsNullOrWhiteSpace(classText.ToString()))
+                {
                     className = classText.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -157,7 +193,9 @@ namespace BorderlessGaming.WindowsAPI
             nRet = GetWindowClassName(hWnd, sbWindowClassName, sbWindowClassName.Capacity);
 
             if (nRet != 0)
+            {
                 return sbWindowClassName.ToString();
+            }
 
             return string.Empty;
         }
@@ -228,7 +266,9 @@ namespace BorderlessGaming.WindowsAPI
         public static WindowStyleFlags GetWindowLong(IntPtr hWnd, WindowLongIndex nIndex)
         {
             if (IntPtr.Size == 8)
+            {
                 return GetWindowLong64(hWnd, nIndex);
+            }
 
             return GetWindowLong32(hWnd, nIndex);
         }
@@ -272,6 +312,7 @@ namespace BorderlessGaming.WindowsAPI
                 if (lParam == 0) // strict: windows that are visible and have a border
                 {
                     if (IsWindowVisible(hWndEnumerated))
+                    {
                         if
                         (
                             (styleCurrentWindow_standard & WindowStyleFlags.Caption) > 0
@@ -284,15 +325,18 @@ namespace BorderlessGaming.WindowsAPI
                             GetMainWindowForProcess_Value = hWndEnumerated;
                             return false;
                         }
+                    }
                 }
                 else if (lParam == 1) // loose: windows that are visible
                 {
                     if (IsWindowVisible(hWndEnumerated))
+                    {
                         if ((uint) styleCurrentWindow_standard != 0)
                         {
                             GetMainWindowForProcess_Value = hWndEnumerated;
                             return false;
                         }
+                    }
                 }
             }
 
@@ -308,6 +352,7 @@ namespace BorderlessGaming.WindowsAPI
         public static IntPtr GetMainWindowForProcess(Process process)
         {
             if (AppEnvironment.SettingValue("SlowWindowDetection", false))
+            {
                 try
                 {
                     var hMainWindow = IntPtr.Zero;
@@ -315,9 +360,7 @@ namespace BorderlessGaming.WindowsAPI
                     lock (GetMainWindowForProcess_Locker)
                     {
                         GetMainWindowForProcess_Value = IntPtr.Zero;
-
-                        // Help the UI stay alive
-                        Tools.StartMethodMultithreadedAndWait(() =>
+                        Tools.StartTaskAndWait(() =>
                         {
                             for (uint i = 0; i <= 1; i++)
                                 foreach (ProcessThread thread in process.Threads)
@@ -328,16 +371,18 @@ namespace BorderlessGaming.WindowsAPI
                                     EnumThreadWindows(thread.Id, GetMainWindowForProcess_EnumWindows, i);
                                 }
                         });
-
                         hMainWindow = GetMainWindowForProcess_Value;
                     }
 
                     if (hMainWindow != IntPtr.Zero)
+                    {
                         return hMainWindow;
+                    }
                 }
                 catch
                 {
                 }
+            }
 
             try
             {
@@ -481,9 +526,13 @@ namespace BorderlessGaming.WindowsAPI
             public override bool Equals(object obj)
             {
                 if (obj is Rect)
+                {
                     return Equals((Rect) obj);
+                }
                 if (obj is Rectangle)
+                {
                     return Equals(new Rect((Rectangle) obj));
+                }
                 return false;
             }
 

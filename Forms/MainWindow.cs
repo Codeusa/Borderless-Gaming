@@ -99,44 +99,44 @@ namespace BorderlessGaming.Forms
 
         #endregion
 
-		private void Processes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			Action action = () =>
-			{
-				lstProcesses.BeginUpdate();
-				if (e.NewItems != null)
-				{
-					//lock(controller.Processes)
-					//{
-					//cast really isnt needed right now.
-					var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
-					foreach (var ni in newItems)
-					{
-						lstProcesses.Items.Add(ni);
-					}
-					//}
-				}
-				if (e.OldItems != null)
-				{
-					//lock (controller.Processes)
-					//{
-					var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
-					foreach (var oi in oldItems)
-					{
-						lstProcesses.Items.Remove(oi);
-					}
-					//}
-				}
-				lstProcesses.EndUpdate();
-			};
-			if (InvokeRequired)
-				Invoke(action);
-			else
-				action();
-		}
+        private void Processes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Action action = () =>
+            {
+                lstProcesses.BeginUpdate();
+                if (e.NewItems != null)
+                {
+                    //lock(controller.Processes)
+                    //{
+                    //cast really isnt needed right now.
+                    var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
+                    foreach (var ni in newItems)
+                    {
+                        lstProcesses.Items.Add(ni);
+                    }
+                    //}
+                }
+                if (e.OldItems != null)
+                {
+                    //lock (controller.Processes)
+                    //{
+                    var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
+                    foreach (var oi in oldItems)
+                    {
+                        lstProcesses.Items.Remove(oi);
+                    }
+                    //}
+                }
+                lstProcesses.EndUpdate();
+            };
+            if (InvokeRequired)
+                Invoke(action);
+            else
+                action();
+        }
 
 
-		private void Favorites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Favorites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{
 			Action action = () =>
 			{
