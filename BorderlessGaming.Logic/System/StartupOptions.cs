@@ -11,6 +11,10 @@ namespace BorderlessGaming.Logic.System
         [Option('s', "silent", DefaultValue = false, HelpText = "Starts the application silently.")]
         public bool Silent { get; set; }
 
+        [Option('p', "steam", DefaultValue = false, HelpText = "Used by the Steam client.")]
+        public bool IsSteam { get; set; }
+
+
         [ParserState]
         public IParserState LastParserState { get; set; }
 

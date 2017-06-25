@@ -155,7 +155,7 @@ namespace BorderlessGaming.Logic.System
                         reader.Close();
                     }
 
-                    var applicationVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                    var applicationVersion = Assembly.GetEntryAssembly().GetName().Version;
                     if (applicationVersion.CompareTo(newVersion) < 0)
                     {
                         if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
