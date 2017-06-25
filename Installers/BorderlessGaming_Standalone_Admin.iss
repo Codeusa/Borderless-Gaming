@@ -1,5 +1,5 @@
 [Setup]
-#define MainProg "../bin/Standalone_Admin/Release/BorderlessGaming.exe"
+#define MainProg "../BorderlessGaming/bin/Release/BorderlessGaming.exe"
 #define Major
 #define Minor
 #define Rev
@@ -54,9 +54,7 @@ BeveledLabel=Borderless Gaming {#AppVersion} Setup
 Name: english; MessagesFile: compiler:Default.isl
 
 [Files]
-Source: ../bin/Standalone_Admin/Release/BorderlessGaming.exe; DestDir: {app}; Flags: ignoreversion
-Source: ../bin/Standalone_Admin/Release/Interop.IWshRuntimeLibrary.dll; DestDir: {app}
-Source: ../bin/Standalone_Admin/Release/Newtonsoft.Json.dll; DestDir: {app}
+Source: ../BorderlessGaming/bin/Release/*; DestDir: {app}; Flags: ignoreversion recursesubdirs
 
 Source: ../LICENSE; DestName: License.txt; DestDir: {app}
 Source: ../README.md; DestName: Read Me.txt; DestDir: {app}
