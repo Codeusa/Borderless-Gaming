@@ -121,4 +121,16 @@
   <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blank.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ErrorUpdates" xml:space="preserve">
+    <value>Borderless Gaming encountered an error checking for updates. Restart the program to try again.</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="InfoUpdateAvailable" xml:space="preserve">
+    <value>A new version of Borderless Gaming is available. Would you like to go to the release page?</value>
+  </data>
+  <data name="InfoUpdatesHeader" xml:space="preserve">
+    <value>Update available</value>
+  </data>
 </root>

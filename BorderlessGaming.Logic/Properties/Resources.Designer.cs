@@ -69,5 +69,41 @@ namespace BorderlessGaming.Logic.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string ErrorHeader {
+            get {
+                return ResourceManager.GetString("ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borderless Gaming encountered an error checking for updates. Restart the program to try again..
+        /// </summary>
+        internal static string ErrorUpdates {
+            get {
+                return ResourceManager.GetString("ErrorUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version of Borderless Gaming is available. Would you like to go to the release page?.
+        /// </summary>
+        internal static string InfoUpdateAvailable {
+            get {
+                return ResourceManager.GetString("InfoUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        internal static string InfoUpdatesHeader {
+            get {
+                return ResourceManager.GetString("InfoUpdatesHeader", resourceCulture);
+            }
+        }
     }
 }
