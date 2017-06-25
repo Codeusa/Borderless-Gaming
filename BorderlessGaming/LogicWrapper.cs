@@ -10,7 +10,7 @@ using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.System;
 using BorderlessGaming.Logic.System.Utilities;
 using BorderlessGaming.Logic.Windows;
-
+using System.Runtime.InteropServices;
 namespace BorderlessGaming
 {
     public class LogicWrapper
@@ -21,7 +21,7 @@ namespace BorderlessGaming
         private readonly MainWindow _window;
 
         private readonly object _updateLock = new object();
-
+        Native.WinEventDelegate dele = null;
         private CancellationTokenSource _workerTaskToken;
 
         static LogicWrapper()
@@ -71,6 +71,8 @@ namespace BorderlessGaming
 
                                 if (favProcess.Matches(pd))
                                 {
+                                    favProcess.IsRunning = true;
+                                    favProcess.RunningId = pd.Proc.Id;
                                     RemoveBorder(pd, favProcess);
                                 }
                             }
@@ -201,6 +203,7 @@ namespace BorderlessGaming
             {
                 if (fav.Matches(pd))
                 {
+                    fav.IsRunning = false;
                     if (fav.HideWindowsTaskbar)
                     {
                         Manipulation.ToggleWindowsTaskbarVisibility(Boolstate.True);

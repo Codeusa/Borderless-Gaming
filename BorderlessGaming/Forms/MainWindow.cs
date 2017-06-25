@@ -821,6 +821,8 @@ namespace BorderlessGaming.Forms
 
             var fav = (Favorite) lstFavorites.SelectedItem;
             fullScreenToolStripMenuItem.Checked = fav.Size == FavoriteSize.FullScreen;
+
+            muteInBackgroundToolStripMenuItem.Checked = fav.MuteInBackground;
             automaximizeToolStripMenuItem.Checked = fav.ShouldMaximize;
             alwaysOnTopToolStripMenuItem.Checked = fav.TopMost;
             hideMouseCursorToolStripMenuItem.Checked = fav.HideMouseCursor;
@@ -1251,5 +1253,30 @@ namespace BorderlessGaming.Forms
         }
 
         #endregion
+
+        private void muteInBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+      
+            var fav = (Favorite)lstFavorites.SelectedItem;
+            Config.Instance.RemoveFavorite(fav, () =>
+            {
+                lstFavorites.Items.Remove(fav);
+            });
+            fav.MuteInBackground = muteInBackgroundToolStripMenuItem.Checked;
+            if (!fav.MuteInBackground)
+            {
+                if (fav.IsRunning && Native.IsMuted(fav.RunningId))
+                {
+                    Native.UnMuteProcess(fav.RunningId);
+                }
+            } else if (fav.MuteInBackground)
+            {
+                if (fav.IsRunning && !Native.IsMuted(fav.RunningId))
+                {
+                    Native.MuteProcess(fav.RunningId);
+                }
+            }
+            RefreshFavoritesList(fav);
+        }
     }
 }

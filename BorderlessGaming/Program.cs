@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
 using BorderlessGaming.Logic.System;
+using BorderlessGaming.Logic.Windows;
 
 namespace BorderlessGaming
 {
@@ -17,6 +18,7 @@ namespace BorderlessGaming
         static void Main()
         {
           
+            ForegroundManager.Subscribe();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Tools.Setup();

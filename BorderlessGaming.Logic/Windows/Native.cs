@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Windows.Audio;
 
 namespace BorderlessGaming.Logic.Windows
 {
@@ -481,6 +482,29 @@ namespace BorderlessGaming.Logic.Windows
             return true;
         }
 
+        public static void UnMuteProcess(int pId)
+        {
+            if (IsMuted(pId))
+            {
+                VolumeMixer.SetApplicationMute(pId, false);
+            }
+        }
+
+        public static bool IsMuted(int pId)
+        {
+            var applicationMute = VolumeMixer.GetApplicationMute(pId);
+            var isMuted = applicationMute != null && (bool)applicationMute;
+            return isMuted;
+        }
+
+        public static void MuteProcess(int pId)
+        {
+            if (!IsMuted(pId))
+            {
+                VolumeMixer.SetApplicationMute(pId, true);
+            }
+        }
+
         /// <summary>
         ///     Retrieves the handle to the ancestor of the specified window.
         /// </summary>
@@ -633,5 +657,13 @@ namespace BorderlessGaming.Logic.Windows
         }
 
         #endregion
+
+        public delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType,
+            IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern uint GetProcessIdOfThread(IntPtr handle);
+
+        [DllImport("user32.dll")]
+       public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
     }
 }

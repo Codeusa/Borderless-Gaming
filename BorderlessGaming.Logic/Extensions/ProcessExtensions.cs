@@ -22,7 +22,7 @@ namespace BorderlessGaming.Logic.Extensions
 
             return processIndexdName;
         }
-
+  
         private static Process FindPidFromIndexedProcessName(string indexedProcessName)
         {
             var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName);

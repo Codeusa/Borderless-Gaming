@@ -79,6 +79,9 @@ namespace BorderlessGaming.Logic.Models
         [ProtoMember(18)]
         public bool DelayBorderless { get; set; }
 
+        [ProtoMember(19)]
+        public bool MuteInBackground { get; set; }
+
 
         /// <summary>
         ///     Return a string representation of the favorite
@@ -117,5 +120,9 @@ namespace BorderlessGaming.Logic.Models
         {
             return new Favorite {SearchText = pd.BinaryName};
         }
+
+        public bool IsRunning { get; set; }
+
+        public int RunningId { get; set; }
     }
 }

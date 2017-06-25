@@ -40,10 +40,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextBorderless = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBorderlessOn = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextFavScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.setWindowTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.hideThisProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextFavScreen = new System.Windows.Forms.ToolStripMenuItem();
             this.addSelectedItem = new System.Windows.Forms.Button();
             this.lstFavorites = new System.Windows.Forms.ListBox();
             this.mnuFavoritesContext = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -60,6 +60,7 @@
             this.hideWindowsTaskbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeMenusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.muteInBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextRemoveFromFavs = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRemoveFavorite = new System.Windows.Forms.Button();
             this.processLabel = new System.Windows.Forms.Label();
@@ -190,11 +191,6 @@
             resources.ApplyResources(this.contextBorderlessOn, "contextBorderlessOn");
             this.contextBorderlessOn.Name = "contextBorderlessOn";
             // 
-            // contextFavScreen
-            // 
-            this.contextFavScreen.Name = "contextFavScreen";
-            resources.ApplyResources(this.contextFavScreen, "contextFavScreen");
-            // 
             // setWindowTitleToolStripMenuItem
             // 
             resources.ApplyResources(this.setWindowTitleToolStripMenuItem, "setWindowTitleToolStripMenuItem");
@@ -211,6 +207,11 @@
             resources.ApplyResources(this.hideThisProcessToolStripMenuItem, "hideThisProcessToolStripMenuItem");
             this.hideThisProcessToolStripMenuItem.Name = "hideThisProcessToolStripMenuItem";
             this.hideThisProcessToolStripMenuItem.Click += new System.EventHandler(this.hideThisProcessToolStripMenuItem_Click);
+            // 
+            // contextFavScreen
+            // 
+            resources.ApplyResources(this.contextFavScreen, "contextFavScreen");
+            this.contextFavScreen.Name = "contextFavScreen";
             // 
             // addSelectedItem
             // 
@@ -248,6 +249,7 @@
             this.removeMenusToolStripMenuItem,
             this.toolStripMenuItem9,
             this.contextFavScreen,
+            this.muteInBackgroundToolStripMenuItem,
             this.contextRemoveFromFavs});
             this.mnuFavoritesContext.Name = "mnuFavoritesRightClick";
             this.mnuFavoritesContext.Opening += new System.ComponentModel.CancelEventHandler(this.mnuFavoritesContext_Opening);
@@ -334,6 +336,13 @@
             // 
             resources.ApplyResources(this.toolStripMenuItem9, "toolStripMenuItem9");
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            // 
+            // muteInBackgroundToolStripMenuItem
+            // 
+            resources.ApplyResources(this.muteInBackgroundToolStripMenuItem, "muteInBackgroundToolStripMenuItem");
+            this.muteInBackgroundToolStripMenuItem.CheckOnClick = true;
+            this.muteInBackgroundToolStripMenuItem.Name = "muteInBackgroundToolStripMenuItem";
+            this.muteInBackgroundToolStripMenuItem.Click += new System.EventHandler(this.muteInBackgroundToolStripMenuItem_Click);
             // 
             // contextRemoveFromFavs
             // 
@@ -767,5 +776,6 @@
         private System.Windows.Forms.ToolStripMenuItem useSlowerWindowDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usageGuideToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem muteInBackgroundToolStripMenuItem;
     }
 }

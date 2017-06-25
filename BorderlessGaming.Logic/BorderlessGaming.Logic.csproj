@@ -90,7 +90,9 @@
     <Compile Include="System\Tools.cs" />
     <Compile Include="System\Utilities\ExceptionHandler.cs" />
     <Compile Include="System\Utilities\TaskUtilities.cs" />
+    <Compile Include="Windows\Audio\VolumeMixer.cs" />
     <Compile Include="Windows\Enumerations.cs" />
+    <Compile Include="Windows\ForegroundManager.cs" />
     <Compile Include="Windows\Manipulation.cs" />
     <Compile Include="Windows\Native.cs" />
     <Compile Include="Windows\Security.cs" />
