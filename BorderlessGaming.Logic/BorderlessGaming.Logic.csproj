@@ -108,25 +108,9 @@
       <Link>BGKey.pfx</Link>
     </None>
     <None Include="packages.config" />
-    <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blank.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bordered.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\borderless.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\globe-green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\steam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
