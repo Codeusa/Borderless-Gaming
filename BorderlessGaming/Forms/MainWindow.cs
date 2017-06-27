@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BorderlessGaming.Logic.Core;
+using BorderlessGaming.Logic.Extensions;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.Steam;
 using BorderlessGaming.Logic.System;
@@ -17,55 +18,12 @@ namespace BorderlessGaming.Forms
 {
     public partial class MainWindow : Form
     {
-        private readonly LogicWrapper _controller;
 
         public MainWindow()
         {
-            _controller = new LogicWrapper(this);
-            _controller.Processes.CollectionChanged += Processes_CollectionChanged;
+            _watcher = new ProcessWatcher(this);
             InitializeComponent();
         }
-
-        private void Processes_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Action action = () =>
-            {
-                lstProcesses.BeginUpdate();
-                if (e.NewItems != null)
-                {
-                    //lock(controller.Processes)
-                    //{
-                    //cast really isnt needed right now.
-                    var newItems = e.NewItems.Cast<ProcessDetails>().ToArray();
-                    foreach (var ni in newItems)
-                    {
-                        lstProcesses.Items.Add(ni);
-                    }
-                    //}
-                }
-                if (e.OldItems != null)
-                {
-                    //lock (controller.Processes)
-                    //{
-                    var oldItems = e.OldItems.Cast<ProcessDetails>().ToArray();
-                    foreach (var oi in oldItems)
-                    {
-                        lstProcesses.Items.Remove(oi);
-                    }
-                    //}
-                }
-                lstProcesses.EndUpdate();
-            };
-            if (InvokeRequired)
-            {
-                Invoke(action);
-            }
-            else
-            {
-                action();
-            }
-        }
-
 
         public void AddFavoriteToList(Favorite fav)
         {
@@ -88,27 +46,27 @@ namespace BorderlessGaming.Forms
         /// <summary>
         ///     The Borderless Toggle hotKey
         /// </summary>
-        private const int MakeBorderless_HotKey = (int) Keys.F6;
+        private const int MakeBorderlessHotKey = (int) Keys.F6;
 
         /// <summary>
         ///     The Borderless Toggle hotKey modifier
         /// </summary>
-        private const int MakeBorderless_HotKeyModifier = 0x008; // WIN-Key
+        private const int MakeBorderlessHotKeyModifier = 0x008; // WIN-Key
 
         /// <summary>
         ///     The Mouse Lock hotKey
         /// </summary>
-        private const int MouseLock_HotKey = (int) Keys.Scroll;
+        private const int MouseLockHotKey = (int) Keys.Scroll;
 
         /// <summary>
         ///     The Mouse Hide hotkey
         /// </summary>
-        private const int MouseHide_HotKey = (int) Keys.Scroll;
+        private const int MouseHideHotKey = (int) Keys.Scroll;
 
         /// <summary>
         ///     The Mouse Hide hotkey modifier
         /// </summary>
-        private const int MouseHide_HotKeyModifier = 0x008; // WIN-Key
+        private const int MouseHideHotKeyModifier = 0x008; // WIN-Key
 
         #endregion
 
@@ -120,37 +78,38 @@ namespace BorderlessGaming.Forms
                 .Cast<MainWindow>().FirstOrDefault();
         }
 
-        private static readonly object _DoEvents_locker = new object();
-        private static bool _DoEvents_engaged;
+        private static readonly object DoEventsLocker = new object();
+        private static bool _doEventsEngaged;
 
         public static void DoEvents()
         {
             try
             {
-                var local__DoEventsEngaged = false;
-                lock (_DoEvents_locker)
+                bool localDoEventsEngaged;
+                lock (DoEventsLocker)
                 {
-                    local__DoEventsEngaged = _DoEvents_engaged;
+                    localDoEventsEngaged = _doEventsEngaged;
 
-                    if (!local__DoEventsEngaged)
+                    if (!localDoEventsEngaged)
                     {
-                        _DoEvents_engaged = true;
+                        _doEventsEngaged = true;
                     }
                 }
 
-                if (!local__DoEventsEngaged)
+                if (!localDoEventsEngaged)
                 {
                     // hack-y, but it lets the window message pump process user inputs to keep the UI alive on the main thread
                     Application.DoEvents();
                 }
 
-                lock (_DoEvents_locker)
+                lock (DoEventsLocker)
                 {
-                    _DoEvents_engaged = false;
+                    _doEventsEngaged = false;
                 }
             }
             catch
             {
+                // ignored
             }
         }
 
@@ -216,12 +175,13 @@ namespace BorderlessGaming.Forms
         {
             Config.Instance.AppSettings.ViewAllProcessDetails = viewFullProcessDetailsToolStripMenuItem.Checked;
             Config.Save();
-            await _controller.RefreshProcesses();
+            await RefreshProcesses();
         }
 
         private async void resetHiddenProcessesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            await _controller.RefreshProcesses();
+           Config.Instance.ResetHiddenProcesses();
+            await RefreshProcesses();
         }
 
         private void openDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,12 +196,13 @@ namespace BorderlessGaming.Forms
             }
             catch
             {
+                // ignored
             }
         }
 
         private void pauseAutomaticProcessingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _controller.AutoHandleFavorites = false;
+            _watcher.AutoHandleFavorites = false;
         }
 
         private void toggleMouseCursorVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -283,7 +244,27 @@ namespace BorderlessGaming.Forms
 
         private async void fullApplicationRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            await _controller.RefreshProcesses();
+            await RefreshProcesses();
+        }
+
+        private void HandleProcessChange(ProcessDetails process, bool remove)
+        {
+            if (remove)
+            {
+                this.PerformSafely(() => lstProcesses.Items.Remove(process));
+            }
+            else
+            {
+                this.PerformSafely(() => lstProcesses.Items.Add(process));
+            }
+            this.PerformSafely(() => lblUpdateStatus.Text = $@"Right-click for more options. Last updated {DateTime.Now}");
+        }
+
+        private async Task RefreshProcesses()
+        {
+            //clear the process list and repopulate it
+            lstProcesses.Items.Clear();
+            await _watcher.Refresh();
         }
 
         private void usageGuideToolStripMenuItem_Click(object sender, EventArgs e)
@@ -297,16 +278,16 @@ namespace BorderlessGaming.Forms
 
         private void lstProcesses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var valid_selection = false;
+            var validSelection = false;
 
             if (lstProcesses.SelectedItem != null)
             {
                 var pd = (ProcessDetails) lstProcesses.SelectedItem;
 
-                valid_selection = pd.Manageable;
+                validSelection = pd.Manageable;
             }
 
-            btnMakeBorderless.Enabled = btnRestoreWindow.Enabled = addSelectedItem.Enabled = valid_selection;
+            btnMakeBorderless.Enabled = btnRestoreWindow.Enabled = addSelectedItem.Enabled = validSelection;
         }
 
         private void lstFavorites_SelectedIndexChanged(object sender, EventArgs e)
@@ -348,7 +329,7 @@ namespace BorderlessGaming.Forms
             }
 
             Config.Instance.ExcludeProcess(pd.BinaryName.Trim().ToLower());
-            await _controller.RefreshProcesses();
+            await RefreshProcesses();
         }
 
         /// <summary>
@@ -368,7 +349,7 @@ namespace BorderlessGaming.Forms
                 return;
             }
 
-            _controller.RemoveBorder(pd);
+            _watcher.RemoveBorder(pd);
         }
 
         private void btnRestoreWindow_Click(object sender, EventArgs e)
@@ -494,6 +475,7 @@ namespace BorderlessGaming.Forms
             }
             catch
             {
+                // ignored
             }
 
             return string.Empty;
@@ -864,15 +846,7 @@ namespace BorderlessGaming.Forms
                     tsi.Checked = fav.FavScreen?.Equals(PRectangle.ToPRectangle(screen.Bounds)) ?? false;
                     tsi.Click += (s, ea) =>
                     {
-                        if (tsi.Checked)
-                        {
-                            fav.FavScreen =
-                                new PRectangle(); // Can't null a Rectangle, so can never fully un-favorite a screen without removing the favorite.
-                        }
-                        else
-                        {
-                            fav.FavScreen = PRectangle.ToPRectangle(screen.Bounds);
-                        }
+                        fav.FavScreen = tsi.Checked ? new PRectangle() : PRectangle.ToPRectangle(screen.Bounds);
                         Config.Save();
                     };
 
@@ -883,7 +857,6 @@ namespace BorderlessGaming.Forms
                 var superSizeItem = new ToolStripMenuItem("SuperSize!");
 
                 superSizeItem.Click += (s, ea) => { fav.FavScreen = PRectangle.ToPRectangle(superSize); };
-
                 contextFavScreen.DropDownItems.Add(superSizeItem);
             }
         }
@@ -936,7 +909,7 @@ namespace BorderlessGaming.Forms
                     var label = fixedDeviceName + (screen.Primary ? " (P)" : string.Empty);
 
                     var tsi = new ToolStripMenuItem(label);
-                    tsi.Click += (s, ea) => { _controller.RemoveBorder_ToSpecificScreen(pd, screen); };
+                    tsi.Click += (s, ea) => { _watcher.RemoveBorder_ToSpecificScreen(pd, screen); };
 
                     contextBorderlessOn.DropDownItems.Add(tsi);
                 }
@@ -944,13 +917,13 @@ namespace BorderlessGaming.Forms
                 // add supersize Option
                 var superSizeItem = new ToolStripMenuItem("SuperSize!");
 
-                superSizeItem.Click += (s, ea) => { _controller.RemoveBorder_ToSpecificRect(pd, superSize); };
+                superSizeItem.Click += (s, ea) => { _watcher.RemoveBorder_ToSpecificRect(pd, superSize); };
 
                 contextBorderlessOn.DropDownItems.Add(superSizeItem);
             }
         }
 
-        private ToolStripMenuItem disableSteamIntegrationToolStripMenuItem;
+        private ToolStripMenuItem _disableSteamIntegrationToolStripMenuItem;
 
         /// <summary>
         ///     Sets up the form
@@ -983,9 +956,9 @@ namespace BorderlessGaming.Forms
                 WindowState = FormWindowState.Normal;
             }
 
-            if (SteamApi.IsLoaded && disableSteamIntegrationToolStripMenuItem == null)
+            if (SteamApi.IsLoaded && _disableSteamIntegrationToolStripMenuItem == null)
             {
-                disableSteamIntegrationToolStripMenuItem =
+                _disableSteamIntegrationToolStripMenuItem =
                     new ToolStripMenuItem
                     {
                         Name = "disableSteamIntegrationToolStripMenuItem",
@@ -996,15 +969,15 @@ namespace BorderlessGaming.Forms
                         CheckOnClick = true
                     };
                 // let's do this before registering the CheckedChanged event
-                disableSteamIntegrationToolStripMenuItem.CheckedChanged +=
+                _disableSteamIntegrationToolStripMenuItem.CheckedChanged +=
                     disableSteamIntegrationToolStripMenuItem_CheckChanged;
-                toolsToolStripMenuItem.DropDownItems.Insert(0, disableSteamIntegrationToolStripMenuItem);
+                toolsToolStripMenuItem.DropDownItems.Insert(0, _disableSteamIntegrationToolStripMenuItem);
             }
         }
 
         private void disableSteamIntegrationToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.DisableSteamIntegration = disableSteamIntegrationToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.DisableSteamIntegration = _disableSteamIntegrationToolStripMenuItem.Checked;
             Config.Save();
         }
 
@@ -1023,7 +996,7 @@ namespace BorderlessGaming.Forms
             }
 
             // start Task API controller
-            _controller.Start();
+            _watcher.Start(HandleProcessChange);
 
             // Update buttons' enabled/disabled state
             lstProcesses_SelectedIndexChanged(sender, e);
@@ -1040,7 +1013,7 @@ namespace BorderlessGaming.Forms
             // Make them exit the game that triggered the taskbar to be hidden -- or -- use a global hotkey to restore it.
             if (Manipulation.WindowsTaskbarIsHidden)
             {
-                ClosingFromExitMenu = false;
+                _closingFromExitMenu = false;
                 e.Cancel = true;
                 return;
             }
@@ -1051,7 +1024,7 @@ namespace BorderlessGaming.Forms
             Manipulation.ToggleMouseCursorVisibility(this, Boolstate.True);
 
             // If the user didn't choose to exit from the tray icon context menu...
-            if (!ClosingFromExitMenu)
+            if (!_closingFromExitMenu)
             {
                 // ... and they have the preference set to close-to-tray ...
                 if (Config.Instance.AppSettings.CloseToTray)
@@ -1113,11 +1086,12 @@ namespace BorderlessGaming.Forms
             WindowState = FormWindowState.Normal;
         }
 
-        private bool ClosingFromExitMenu;
+        private bool _closingFromExitMenu;
+        private ProcessWatcher _watcher;
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClosingFromExitMenu = true;
+            _closingFromExitMenu = true;
             Close();
         }
 
@@ -1154,18 +1128,18 @@ namespace BorderlessGaming.Forms
 
             if (Config.Instance.AppSettings.UseGlobalHotkey)
             {
-                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MakeBorderless_HotKeyModifier,
-                    MakeBorderless_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MakeBorderlessHotKeyModifier,
+                    MakeBorderlessHotKey);
             }
 
             if (Config.Instance.AppSettings.UseMouseLockHotkey)
             {
-                Native.RegisterHotKey(Handle, GetType().GetHashCode(), 0, MouseLock_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), 0, MouseLockHotKey);
             }
 
             if (Config.Instance.AppSettings.UseMouseHideHotkey)
             {
-                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MouseHide_HotKeyModifier, MouseHide_HotKey);
+                Native.RegisterHotKey(Handle, GetType().GetHashCode(), MouseHideHotKeyModifier, MouseHideHotKey);
             }
         }
 
@@ -1185,10 +1159,10 @@ namespace BorderlessGaming.Forms
             if (m.Msg == Native.WM_HOTKEY)
             {
                 var keystroke = ((uint) m.LParam >> 16) & 0x0000FFFF;
-                var keystroke_modifier = (uint) m.LParam & 0x0000FFFF;
+                var keystrokeModifier = (uint) m.LParam & 0x0000FFFF;
 
                 // Global hotkey to make a window borderless
-                if (keystroke == MakeBorderless_HotKey && keystroke_modifier == MakeBorderless_HotKeyModifier)
+                if (keystroke == MakeBorderlessHotKey && keystrokeModifier == MakeBorderlessHotKeyModifier)
                 {
                     // Find the currently-active window
                     var hCurrentActiveWindow = Native.GetForegroundWindow();
@@ -1197,11 +1171,11 @@ namespace BorderlessGaming.Forms
                     if (hCurrentActiveWindow != Handle)
                     {
                         // Figure out the process details based on the current window handle
-                        var pd = _controller.Processes.FromHandle(hCurrentActiveWindow);
+                        var pd = _watcher.FromHandle(hCurrentActiveWindow);
                         if (pd == null)
                         {
-                            Task.WaitAll(_controller.RefreshProcesses());
-                            pd = _controller.Processes.FromHandle(hCurrentActiveWindow);
+                            Task.WaitAll(_watcher.Refresh());
+                            pd = _watcher.FromHandle(hCurrentActiveWindow);
                             if (pd == null)
                             {
                                 return;
@@ -1215,21 +1189,21 @@ namespace BorderlessGaming.Forms
                         // Otherwise, this is a fresh request to remove the border from the current window
                         else
                         {
-                            _controller.RemoveBorder(pd);
+                            _watcher.RemoveBorder(pd);
                         }
                     }
 
                     return; // handled the message, do not call base WndProc for this message
                 }
 
-                if (keystroke == MouseHide_HotKey && keystroke_modifier == MouseHide_HotKeyModifier)
+                if (keystroke == MouseHideHotKey && keystrokeModifier == MouseHideHotKeyModifier)
                 {
                     Manipulation.ToggleMouseCursorVisibility(this);
 
                     return; // handled the message, do not call base WndProc for this message
                 }
 
-                if (keystroke == MouseLock_HotKey && keystroke_modifier == 0)
+                if (keystroke == MouseLockHotKey && keystrokeModifier == 0)
                 {
                     var hWnd = Native.GetForegroundWindow();
 

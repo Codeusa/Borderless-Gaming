@@ -124,19 +124,6 @@
   <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 126</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lstProcesses.ItemHeight" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 224</value>
-  </data>
-  <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
-  </data>
   <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
   </data>
@@ -145,6 +132,9 @@
   </data>
   <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
+  </data>
+  <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 6</value>
@@ -163,6 +153,16 @@
   </data>
   <data name="hideThisProcessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
+  </data>
+  <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 126</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lstProcesses.ItemHeight" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lstProcesses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 224</value>
   </data>
   <data name="addSelectedItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
@@ -206,14 +206,11 @@
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
-  <data name="muteInBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mute In Background</value>
-  </data>
   <data name="contextRemoveFromFavs.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mnuFavoritesContext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 330</value>
+    <value>208, 308</value>
   </data>
   <data name="lstFavorites.ItemHeight" type="System.Int32, mscorlib">
     <value>13</value>
@@ -226,6 +223,15 @@
   </data>
   <data name="btnRemoveFavorite.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 6</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
   </data>
   <data name="trayIconContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 54</value>
@@ -715,24 +721,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 31</value>
-  </data>
-  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 31</value>
-  </data>
-  <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 27</value>
-  </data>
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
@@ -775,8 +763,8 @@
   <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 27</value>
+  <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 27</value>
   </data>
   <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
@@ -799,8 +787,8 @@
   <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 27</value>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 27</value>
   </data>
   <data name="usageGuideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
@@ -823,6 +811,21 @@
   <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
+  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 27</value>
+  </data>
+  <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 31</value>
+  </data>
+  <data name="mnuMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 31</value>
+  </data>
+  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 129</value>
+  </data>
+  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 36</value>
+  </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 230</value>
   </data>
@@ -832,17 +835,11 @@
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>471, 241</value>
   </data>
-  <data name="btnRestoreWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 129</value>
-  </data>
-  <data name="btnRestoreWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 36</value>
+  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 274</value>
-  </data>
-  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 17</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

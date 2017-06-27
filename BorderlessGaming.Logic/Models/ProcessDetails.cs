@@ -180,6 +180,7 @@ namespace BorderlessGaming.Logic.Models
             return "<error>";
         }
 
+
         public static implicit operator Process(ProcessDetails pd)
         {
             return pd?.Proc;

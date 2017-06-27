@@ -105,5 +105,20 @@ namespace BorderlessGaming.Logic.Properties {
                 return ResourceManager.GetString("InfoUpdatesHeader", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to hide the mouse cursor?
+        ///
+        ///You may have a difficult time finding the mouse again once it&apos;s hidden.
+        ///
+        ///If you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.
+        ///
+        ///Also, exiting Borderless Gaming will immediately restore your mouse cursor..
+        /// </summary>
+        internal static string MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_ {
+            get {
+                return ResourceManager.GetString("MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_", resourceCulture);
+            }
+        }
     }
 }

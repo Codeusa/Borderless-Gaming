@@ -411,7 +411,7 @@ namespace BorderlessGaming.Logic.Windows
         ///     before
         /// </param>
         /// <param name="windowPtrSet">A set of current window ptrs</param>
-        public static void QueryProcessesWithWindows(Action<ProcessDetails> callback, HashSet<long> windowPtrSet)
+        public static void QueryProcessesWithWindows(Action<ProcessDetails> callback, List<IntPtr> windowPtrSet)
         {
             var ptrList = new List<IntPtr>();
 
@@ -430,9 +430,7 @@ namespace BorderlessGaming.Logic.Windows
                     {
                         continue;
                     }
-                    //check if we already have this window in the list so we can avoid calling
-                    //GetWindowThreadProcessId(its costly)
-                    if (windowPtrSet.Contains(ptr.ToInt64()))
+                    if (windowPtrSet.Contains(ptr))
                     {
                         continue;
                     }

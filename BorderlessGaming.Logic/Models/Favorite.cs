@@ -96,6 +96,7 @@ namespace BorderlessGaming.Logic.Models
             var taskbar = HideWindowsTaskbar ? "[NoTaskbar]" : string.Empty;
             var mouse = HideMouseCursor ? "[NoMouse]" : string.Empty;
             var delay = DelayBorderless ? "[Delay]" : string.Empty;
+            var muted = MuteInBackground ? "[Muted]" : string.Empty;
             var offset = string.Empty;
             var position = string.Empty;
             if (OffsetL != 0 || OffsetR != 0 || OffsetT != 0 || OffsetB != 0)
@@ -106,7 +107,7 @@ namespace BorderlessGaming.Logic.Models
             {
                 position = $"[{PositionX}x{PositionY}-{PositionX + PositionW}x{PositionY + PositionH}]";
             }
-            return $"{SearchText} [{Type}] {max} {mode} {top} {menus} {taskbar} {mouse} {delay} {offset} {position}";
+            return $"{SearchText} [{Type}] {max}{muted}{mode}{top}{menus}{taskbar}{mouse}{delay}{offset}{position}";
         }
 
         public bool Matches(ProcessDetails pd)

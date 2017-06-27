@@ -164,9 +164,6 @@
   <data name="&gt;&gt;btnRemoveFavorite.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="contextBorderlessOn.Text" xml:space="preserve">
-    <value>Make Borderless on...</value>
-  </data>
   <data name="&gt;&gt;fullApplicationRefreshToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -354,9 +351,6 @@
   <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 22</value>
   </data>
-  <data name="muteInBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mute In Background</value>
-  </data>
   <data name="fullScreenToolStripMenuItem.Text" xml:space="preserve">
     <value>Full Screen</value>
   </data>
@@ -395,6 +389,9 @@
   </data>
   <data name="&gt;&gt;alwaysOnTopToolStripMenuItem.Name" xml:space="preserve">
     <value>alwaysOnTopToolStripMenuItem</value>
+  </data>
+  <data name="muteInBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mute In Background</value>
   </data>
   <data name="lstFavorites.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 206</value>
@@ -1852,8 +1849,8 @@
   <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 22</value>
   </data>
-  <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toggle Windows Taskbar Visibility</value>
+  <data name="contextBorderlessOn.Text" xml:space="preserve">
+    <value>Make Borderless on...</value>
   </data>
   <data name="hideMouseCursorToolStripMenuItem.Text" xml:space="preserve">
     <value>Hide Mouse Cursor</value>
@@ -1881,6 +1878,9 @@
   </data>
   <data name="&gt;&gt;favoritesLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
+    <value>Toggle Windows Taskbar Visibility</value>
   </data>
   <data name="&gt;&gt;addSelectedItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

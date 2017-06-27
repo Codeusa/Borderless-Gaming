@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ProcessWatcher.cs" />
     <Compile Include="Extensions\CrossThreadExtensions.cs" />
     <Compile Include="Extensions\ProcessExtensions.cs" />
     <Compile Include="Models\AppSettings.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Models\HiddenProcess.cs" />
     <Compile Include="Models\PRectangle.cs" />
     <Compile Include="Models\ProcessDetails.cs" />
-    <Compile Include="Models\ProcessDetailsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

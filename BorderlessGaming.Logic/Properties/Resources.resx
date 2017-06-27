@@ -133,4 +133,13 @@
   <data name="InfoUpdatesHeader" xml:space="preserve">
     <value>Update available</value>
   </data>
+  <data name="MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_" xml:space="preserve">
+    <value>Do you really want to hide the mouse cursor?
+
+You may have a difficult time finding the mouse again once it's hidden.
+
+If you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.
+
+Also, exiting Borderless Gaming will immediately restore your mouse cursor.</value>
+  </data>
 </root>

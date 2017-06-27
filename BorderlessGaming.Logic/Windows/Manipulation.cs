@@ -591,20 +591,8 @@ namespace BorderlessGaming.Logic.Windows
                     Native.FW(Native.FW(Native.FW(IntPtr.Zero, "Shell_TrayWnd"), "TrayNotifyWnd"), "SysPager"),
                     IntPtr.Zero,
                     "ToolbarWindow32",
-                    "Notification Area"
+                    "User Promoted Notification Area"
                 );
-
-                // Windows Vista and later
-                if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
-                {
-                    hNotificationArea = Native.FindWindowEx
-                    (
-                        Native.FW(Native.FW(Native.FW(IntPtr.Zero, "Shell_TrayWnd"), "TrayNotifyWnd"), "SysPager"),
-                        IntPtr.Zero,
-                        "ToolbarWindow32",
-                        "User Promoted Notification Area"
-                    );
-                }
 
                 if (hNotificationArea == IntPtr.Zero || hNotificationArea.ToInt32() == Native.INVALID_HANDLE_VALUE)
                 {

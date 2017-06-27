@@ -82,6 +82,11 @@ namespace BorderlessGaming.Logic.Models
             }
         }
 
+        public void ResetHiddenProcesses()
+        {
+            HiddenProcesses = new List<HiddenProcess>();
+            Save();
+        }
         public bool IsHidden(Process process)
         {
             return IsHidden(process.ProcessName);
