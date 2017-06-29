@@ -44,6 +44,9 @@
     <Reference Include="Facepunch.Steamworks">
       <HintPath>..\SteamLibs\Facepunch.Steamworks.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\TaskScheduler.2.5.23\lib\net452\JetBrains.Annotations.dll</HintPath>
     </Reference>
@@ -70,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\LanguageManager.cs" />
     <Compile Include="Core\ProcessWatcher.cs" />
     <Compile Include="Extensions\CrossThreadExtensions.cs" />
     <Compile Include="Extensions\ProcessExtensions.cs" />
@@ -77,6 +81,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\HiddenProcess.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PRectangle.cs" />
     <Compile Include="Models\ProcessDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

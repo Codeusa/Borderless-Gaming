@@ -124,22 +124,22 @@
   <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByTheWindowTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
   </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripByTheWindowTitle.Text" xml:space="preserve">
     <value>... 以窗口标题识别</value>
   </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByRegex.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
   </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripByRegex.Text" xml:space="preserve">
     <value>... 以窗口标题识别 (使用正则表达式)</value>
   </data>
-  <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByProcess.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 22</value>
   </data>
-  <data name="byTheProcessBinaryNameToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripByProcess.Text" xml:space="preserve">
     <value>... 以进程可执行文件名识别</value>
   </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
@@ -163,19 +163,19 @@
   <data name="contextBorderlessOn.Text" xml:space="preserve">
     <value>在...上无边框</value>
   </data>
-  <data name="setWindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSetWindowTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
-  <data name="setWindowTitleToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripSetWindowTitle.Text" xml:space="preserve">
     <value>设置窗口标题</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 6</value>
   </data>
-  <data name="hideThisProcessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideProcess.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
-  <data name="hideThisProcessToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripHideProcess.Text" xml:space="preserve">
     <value>隐藏这个进程</value>
   </data>
   <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
@@ -194,64 +194,64 @@
   <data name="addSelectedItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripFullScreen.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="fullScreenToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripFullScreen.Text" xml:space="preserve">
     <value>全屏</value>
   </data>
-  <data name="noSizeChangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripNoSizeChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="noSizeChangeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripNoSizeChange.Text" xml:space="preserve">
     <value>尺寸不改变</value>
   </data>
-  <data name="setWindowSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSetSetWindowSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="setWindowSizeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripSetSetWindowSize.Text" xml:space="preserve">
     <value>设置窗口尺寸</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
-  <data name="automaximizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAutomaximize.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="automaximizeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripAutomaximize.Text" xml:space="preserve">
     <value>自动最大化</value>
   </data>
-  <data name="adjustWindowBoundsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAdjustWindowBounds.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="adjustWindowBoundsToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripAdjustWindowBounds.Text" xml:space="preserve">
     <value>调整窗口边框</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
-  <data name="alwaysOnTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAlwaysOnTop.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="alwaysOnTopToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripAlwaysOnTop.Text" xml:space="preserve">
     <value>保持窗口在顶部</value>
   </data>
-  <data name="delayBorderlessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripDelayBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideMouseCursor.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="hideMouseCursorToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripHideMouseCursor.Text" xml:space="preserve">
     <value>隐藏鼠标指针</value>
   </data>
-  <data name="hideWindowsTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideWindowsTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="hideWindowsTaskbarToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripHideWindowsTaskbar.Text" xml:space="preserve">
     <value>隐藏Windows任务栏</value>
   </data>
-  <data name="removeMenusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripRemoveMenus.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
@@ -814,52 +814,52 @@
   <data name="toolStripMouseLock.Text" xml:space="preserve">
     <value>使用热键锁定鼠标       (Scroll Lock)</value>
   </data>
-  <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripMouseHide.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripMouseHide.Text" xml:space="preserve">
     <value>使用热键隐藏鼠标       (Win+Scroll Lock)</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 6</value>
   </data>
-  <data name="startMinimizedToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripMinimizedToTray.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="startMinimizedToTrayToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripMinimizedToTray.Text" xml:space="preserve">
     <value>开启时最小化到托盘</value>
   </data>
-  <data name="closeToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripCloseToTray.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="closeToTrayToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripCloseToTray.Text" xml:space="preserve">
     <value>关闭时最小化到托盘</value>
   </data>
-  <data name="hideBalloonTipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideBalloonTips.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="hideBalloonTipsToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripHideBalloonTips.Text" xml:space="preserve">
     <value>隐藏气泡提示</value>
   </data>
-  <data name="useSlowerWindowDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSlowWindowDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="useSlowerWindowDetectionToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripSlowWindowDetection.Text" xml:space="preserve">
     <value>(&amp;U)使用更慢的窗口检测</value>
   </data>
-  <data name="viewFullProcessDetailsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripViewFullProcessDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="viewFullProcessDetailsToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripViewFullProcessDetails.Text" xml:space="preserve">
     <value>查看详细进程信息</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 6</value>
   </data>
-  <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripRestoreProcesses.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 22</value>
   </data>
-  <data name="resToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripRestoreProcesses.Text" xml:space="preserve">
     <value>恢复所有隐藏的应用</value>
   </data>
   <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
@@ -868,40 +868,40 @@
   <data name="toolStripOptions.Text" xml:space="preserve">
     <value>(&amp;O)选项</value>
   </data>
-  <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripPauseAutomaticProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="pauseAutomaticProcessingToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripPauseAutomaticProcessing.Text" xml:space="preserve">
     <value>暂停自动处理</value>
   </data>
-  <data name="openDataFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripOpenDataFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="openDataFolderToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripOpenDataFolder.Text" xml:space="preserve">
     <value>打开数据文件夹</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 6</value>
   </data>
-  <data name="toggleMouseCursorVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripToggleMouseCursorVisibility.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="toggleMouseCursorVisibilityToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripToggleMouseCursorVisibility.Text" xml:space="preserve">
     <value>切换鼠标可见性</value>
   </data>
-  <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripToggleWindowsTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripToggleWindowsTaskbar.Text" xml:space="preserve">
     <value>切换Windows任务栏可见性</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 6</value>
   </data>
-  <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripFullApplicationRefresh.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 22</value>
   </data>
-  <data name="fullApplicationRefreshToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripFullApplicationRefresh.Text" xml:space="preserve">
     <value>完全刷新应用程序</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -910,10 +910,10 @@
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>(&amp;T)工具</value>
   </data>
-  <data name="usageGuideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripUsageGuide.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
-  <data name="usageGuideToolStripMenuItem.Text" xml:space="preserve">
+  <data name="toolStripUsageGuide.Text" xml:space="preserve">
     <value>使用手册</value>
   </data>
   <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">

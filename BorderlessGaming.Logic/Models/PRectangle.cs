@@ -30,6 +30,27 @@ namespace BorderlessGaming.Logic.Models
             };
         }
 
+
+        public override bool Equals(object obj)
+        {
+            var rect = (PRectangle) obj;
+            return rect != null && X == rect.X && Y == rect.Y && Height == rect.Height && Width == rect.Width;
+        }
+
+     
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = X;
+                hashCode = (hashCode * 397) ^ Y;
+                hashCode = (hashCode * 397) ^ Width;
+                hashCode = (hashCode * 397) ^ Height;
+                return hashCode;
+            }
+        }
+
         public static Rectangle ToRectangle(PRectangle pRectangle)
         {
             return new Rectangle

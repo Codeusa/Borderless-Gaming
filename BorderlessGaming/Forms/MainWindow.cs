@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +22,7 @@ namespace BorderlessGaming.Forms
         {
             _watcher = new ProcessWatcher(this);
             InitializeComponent();
+            LanguageManager.Setup(toolStripLanguages);
         }
 
         public void AddFavoriteToList(Favorite fav)
@@ -72,47 +72,6 @@ namespace BorderlessGaming.Forms
 
         #region External access and processing
 
-        public static MainWindow Ext()
-        {
-            return Application.OpenForms.Cast<Form>().Where(form => form.GetType() == typeof(MainWindow))
-                .Cast<MainWindow>().FirstOrDefault();
-        }
-
-        private static readonly object DoEventsLocker = new object();
-        private static bool _doEventsEngaged;
-
-        public static void DoEvents()
-        {
-            try
-            {
-                bool localDoEventsEngaged;
-                lock (DoEventsLocker)
-                {
-                    localDoEventsEngaged = _doEventsEngaged;
-
-                    if (!localDoEventsEngaged)
-                    {
-                        _doEventsEngaged = true;
-                    }
-                }
-
-                if (!localDoEventsEngaged)
-                {
-                    // hack-y, but it lets the window message pump process user inputs to keep the UI alive on the main thread
-                    Application.DoEvents();
-                }
-
-                lock (DoEventsLocker)
-                {
-                    _doEventsEngaged = false;
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-        }
-
         #endregion
 
 
@@ -141,39 +100,39 @@ namespace BorderlessGaming.Forms
 
         private void useMouseHideHotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.UseMouseHideHotkey = useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.UseMouseHideHotkey = toolStripMouseHide.Checked;
             Config.Save();
             RegisterHotkeys();
         }
 
         private void startMinimizedToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.StartMinimized = startMinimizedToTrayToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.StartMinimized = toolStripMinimizedToTray.Checked;
             Config.Save();
         }
 
         private void hideBalloonTipsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.HideBalloonTips = hideBalloonTipsToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.HideBalloonTips = toolStripHideBalloonTips.Checked;
             Config.Save();
         }
 
         private void closeToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.CloseToTray = closeToTrayToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.CloseToTray = toolStripCloseToTray.Checked;
             Config.Save();
         }
 
         private void useSlowerWindowDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.SlowWindowDetection = useSlowerWindowDetectionToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.SlowWindowDetection = toolStripSlowWindowDetection.Checked;
             Config.Save();
         }
 
         private async void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
 
         {
-            Config.Instance.AppSettings.ViewAllProcessDetails = viewFullProcessDetailsToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.ViewAllProcessDetails = toolStripViewFullProcessDetails.Checked;
             Config.Save();
             await RefreshProcesses();
         }
@@ -209,8 +168,8 @@ namespace BorderlessGaming.Forms
         {
             if (Manipulation.MouseCursorIsHidden ||
                 MessageBox.Show(
-                    "Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.",
-                    "Really Hide Mouse Cursor?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                    LanguageManager.Data("toggleMouseCursorVisibilityPrompt"),
+                    LanguageManager.Data("toggleMouseCursorVisibilityTitle"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 Manipulation.ToggleMouseCursorVisibility(this);
@@ -257,7 +216,7 @@ namespace BorderlessGaming.Forms
             {
                 this.PerformSafely(() => lstProcesses.Items.Add(process));
             }
-            this.PerformSafely(() => lblUpdateStatus.Text = $@"Right-click for more options. Last updated {DateTime.Now}");
+            this.PerformSafely(() => lblUpdateStatus.Text = $@"{LanguageManager.Data("moreOptionsLabel")} {DateTime.Now}");
         }
 
         private async Task RefreshProcesses()
@@ -310,7 +269,7 @@ namespace BorderlessGaming.Forms
             }
 
             Native.SetWindowText(pd.WindowHandle,
-                InputText("Set Window Title", "Set the new window title text:",
+                InputText(LanguageManager.Data("setWindowTitleTitle"), LanguageManager.Data("setWindowTitlePrompt"),
                     Native.GetWindowTitle(pd.WindowHandle)));
         }
 
@@ -504,7 +463,7 @@ namespace BorderlessGaming.Forms
             }
         }
 
-        private void RefreshFavoritesList(Favorite fav = null)
+        private void RefreshFavoritesList(Favorite fav)
         {
             //refreshing is done through observables so this method just readds the favorite
             //to make it look like it updated and because i dont want to change all that code
@@ -543,7 +502,7 @@ namespace BorderlessGaming.Forms
             {
                 lstFavorites.Items.Remove(fav);
             });
-            fav.RemoveMenus = removeMenusToolStripMenuItem.Checked;
+            fav.RemoveMenus = toolStripRemoveMenus.Checked;
             RefreshFavoritesList(fav);
         }
 
@@ -559,7 +518,7 @@ namespace BorderlessGaming.Forms
             {
                 lstFavorites.Items.Remove(fav);
             });
-            fav.TopMost = alwaysOnTopToolStripMenuItem.Checked;
+            fav.TopMost = toolStripAlwaysOnTop.Checked;
             RefreshFavoritesList(fav);
         }
 
@@ -571,26 +530,22 @@ namespace BorderlessGaming.Forms
             {
                 lstFavorites.Items.Remove(fav);
             });
-            int favOffsetL;
-            int favOffsetR;
-            int favOffsetT;
-            int favOffsetB;
             int.TryParse(
-                InputText("Adjust Window Bounds",
-                    "Pixel adjustment for the left window edge (0 pixels = no adjustment):", fav.OffsetL.ToString()),
-                out favOffsetL);
+InputText(LanguageManager.Data("adjustWindowBoundsTitle"),
+string.Format(LanguageManager.Data("adjustWindowBoundsPrompt"), LanguageManager.Data("adjustWindowBoundsLeft")), fav.OffsetL.ToString()),
+out int favOffsetL);
             int.TryParse(
-               InputText("Adjust Window Bounds",
-                    "Pixel adjustment for the right window edge (0 pixels = no adjustment):", fav.OffsetR.ToString()),
-                out favOffsetR);
+               InputText(LanguageManager.Data("adjustWindowBoundsTitle"),
+                   string.Format(LanguageManager.Data("adjustWindowBoundsPrompt"), LanguageManager.Data("adjustWindowBoundsRight")), fav.OffsetR.ToString()),
+                out int favOffsetR);
             int.TryParse(
-                InputText("Adjust Window Bounds",
-                    "Pixel adjustment for the top window edge (0 pixels = no adjustment):", fav.OffsetT.ToString()),
-                out favOffsetT);
+                InputText(LanguageManager.Data("adjustWindowBoundsTitle"),
+                    string.Format(LanguageManager.Data("adjustWindowBoundsPrompt"), LanguageManager.Data("adjustWindowBoundsTop")), fav.OffsetT.ToString()),
+                out int favOffsetT);
             int.TryParse(
-                InputText("Adjust Window Bounds",
-                    "Pixel adjustment for the bottom window edge (0 pixels = no adjustment):", fav.OffsetB.ToString()),
-                out favOffsetB);
+                InputText(LanguageManager.Data("adjustWindowBoundsTitle"),
+                    string.Format(LanguageManager.Data("adjustWindowBoundsPrompt"), LanguageManager.Data("adjustWindowBoundsBottom")), fav.OffsetB.ToString()),
+                out int favOffsetB);
 
             fav.OffsetL = favOffsetL;
             fav.OffsetR = favOffsetR;
@@ -609,7 +564,7 @@ namespace BorderlessGaming.Forms
                 lstFavorites.Items.Remove(fav);
             });
 
-            fav.ShouldMaximize = automaximizeToolStripMenuItem.Checked;
+            fav.ShouldMaximize = toolStripAutomaximize.Checked;
 
             if (fav.ShouldMaximize)
             {
@@ -630,7 +585,7 @@ namespace BorderlessGaming.Forms
             {
                 lstFavorites.Items.Remove(fav);
             });
-            fav.HideMouseCursor = hideMouseCursorToolStripMenuItem.Checked;
+            fav.HideMouseCursor = toolStripHideMouseCursor.Checked;
             RefreshFavoritesList(fav);
         }
 
@@ -642,7 +597,7 @@ namespace BorderlessGaming.Forms
                 lstFavorites.Items.Remove(fav);
             });
 
-            fav.HideWindowsTaskbar = hideWindowsTaskbarToolStripMenuItem.Checked;
+            fav.HideWindowsTaskbar = toolStripHideWindowsTaskbar.Checked;
 
             RefreshFavoritesList(fav);
         }
@@ -654,8 +609,8 @@ namespace BorderlessGaming.Forms
 
             var result =
                 MessageBox.Show(
-                    "Would you like to select the area using your mouse cursor?\r\n\r\nIf you answer No, you will be prompted for specific pixel dimensions.",
-                    "Select Area?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                   LanguageManager.Data("setWindowSizeMousePrompt"),
+                   LanguageManager.Data("setWindowSizeMouseTitle"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.Cancel)
             {
@@ -684,21 +639,17 @@ namespace BorderlessGaming.Forms
             }
             else // System.Windows.Forms.DialogResult.No
             {
-                var favPositionX = fav.PositionX;
-                var favPositionY = fav.PositionY;
-                var favPositionW = fav.PositionW;
-                var favPositionH = fav.PositionH;
                 int.TryParse(
-                    InputText("Set Window Size", "Pixel X location for the top left corner (X coordinate):",
-                        fav.PositionX.ToString()), out favPositionX);
+InputText(LanguageManager.Data("setWindowSizeTitle"), string.Format(LanguageManager.Data("setWindowSizePixelPrompt"), "X"),
+fav.PositionX.ToString()), out int favPositionX);
                 int.TryParse(
-                   InputText("Set Window Size", "Pixel Y location for the top left corner (Y coordinate):",
-                        fav.PositionY.ToString()), out favPositionY);
-                int.TryParse(InputText("Set Window Size", "Window width (in pixels):", fav.PositionW.ToString()),
-                    out favPositionW);
+                   InputText(LanguageManager.Data("setWindowSizeTitle"), string.Format(LanguageManager.Data("setWindowSizePixelPrompt"), "Y"),
+                        fav.PositionY.ToString()), out int favPositionY);
+                int.TryParse(InputText(LanguageManager.Data("setWindowSizeTitle"), LanguageManager.Data("setWindowSizeWidthPrompt"), fav.PositionW.ToString()),
+                    out int favPositionW);
                 int.TryParse(
-                    InputText("Set Window Size", "Window height (in pixels):", fav.PositionH.ToString()),
-                    out favPositionH);
+                    InputText(LanguageManager.Data("setWindowSizeTitle"), LanguageManager.Data("setWindowSizeHeightPrompt"), fav.PositionH.ToString()),
+                    out int favPositionH);
                 fav.PositionX = favPositionX;
                 fav.PositionH = favPositionH;
                 fav.PositionW = favPositionW;
@@ -732,7 +683,7 @@ namespace BorderlessGaming.Forms
             });
 
 
-            fav.Size = fullScreenToolStripMenuItem.Checked ? FavoriteSize.FullScreen : FavoriteSize.NoChange;
+            fav.Size = toolStripFullScreen.Checked ? FavoriteSize.FullScreen : FavoriteSize.NoChange;
 
             if (fav.Size == FavoriteSize.FullScreen)
             {
@@ -759,7 +710,7 @@ namespace BorderlessGaming.Forms
                 lstFavorites.Items.Remove(fav);
             });
 
-            fav.Size = noSizeChangeToolStripMenuItem.Checked ? FavoriteSize.NoChange : FavoriteSize.FullScreen;
+            fav.Size = toolStripNoSizeChange.Checked ? FavoriteSize.NoChange : FavoriteSize.FullScreen;
 
             if (fav.Size == FavoriteSize.NoChange)
             {
@@ -786,7 +737,7 @@ namespace BorderlessGaming.Forms
                 lstFavorites.Items.Remove(fav);
             });
 
-            fav.DelayBorderless = delayBorderlessToolStripMenuItem.Checked;
+            fav.DelayBorderless = toolStripDelayBorderless.Checked;
             RefreshFavoritesList(fav);
         }
 
@@ -802,20 +753,20 @@ namespace BorderlessGaming.Forms
             }
 
             var fav = (Favorite) lstFavorites.SelectedItem;
-            fullScreenToolStripMenuItem.Checked = fav.Size == FavoriteSize.FullScreen;
+            toolStripFullScreen.Checked = fav.Size == FavoriteSize.FullScreen;
 
-            muteInBackgroundToolStripMenuItem.Checked = fav.MuteInBackground;
-            automaximizeToolStripMenuItem.Checked = fav.ShouldMaximize;
-            alwaysOnTopToolStripMenuItem.Checked = fav.TopMost;
-            hideMouseCursorToolStripMenuItem.Checked = fav.HideMouseCursor;
-            hideWindowsTaskbarToolStripMenuItem.Checked = fav.HideWindowsTaskbar;
-            removeMenusToolStripMenuItem.Checked = fav.RemoveMenus;
+            toolStripMuteInBackground.Checked = fav.MuteInBackground;
+            toolStripAutomaximize.Checked = fav.ShouldMaximize;
+            toolStripAlwaysOnTop.Checked = fav.TopMost;
+            toolStripHideMouseCursor.Checked = fav.HideMouseCursor;
+            toolStripHideWindowsTaskbar.Checked = fav.HideWindowsTaskbar;
+            toolStripRemoveMenus.Checked = fav.RemoveMenus;
 
-            automaximizeToolStripMenuItem.Enabled = fav.Size == FavoriteSize.FullScreen;
-            adjustWindowBoundsToolStripMenuItem.Enabled = fav.Size == FavoriteSize.FullScreen && !fav.ShouldMaximize;
-            setWindowSizeToolStripMenuItem.Enabled = fav.Size != FavoriteSize.FullScreen;
-            setWindowSizeToolStripMenuItem.Checked = fav.Size == FavoriteSize.SpecificSize;
-            noSizeChangeToolStripMenuItem.Checked = fav.Size == FavoriteSize.NoChange;
+            toolStripAutomaximize.Enabled = fav.Size == FavoriteSize.FullScreen;
+            toolStripAdjustWindowBounds.Enabled = fav.Size == FavoriteSize.FullScreen && !fav.ShouldMaximize;
+            toolStripSetSetWindowSize.Enabled = fav.Size != FavoriteSize.FullScreen;
+            toolStripSetSetWindowSize.Checked = fav.Size == FavoriteSize.SpecificSize;
+            toolStripNoSizeChange.Checked = fav.Size == FavoriteSize.NoChange;
 
             if (Screen.AllScreens.Length < 2)
             {
@@ -841,23 +792,31 @@ namespace BorderlessGaming.Forms
                     var fixedDeviceName = idx > 0 ? screen.DeviceName.Substring(0, idx) : screen.DeviceName;
 
                     var label = fixedDeviceName + (screen.Primary ? " (P)" : string.Empty);
-
-                    var tsi = new ToolStripMenuItem(label);
-                    tsi.Checked = fav.FavScreen?.Equals(PRectangle.ToPRectangle(screen.Bounds)) ?? false;
-                    tsi.Click += (s, ea) =>
+                    var index = contextFavScreen.DropDownItems.Add(new ToolStripMenuItem
                     {
-                        fav.FavScreen = tsi.Checked ? new PRectangle() : PRectangle.ToPRectangle(screen.Bounds);
+                        Text =  label,
+                        CheckOnClick = true,
+                        Checked = fav.FavScreen?.Equals(PRectangle.ToPRectangle(screen.Bounds)) ?? false
+                    });
+                    contextFavScreen.DropDownItems[index].Click += (s, ea) =>
+                    {
+                        var tt = (ToolStripMenuItem)s;
+                        fav.FavScreen = tt.Checked ? PRectangle.ToPRectangle(screen.Bounds) : new PRectangle();
                         Config.Save();
                     };
-
-                    contextFavScreen.DropDownItems.Add(tsi);
                 }
-
                 // add supersize Option
-                var superSizeItem = new ToolStripMenuItem("SuperSize!");
-
-                superSizeItem.Click += (s, ea) => { fav.FavScreen = PRectangle.ToPRectangle(superSize); };
-                contextFavScreen.DropDownItems.Add(superSizeItem);
+                var superIndex = contextFavScreen.DropDownItems.Add(new ToolStripMenuItem
+                {
+                    Text = LanguageManager.Data("superSize"),
+                    CheckOnClick = true,
+                    Checked = fav.FavScreen?.Equals(PRectangle.ToPRectangle(superSize)) ?? false
+                });
+                contextFavScreen.DropDownItems[superIndex].Click += (s, ea) =>
+                {
+                    fav.FavScreen = PRectangle.ToPRectangle(superSize);
+                    Config.Save();
+                };
             }
         }
 
@@ -915,7 +874,7 @@ namespace BorderlessGaming.Forms
                 }
 
                 // add supersize Option
-                var superSizeItem = new ToolStripMenuItem("SuperSize!");
+                var superSizeItem = new ToolStripMenuItem(LanguageManager.Data("superSize"));
 
                 superSizeItem.Click += (s, ea) => { _watcher.RemoveBorder_ToSpecificRect(pd, superSize); };
 
@@ -923,7 +882,7 @@ namespace BorderlessGaming.Forms
             }
         }
 
-        private ToolStripMenuItem _disableSteamIntegrationToolStripMenuItem;
+        private ToolStripMenuItem _toolStripDisableSteamIntegration;
 
         /// <summary>
         ///     Sets up the form
@@ -939,12 +898,12 @@ namespace BorderlessGaming.Forms
             toolStripGlobalHotkey.Checked = settings.UseGlobalHotkey;
             toolStripCheckForUpdates.Checked = settings.CheckForUpdates;
             toolStripMouseLock.Checked = settings.UseMouseLockHotkey;
-            useMouseHideHotkeyWinScrollLockToolStripMenuItem.Checked = settings.UseMouseHideHotkey;
-            startMinimizedToTrayToolStripMenuItem.Checked = settings.StartMinimized;
-            hideBalloonTipsToolStripMenuItem.Checked = settings.HideBalloonTips;
-            closeToTrayToolStripMenuItem.Checked = settings.CloseToTray;
-            viewFullProcessDetailsToolStripMenuItem.Checked = settings.ViewAllProcessDetails;
-            useSlowerWindowDetectionToolStripMenuItem.Checked = settings.SlowWindowDetection;
+            toolStripMouseHide.Checked = settings.UseMouseHideHotkey;
+            toolStripMinimizedToTray.Checked = settings.StartMinimized;
+            toolStripHideBalloonTips.Checked = settings.HideBalloonTips;
+            toolStripCloseToTray.Checked = settings.CloseToTray;
+            toolStripViewFullProcessDetails.Checked = settings.ViewAllProcessDetails;
+            toolStripSlowWindowDetection.Checked = settings.SlowWindowDetection;
 
             // minimize the window if desired (hiding done in Shown)
             if (settings.StartMinimized || Config.Instance.StartupOptions.Minimize)
@@ -956,28 +915,28 @@ namespace BorderlessGaming.Forms
                 WindowState = FormWindowState.Normal;
             }
 
-            if (SteamApi.IsLoaded && _disableSteamIntegrationToolStripMenuItem == null)
+            if (SteamApi.IsLoaded && _toolStripDisableSteamIntegration == null)
             {
-                _disableSteamIntegrationToolStripMenuItem =
+                _toolStripDisableSteamIntegration =
                     new ToolStripMenuItem
                     {
-                        Name = "disableSteamIntegrationToolStripMenuItem",
+                        Name = "toolStripDisableSteamIntegration",
                         Size = new Size(254, 22),
-                        Text = "Disable Steam integration/hook",
-                        ToolTipText = "Prevents \"In-App\" on Steam",
+                        Text = LanguageManager.Data("toolStripDisableSteamIntegration"),
+                        ToolTipText = LanguageManager.Data("steamHint"),
                         Checked = settings.DisableSteamIntegration,
                         CheckOnClick = true
                     };
                 // let's do this before registering the CheckedChanged event
-                _disableSteamIntegrationToolStripMenuItem.CheckedChanged +=
-                    disableSteamIntegrationToolStripMenuItem_CheckChanged;
-                toolsToolStripMenuItem.DropDownItems.Insert(0, _disableSteamIntegrationToolStripMenuItem);
+                _toolStripDisableSteamIntegration.CheckedChanged +=
+                    ToolStripDisableSteamIntegrationCheckChanged;
+                toolsToolStripMenuItem.DropDownItems.Insert(0, _toolStripDisableSteamIntegration);
             }
         }
 
-        private void disableSteamIntegrationToolStripMenuItem_CheckChanged(object sender, EventArgs e)
+        private void ToolStripDisableSteamIntegrationCheckChanged(object sender, EventArgs e)
         {
-            Config.Instance.AppSettings.DisableSteamIntegration = _disableSteamIntegrationToolStripMenuItem.Checked;
+            Config.Instance.AppSettings.DisableSteamIntegration = _toolStripDisableSteamIntegration.Checked;
             Config.Save();
         }
 
@@ -1054,26 +1013,25 @@ namespace BorderlessGaming.Forms
         private void addSelectedItem_MouseHover(object sender, EventArgs e)
         {
             var ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control) sender,
-                "Adds the currently-selected application to your favorites list (by the window title).");
+            ttTemp.SetToolTip((Control) sender, LanguageManager.Data("addFavorite"));
         }
 
         private void btnRemoveFavorite_MouseHover(object sender, EventArgs e)
         {
             var ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control) sender, "Removes the currently-selected favorite from the list.");
+            ttTemp.SetToolTip((Control) sender, LanguageManager.Data("removeFavorite"));
         }
 
         private void btnMakeBorderless_MouseHover(object sender, EventArgs e)
         {
             var ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control) sender, "Makes the currently-selected application borderless.");
+            ttTemp.SetToolTip((Control) sender, LanguageManager.Data("makeBorderless"));
         }
 
         private void btnRestoreWindow_MouseHover(object sender, EventArgs e)
         {
             var ttTemp = new ToolTip();
-            ttTemp.SetToolTip((Control) sender, "Attempts to restore a window back to its bordered state.");
+            ttTemp.SetToolTip((Control) sender, LanguageManager.Data("restoreBorders"));
         }
 
         #endregion
@@ -1087,7 +1045,7 @@ namespace BorderlessGaming.Forms
         }
 
         private bool _closingFromExitMenu;
-        private ProcessWatcher _watcher;
+        private readonly ProcessWatcher _watcher;
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1236,7 +1194,7 @@ namespace BorderlessGaming.Forms
             {
                 lstFavorites.Items.Remove(fav);
             });
-            fav.MuteInBackground = muteInBackgroundToolStripMenuItem.Checked;
+            fav.MuteInBackground = toolStripMuteInBackground.Checked;
             if (!fav.MuteInBackground)
             {
                 if (fav.IsRunning && Native.IsMuted(fav.RunningId))

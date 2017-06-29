@@ -124,13 +124,13 @@
   <data name="btnMakeBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="byTheWindowTitleTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByTheWindowTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
   </data>
-  <data name="byTheWindowTitleTextregexToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByRegex.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
   </data>
-  <data name="byTheProcessBinaryNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripByProcess.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
   </data>
   <data name="contextAddToFavs.Size" type="System.Drawing.Size, System.Drawing">
@@ -145,13 +145,13 @@
   <data name="contextBorderlessOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
-  <data name="setWindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSetWindowTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 6</value>
   </data>
-  <data name="hideThisProcessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideProcess.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="processContext.Size" type="System.Drawing.Size, System.Drawing">
@@ -167,40 +167,40 @@
   <data name="addSelectedItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 36</value>
   </data>
-  <data name="fullScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripFullScreen.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="noSizeChangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripNoSizeChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="setWindowSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSetSetWindowSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
-  <data name="automaximizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAutomaximize.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="adjustWindowBoundsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAdjustWindowBounds.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
-  <data name="alwaysOnTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripAlwaysOnTop.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="delayBorderlessToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripDelayBorderless.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="hideMouseCursorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideMouseCursor.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="hideWindowsTaskbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideWindowsTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="removeMenusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripRemoveMenus.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
@@ -724,6 +724,9 @@
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
+  <data name="toolStripLanguages.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="toolStripCheckForUpdates.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
@@ -736,61 +739,61 @@
   <data name="toolStripMouseLock.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="useMouseHideHotkeyWinScrollLockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripMouseHide.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 6</value>
   </data>
-  <data name="startMinimizedToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripMinimizedToTray.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="closeToTrayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripCloseToTray.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="hideBalloonTipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripHideBalloonTips.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="useSlowerWindowDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripSlowWindowDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="viewFullProcessDetailsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripViewFullProcessDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 6</value>
   </data>
-  <data name="resToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripRestoreProcesses.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
   <data name="toolStripOptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 27</value>
   </data>
-  <data name="pauseAutomaticProcessingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripPauseAutomaticProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="openDataFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripOpenDataFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 6</value>
   </data>
-  <data name="toggleMouseCursorVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripToggleMouseCursorVisibility.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="toggleWindowsTaskbarVisibilityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripToggleWindowsTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
   <data name="toolStripMenuItem12.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 6</value>
   </data>
-  <data name="fullApplicationRefreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripFullApplicationRefresh.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 27</value>
   </data>
-  <data name="usageGuideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripUsageGuide.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
   <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">

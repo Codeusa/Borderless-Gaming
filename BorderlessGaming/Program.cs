@@ -19,7 +19,6 @@ namespace BorderlessGaming
         static void Main()
         {
           
-            ForegroundManager.Subscribe();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Tools.Setup();
@@ -28,6 +27,7 @@ namespace BorderlessGaming
             {
                 Tools.CheckForUpdates();
             }
+            ForegroundManager.Subscribe();
             Application.Run(new MainWindow());
         }
     }

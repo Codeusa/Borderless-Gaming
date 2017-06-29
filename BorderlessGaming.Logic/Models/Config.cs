@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using BorderlessGaming.Logic.Core;
 using BorderlessGaming.Logic.System;
 using BorderlessGaming.Logic.Windows;
 using CommandLine;
@@ -96,5 +97,6 @@ namespace BorderlessGaming.Logic.Models
         {
             return HiddenProcess.AlwaysHiddenProcesses.Any(process => process.Equals(processName.ToLower())) || HiddenProcesses.Any(process => process.Name.Equals(processName.ToLower()));
         }
+      
     }
 }
