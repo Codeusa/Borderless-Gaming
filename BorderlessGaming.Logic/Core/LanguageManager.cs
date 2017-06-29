@@ -44,7 +44,8 @@ namespace BorderlessGaming.Logic.Core
             var data = lang.Data(key);
             if (string.IsNullOrWhiteSpace(data))
             {
-                throw new InvalidOperationException($"{lang.Culture} is missing a translation for {key}");
+                MessageBox.Show($"{lang.Culture} is missing a translation for {key}");
+                Environment.Exit(0);
             }
             return data;
         }
@@ -72,7 +73,8 @@ namespace BorderlessGaming.Logic.Core
             }
             if (Languages.Count <= 0)
             {
-                throw new InvalidOperationException($"No Langauges have been loaded! Ensure {AppEnvironment.LanguagePath} exist with at least one .lang file.");
+               MessageBox.Show($"No Langauges have been loaded! Ensure {AppEnvironment.LanguagePath} exist with at least one .lang file.");
+               Environment.Exit(0);
             }
             var defaultLang = Languages.Values.FirstOrDefault(lang => lang.Culture.Equals(Config.Instance.AppSettings.DefaultCulture));
             defaultLang?.Set();
