@@ -108,7 +108,7 @@ namespace BorderlessGaming.Forms
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRestoreWindow = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblUpdateStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripLanguages = new System.Windows.Forms.ToolStripMenuItem();
             this.processContext.SuspendLayout();
             this.mnuFavoritesContext.SuspendLayout();
@@ -715,13 +715,14 @@ namespace BorderlessGaming.Forms
             // 
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblUpdateStatus});
+            this.statusLabel});
             this.statusStrip1.Name = "statusStrip1";
             // 
             // lblUpdateStatus
             // 
-            resources.ApplyResources(this.lblUpdateStatus, "lblUpdateStatus");
-            this.lblUpdateStatus.Name = "lblUpdateStatus";
+            resources.ApplyResources(this.statusLabel, "statusLabel");
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Text = LanguageManager.Data("statusLabel");
             // 
             // toolStripLanguages
             // 
@@ -807,7 +808,7 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ToolStripMenuItem toolStripHideBalloonTips;
         private System.Windows.Forms.ToolStripMenuItem toolStripCheckForUpdates;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        public System.Windows.Forms.ToolStripStatusLabel lblUpdateStatus;//this might get replaced if you redo anything in the form designer
+        public System.Windows.Forms.ToolStripStatusLabel statusLabel;//this might get replaced if you redo anything in the form designer
         private System.Windows.Forms.ToolStripMenuItem toolStripViewFullProcessDetails;
         private System.Windows.Forms.ToolStripMenuItem toolStripSetSetWindowSize;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;

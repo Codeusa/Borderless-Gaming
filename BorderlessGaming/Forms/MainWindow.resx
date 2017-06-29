@@ -411,8 +411,8 @@
   <data name="trayIcon.Text" xml:space="preserve">
     <value>Borderless Gaming</value>
   </data>
-  <data name="&gt;&gt;lblUpdateStatus.Name" xml:space="preserve">
-    <value>lblUpdateStatus</value>
+  <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
+    <value>statusLabel</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>345, 6</value>
@@ -1708,7 +1708,7 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
-  <data name="&gt;&gt;lblUpdateStatus.Type" xml:space="preserve">
+  <data name="&gt;&gt;statusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripCloseToTray.Type" xml:space="preserve">
@@ -1822,7 +1822,7 @@
   <data name="&gt;&gt;toolStripFullScreen.Name" xml:space="preserve">
     <value>toolStripFullScreen</value>
   </data>
-  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 17</value>
   </data>
   <data name="toolStripByProcess.Text" xml:space="preserve">
@@ -2131,7 +2131,7 @@
   <data name="toolStripRestoreProcesses.Text" xml:space="preserve">
     <value>Restore All Hidden Applications</value>
   </data>
-  <data name="lblUpdateStatus.Text" xml:space="preserve">
+  <data name="statusLabel.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
   <data name="toolStripAdjustWindowBounds.Size" type="System.Drawing.Size, System.Drawing">

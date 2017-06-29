@@ -73,6 +73,7 @@ contextRemoveFromFavs|Remove From Favorites
 superSize|SuperSize!
 processLabel|Applications:
 favoritesLabel|Favorites (automatic):
+statusLabel|Loading...
 moreOptionsLabel|Right-click for more options. Last updated
 # Tool Tips
 steamHint|Prevents "In-App" on Steam

@@ -216,7 +216,7 @@ namespace BorderlessGaming.Forms
             {
                 this.PerformSafely(() => lstProcesses.Items.Add(process));
             }
-            this.PerformSafely(() => lblUpdateStatus.Text = $@"{LanguageManager.Data("moreOptionsLabel")} {DateTime.Now}");
+            this.PerformSafely(() => statusLabel.Text = $@"{LanguageManager.Data("moreOptionsLabel")} {DateTime.Now}");
         }
 
         private async Task RefreshProcesses()

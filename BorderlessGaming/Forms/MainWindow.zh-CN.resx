@@ -973,10 +973,10 @@
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>471, 241</value>
   </data>
-  <data name="lblUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
   </data>
-  <data name="lblUpdateStatus.Text" xml:space="preserve">
+  <data name="statusLabel.Text" xml:space="preserve">
     <value>加载中...</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
