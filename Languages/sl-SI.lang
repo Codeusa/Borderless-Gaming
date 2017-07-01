@@ -1,0 +1,98 @@
+# Popups
+
+setWindowSizeTitle|Nastavi Velikost Oknja
+setWindowSizePixelPrompt|Začetna {0} lokacija piksla za zgornji levi kot ({0} koordinate):
+setWindowSizeWidthPrompt|Širina oknja (v pikslih):
+setWindowSizeHeightPrompt|Višina oknja (v pikslih):
+setWindowSizeMouseTitle|Izberi območje?
+setWindowSizeMousePrompt|Bi izbrali območje z miško?\r\n\r\nČe ne bi, boste vprašani za določeno dimenzijo pikslov.
+adjustWindowBoundsTitle|Prilagodite meje oknja
+adjustWindowBoundsPrompt|Prilagoditev pikslov za {0} rob oknja (0 pikslov = ni prilagoditve):
+adjustWindowBoundsLeft|levo
+adjustWindowBoundsRight|desno
+adjustWindowBoundsTop|zgoraj
+adjustWindowBoundsBottom|spodaj
+settingConfirmationTitle|Potrdite spremembe
+settingConfirmationPrompt|Za veljavnost sprememb morate ponovno zagnati Borderless Gaming. Ponovno zaženite sedaj?
+setWindowTitleTitle|Nastavi naslov oknja
+setWindowTitlePrompt|Nastavite naslov novega oknja:
+toggleMouseCursorVisibilityTitle|Sigurno želite skriti kazalo miške?
+toggleMouseCursorVisibilityPrompt|Sigurno želite skriti kazalo miške?\r\n\r\nTežje boste našli položaj miškinega kazalca, ko je skrit.\r\n\r\nČe imate navedeno globalno bližnjico za preklopitev prikaza miškinega kazalca, lahko pritisnite [Win + Scroll Lock] za priklop miškinega kazalca.\r\n\r\n\r\nPoleg tega, ugasnitev Borderless Gaming bo ponovno vrnilo vaš miškin kazalec.
+
+# Options Menu
+
+toolStripOptions|Nastavite
+toolStripRunOnStartup|Zaženi po pogonu
+toolStripLanguages|Izberi jezik
+toolStripCheckForUpdates|Preveri za posodobitve
+toolStripGlobalHotkey|Uporabi globalno bližnjico
+toolStripMouseLock|Uporabi bližnjico Zakleni miško
+toolStripMouseHide|Uporabi bližnjico Skrij miško
+toolStripMinimizedToTray|Zaženi minimizirano v orodni vrstici
+toolStripCloseToTray|Zapri oknjo v orodno vrstico
+toolStripHideBalloonTips|Ne prikaži balonskih nasvetov
+toolStripSlowWindowDetection|Uporabi počasnejšo zaznavo oknjov
+toolStripViewFullProcessDetails|Prikaži celotne detajle procesa
+toolStripRestoreProcesses|Ponastavi vse skrite aplikacije
+
+# Tools Menu
+
+toolsToolStripMenuItem|Orodja
+toolStripPauseAutomaticProcessing|Pavziraj avtomatično procesiranje
+toolStripOpenDataFolder|Odpri mapo z podatki
+toolStripToggleMouseCursorVisibility|Preklopi vidljivost miškinega kazalca
+toolStripToggleWindowsTaskbar|Preklopi vidljivost Windows opravilne vrstice
+toolStripFullApplicationRefresh|Popolna osvežitev aplikacije
+toolStripDisableSteamIntegration|Izklopite Steam integracijo
+
+# Help Menu
+
+toolStripInfo|Pomoč
+toolStripUsageGuide|Navodila uporabe
+toolStripRegexReference|Regex referenca
+toolStripReportBug|Prijavite napako
+toolStripSupportUs|Podpirajte Nas
+toolStripAbout|O programu
+
+# Process Context Menu
+
+contextAddToFavs|Dodaj k priljubljenimi...
+toolStripByTheWindowTitle|... ob naslovnemu textu oknja
+toolStripByRegex|... ob naslovnemu textu oknja (regex)
+toolStripByProcess|... pri binarnem imenu procesa
+contextBorderless|Odstrani robove
+contextBorderlessOn|Odstrani robove na...
+toolStripSetWindowTitle|Nastavite naslov oknja
+toolStripHideProcess|Skrijte ta proces
+
+# Favorite Context Menu
+
+toolStripFullScreen|Polni zaslon
+toolStripNoSizeChange|Ne spremeni velikost
+toolStripSetSetWindowSize|Nastavi velikost oknja
+toolStripAutomaximize|Avtomatično maksimiranje
+toolStripAdjustWindowBounds|Prilagodite meje oknja
+toolStripAlwaysOnTop|Vedno na vrhu
+toolStripDelayBorderless|Nastavi zamudo oknja brez robov
+toolStripHideMouseCursor|Skrij kazalec miške
+toolStripHideWindowsTaskbar|Skrij Windows opravilno vrstico
+toolStripRemoveMenus|Ne prikaži menijev
+contextFavScreen|Izberi priljubljeni zaslon...
+toolStripMuteInBackground|Zamolči v ozadju
+contextRemoveFromFavs|Odstrani od prijljubjenih
+
+# UI
+
+superSize|SuperSize! Super povečava!
+processLabel|Aplikacije:
+favoritesLabel|Priljubljeni (avtomatično):
+statusLabel|Nalaganje...
+moreOptionsLabel|Desni klik za več opcij. Nazadnje posodobljeno
+
+# Tool Tips
+
+steamHint|Onemogoči "In-App" v Steam-u
+addFavorite|Dodaj trenutno izbrane aplikacije v list priljubljenih (v redu okenjskih naslovov).
+removeFavorite|Odstrani trenutno izbrane aplikacije iz lista priljubljenih.
+makeBorderless|Naredi trenutno izbrano aplikacijo brez robov.
+restoreBorders|Poskusi ponastaviti oknjo v stanje z robovi.

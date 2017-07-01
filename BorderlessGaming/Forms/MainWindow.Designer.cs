@@ -364,6 +364,7 @@ namespace BorderlessGaming.Forms
             resources.ApplyResources(this.toolStripMuteInBackground, "toolStripMuteInBackground");
             this.toolStripMuteInBackground.CheckOnClick = true;
             this.toolStripMuteInBackground.Name = "toolStripMuteInBackground";
+            this.toolStripMuteInBackground.Text = LanguageManager.Data("toolStripMuteInBackground");
             this.toolStripMuteInBackground.Click += new System.EventHandler(this.muteInBackgroundToolStripMenuItem_Click);
             // 
             // contextRemoveFromFavsm

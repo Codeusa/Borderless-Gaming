@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|设置窗口标题
+setWindowSizePixelPrompt|请输入窗口左上角的{0}坐标（{0}以像素为单位）:
+setWindowSizeWidthPrompt|窗口宽度（以像素为单位）：
+setWindowSizeHeightPrompt|窗口高度（以像素为单位）：
+setWindowSizeMouseTitle|使用鼠标选择区域？
+setWindowSizeMousePrompt|您要使用鼠标选择区域吗？如果您选择否，系统将提示您输入具体的像素尺寸。
+adjustWindowBoundsTitle|调整窗口边界
+adjustWindowBoundsPrompt|您想为窗口{0}边缘调整的像素 (设置为0时不调整):
+adjustWindowBoundsLeft|左
+adjustWindowBoundsRight|右
+adjustWindowBoundsTop|上
+adjustWindowBoundsBottom|下
+settingConfirmationTitle|确认您的更改
+settingConfirmationPrompt|您必须重新启动本软件才能使您的更改生效，现在重启？
+setWindowTitleTitle|设置窗口标题
+setWindowTitlePrompt|设置新的窗口标题：
+toggleMouseCursorVisibilityTitle|真的要隐藏鼠标吗？
+toggleMouseCursorVisibilityPrompt|您真的要隐藏鼠标吗？一旦隐藏，你可能很难再找到鼠标。如果已经启用了全局鼠标隐藏热键，您可以按[Win + Scroll Lock]来切换鼠标可见性。此外，退出Borderless Gaming将立即恢复鼠标光标。
+# Options Menu
+toolStripOptions|选项
+toolStripRunOnStartup|开机启动
+toolStripLanguages|选择语言
+toolStripCheckForUpdates|检查更新
+toolStripGlobalHotkey|使用全局热键
+toolStripMouseLock|使用鼠标锁定热键
+toolStripMouseHide|使用鼠标隐藏热键
+toolStripMinimizedToTray|开启时最小化到托盘
+toolStripCloseToTray|关闭时最小化到托盘
+toolStripHideBalloonTips|隐藏气泡提示
+toolStripSlowWindowDetection|使用较慢的窗口检测
+toolStripViewFullProcessDetails|查看详细进程信息
+toolStripRestoreProcesses|恢复所有隐藏的应用
+# Tools Menu
+toolsToolStripMenuItem|工具
+toolStripPauseAutomaticProcessing|暂停自动处理
+toolStripOpenDataFolder|打开数据文件夹
+toolStripToggleMouseCursorVisibility|切换鼠标可见性
+toolStripToggleWindowsTaskbar|切换Windows任务栏可见性
+toolStripFullApplicationRefresh|完全刷新应用程序
+toolStripDisableSteamIntegration|禁用Steam集成
+# Help Menu
+toolStripInfo|帮助
+toolStripUsageGuide|使用指南
+toolStripRegexReference|正则表达式参考
+toolStripReportBug|报告错误
+toolStripSupportUs|支持我们
+toolStripAbout|关于
+# Process Context Menu
+contextAddToFavs|添加到自动处理列表...
+toolStripByTheWindowTitle|以窗口标题识别
+toolStripByRegex|以窗口标题识别 (使用正则表达式)
+toolStripByProcess|以进程可执行文件名识别
+contextBorderless|无边框化
+contextBorderlessOn|在...上无边框
+toolStripSetWindowTitle|设置窗口标题
+toolStripHideProcess|隐藏这个进程
+# Favorite Context Menu
+toolStripFullScreen|全屏
+toolStripNoSizeChange|尺寸不改变
+toolStripSetSetWindowSize|设置窗口尺寸
+toolStripAutomaximize|自动最大化
+toolStripAdjustWindowBounds|调整窗口边框
+toolStripAlwaysOnTop|保持窗口在顶部
+toolStripDelayBorderless|延迟无边框化窗口
+toolStripHideMouseCursor|隐藏鼠标指针
+toolStripHideWindowsTaskbar|隐藏Windows任务栏
+toolStripRemoveMenus|隐藏菜单
+contextFavScreen|Select Favorite Screen...
+toolStripMuteInBackground|应用程序后台运行时静音
+contextRemoveFromFavs|移出自动处理列表
+# UI
+superSize|SuperSize!
+processLabel|应用程序：
+favoritesLabel|自动处理列表：
+statusLabel|载入中...
+moreOptionsLabel|右键单击查看更多选项。最后更新于
+# Tool Tips
+steamHint|可脱离Steam启动。
+addFavorite|将当前选择的应用程序添加到自动处理列表（以窗口标题识别）。
+removeFavorite|将当前选择的应用程序移出自动处理列表。
+makeBorderless|使当前选择的应用程序无边框。
+restoreBorders|尝试将当前选择的应用程序窗口化。

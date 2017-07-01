@@ -107,6 +107,7 @@ namespace BorderlessGaming.Logic.System
 
         public static void ExtractZipFile(string archiveFilenameIn, string password, string outFolder)
         {
+            ZipConstants.DefaultCodePage = 850;
             ZipFile zf = null;
             try
             {
@@ -137,7 +138,6 @@ namespace BorderlessGaming.Logic.System
                     {
                         Directory.CreateDirectory(directoryName);
                     }
-
                     // Unzip file in buffered chunks. This is just as fast as unpacking to a buffer the full size
                     // of the file, but does not waste memory.
                     // The "using" will close the stream even if an exception occurs.

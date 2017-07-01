@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Régler la taille de la fenêtre
+setWindowSizePixelPrompt|Emplacement en pixels {0} depuis le coin supérieur gauche (coordonnée{0}):
+setWindowSizeWidthPrompt|Largeur de la fenêtre (en pixels):
+setWindowSizeHeightPrompt|Hauteur de la fenêtre (en pixels):
+setWindowSizeMouseTitle|Sélection de la zone?
+setWindowSizeMousePrompt|Souhaitez-vous sélectionner la zone avec le curseur de votre souris? Si vous choisissez Non, vous devrez renseigner les dimensions adéquates en pixels.
+adjustWindowBoundsTitle|Ajuster les limites de la fenêtre
+adjustWindowBoundsPrompt|Ajustement au pixel pour le bord de fenêtre {0} (0 pixel = pas d'ajustement):
+adjustWindowBoundsLeft|gauche
+adjustWindowBoundsRight|droite
+adjustWindowBoundsTop|haut
+adjustWindowBoundsBottom|bas
+settingConfirmationTitle|Confirmer vos changements
+settingConfirmationPrompt|Afin d'appliquer vos changements, vous devez relancer Borderless Gaming. Redémarrer maintenant?
+setWindowTitleTitle|Définir le titre de la fenêtre
+setWindowTitlePrompt|Définir le nouveau titre de la fenêtre:
+toggleMouseCursorVisibilityTitle|Souhaitez-vous vraiment cacher le curseur de la souris?
+toggleMouseCursorVisibilityPrompt|Souhaitez-vous vraiment cacher le curseur de la souris? Vous pourriez avoir du mal à retrouver le curseur une fois dissimulé. Si vous avez activé le raccourci général pour activer/désactiver la visibilité du curseur, vous pouvez presser [Win + Scroll Lock] pour réafficher le curseur. De plus, quitter Borderless Gaming restaurera immédiatement votre curseur.
+# Options Menu
+toolStripOptions|Options
+toolStripRunOnStartup|Démarrer avec Windows
+toolStripLanguages|Changer la langue
+toolStripCheckForUpdates|Vérifier les mises à jour
+toolStripGlobalHotkey|Utiliser le raccourci général
+toolStripMouseLock|Bloquer la souris
+toolStripMouseHide|Cacher la souris
+toolStripMinimizedToTray|Démarrer minimisé dans la zone de notification
+toolStripCloseToTray|Fermer vers la zone de notification
+toolStripHideBalloonTips|Cacher les astuces
+toolStripSlowWindowDetection|Ralentir la détection des fenêtres
+toolStripViewFullProcessDetails|Voir le détail de tous les processus
+toolStripRestoreProcesses|Restaurer toutes les applications cachées
+# Tools Menu
+toolsToolStripMenuItem|Outils
+toolStripPauseAutomaticProcessing|Mettre en pause l'éxécution automatique
+toolStripOpenDataFolder|Ouvrir le répertoire racine
+toolStripToggleMouseCursorVisibility|Afficher/Cacher le curseur de la souris
+toolStripToggleWindowsTaskbar|Afficher/Cacher la barre des tâches Windows
+toolStripFullApplicationRefresh|Rafraîchir les applications en cours
+toolStripDisableSteamIntegration|Désactiver l'intégration à Steam
+# Help Menu
+toolStripInfo|Aide
+toolStripUsageGuide|Guide d'utilisation
+toolStripRegexReference|Index Regex
+toolStripReportBug|Soumettre un bug
+toolStripSupportUs|Supportez-nous
+toolStripAbout|À propos
+# Process Context Menu
+contextAddToFavs|Ajouter aux favoris...
+toolStripByTheWindowTitle|... selon le texte de la fenêtre
+toolStripByRegex|... selon le texte de la fenêtre (regex)
+toolStripByProcess|... selon le nom du processus
+contextBorderless|Rendre Borderless
+contextBorderlessOn|Rendre Borderless sur...
+toolStripSetWindowTitle|Changer le titre de la fenêtre
+toolStripHideProcess|Cacher ce processus
+# Favorite Context Menu
+toolStripFullScreen|Plein écran
+toolStripNoSizeChange|Pas de changement de taille
+toolStripSetSetWindowSize|Régler la taille de la fenêtre
+toolStripAutomaximize|Maximiser automatiquement
+toolStripAdjustWindowBounds|Ajuster les limites de la fenêtre
+toolStripAlwaysOnTop|Toujours au-dessus
+toolStripDelayBorderless|Retarder la fenêtre Borderless
+toolStripHideMouseCursor|Cacher le curseur de la souris
+toolStripHideWindowsTaskbar|Cacher la barre des tâches Windows
+toolStripRemoveMenus|Enlever les menus
+contextFavScreen|Choisir l'écran favori...
+toolStripMuteInBackground|Couper le son en arrière-plan
+contextRemoveFromFavs|Retirer des favoris
+# UI
+superSize|SuperSize!
+processLabel|Applications:
+favoritesLabel|Favoris (automatique):
+statusLabel|Chargement...
+moreOptionsLabel|Clic droit pour plus d'options. Dernière mise à jour:
+# Tool Tips
+steamHint|Empêche l'affichage du "utilise maintenant" dans Steam
+addFavorite|Ajoute l'application sélectionnée à votre liste de favoris (selon le titre de la fenêtre).
+removeFavorite|Retire le favori sélectionné de la liste.
+makeBorderless|Retire les bordures de l'application sélectionnée.
+restoreBorders|Tente de restaurer une fenêtre dans sa résolution d'origine.
