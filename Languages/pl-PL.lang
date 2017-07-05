@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Ustaw rozmiar okna
+setWindowSizePixelPrompt|Lokalizacja piksela {0} dla górnego lewego rogu (współrzędna {0}):
+setWindowSizeWidthPrompt|Szerokość okna (w pikselach):
+setWindowSizeHeightPrompt|Wysokość okna (w pikselach):
+setWindowSizeMouseTitle|Wybrać obszar?
+setWindowSizeMousePrompt|Chcesz wybrać obszar, używając twojego kursora myszy?\r\n\r\nJeśli odpowiesz Nie, będziesz zapytany o konkretne wymiary pikseli.
+adjustWindowBoundsTitle|Dostosuj granice okna
+adjustWindowBoundsPrompt|Dostosowanie pikseli dla {0} krawędzi okna (0 pikseli = brak dostosowania):
+adjustWindowBoundsLeft|lewo
+adjustWindowBoundsRight|prawo
+adjustWindowBoundsTop|góra
+adjustWindowBoundsBottom|dół
+settingConfirmationTitle|Potwierdź swoje zmiany
+settingConfirmationPrompt|Musisz uruchomić ponownie Borderless Gaming, by twoje zmiany zostały wprowadzone. Uruchomić ponownie teraz?
+setWindowTitleTitle|Ustaw tytuł okna
+setWindowTitlePrompt|Ustaw nowy tekst tytułu okna:
+toggleMouseCursorVisibilityTitle|Naprawdę ukryć kursor myszy?
+toggleMouseCursorVisibilityPrompt|Naprawdę chcesz ukryć kursor myszy?\r\n\r\nMożesz mieć trudności z ponownym odnalezieniem myszy, gdy zostanie ukryta.\r\n\r\nJeśli włączyłeś globalny skrót klawiszowy do przełączania widoczności kursora myszy, możesz nacisnąć [Win + Scroll Lock], aby włączyć kursor myszy.\r\n\r\nWyjście z Borderless Gaming natychmiast przywróci twój kursor myszy.
+# Options Menu
+toolStripOptions|Opcje
+toolStripRunOnStartup|Uruchom przy starcie
+toolStripLanguages|Wybierz język
+toolStripCheckForUpdates|Sprawdź aktualizacje
+toolStripGlobalHotkey|Używaj globalnego skrótu klawiszowego
+toolStripMouseLock|Używaj skrótu klawiszowego blokady myszy
+toolStripMouseHide|Używaj skrótu klawiszowego ukrycia myszy
+toolStripMinimizedToTray|Uruchom zminimalizowane do paska
+toolStripCloseToTray|Zamknij do paska
+toolStripHideBalloonTips|Ukryj porady dymkowe
+toolStripSlowWindowDetection|Używaj wolniejszego wykrywania okna
+toolStripViewFullProcessDetails|Pokaż pełne szczegóły procesu
+toolStripRestoreProcesses|Przywróć wszystkie ukryte aplikacje
+# Tools Menu
+toolsToolStripMenuItem|Narzędzia
+toolStripPauseAutomaticProcessing|Wstrzymaj automatyczne przetwarzanie
+toolStripOpenDataFolder|Otwórz folder danych
+toolStripToggleMouseCursorVisibility|Przełącz widoczność kursora myszy
+toolStripToggleWindowsTaskbar|Przełącz widoczność paska zadań Windows
+toolStripFullApplicationRefresh|Pełne odświeżenie aplikacji
+toolStripDisableSteamIntegration|Wyłącz integrację ze Steam
+# Help Menu
+toolStripInfo|Pomoc
+toolStripUsageGuide|Poradnik użytkowania
+toolStripRegexReference|Odniesienie regex
+toolStripReportBug|Zgłoś błąd
+toolStripSupportUs|Wesprzyj nas
+toolStripAbout|O programie
+# Process Context Menu
+contextAddToFavs|Dodaj do ulubionych...
+toolStripByTheWindowTitle|... po tekście tytułu okna
+toolStripByRegex|... po tekście tytułu okna (regex)
+toolStripByProcess|... po binarnej nazwie procesu
+contextBorderless|Ustaw bez ramki
+contextBorderlessOn|Ustaw bez ramki na...
+toolStripSetWindowTitle|Ustaw tytuł okna
+toolStripHideProcess|Ukryj ten proces
+# Favorite Context Menu
+toolStripFullScreen|Pełny ekran
+toolStripNoSizeChange|Brak zmiany rozmiaru
+toolStripSetSetWindowSize|Ustaw rozmiar okna
+toolStripAutomaximize|Automatycznie maksymalizuj
+toolStripAdjustWindowBounds|Dostosuj granice okna
+toolStripAlwaysOnTop|Zawsze na wierzchu
+toolStripDelayBorderless|Opóźnij okno bez ramki
+toolStripHideMouseCursor|Ukryj kursor myszy
+toolStripHideWindowsTaskbar|Ukryj pasek zadań Windows
+toolStripRemoveMenus|Usuń menu
+contextFavScreen|Wybierz ulubiony ekran...
+toolStripMuteInBackground|Wycisz w tle
+contextRemoveFromFavs|Usuń z ulubionych
+# UI
+superSize|Super rozmiar!
+processLabel|Aplikacje:
+favoritesLabel|Ulubione (automatyczne):
+statusLabel|Ładowanie...
+moreOptionsLabel|Kliknij prawym przyciskiem myszy po więcej opcji. Ostatnio zaktualizowano
+# Tool Tips
+steamHint|Zapobiega "w aplikacji" na Steam
+addFavorite|Dodaje aktualnie wybraną aplikację do twojej listy ulubionych (po tytule okna).
+removeFavorite|Usuwa aktualnie wybraną ulubioną aplikację z listy.
+makeBorderless|Sprawia, że aktualnie wybrana aplikacja jest bez ramki.
+restoreBorders|Próbuje przywrócić okno spowrotem do stanu z ramką.

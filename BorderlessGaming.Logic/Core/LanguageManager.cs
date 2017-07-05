@@ -14,6 +14,9 @@ namespace BorderlessGaming.Logic.Core
 {
     public class LanguageManager
     {
+
+        public static string CurrentCulture { get; set; }
+
         private static readonly HashSet<string> CultureNames = CreateCultureNames();
 
         private static readonly string _archiveName = "Languages.zip";
@@ -39,8 +42,7 @@ namespace BorderlessGaming.Logic.Core
         public static string Data(string key)
         {
             key = key.ToLower();
-            var culture = Thread.CurrentThread.CurrentCulture.Name;
-            var lang = Languages[culture];
+            var lang = Languages[CurrentCulture];
             var data = lang.Data(key);
             if (string.IsNullOrWhiteSpace(data))
             {
@@ -55,8 +57,21 @@ namespace BorderlessGaming.Logic.Core
             Languages = new Dictionary<string, Language>();
             if (File.Exists(_archiveName))
             {
-                Tools.ExtractZipFile(_archiveName, string.Empty, AppEnvironment.LanguagePath);
-                File.Delete(_archiveName);
+                try
+                {
+                    Tools.ExtractZipFile(_archiveName, string.Empty, AppEnvironment.LanguagePath);
+                    File.Delete(_archiveName);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Failed to extract the language pack. Please report this: " + e.Message);
+                    Environment.Exit(1);
+                }
+            }
+            if (!Directory.Exists(AppEnvironment.LanguagePath))
+            {
+                MessageBox.Show("UI Translations are missing from disk.");
+                Environment.Exit(1);
             }
             foreach (var langFile in Directory.GetFiles(AppEnvironment.LanguagePath, "*.lang"))
             {

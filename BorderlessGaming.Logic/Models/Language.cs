@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Text;
+using BorderlessGaming.Logic.Core;
 
 namespace BorderlessGaming.Logic.Models
 {
@@ -18,46 +17,39 @@ namespace BorderlessGaming.Logic.Models
 
         public void Set()
         {
-            var culture = new CultureInfo(Culture);
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            LanguageManager.CurrentCulture = Culture;
         }
 
         internal string Data(string key)
         {
             return LanguageData.ContainsKey(key) ? LanguageData[key] : null;
         }
+
         public void LoadData(string languageFile)
         {
             LanguageData = new Dictionary<string, string>();
-            try
+            foreach (var line in File.ReadAllLines(languageFile, Encoding.UTF8))
             {
-                foreach (var line in File.ReadAllLines(languageFile))
+                if (string.IsNullOrWhiteSpace(line))
                 {
-                    if (!string.IsNullOrWhiteSpace(line))
-                    {
-                        char c = line.FirstOrDefault();
-                        if (!c.Equals('#'))
-                        {
-                            var languageData = line.Split(new[] {'|'}, 2);
-                            var key = languageData[0].ToLower();
-                            var data = languageData[1].Trim();
-                            if (!LanguageData.ContainsKey(key))
-                            {
-                                LanguageData.Add(key, data);
-                            }
-                        }
-                    }
+                    continue;
                 }
-                if (LanguageData.Count > 0)
+                var c = line.FirstOrDefault();
+                if (c.Equals('#'))
                 {
-                    DisplayName = CultureDisplayName(Culture);
+                    continue;
+                }
+                var languageData = line.Split(new[] {'|'}, 2);
+                var key = languageData[0].Trim().ToLower();
+                var data = languageData[1].Trim();
+                if (!LanguageData.ContainsKey(key))
+                {
+                    LanguageData.Add(key, data);
                 }
             }
-            catch (Exception ex)
+            if (LanguageData.Count > 0)
             {
-                //
-                Debug.WriteLine(ex.Message);
+                DisplayName = CultureDisplayName(Culture);
             }
         }
 
@@ -70,7 +62,5 @@ namespace BorderlessGaming.Logic.Models
         {
             return new CultureInfo(name).NativeName;
         }
-
-     
     }
 }

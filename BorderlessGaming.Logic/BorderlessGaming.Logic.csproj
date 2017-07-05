@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -41,17 +42,17 @@
     <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Facepunch.Steamworks">
       <HintPath>..\SteamLibs\Facepunch.Steamworks.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.5.28\lib\net452\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\TaskScheduler.2.5.23\lib\net452\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.5.23.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
-      <HintPath>..\packages\TaskScheduler.2.5.23\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.5.28.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.5.28\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.2.1\lib\net40\protobuf-net.dll</HintPath>
