@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Establecer tamaño de la ventana
+setWindowSizePixelPrompt|Ubicacion del pixel {0} para la esquina superior izquierda ({0} coordenadas):
+setWindowSizeWidthPrompt|Ancho de la ventana (en pixeles):
+setWindowSizeHeightPrompt|Alto de la ventana (en pixeles):
+setWindowSizeMouseTitle|¿Seleccionar Area?
+setWindowSizeMousePrompt|¿Desas seleccionar el area usando el cursor del mouse?\r\n\r\nSi eliges No, se te preguntara por dimensiones especificas de los pixeles.
+adjustWindowBoundsTitle|Ajustar limites de la ventana
+adjustWindowBoundsPrompt|Ajuste de pixeles para el borde de la ventana de {0} (0 pixeles = sin ajustes):
+adjustWindowBoundsLeft|izquierda
+adjustWindowBoundsRight|derecha
+adjustWindowBoundsTop|arriba
+adjustWindowBoundsBottom|abajo
+settingConfirmationTitle|Confirma tus cambios
+settingConfirmationPrompt|Debes reiniciar Borderless Gaming para que tus cambios tomen efecto. ¿Reiniciar ahora?
+setWindowTitleTitle|Establecer titulo de la ventana
+setWindowTitlePrompt|Establece el nuevo titulo de la ventana:
+toggleMouseCursorVisibilityTitle|¿Ocultar realmente el cursor del mouse?
+toggleMouseCursorVisibilityPrompt|¿De verdad deseas ocultar el cursor del mouse?\r\n\r\nTal vez te encuentres con dificultades al intentar encontrar el cursor una vez oculto.\r\n\r\nSi tienes activado el Hotkey globar para alternar la visibilidad del mouse, puedes presionar [Win + Scroll Lock] para alternar el cursor del mouse.\r\n\r\nTambien, salir de Borderless Gaming mostrara automaticamente el cursor del mouse
+# Options Menu
+toolStripOptions|Opciones
+toolStripRunOnStartup|Ejecutar al inicio
+toolStripLanguages|Seleccionar idioma
+toolStripCheckForUpdates|Buscar actualizaciones
+toolStripGlobalHotkey|Usar Hotkey global
+toolStripMouseLock|Usar Hotkey para bloquear el mouse
+toolStripMouseHide|Usar Hotkey para ocultar el mouse
+toolStripMinimizedToTray|Iniciar minimizado en bandeja
+toolStripCloseToTray|Cerrar a la bandeja
+toolStripHideBalloonTips|Ocultar pop-up's de informacion
+toolStripSlowWindowDetection|Usar deteccion de ventanas mas lenta
+toolStripViewFullProcessDetails|Mostrar todos los detalles del proceso
+toolStripRestoreProcesses|Restaurar todas las aplicaciones ocultas
+# Tools Menu
+toolsToolStripMenuItem|Herramientas
+toolStripPauseAutomaticProcessing|Pausar Procesamiento automatico
+toolStripOpenDataFolder|Abrir carpeta de configuracion
+toolStripToggleMouseCursorVisibility|Cambiar visibilidad del cursor
+toolStripToggleWindowsTaskbar|Cambiar visibilidad en la barra de tareas
+toolStripFullApplicationRefresh|Recargar la aplicacion completamente
+toolStripDisableSteamIntegration|Desactivar integracion con Steam
+# Help Menu
+toolStripInfo|Ayuda
+toolStripUsageGuide|Guia de uso
+toolStripRegexReference|Referencia de Regex
+toolStripReportBug|Reportar Bug
+toolStripSupportUs|Apoyanos
+toolStripAbout|Acerca de
+# Process Context Menu
+contextAddToFavs|Añadir a Favoritos...
+toolStripByTheWindowTitle|... por el texto de la ventana
+toolStripByRegex|... por el titulo de la ventana (regex)
+toolStripByProcess|... por el nombre del ejecutable
+contextBorderless|Eliminar Bordes
+contextBorderlessOn|Eliminar Bordes activado...
+toolStripSetWindowTitle|Establecer titulo de la ventana
+toolStripHideProcess|Ocultar este proceso
+# Favorite Context Menu
+toolStripFullScreen|Pantalla Completa
+toolStripNoSizeChange|No cambiar el tamaño
+toolStripSetSetWindowSize|Establecer tamaño de la ventana
+toolStripAutomaximize|Auto Maximizar
+toolStripAdjustWindowBounds|Ajustar limites de los bordes
+toolStripAlwaysOnTop|Siempre activa
+toolStripDelayBorderless|Añadir delay al remover los bordes
+toolStripHideMouseCursor|Ocultar el cursor del mouse
+toolStripHideWindowsTaskbar|Ocultar la barra de tareas
+toolStripRemoveMenus|Remover menus
+contextFavScreen|Seleccionar la ventana favorita...
+toolStripMuteInBackground|Silenciar en segundo plano
+contextRemoveFromFavs|Remover de Favoritos
+# UI
+superSize|¡Super Tamaño!
+processLabel|Aplicaciones:
+favoritesLabel|Favoritos (automatico):
+statusLabel|Cargando...
+moreOptionsLabel|Boton derecho para mas opciones. Ultima vez actualizado
+# Tool Tips
+steamHint|Evita "En una aplicacion" en Steam
+addFavorite|Añade la aplicaccion actualmente seleccionada a tu lista de favoritos (por titulo de ventana).
+removeFavorite|Remueve el favorito actualmente seleccionado de la lista.
+makeBorderless|Hace la aplicacion actualmente seleccionada sin bordes.
+restoreBorders|Intenta restaurar los bordes de una ventana a su estado normal.
