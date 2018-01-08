@@ -205,15 +205,26 @@ namespace BorderlessGaming.Logic.Core
             }
             Native.QueryProcessesWithWindows(pd =>
             {
-                if (Config.Instance.IsHidden(pd.Proc.ProcessName))
+                try
                 {
-                    return;
+                    if (!string.IsNullOrWhiteSpace(pd?.Proc?.ProcessName))
+                    {
+                        if (Config.Instance.IsHidden(pd?.Proc?.ProcessName))
+                        {
+                            return;
+                        }
+                        if (Processes.Select(p => p.Proc.Id).Contains(pd.Proc.Id) &&
+                            Processes.Select(p => p.WindowTitle).Contains(pd.WindowTitle))
+                        {
+                            return;
+                        }
+                        Processes.Add(pd);
+                        _callback(pd, false);
+                    }
                 }
-                if (!Processes.Select(p => p.Proc.Id).Contains(pd.Proc.Id) ||
-                    !Processes.Select(p => p.WindowTitle).Contains(pd.WindowTitle))
+                catch (Exception)
                 {
-                    Processes.Add(pd);
-                    _callback(pd, false);
+                    _callback(null, false);
                 }
             }, Processes.Where(p => p.WindowHandle != IntPtr.Zero).Select(p => p.WindowHandle).ToList());
         }

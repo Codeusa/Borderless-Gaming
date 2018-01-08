@@ -208,6 +208,10 @@ namespace BorderlessGaming.Forms
 
         private void HandleProcessChange(ProcessDetails process, bool remove)
         {
+            if (process == null)
+            {
+                return;
+            }
             if (remove)
             {
                 this.PerformSafely(() => lstProcesses.Items.Remove(process));

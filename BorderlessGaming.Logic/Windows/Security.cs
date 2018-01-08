@@ -36,9 +36,18 @@ namespace BorderlessGaming.Logic.Windows
 
         public static Config LoadConfigFile()
         {
-            using (var memoryStream = new MemoryStream(File.ReadAllBytes(AppEnvironment.ConfigPath)))
+            try
             {
-                return Serializer.Deserialize<Config>(memoryStream);
+                using (var memoryStream = new MemoryStream(File.ReadAllBytes(AppEnvironment.ConfigPath)))
+                {
+                    return Serializer.Deserialize<Config>(memoryStream);
+                }
+            }
+            catch (global::System.Exception)
+            {
+                File.Delete(AppEnvironment.ConfigPath);
+                SaveConfig(new Config());
+                return LoadConfigFile();
             }
         }
     }
