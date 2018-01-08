@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Изменение размера окна
+setWindowSizePixelPrompt|Расположение по оси {0} верхнего левого пикселя ({0} координата):
+setWindowSizeWidthPrompt|Ширина окна (в пикселях):
+setWindowSizeHeightPrompt|Высота окна (в пикселях):
+setWindowSizeMouseTitle|Выбрать область?
+setWindowSizeMousePrompt|Вы хотите выбрать область с помощью курсора мыши?\r\n\r\nЕсли вы ответите "Нет", вам будут предложено указать конкретные размеры самостоятельно.
+adjustWindowBoundsTitle|Изменение границ окна
+adjustWindowBoundsPrompt|Регулировка пикселей для {0} края окна (0 пикселей = по умолчанию):
+adjustWindowBoundsLeft|левого
+adjustWindowBoundsRight|правого
+adjustWindowBoundsTop|верхнего
+adjustWindowBoundsBottom|нижнего
+settingConfirmationTitle|Подтверждение изменений
+settingConfirmationPrompt|Вы должны перезапустить Borderless Gaming, чтобы изменения вступили в силу. Перезапустить сейчас?
+setWindowTitleTitle|Изменение заголовка окна
+setWindowTitlePrompt|Задайте новый заголовок окна:
+toggleMouseCursorVisibilityTitle|Действительно скрыть курсор мыши?
+toggleMouseCursorVisibilityPrompt|Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.
+# Options Menu
+toolStripOptions|Настройки
+toolStripRunOnStartup|Запускать при старте системы
+toolStripLanguages|Выбрать язык
+toolStripCheckForUpdates|Проверять наличие обновлений
+toolStripGlobalHotkey|Использовать разворот на весь экран
+toolStripMouseLock|Использовать блокировку мыши
+toolStripMouseHide|Использовать скрытие мыши
+toolStripMinimizedToTray|При запуске сворачивать в трей
+toolStripCloseToTray|При закрытии сворачивать в трей
+toolStripHideBalloonTips|Скрыть подсказки
+toolStripSlowWindowDetection|Использовать медленное обнаружение окон
+toolStripViewFullProcessDetails|Использовать подробные сведения процессов
+toolStripRestoreProcesses|Восстановить все скрытые приложения
+# Tools Menu
+toolsToolStripMenuItem|Инструменты
+toolStripPauseAutomaticProcessing|Выключить автоматическую обработку
+toolStripOpenDataFolder|Открыть папку данных
+toolStripToggleMouseCursorVisibility|Переключить видимость курсора мыши
+toolStripToggleWindowsTaskbar|Переключить видимость панели задач
+toolStripFullApplicationRefresh|Обновить список приложений
+toolStripDisableSteamIntegration|Выключить интеграцию со Steam
+# Help Menu
+toolStripInfo|Помощь
+toolStripUsageGuide|Руководство
+toolStripRegexReference|Ссылка на Regex
+toolStripReportBug|Сообщить об ошибке
+toolStripSupportUs|Поддержать нас
+toolStripAbout|О программе
+# Process Context Menu
+contextAddToFavs|Добавить в избранное...
+toolStripByTheWindowTitle|... по заголовку окна
+toolStripByRegex|... по заголовку окна (regex)
+toolStripByProcess|... по названию процесса
+contextBorderless|Сделать безрамочным
+contextBorderlessOn|Сделать безрамочным на...
+toolStripSetWindowTitle|Изменить заголовок окна
+toolStripHideProcess|Скрыть этот процесс
+# Favorite Context Menu
+toolStripFullScreen|Полноэкранный
+toolStripNoSizeChange|Без изменения размера
+toolStripSetSetWindowSize|Изменить размер окна
+toolStripAutomaximize|Авт. разворачивать окно
+toolStripAdjustWindowBounds|Изменить границы окна
+toolStripAlwaysOnTop|Поверх всех окон
+toolStripDelayBorderless|Задерживать безрамочное окно
+toolStripHideMouseCursor|Скрыть курсор мыши
+toolStripHideWindowsTaskbar|Скрыть панель задач
+toolStripRemoveMenus|Удалить меню
+contextFavScreen|Выбрать избранный экран...
+toolStripMuteInBackground|Выключить звук на фоне
+contextRemoveFromFavs|Удалить из избранного
+# UI
+superSize|SuperSize!
+processLabel|Приложения:
+favoritesLabel|Избранные (авт.):
+statusLabel|Загрузка...
+moreOptionsLabel|ПКМ для изменения параметров. Последнее обновление:
+# Tool Tips
+steamHint|Убрать надпись "В программе" в Steam
+addFavorite|Добавить выбранное приложение в список избранных (по заголовку окна).
+removeFavorite|Удалить выбранное приложение из списка избранных.
+makeBorderless|Сделать выбранное приложение безрамочным.
+restoreBorders|Восстановить прежнее состояние окна.
