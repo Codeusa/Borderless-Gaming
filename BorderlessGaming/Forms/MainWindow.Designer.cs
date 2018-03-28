@@ -98,6 +98,7 @@ namespace BorderlessGaming.Forms
             this.toolStripFullApplicationRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripUsageGuide = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRainway = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripReportBug = new System.Windows.Forms.ToolStripMenuItem();
@@ -628,6 +629,7 @@ namespace BorderlessGaming.Forms
             // 
             resources.ApplyResources(this.toolStripInfo, "toolStripInfo");
             this.toolStripInfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripRainway,
             this.toolStripUsageGuide,
             this.toolStripRegexReference,
             this.toolStripMenuItem13,
@@ -645,6 +647,14 @@ namespace BorderlessGaming.Forms
             this.toolStripUsageGuide.Name = "toolStripUsageGuide";
             this.toolStripUsageGuide.Text = LanguageManager.Data("toolStripUsageGuide");
             this.toolStripUsageGuide.Click += new System.EventHandler(this.usageGuideToolStripMenuItem_Click);
+
+            // 
+            // usageGuideToolStripMenuItem
+            // 
+            resources.ApplyResources(this.toolStripRainway, "toolStripRainway");
+            this.toolStripRainway.Name = "toolStripRainway";
+            this.toolStripRainway.Text = "Rainway";
+            this.toolStripRainway.Click += new System.EventHandler(this.rainwayToolStrip_Click);
             // 
             // toolStripRegexReference
             // 
@@ -838,6 +848,7 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ToolStripMenuItem toolStripFullApplicationRefresh;
         private System.Windows.Forms.ToolStripMenuItem toolStripSlowWindowDetection;
         private System.Windows.Forms.ToolStripMenuItem toolStripUsageGuide;
+        private System.Windows.Forms.ToolStripMenuItem toolStripRainway;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem toolStripMuteInBackground;
         private System.Windows.Forms.ToolStripMenuItem toolStripLanguages;

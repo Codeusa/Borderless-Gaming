@@ -141,9 +141,17 @@ namespace BorderlessGaming.Logic.Core
 
         private static bool IsDefault(string displayName)
         {
-            var defaultCulture = Config.Instance.AppSettings.DefaultCulture;
-            var langauge = Languages.Values.FirstOrDefault(lang => lang.DisplayName.Equals(displayName));
-            return langauge != null && langauge.Culture.Equals(defaultCulture);
+            try
+            {
+                var defaultCulture = Config.Instance.AppSettings.DefaultCulture;
+                var langauge = Languages.Values.FirstOrDefault(lang => lang.DisplayName.Equals(displayName));
+                return langauge != null && langauge.Culture.Equals(defaultCulture);
+            }
+            catch
+            {
+
+                return false;
+            }
         }
 
         private static void SetDefaultLanguage(string tsiText)

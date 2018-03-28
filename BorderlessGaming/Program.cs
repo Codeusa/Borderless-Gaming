@@ -29,6 +29,7 @@ namespace BorderlessGaming
             }
             ForegroundManager.Subscribe();
             Application.Run(new MainWindow());
+          
         }
     }
 }

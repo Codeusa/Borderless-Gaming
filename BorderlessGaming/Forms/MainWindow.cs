@@ -23,6 +23,13 @@ namespace BorderlessGaming.Forms
             _watcher = new ProcessWatcher(this);
             InitializeComponent();
             LanguageManager.Setup(toolStripLanguages);
+            if (Config.Instance.AppSettings.ShowAdOnStart)
+            {
+                var rainway = new Rainway { StartPosition = this.StartPosition, TopMost = true};
+                rainway.ShowDialog(this);
+                rainway.BringToFront();
+            }
+         
         }
 
         public void AddFavoriteToList(Favorite fav)
@@ -228,6 +235,10 @@ namespace BorderlessGaming.Forms
             //clear the process list and repopulate it
             lstProcesses.Items.Clear();
             await _watcher.Refresh();
+        }
+        private void rainwayToolStrip_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://rainway.io/?ref=borderlessgaming");
         }
 
         private void usageGuideToolStripMenuItem_Click(object sender, EventArgs e)
