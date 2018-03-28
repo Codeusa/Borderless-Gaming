@@ -1,83 +1,83 @@
 # Popups
-setWindowSizeTitle|창 크기 설정
-setWindowSizePixelPrompt|{0} 좌상단 모서리의 픽셀 위치 ({0} 좌표):
-setWindowSizeWidthPrompt|창 너비 (픽셀 단위):
-setWindowSizeHeightPrompt|창 높이 (픽셀 단위):
-setWindowSizeMouseTitle|구역 선택?
-setWindowSizeMousePrompt|마우스 커스로 영역을 지정하시겠습니까?\r\n\r\n아니오를 선택하면 특정한 픽셀 영역을 지정할 수 있는 옵션이 뜰 것입니다.
-adjustWindowBoundsTitle|창 경계 조절
-adjustWindowBoundsPrompt|{0} 창 테두리 픽셀 조정 (0 픽셀 = 조정 없음):
-adjustWindowBoundsLeft|왼쪽
-adjustWindowBoundsRight|오른쪽
-adjustWindowBoundsTop|상단
-adjustWindowBoundsBottom|하단
-settingConfirmationTitle|변경 확인
-settingConfirmationPrompt|변경 사항을 적용하려면 Borderless Gaming을 재시작해야 합니다. 재시작합니까?
-setWindowTitleTitle|창 제목 설정
-setWindowTitlePrompt|새로운 창 제목 설정:
-toggleMouseCursorVisibilityTitle|정말 마우스 커서를 숨깁니까?
-toggleMouseCursorVisibilityPrompt|정말 마우스 커서를 숨깁니까?\r\n\r\n한 번 숨기고 나면 마우스 커서의 위치 파악이 어려워집니다.\r\n\r\n마우스 커서 표시 관련 전역 단축키를 사용하고 있다면 [Win + Scroll Lock] 을 눌러서 마우스 커서를 다시 표시할 수 있습니다.\r\n\r\n또한 Borderless Gaming을 종료하면 바로 마우스 커서 표시가 원상복구 됩니다.
+setWindowSizeTitle|Régler la taille de la fenêtre
+setWindowSizePixelPrompt|Emplacement en pixels {0} depuis le coin supérieur gauche (coordonnée{0}):
+setWindowSizeWidthPrompt|Largeur de la fenêtre (en pixels):
+setWindowSizeHeightPrompt|Hauteur de la fenêtre (en pixels):
+setWindowSizeMouseTitle|Sélection de la zone?
+setWindowSizeMousePrompt|Souhaitez-vous sélectionner la zone avec le curseur de votre souris? Si vous choisissez Non, vous devrez renseigner les dimensions adéquates en pixels.
+adjustWindowBoundsTitle|Ajuster les limites de la fenêtre
+adjustWindowBoundsPrompt|Ajustement au pixel pour le bord de fenêtre {0} (0 pixel = pas d'ajustement):
+adjustWindowBoundsLeft|gauche
+adjustWindowBoundsRight|droite
+adjustWindowBoundsTop|haut
+adjustWindowBoundsBottom|bas
+settingConfirmationTitle|Confirmer vos changements
+settingConfirmationPrompt|Afin d'appliquer vos changements, vous devez relancer Borderless Gaming. Redémarrer maintenant?
+setWindowTitleTitle|Définir le titre de la fenêtre
+setWindowTitlePrompt|Définir le nouveau titre de la fenêtre:
+toggleMouseCursorVisibilityTitle|Souhaitez-vous vraiment cacher le curseur de la souris?
+toggleMouseCursorVisibilityPrompt|Souhaitez-vous vraiment cacher le curseur de la souris? Vous pourriez avoir du mal à retrouver le curseur une fois dissimulé. Si vous avez activé le raccourci général pour activer/désactiver la visibilité du curseur, vous pouvez presser [Win + Scroll Lock] pour réafficher le curseur. De plus, quitter Borderless Gaming restaurera immédiatement votre curseur.
 # Options Menu
-toolStripOptions|옵션
-toolStripRunOnStartup|윈도우 시작 시 실행
-toolStripLanguages|언어 선택
-toolStripCheckForUpdates|업데이트 확인
-toolStripGlobalHotkey|전역 단축키 사용
-toolStripMouseLock|마우스 가둠 단축키 사용
-toolStripMouseHide|마우스 숨김 단축키 사용
-toolStripMinimizedToTray|시작 시 트레이로 최소화
-toolStripCloseToTray|닫으면 트레이로 이동
-toolStripHideBalloonTips|풍선 도움말 숨김
-toolStripSlowWindowDetection|느린 창 감지 사용
-toolStripViewFullProcessDetails|프로세스 세부사항 보기
-toolStripRestoreProcesses|모든 숨긴 프로그램 복구
+toolStripOptions|Options
+toolStripRunOnStartup|Démarrer avec Windows
+toolStripLanguages|Changer la langue
+toolStripCheckForUpdates|Vérifier les mises à jour
+toolStripGlobalHotkey|Utiliser le raccourci général
+toolStripMouseLock|Bloquer la souris
+toolStripMouseHide|Cacher la souris
+toolStripMinimizedToTray|Démarrer minimisé dans la zone de notification
+toolStripCloseToTray|Fermer vers la zone de notification
+toolStripHideBalloonTips|Cacher les astuces
+toolStripSlowWindowDetection|Ralentir la détection des fenêtres
+toolStripViewFullProcessDetails|Voir le détail de tous les processus
+toolStripRestoreProcesses|Restaurer toutes les applications cachées
 # Tools Menu
-toolsToolStripMenuItem|도구
-toolStripPauseAutomaticProcessing|자동 처리 일시정지
-toolStripOpenDataFolder|데이터 폴더 열기
-toolStripToggleMouseCursorVisibility|마우스 커서 표시 토글
-toolStripToggleWindowsTaskbar|윈도우 작업줄 표시 토글
-toolStripFullApplicationRefresh|모든 프로그램 새로고침
-toolStripDisableSteamIntegration|Steam 연동 끄기
+toolsToolStripMenuItem|Outils
+toolStripPauseAutomaticProcessing|Mettre en pause l'éxécution automatique
+toolStripOpenDataFolder|Ouvrir le répertoire racine
+toolStripToggleMouseCursorVisibility|Afficher/Cacher le curseur de la souris
+toolStripToggleWindowsTaskbar|Afficher/Cacher la barre des tâches Windows
+toolStripFullApplicationRefresh|Rafraîchir les applications en cours
+toolStripDisableSteamIntegration|Désactiver l'intégration à Steam
 # Help Menu
-toolStripInfo|도움말
-toolStripUsageGuide|사용 가이드
-toolStripRegexReference|Regex 레퍼런스
-toolStripReportBug|버그 제보
-toolStripSupportUs|지원해주세요
-toolStripAbout|프로그램 정보
+toolStripInfo|Aide
+toolStripUsageGuide|Guide d'utilisation
+toolStripRegexReference|Index Regex
+toolStripReportBug|Soumettre un bug
+toolStripSupportUs|Supportez-nous
+toolStripAbout|À propos
 # Process Context Menu
-contextAddToFavs|즐겨찾기에 추가...
-toolStripByTheWindowTitle|... 창 제목으로
-toolStripByRegex|... 창 제목으로 (regex)
-toolStripByProcess|... 프로세스 실행 파일명으로
-contextBorderless|테두리 없는 창모드 만들기
-contextBorderlessOn|테두리 없는 창모드 만들기...
-toolStripSetWindowTitle|창 제목 설정
-toolStripHideProcess|이 프로세스 숨김
+contextAddToFavs|Ajouter aux favoris...
+toolStripByTheWindowTitle|... selon le texte de la fenêtre
+toolStripByRegex|... selon le texte de la fenêtre (regex)
+toolStripByProcess|... selon le nom du processus
+contextBorderless|Rendre Borderless
+contextBorderlessOn|Rendre Borderless sur...
+toolStripSetWindowTitle|Changer le titre de la fenêtre
+toolStripHideProcess|Cacher ce processus
 # Favorite Context Menu
-toolStripFullScreen|전체화면
-toolStripNoSizeChange|크기 변경 없음
-toolStripSetSetWindowSize|창 크기 설정
-toolStripAutomaximize|자동으로 최대화
-toolStripAdjustWindowBounds|창 가장자리 조정
-toolStripAlwaysOnTop|항상 위에
-toolStripDelayBorderless|테두리 없는 창모드 천천히 적용
-toolStripHideMouseCursor|마우스 커서 숨김
-toolStripHideWindowsTaskbar|윈도우 작업줄 숨김
-toolStripRemoveMenus|메뉴 제거
-contextFavScreen|즐겨찾기 화면 선택...
-toolStripMuteInBackground|백그라운드로 이동 시 음소거
-contextRemoveFromFavs|즐겨찾기에서 제거
+toolStripFullScreen|Plein écran
+toolStripNoSizeChange|Pas de changement de taille
+toolStripSetSetWindowSize|Régler la taille de la fenêtre
+toolStripAutomaximize|Maximiser automatiquement
+toolStripAdjustWindowBounds|Ajuster les limites de la fenêtre
+toolStripAlwaysOnTop|Toujours au-dessus
+toolStripDelayBorderless|Retarder la fenêtre Borderless
+toolStripHideMouseCursor|Cacher le curseur de la souris
+toolStripHideWindowsTaskbar|Cacher la barre des tâches Windows
+toolStripRemoveMenus|Enlever les menus
+contextFavScreen|Choisir l'écran favori...
+toolStripMuteInBackground|Couper le son en arrière-plan
+contextRemoveFromFavs|Retirer des favoris
 # UI
-superSize|초대형!
-processLabel|프로그램:
-favoritesLabel|즐겨찾기 (자동 처리):
-statusLabel|로딩 중...
-moreOptionsLabel|추가 옵션을 보려면 마우스 오른쪽을 클릭. 마지막 업데이트:
+superSize|SuperSize!
+processLabel|Applications:
+favoritesLabel|Favoris (automatique):
+statusLabel|Chargement...
+moreOptionsLabel|Clic droit pour plus d'options. Dernière mise à jour:
 # Tool Tips
-steamHint|Steam 상에서 "게임 중" 방지
-addFavorite|현재 선택된 프로그램을 즐겨찾기 목록에 추가 (창 제목으로 정렬).
-removeFavorite|현재 선택된 즐겨찾기를 목록에서 제거.
-makeBorderless|현재 선택된 프로그램을 테두리 없는 창모드로.
-restoreBorders|현재 창을 기존 상태로 전환 시도.
+steamHint|Empêche l'affichage du "utilise maintenant" dans Steam
+addFavorite|Ajoute l'application sélectionnée à votre liste de favoris (selon le titre de la fenêtre).
+removeFavorite|Retire le favori sélectionné de la liste.
+makeBorderless|Retire les bordures de l'application sélectionnée.
+restoreBorders|Tente de restaurer une fenêtre dans sa résolution d'origine.

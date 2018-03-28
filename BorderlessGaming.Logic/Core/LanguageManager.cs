@@ -59,6 +59,8 @@ namespace BorderlessGaming.Logic.Core
             {
                 try
                 {
+                    Directory.Delete(AppEnvironment.LanguagePath, true);
+                    Directory.CreateDirectory(AppEnvironment.LanguagePath);
                     Tools.ExtractZipFile(_archiveName, string.Empty, AppEnvironment.LanguagePath);
                     File.Delete(_archiveName);
                 }

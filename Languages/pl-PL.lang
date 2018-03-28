@@ -1,83 +1,83 @@
 # Popups
-setWindowSizeTitle|Definir Tamanho da Janela
-setWindowSizePixelPrompt|Posição em pixels {0} relativa ao canto superior esquerdo (coordenada {0}):
-setWindowSizeWidthPrompt|Largura da janela (em pixels):
-setWindowSizeHeightPrompt|Altura da janela (em pixels):
-setWindowSizeMouseTitle|Selecionar Área?
-setWindowSizeMousePrompt|Você gostaria de selecionar a área usando o cursor do mouse?\r\n\r\nSe você disser que não, serão pedidas dimensões específicas em pixels.
-adjustWindowBoundsTitle|Ajustar Limites da Janela
-adjustWindowBoundsPrompt|Ajuste de pixel para os limites da janela {0} (0 pixels = sem ajuste):
-adjustWindowBoundsLeft|esquerda
-adjustWindowBoundsRight|direita
-adjustWindowBoundsTop|parte superior
-adjustWindowBoundsBottom|parte inferior
-settingConfirmationTitle|Confirmar Suas Mudanças
-settingConfirmationPrompt|Você deve reiniciar Borderless Gaming para que suas mudanças tenham efeito. Reiniciar agora?
-setWindowTitleTitle|Definir Título da Janela
-setWindowTitlePrompt|Novo título da janela:
-toggleMouseCursorVisibilityTitle|Quer Mesmo Ocultar o Cursor do Mouse?
-toggleMouseCursorVisibilityPrompt|Você realmente quer ocultar o cursor do mouse?\r\n\r\nVocê pode ter problemas em achar o mouse novamente se for oculto.\r\n\r\nSe você habilitou a tecla de atalho global para alternar a visibilidade do cursor do mouse, você pode pressionar [Win + Scroll Lock] para faze-lo visível novamente.\r\n\r\nAlém disso, sair do Borderless Gaming irá imediatamente restaurar o cursor do mouse.
+setWindowSizeTitle|Ustaw rozmiar okna
+setWindowSizePixelPrompt|Lokalizacja piksela {0} dla górnego lewego rogu (współrzędna {0}):
+setWindowSizeWidthPrompt|Szerokość okna (w pikselach):
+setWindowSizeHeightPrompt|Wysokość okna (w pikselach):
+setWindowSizeMouseTitle|Wybrać obszar?
+setWindowSizeMousePrompt|Chcesz wybrać obszar, używając twojego kursora myszy?\r\n\r\nJeśli odpowiesz Nie, będziesz zapytany o konkretne wymiary pikseli.
+adjustWindowBoundsTitle|Dostosuj granice okna
+adjustWindowBoundsPrompt|Dostosowanie pikseli dla {0} krawędzi okna (0 pikseli = brak dostosowania):
+adjustWindowBoundsLeft|lewo
+adjustWindowBoundsRight|prawo
+adjustWindowBoundsTop|góra
+adjustWindowBoundsBottom|dół
+settingConfirmationTitle|Potwierdź swoje zmiany
+settingConfirmationPrompt|Musisz uruchomić ponownie Borderless Gaming, by twoje zmiany zostały wprowadzone. Uruchomić ponownie teraz?
+setWindowTitleTitle|Ustaw tytuł okna
+setWindowTitlePrompt|Ustaw nowy tekst tytułu okna:
+toggleMouseCursorVisibilityTitle|Naprawdę ukryć kursor myszy?
+toggleMouseCursorVisibilityPrompt|Naprawdę chcesz ukryć kursor myszy?\r\n\r\nMożesz mieć trudności z ponownym odnalezieniem myszy, gdy zostanie ukryta.\r\n\r\nJeśli włączyłeś globalny skrót klawiszowy do przełączania widoczności kursora myszy, możesz nacisnąć [Win + Scroll Lock], aby włączyć kursor myszy.\r\n\r\nWyjście z Borderless Gaming natychmiast przywróci twój kursor myszy.
 # Options Menu
-toolStripOptions|Opções
-toolStripRunOnStartup|Executar na inicialização do sistema
-toolStripLanguages|Selecionar Idioma
-toolStripCheckForUpdates|Procurar por Atualizações
-toolStripGlobalHotkey|Usar Tecla de Atalho Global
-toolStripMouseLock|Usar Tecla de Atalho para Trancar o Mouse
-toolStripMouseHide|Usar Tecla de Atalho para Ocultar o Mouse
-toolStripMinimizedToTray|Iniciar Minimizado na Área de Notificação
-toolStripCloseToTray|Fechar para a Área de Notificação
-toolStripHideBalloonTips|Ocultar Balões de Dicas
-toolStripSlowWindowDetection|Usar Detecção de Janela Mais Lenta
-toolStripViewFullProcessDetails|Ver Detalhes Completos dos Processos
-toolStripRestoreProcesses|Restaurar Todos os Programas Ocultos
+toolStripOptions|Opcje
+toolStripRunOnStartup|Uruchom przy starcie
+toolStripLanguages|Wybierz język
+toolStripCheckForUpdates|Sprawdź aktualizacje
+toolStripGlobalHotkey|Używaj globalnego skrótu klawiszowego
+toolStripMouseLock|Używaj skrótu klawiszowego blokady myszy
+toolStripMouseHide|Używaj skrótu klawiszowego ukrycia myszy
+toolStripMinimizedToTray|Uruchom zminimalizowane do paska
+toolStripCloseToTray|Zamknij do paska
+toolStripHideBalloonTips|Ukryj porady dymkowe
+toolStripSlowWindowDetection|Używaj wolniejszego wykrywania okna
+toolStripViewFullProcessDetails|Pokaż pełne szczegóły procesu
+toolStripRestoreProcesses|Przywróć wszystkie ukryte aplikacje
 # Tools Menu
-toolsToolStripMenuItem|Ferramentas
-toolStripPauseAutomaticProcessing|Pausar o Processamento Automatico
-toolStripOpenDataFolder|Abrir Pasta de Dados
-toolStripToggleMouseCursorVisibility|Alternar a Visibilidade do Cursor do Mouse
-toolStripToggleWindowsTaskbar|Alternar a Visibilidade da Barra de Tarefas do Windows
-toolStripFullApplicationRefresh|Restauração Completa do Aplicativo
-toolStripDisableSteamIntegration|Desativar Integração com Steam
+toolsToolStripMenuItem|Narzędzia
+toolStripPauseAutomaticProcessing|Wstrzymaj automatyczne przetwarzanie
+toolStripOpenDataFolder|Otwórz folder danych
+toolStripToggleMouseCursorVisibility|Przełącz widoczność kursora myszy
+toolStripToggleWindowsTaskbar|Przełącz widoczność paska zadań Windows
+toolStripFullApplicationRefresh|Pełne odświeżenie aplikacji
+toolStripDisableSteamIntegration|Wyłącz integrację ze Steam
 # Help Menu
-toolStripInfo|Ajuda
-toolStripUsageGuide|Guia de Uso
-toolStripRegexReference|Referência de Regex
-toolStripReportBug|Reportar Bug
-toolStripSupportUs|Nos Ajude
-toolStripAbout|Sobre
+toolStripInfo|Pomoc
+toolStripUsageGuide|Poradnik użytkowania
+toolStripRegexReference|Odniesienie regex
+toolStripReportBug|Zgłoś błąd
+toolStripSupportUs|Wesprzyj nas
+toolStripAbout|O programie
 # Process Context Menu
-contextAddToFavs|Adicionar aos Favoritos...
-toolStripByTheWindowTitle|... pelo texto no título da janela
-toolStripByRegex|... pelo texto no título da janela (regex)
-toolStripByProcess|... pelo nome to arquivo do processo
-contextBorderless|Tornar sem Borda
-contextBorderlessOn|Tornar sem Borda Em...
-toolStripSetWindowTitle|Definir Título da Janela
-toolStripHideProcess|Ocultar esse Processo
+contextAddToFavs|Dodaj do ulubionych...
+toolStripByTheWindowTitle|... po tekście tytułu okna
+toolStripByRegex|... po tekście tytułu okna (regex)
+toolStripByProcess|... po binarnej nazwie procesu
+contextBorderless|Ustaw bez ramki
+contextBorderlessOn|Ustaw bez ramki na...
+toolStripSetWindowTitle|Ustaw tytuł okna
+toolStripHideProcess|Ukryj ten proces
 # Favorite Context Menu
-toolStripFullScreen|Tela Cheia
-toolStripNoSizeChange|Sem Mudança de Tamanho
-toolStripSetSetWindowSize|Definir Tamanho da Janela
-toolStripAutomaximize|Auto-Maximizar
-toolStripAdjustWindowBounds|Ajustar Limites da Janela
-toolStripAlwaysOnTop|Sempre na Frente
-toolStripDelayBorderless|Delay Borderless Window
-toolStripHideMouseCursor|Ocultar Cursor do Mouse
-toolStripHideWindowsTaskbar|Ocultar Barra de Tarefas do Windows
-toolStripRemoveMenus|Remover Menus
-contextFavScreen|Selecionar Tela Favorita...
-toolStripMuteInBackground|Silenciar Quando Inativo
-contextRemoveFromFavs|Remover dos Favoritos
+toolStripFullScreen|Pełny ekran
+toolStripNoSizeChange|Brak zmiany rozmiaru
+toolStripSetSetWindowSize|Ustaw rozmiar okna
+toolStripAutomaximize|Automatycznie maksymalizuj
+toolStripAdjustWindowBounds|Dostosuj granice okna
+toolStripAlwaysOnTop|Zawsze na wierzchu
+toolStripDelayBorderless|Opóźnij okno bez ramki
+toolStripHideMouseCursor|Ukryj kursor myszy
+toolStripHideWindowsTaskbar|Ukryj pasek zadań Windows
+toolStripRemoveMenus|Usuń menu
+contextFavScreen|Wybierz ulubiony ekran...
+toolStripMuteInBackground|Wycisz w tle
+contextRemoveFromFavs|Usuń z ulubionych
 # UI
-superSize|SuperTamanho!
-processLabel|Programas:
-favoritesLabel|Favoritos (automático):
-statusLabel|Carregando...
-moreOptionsLabel|Clique com o botão direito para mais opções. Atualiza
+superSize|Super rozmiar!
+processLabel|Aplikacje:
+favoritesLabel|Ulubione (automatyczne):
+statusLabel|Ładowanie...
+moreOptionsLabel|Kliknij prawym przyciskiem myszy po więcej opcji. Ostatnio zaktualizowano
 # Tool Tips
-steamHint|Previne "Em Aplicativo" na Steam
-addFavorite|Adiciona o programa selecionado para a lista de favoritos (pelo título da janela).
-removeFavorite|Remove o favorito selecionado da lista.
-makeBorderless|Torna o aplicativo selecionado sem borda.
-restoreBorders|Tenta restaurar a janela de volta ao seu estado com borda.
+steamHint|Zapobiega "w aplikacji" na Steam
+addFavorite|Dodaje aktualnie wybraną aplikację do twojej listy ulubionych (po tytule okna).
+removeFavorite|Usuwa aktualnie wybraną ulubioną aplikację z listy.
+makeBorderless|Sprawia, że aktualnie wybrana aplikacja jest bez ramki.
+restoreBorders|Próbuje przywrócić okno spowrotem do stanu z ramką.

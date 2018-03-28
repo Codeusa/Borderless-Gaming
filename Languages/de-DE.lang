@@ -4,7 +4,7 @@ setWindowSizePixelPrompt|Pixel {0} Position für die obere linke Ecke ({0} Koord
 setWindowSizeWidthPrompt|Fenster Breite (in Pixeln):
 setWindowSizeHeightPrompt|Fenster Höhe (in Pixeln):
 setWindowSizeMouseTitle|Zone auswählen?
-setWindowSizeMousePrompt|Willst du die Zone mit dem Mauszeiger auswählen?\r\n\r\nFalls du Nein antwortest, wirst du nach Pixel-genauen Angaben gefragt.
+setWindowSizeMousePrompt|Willst Du die Zone mit dem Mauszeiger auswählen? Falls Du Nein antwortest, wirst Du nach pixlegenauen Angaben gefragt.
 adjustWindowBoundsTitle|Fensterrand anpassen
 adjustWindowBoundsPrompt|Pixel Anpassung für den {0} Fensterrand (0 Pixel = keine Anpassung):
 adjustWindowBoundsLeft|linken
@@ -12,14 +12,14 @@ adjustWindowBoundsRight|rechten
 adjustWindowBoundsTop|oberen
 adjustWindowBoundsBottom|unteren
 settingConfirmationTitle|Änderungen bestätigen
-settingConfirmationPrompt|Du musst Borderless Gaming neu starten, damit deine Änderungen wirksam werden. Jetzt neu starten?
+settingConfirmationPrompt|Du musst Borderless Gaming neu starten, damit Deine Änderungen wirksam werden. Jetzt neu starten?
 setWindowTitleTitle|Fenstertitel anpassen
 setWindowTitlePrompt|Neuen Fenstertitel eingeben:
 toggleMouseCursorVisibilityTitle|Mauszeiger wirklich verstecken?
-toggleMouseCursorVisibilityPrompt|Willst du den Mauszeiger wirklich verstecken?\r\n\r\nMöglicherweise wirst du dann Schwierigkeiten haben den Mauszeiger wiederzufinden.\r\n\r\nWenn du den globalen Hotkey zum umschalten der Mauszeiger Sichtbarkeit aktiviert hast, kannst Du mit [Win + Scroll Lock] den Mauszeiger sichtbar machen.\r\n\r\nAußerdem stellt Borderless Gaming den Mauszeiger sofort wieder her, wenn es beendet wird.
+toggleMouseCursorVisibilityPrompt|Willst Du den Mauszeiger wirklich verstecken? Möglicherweise wirst Du Schwierigkeiten haben den Mauszeiger wiederzufinden. Wenn Du den globalen Hotkey zum Umschalten der Mauszeiger Sichtbarkeit aktiviert hast, kannst Du mit [Win + Scroll Lock] den Mauszeiger sichtbar machen. Außerdem stellt Borderless Gaming den Mauszeiger sofort wieder her, wenn es beendet wird.
 # Options Menu
 toolStripOptions|Optionen
-toolStripRunOnStartup|Bei Computerstart starten
+toolStripRunOnStartup|Mit Computer starten
 toolStripLanguages|Sprache auswählen
 toolStripCheckForUpdates|Nach Updates suchen
 toolStripGlobalHotkey|Globalen Hotkey verwenden
@@ -27,37 +27,37 @@ toolStripMouseLock|Mauszeiger Fangen Hotkey verwenden
 toolStripMouseHide|Mauszeiger Sichtbarkeit Hotkey verwenden
 toolStripMinimizedToTray|Nach Programmstart minimieren
 toolStripCloseToTray|In den Benachrichtigungsbereich minimieren
-toolStripHideBalloonTips|Benachrichtigungen verstecken
+toolStripHideBalloonTips|Benachrichtigung verstecken
 toolStripSlowWindowDetection|Langsame Fenstererkennung benutzen
 toolStripViewFullProcessDetails|Vollständige Prozessdetails anzeigen
 toolStripRestoreProcesses|Versteckte Anwendungen wiederherstellen
 # Tools Menu
 toolsToolStripMenuItem|Werkzeuge
-toolStripPauseAutomaticProcessing|Automatische Verarbeitung anhalten
+toolStripPauseAutomaticProcessing|Automatische Aktualisierung anhalten
 toolStripOpenDataFolder|Konfigurationsordner öffnen
 toolStripToggleMouseCursorVisibility|Mauszeiger Sichtbarkeit umschalten
 toolStripToggleWindowsTaskbar|Windows Taskleisten Sichtbarkeit umschalten
 toolStripFullApplicationRefresh|Alle Anwendungen aktualisieren
 toolStripDisableSteamIntegration|Steam Integration ausschalten
 # Help Menu
-toolStripInfo|Help
-toolStripUsageGuide|Usage Guide
-toolStripRegexReference|Regex Reference
-toolStripReportBug|Report Bug
-toolStripSupportUs|Support Us
-toolStripAbout|About
+toolStripInfo|Hilfe
+toolStripUsageGuide|Anleitung
+toolStripRegexReference|Regex Hinweis
+toolStripReportBug|Fehler melden
+toolStripSupportUs|Unterstütze Uns
+toolStripAbout|Über
 # Process Context Menu
 contextAddToFavs|Zu Favoriten hinzufügen...
 toolStripByTheWindowTitle|... durch Fenstertitel
-toolStripByRegex|... durch Fenstertitel (Regex)
-toolStripByProcess|... durch den Anwendungsdateinamen
+toolStripByRegex|... durch Fenstertitel (regex)
+toolStripByProcess|... durch den Anwendungs Dateinamen
 contextBorderless|Randlos machen
 contextBorderlessOn|Randlos machen auf...
 toolStripSetWindowTitle|Fenstertitel anpassen
 toolStripHideProcess|Diesen Prozess verstecken
 # Favorite Context Menu
 toolStripFullScreen|Vollbild
-toolStripNoSizeChange|Keine Größenänderung
+toolStripNoSizeChange|Keine Größen Veränderung
 toolStripSetSetWindowSize|Fenstergröße anpassen
 toolStripAutomaximize|Auto-Maximieren
 toolStripAdjustWindowBounds|Fenstergrenzen anpassen
@@ -74,10 +74,10 @@ superSize|ExtraGroß!
 processLabel|Anwendungen:
 favoritesLabel|Favoriten (automatisch):
 statusLabel|Lade...
-moreOptionsLabel|Rechtsklick für weitere Optionen. Zuletzt aktualisiert
+moreOptionsLabel|Rechts-Klick für weitere Optionen. Zuletzt aktualisiert
 # Tool Tips
-steamHint|Verhindert "In-Anwendung" auf Steam
-addFavorite|Fügt ausgewählte Anwendung den Favoriten hinzu (durch den Fenstertitel).
-removeFavorite|Entfernt ausgewählten Favorit aus der Liste.
-makeBorderless|Macht ausgewählte Anwendung randlos.
-restoreBorders|Versucht den Rand eines Fensters wiederherzustellen.
+steamHint|Verhindert "In Anwendung" auf Steam
+addFavorite|Fügt ausgewählte Anwendung den Favoriten hinzu (durch den Fenstertitel)
+removeFavorite|Entfernt ausgewählten Favorit von der Liste
+makeBorderless|Macht ausgewählte Anwendung randlos
+restoreBorders|Versucht den Rand eines Fensters wiederherzustellen

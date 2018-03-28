@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|設定視窗大小
+setWindowSizePixelPrompt|請輸入視窗左上角的 {0} 坐標({0} 以像素為單位):
+setWindowSizeWidthPrompt|視窗寬度 (以像素為單位)：
+setWindowSizeHeightPrompt|視窗高度 (以像素為單位)：
+setWindowSizeMouseTitle|使用滑鼠指標選擇區域？
+setWindowSizeMousePrompt|您要使用滑鼠指標選擇區域嗎？\r\n\r\n如果您選擇否，系統將提示您輸入具體的像素尺寸。
+adjustWindowBoundsTitle|調整視窗邊框
+adjustWindowBoundsPrompt|您想為視窗{0}邊緣調整的像素 (設定為 0 時不調整):
+adjustWindowBoundsLeft|左
+adjustWindowBoundsRight|右
+adjustWindowBoundsTop|上
+adjustWindowBoundsBottom|下
+settingConfirmationTitle|確認您的變更
+settingConfirmationPrompt|您必須重新啟動 Borderless Gaming 才能使您的變更生效，現在重啟？
+setWindowTitleTitle|設定視窗標題
+setWindowTitlePrompt|設定新的視窗標題：
+toggleMouseCursorVisibilityTitle|真的要隱藏滑鼠指標嗎？
+toggleMouseCursorVisibilityPrompt|您真的要隱藏滑鼠指標嗎？\r\n\r\n一旦隱藏，您可能很難再找到滑鼠指標。 如果已經啟用了全域滑鼠指標隱藏熱鍵，您可以按下 [Win + Scroll Lock] 來切換滑鼠指標的可見性。\r\n\r\n此外，退出 Borderless Gaming 將立即恢復滑鼠指標。
+# Options Menu
+toolStripOptions|選項
+toolStripRunOnStartup|開機啟動
+toolStripLanguages|選擇語言
+toolStripCheckForUpdates|檢查更新
+toolStripGlobalHotkey|使用全域熱鍵
+toolStripMouseLock|使用滑鼠指標鎖定熱鍵
+toolStripMouseHide|使用滑鼠指標隱藏熱鍵
+toolStripMinimizedToTray|開啟時最小化到工作列
+toolStripCloseToTray|關閉時最小化到工作列
+toolStripHideBalloonTips|隱藏氣泡提示
+toolStripSlowWindowDetection|使用較慢的視窗偵測
+toolStripViewFullProcessDetails|檢視詳細程序訊息
+toolStripRestoreProcesses|恢復所有隱藏的應用程式
+# Tools Menu
+toolsToolStripMenuItem|工具
+toolStripPauseAutomaticProcessing|暫停自動處理
+toolStripOpenDataFolder|開啟數據資料夾
+toolStripToggleMouseCursorVisibility|切換滑鼠指標可見性
+toolStripToggleWindowsTaskbar|切換 Windows 工作列可見性
+toolStripFullApplicationRefresh|完全重整應用程式程序
+toolStripDisableSteamIntegration|停用 Steam 內嵌介面
+# Help Menu
+toolStripInfo|幫助
+toolStripUsageGuide|使用指南
+toolStripRegexReference|正則表達式參考
+toolStripReportBug|報告錯誤
+toolStripSupportUs|支持我們
+toolStripAbout|關於
+# Process Context Menu
+contextAddToFavs|加入到我的最愛...
+toolStripByTheWindowTitle|... 以視窗標題識別
+toolStripByRegex|... 以視窗標題識別 (使用正則表達式)
+toolStripByProcess|... 以程序可執行檔案名稱識別
+contextBorderless|無邊框化
+contextBorderlessOn|在...上無邊框
+toolStripSetWindowTitle|設定視窗標題
+toolStripHideProcess|隱藏這個程序
+# Favorite Context Menu
+toolStripFullScreen|全螢幕
+toolStripNoSizeChange|尺寸不改變
+toolStripSetSetWindowSize|設定視窗尺寸
+toolStripAutomaximize|自動最大化
+toolStripAdjustWindowBounds|調整視窗邊框
+toolStripAlwaysOnTop|保持視窗在最上層
+toolStripDelayBorderless|延遲無邊框化視窗
+toolStripHideMouseCursor|隱藏滑鼠指標
+toolStripHideWindowsTaskbar|隱藏 Windows 工作列
+toolStripRemoveMenus|隱藏選單
+contextFavScreen|選擇螢幕到我的最愛...
+toolStripMuteInBackground|應用程式程序背景執行時靜音
+contextRemoveFromFavs|從我的最愛中移除
+# UI
+superSize|超級大小！
+processLabel|應用程式程序：
+favoritesLabel|我的最愛(自動處理)：
+statusLabel|載入中...
+moreOptionsLabel|右鍵點擊檢視更多選項。 最後更新於
+# Tool Tips
+steamHint|防止在 Steam 上的 "使用程式中"
+addFavorite|將目前選擇的應用程式程序加入到自動處理列表(以視窗標題識別)。
+removeFavorite|將目前選擇的應用程式程序移出自動處理列表。
+makeBorderless|使目前選擇的應用程式程序無邊框。
+restoreBorders|嘗試將目前選擇的應用程式程序視窗化。
