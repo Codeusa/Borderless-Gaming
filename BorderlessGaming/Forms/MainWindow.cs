@@ -23,13 +23,6 @@ namespace BorderlessGaming.Forms
             _watcher = new ProcessWatcher(this);
             InitializeComponent();
             LanguageManager.Setup(toolStripLanguages);
-            if (Config.Instance.AppSettings.ShowAdOnStart)
-            {
-                var rainway = new Rainway { StartPosition = this.StartPosition, TopMost = true};
-                rainway.ShowDialog(this);
-                rainway.BringToFront();
-            }
-         
         }
 
         public void AddFavoriteToList(Favorite fav)
@@ -961,8 +954,14 @@ fav.PositionX.ToString()), out int favPositionX);
             if (Config.Instance.AppSettings.StartMinimized || Config.Instance.StartupOptions.Minimize)
             {
                 Hide();
+            } else {
+                if (Config.Instance.AppSettings.ShowAdOnStart)
+                {
+                    var rainway = new Rainway { StartPosition = this.StartPosition, TopMost = true };
+                    rainway.ShowDialog(this);
+                    rainway.BringToFront();
+                }
             }
-
             // initialize favorite list
             foreach (var ni in Config.Instance.Favorites)
             {

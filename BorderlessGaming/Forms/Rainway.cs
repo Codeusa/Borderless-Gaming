@@ -41,5 +41,11 @@ namespace BorderlessGaming.Forms
         {
            Cursor = Cursors.Hand;
         }
+
+        private void Rainway_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.Instance.AppSettings.ShowAdOnStart = false;
+            Config.Save();
+        }
     }
 }

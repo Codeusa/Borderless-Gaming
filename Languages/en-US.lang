@@ -11,6 +11,7 @@ adjustWindowBoundsLeft|left
 adjustWindowBoundsRight|right
 adjustWindowBoundsTop|top
 adjustWindowBoundsBottom|bottom
+toolStripRainway|Rainway
 settingConfirmationTitle|Confirm Your Changes
 settingConfirmationPrompt|You must restart Borderless Gaming for your changes to take affect. Restart now?
 setWindowTitleTitle|Set Window Title
