@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BorderlessGaming.Properties {
+namespace BorderlessGaming.Logic.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace BorderlessGaming.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace BorderlessGaming.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BorderlessGaming.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BorderlessGaming.Logic.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace BorderlessGaming.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,19 +61,9 @@ namespace BorderlessGaming.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap add {
-            get {
-                object obj = ResourceManager.GetObject("add", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] blank {
+        internal static byte[] blank {
             get {
                 object obj = ResourceManager.GetObject("blank", resourceCulture);
                 return ((byte[])(obj));
@@ -81,38 +71,9 @@ namespace BorderlessGaming.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap bordered {
-            get {
-                object obj = ResourceManager.GetObject("bordered", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap borderless {
-            get {
-                object obj = ResourceManager.GetObject("borderless", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to save favorites. Do you have permission?\r\n\r\nDetailed Error: {0}.
-        /// </summary>
-        public static string ErrorFavoritesSave {
-            get {
-                return ResourceManager.GetString("ErrorFavoritesSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        public static string ErrorHeader {
+        internal static string ErrorHeader {
             get {
                 return ResourceManager.GetString("ErrorHeader", resourceCulture);
             }
@@ -121,7 +82,7 @@ namespace BorderlessGaming.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Borderless Gaming encountered an error checking for updates. Restart the program to try again..
         /// </summary>
-        public static string ErrorUpdates {
+        internal static string ErrorUpdates {
             get {
                 return ResourceManager.GetString("ErrorUpdates", resourceCulture);
             }
@@ -130,7 +91,7 @@ namespace BorderlessGaming.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A new version of Borderless Gaming is available. Would you like to go to the release page?.
         /// </summary>
-        public static string InfoUpdateAvailable {
+        internal static string InfoUpdateAvailable {
             get {
                 return ResourceManager.GetString("InfoUpdateAvailable", resourceCulture);
             }
@@ -139,28 +100,24 @@ namespace BorderlessGaming.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Update available.
         /// </summary>
-        public static string InfoUpdatesHeader {
+        internal static string InfoUpdatesHeader {
             get {
                 return ResourceManager.GetString("InfoUpdatesHeader", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Do you really want to hide the mouse cursor?
+        ///
+        ///You may have a difficult time finding the mouse again once it&apos;s hidden.
+        ///
+        ///If you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.
+        ///
+        ///Also, exiting Borderless Gaming will immediately restore your mouse cursor..
         /// </summary>
-        public static System.Drawing.Bitmap remove {
+        internal static string MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_ {
             get {
-                object obj = ResourceManager.GetObject("remove", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is minimized..
-        /// </summary>
-        public static string TrayMinimized {
-            get {
-                return ResourceManager.GetString("TrayMinimized", resourceCulture);
+                return ResourceManager.GetString("MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_", resourceCulture);
             }
         }
     }

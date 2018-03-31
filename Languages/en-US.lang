@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Set Window Size
+setWindowSizePixelPrompt|Pixel {0} location for the top left corner ({0} coordinate):
+setWindowSizeWidthPrompt|Window width (in pixels):
+setWindowSizeHeightPrompt|Window height (in pixels):
+setWindowSizeMouseTitle|Select Area?
+setWindowSizeMousePrompt|Would you like to select the area using your mouse cursor?\r\n\r\nIf you answer No, you will be prompted for specific pixel dimensions.
+adjustWindowBoundsTitle|Adjust Window Bounds
+adjustWindowBoundsPrompt|Pixel adjustment for the {0} window edge (0 pixels = no adjustment):
+adjustWindowBoundsLeft|left
+adjustWindowBoundsRight|right
+adjustWindowBoundsTop|top
+adjustWindowBoundsBottom|bottom
+settingConfirmationTitle|Confirm Your Changes
+settingConfirmationPrompt|You must restart Borderless Gaming for your changes to take affect. Restart now?
+setWindowTitleTitle|Set Window Title
+setWindowTitlePrompt|Set the new window title text:
+toggleMouseCursorVisibilityTitle|Really Hide Mouse Cursor?
+toggleMouseCursorVisibilityPrompt|Do you really want to hide the mouse cursor?\r\n\r\nYou may have a difficult time finding the mouse again once it's hidden.\r\n\r\nIf you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.\r\n\r\nAlso, exiting Borderless Gaming will immediately restore your mouse cursor.
+# Options Menu
+toolStripOptions|Options
+toolStripRunOnStartup|Run On Startup
+toolStripLanguages|Select Language
+toolStripCheckForUpdates|Check For Updates
+toolStripGlobalHotkey|Use Global Hotkey
+toolStripMouseLock|Use Mouse Lock Hotkey
+toolStripMouseHide|Use Mouse Hide Hotkey
+toolStripMinimizedToTray|Start Minimized To Tray
+toolStripCloseToTray|Close To Tray
+toolStripHideBalloonTips|Hide Balloon Tips
+toolStripSlowWindowDetection|Use Slower Window Detection
+toolStripViewFullProcessDetails|View Full Process Details
+toolStripRestoreProcesses|Restore All Hidden Applications
+# Tools Menu
+toolsToolStripMenuItem|Tools
+toolStripPauseAutomaticProcessing|Pause Automatic Processing
+toolStripOpenDataFolder|Open Data Folder
+toolStripToggleMouseCursorVisibility|Toggle Mouse Cursor Visibility
+toolStripToggleWindowsTaskbar|Toggle Windows Taskbar Visibility
+toolStripFullApplicationRefresh|Full Application Refresh
+toolStripDisableSteamIntegration|Disable Steam Integration
+# Help Menu
+toolStripInfo|Help
+toolStripUsageGuide|Usage Guide
+toolStripRegexReference|Regex Reference
+toolStripReportBug|Report Bug
+toolStripSupportUs|Support Us
+toolStripAbout|About
+# Process Context Menu
+contextAddToFavs|Add to Favorites...
+toolStripByTheWindowTitle|... by the window title text
+toolStripByRegex|... by the window title text (regex)
+toolStripByProcess|... by the process binary name
+contextBorderless|Make Borderless
+contextBorderlessOn|Make Borderless On...
+toolStripSetWindowTitle|Set Window Title
+toolStripHideProcess|Hide This Process
+# Favorite Context Menu
+toolStripFullScreen|Full Screen
+toolStripNoSizeChange|No Size Change
+toolStripSetSetWindowSize|Set Window Size
+toolStripAutomaximize|Auto-Maximize
+toolStripAdjustWindowBounds|Adjust Window bounds
+toolStripAlwaysOnTop|Always On Top
+toolStripDelayBorderless|Delay Borderless Window
+toolStripHideMouseCursor|Hide Mouse Cursor
+toolStripHideWindowsTaskbar|Hide Windows Taskbar
+toolStripRemoveMenus|Remove Menus
+contextFavScreen|Select Favorite Screen...
+toolStripMuteInBackground|Mute In Background
+contextRemoveFromFavs|Remove From Favorites
+# UI
+superSize|SuperSize!
+processLabel|Applications:
+favoritesLabel|Favorites (automatic):
+statusLabel|Loading...
+moreOptionsLabel|Right-click for more options. Last updated
+# Tool Tips
+steamHint|Prevents "In-App" on Steam
+addFavorite|Adds the currently-selected application to your favorites list (by the window title).
+removeFavorite|Removes the currently-selected favorite from the list.
+makeBorderless|Makes the currently-selected application borderless.
+restoreBorders|Attempts to restore a window back to its bordered state.

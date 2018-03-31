@@ -118,23 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="InfoUpdatesHeader" xml:space="preserve">
-    <value>Update available</value>
+    <value>新的更新可用</value>
   </data>
   <data name="ErrorUpdates" xml:space="preserve">
-    <value>Borderless Gaming encountered an error checking for updates. Restart the program to try again.</value>
+    <value>Borderless Gaming 在更新时遇到一个错误。 请重启此程序后再试。</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TrayMinimized" xml:space="preserve">
-    <value>{0} is minimized.</value>
+    <value>{0} 已经最小化.</value>
   </data>
   <data name="InfoUpdateAvailable" xml:space="preserve">
-    <value>A new version of Borderless Gaming is available. Would you like to go to the release page?</value>
+    <value>Borderless Gaming 的一个新版本可用。 您是否想前往发布页？</value>
   </data>
   <data name="ErrorFavoritesSave" xml:space="preserve">
-    <value>Unable to save favorites. Do you have permission?\r\n\r\nDetailed Error: {0}</value>
+    <value>无法保存列表。 您是否拥有权限？\r\n\r\n错误详情: {0}</value>
   </data>
   <data name="borderless" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\borderless.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -143,7 +143,7 @@
     <value>..\data\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ErrorHeader" xml:space="preserve">
-    <value>Error</value>
+    <value>错误</value>
   </data>
   <data name="bordered" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\bordered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
