@@ -43,29 +43,29 @@
             this._dmxtNameTag = new System.Windows.Forms.Label();
             this._impulserGithubGlobe = new System.Windows.Forms.PictureBox();
             this._impulserNameTag = new System.Windows.Forms.Label();
-            this._stackOfPancakesGithubGlobe = new System.Windows.Forms.PictureBox();
-            this._stackOfPancakesNameTag = new System.Windows.Forms.Label();
             this._copyrightLabel = new System.Windows.Forms.Label();
             this._steamGroupLabel = new System.Windows.Forms.Label();
             this._viewSteamGroupLinkLabel = new System.Windows.Forms.LinkLabel();
-            this._codeusaSoftwareLogo = new System.Windows.Forms.PictureBox();
             this._madpewGithubGlobe = new System.Windows.Forms.PictureBox();
             this._madpewNametag = new System.Windows.Forms.Label();
             this._psouza4Nametag = new System.Windows.Forms.Label();
             this._psouza4GithubGlobe = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this._SecretOnlineNametag = new System.Windows.Forms.Label();
             this._SecretOnlineGithubGlobe = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this._codeusaSoftwareLogo = new System.Windows.Forms.PictureBox();
+            this._stackOfPancakesNameTag = new System.Windows.Forms.Label();
+            this._stackOfPancakesGithubGlobe = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._ownerGithubGlobe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._dmxtGithubGlobe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._impulserGithubGlobe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._stackOfPancakesGithubGlobe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._codeusaSoftwareLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._madpewGithubGlobe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._psouza4GithubGlobe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._SecretOnlineGithubGlobe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._codeusaSoftwareLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._stackOfPancakesGithubGlobe)).BeginInit();
             this.SuspendLayout();
             // 
             // versionLabel
@@ -156,19 +156,6 @@
             this._impulserNameTag.Name = "_impulserNameTag";
             this._impulserNameTag.Click += new System.EventHandler(this._impulserNameTag_Click);
             // 
-            // _stackOfPancakesGithubGlobe
-            // 
-            resources.ApplyResources(this._stackOfPancakesGithubGlobe, "_stackOfPancakesGithubGlobe");
-            this._stackOfPancakesGithubGlobe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._stackOfPancakesGithubGlobe.Name = "_stackOfPancakesGithubGlobe";
-            this._stackOfPancakesGithubGlobe.TabStop = false;
-            this._stackOfPancakesGithubGlobe.Click += new System.EventHandler(this.OpenStackOfPancakesGithub);
-            // 
-            // _stackOfPancakesNameTag
-            // 
-            resources.ApplyResources(this._stackOfPancakesNameTag, "_stackOfPancakesNameTag");
-            this._stackOfPancakesNameTag.Name = "_stackOfPancakesNameTag";
-            // 
             // _copyrightLabel
             // 
             resources.ApplyResources(this._copyrightLabel, "_copyrightLabel");
@@ -185,12 +172,6 @@
             this._viewSteamGroupLinkLabel.Name = "_viewSteamGroupLinkLabel";
             this._viewSteamGroupLinkLabel.TabStop = true;
             this._viewSteamGroupLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenSteamGroup);
-            // 
-            // _codeusaSoftwareLogo
-            // 
-            resources.ApplyResources(this._codeusaSoftwareLogo, "_codeusaSoftwareLogo");
-            this._codeusaSoftwareLogo.Name = "_codeusaSoftwareLogo";
-            this._codeusaSoftwareLogo.TabStop = false;
             // 
             // _madpewGithubGlobe
             // 
@@ -218,14 +199,6 @@
             this._psouza4GithubGlobe.TabStop = false;
             this._psouza4GithubGlobe.Click += new System.EventHandler(this.OpenPsouza4Github);
             // 
-            // pictureBox2
-            // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.OpenPsouza4Steam);
-            // 
             // _SecretOnlineNametag
             // 
             resources.ApplyResources(this._SecretOnlineNametag, "_SecretOnlineNametag");
@@ -238,6 +211,33 @@
             this._SecretOnlineGithubGlobe.Name = "_SecretOnlineGithubGlobe";
             this._SecretOnlineGithubGlobe.TabStop = false;
             this._SecretOnlineGithubGlobe.Click += new System.EventHandler(this.OpenSecretOnlineGithub);
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.OpenPsouza4Steam);
+            // 
+            // _codeusaSoftwareLogo
+            // 
+            resources.ApplyResources(this._codeusaSoftwareLogo, "_codeusaSoftwareLogo");
+            this._codeusaSoftwareLogo.Name = "_codeusaSoftwareLogo";
+            this._codeusaSoftwareLogo.TabStop = false;
+            // 
+            // _stackOfPancakesNameTag
+            // 
+            resources.ApplyResources(this._stackOfPancakesNameTag, "_stackOfPancakesNameTag");
+            this._stackOfPancakesNameTag.Name = "_stackOfPancakesNameTag";
+            // 
+            // _stackOfPancakesGithubGlobe
+            // 
+            resources.ApplyResources(this._stackOfPancakesGithubGlobe, "_stackOfPancakesGithubGlobe");
+            this._stackOfPancakesGithubGlobe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._stackOfPancakesGithubGlobe.Name = "_stackOfPancakesGithubGlobe";
+            this._stackOfPancakesGithubGlobe.TabStop = false;
+            this._stackOfPancakesGithubGlobe.Click += new System.EventHandler(this.OpenStackOfPancakesGithub);
             // 
             // AboutForm
             // 
@@ -279,12 +279,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._dmxtGithubGlobe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._impulserGithubGlobe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._stackOfPancakesGithubGlobe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._codeusaSoftwareLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._madpewGithubGlobe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._psouza4GithubGlobe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._SecretOnlineGithubGlobe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._codeusaSoftwareLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._stackOfPancakesGithubGlobe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,18 +306,18 @@
         private System.Windows.Forms.Label _dmxtNameTag;
         private System.Windows.Forms.PictureBox _impulserGithubGlobe;
         private System.Windows.Forms.Label _impulserNameTag;
-        private System.Windows.Forms.PictureBox _stackOfPancakesGithubGlobe;
-        private System.Windows.Forms.Label _stackOfPancakesNameTag;
         private System.Windows.Forms.Label _copyrightLabel;
         private System.Windows.Forms.Label _steamGroupLabel;
         private System.Windows.Forms.LinkLabel _viewSteamGroupLinkLabel;
-        private System.Windows.Forms.PictureBox _codeusaSoftwareLogo;
         private System.Windows.Forms.PictureBox _madpewGithubGlobe;
         private System.Windows.Forms.Label _madpewNametag;
         private System.Windows.Forms.Label _psouza4Nametag;
         private System.Windows.Forms.PictureBox _psouza4GithubGlobe;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label _SecretOnlineNametag;
         private System.Windows.Forms.PictureBox _SecretOnlineGithubGlobe;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox _codeusaSoftwareLogo;
+        private System.Windows.Forms.Label _stackOfPancakesNameTag;
+        private System.Windows.Forms.PictureBox _stackOfPancakesGithubGlobe;
     }
 }

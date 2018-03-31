@@ -9,27 +9,27 @@ namespace BorderlessGaming.Logic.System.Utilities
 {
     public static class TaskUtilities
     {
-        public static void StartTaskAndWait(Action target)
+        public static async Task StartTaskAndWait(Action target)
         {
-            StartTaskAndWait(target, 0);
+            await StartTaskAndWait(target, 0);
         }
 
-        public static void WaitAndStartTask(Action target, int iHowLongToWait)
+        public static async Task WaitAndStartTaskAsync(Action target, int iHowLongToWait)
         {
             var ts = new CancellationTokenSource();
             var ct = ts.Token;
-            Task.Run(async () =>
+           await Task.Run(async () =>
             {
                 await Task.Delay(TimeSpan.FromSeconds(iHowLongToWait), ct);
                 target();
-            }, ct).Wait(ct);
+            }, ct);
         }
 
-        public static void StartTaskAndWait(Action target, int iHowLongToWait)
+        public static async Task StartTaskAndWait(Action target, int iHowLongToWait)
         {
             try
             {
-                Task.Run(async () =>
+                await Task.Run(async () =>
                 {
                     var ts = new CancellationTokenSource();
                     var ct = ts.Token;
@@ -41,6 +41,7 @@ namespace BorderlessGaming.Logic.System.Utilities
                         {
                             break;
                         }
+
                         if (iHowLongToWait > 0)
                         {
                             if ((DateTime.Now - dtStartTime).TotalSeconds > iHowLongToWait)
@@ -53,13 +54,15 @@ namespace BorderlessGaming.Logic.System.Utilities
                                 {
                                     // ignored
                                 }
+
                                 break;
                             }
                         }
+
                         await Task.Delay(15, ct);
                         //MainWindow.DoEvents();
                     }
-                }).Wait();
+                });
             }
             catch (Exception)
             {

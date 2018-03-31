@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.Properties;
@@ -30,12 +31,12 @@ namespace BorderlessGaming.Logic.Windows
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public static void MakeWindowBorderless(ProcessDetails processDetails, Form frmMain, IntPtr targetWindow,
+        public static async Task MakeWindowBorderless(ProcessDetails processDetails, Form frmMain, IntPtr targetWindow,
             Rectangle targetFrame, Favorite favDetails)
         {
             if (NeedsDelay(targetWindow))
             {
-                MakeWindowBorderlessDelayed(processDetails, frmMain, targetWindow, targetFrame, favDetails);
+                await MakeWindowBorderlessDelayed(processDetails, frmMain, targetWindow, targetFrame, favDetails);
             }
             else
             {
@@ -49,7 +50,7 @@ namespace BorderlessGaming.Logic.Windows
                 {
                     if (processDetails.MadeBorderless)
                     {
-                        if (processDetails.MadeBorderlessAttempts > 3 || !processDetails.WindowHasTargetableStyles)
+                        if (processDetails.MadeBorderlessAttempts > 3 || ! await processDetails.WindowHasTargetableStyles())
                         {
                             return;
                         }
@@ -218,7 +219,7 @@ namespace BorderlessGaming.Logic.Windows
             }
         }
 
-        private static void MakeWindowBorderlessDelayed(ProcessDetails processDetails, Form frmMain,
+        private static async Task MakeWindowBorderlessDelayed(ProcessDetails processDetails, Form frmMain,
             IntPtr targetWindow, Rectangle targetFrame, Favorite favDetails)
         {
             // Automatically match a window to favorite details, if that information is available.
@@ -231,7 +232,7 @@ namespace BorderlessGaming.Logic.Windows
             {
                 if (processDetails.MadeBorderless)
                 {
-                    if (processDetails.MadeBorderlessAttempts > 3 || !processDetails.WindowHasTargetableStyles)
+                    if (processDetails.MadeBorderlessAttempts > 3 || ! await processDetails.WindowHasTargetableStyles())
                     {
                         return;
                     }
@@ -374,7 +375,7 @@ namespace BorderlessGaming.Logic.Windows
                 );
             }
             //wait before applying styles
-            TaskUtilities.WaitAndStartTask(() =>
+            await TaskUtilities.WaitAndStartTaskAsync(() =>
             {
                 Native.SetWindowLong(targetWindow, WindowLongIndex.Style, styleNewWindowStandard);
                 Native.SetWindowLong(targetWindow, WindowLongIndex.ExtendedStyle, styleNewWindowExtended);

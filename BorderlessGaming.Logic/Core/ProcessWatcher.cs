@@ -58,7 +58,7 @@ namespace BorderlessGaming.Logic.Core
         {
             while (!_watcherToken.IsCancellationRequested)
             {
-                UpdateProcesses();
+                await UpdateProcesses();
                 if (AutoHandleFavorites)
                 {
                     // check favorites against the cache
@@ -73,7 +73,7 @@ namespace BorderlessGaming.Logic.Core
                                 {
                                     favProcess.IsRunning = true;
                                     favProcess.RunningId = pd.Proc.Id;
-                                    RemoveBorder(pd, favProcess);
+                                    await RemoveBorder(pd, favProcess);
                                 }
                             }
                         }
@@ -90,56 +90,56 @@ namespace BorderlessGaming.Logic.Core
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public void RemoveBorder(ProcessDetails pd, Favorite favDetails = null, bool overrideTimeout = false)
+        public async Task RemoveBorder(ProcessDetails pd, Favorite favDetails = null, bool overrideTimeout = false)
         {
             if (favDetails != null && favDetails.DelayBorderless && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
-                var task = new Task(() => RemoveBorder(pd, favDetails, true));
+                var task = new Task(async () => await RemoveBorder(pd, favDetails, true));
                 task.Wait(TimeSpan.FromSeconds(10));
             }
 
             // If a Favorite screen exists, use the Rect from that, instead
             if (favDetails?.FavScreen != null)
             {
-                RemoveBorder_ToSpecificRect(pd, PRectangle.ToRectangle(favDetails.FavScreen), favDetails,
+                await RemoveBorder_ToSpecificRect(pd, PRectangle.ToRectangle(favDetails.FavScreen), favDetails,
                     overrideTimeout);
                 return;
             }
-            Manipulation.MakeWindowBorderless(pd, _form, pd.WindowHandle, new Rectangle(), favDetails ?? Favorite.FromWindow(pd));
+            await Manipulation.MakeWindowBorderless(pd, _form, pd.WindowHandle, new Rectangle(), favDetails ?? Favorite.FromWindow(pd));
         }
 
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public void RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorite favDetails = null,
+        public async Task RemoveBorder_ToSpecificScreen(IntPtr hWnd, Screen screen, Favorite favDetails = null,
             bool overrideTimeout = false)
         {
             if (favDetails != null && favDetails.DelayBorderless && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
-                var task = new Task(() => RemoveBorder_ToSpecificScreen(hWnd, screen, favDetails, true));
+                var task = new Task(async () => await RemoveBorder_ToSpecificScreen(hWnd, screen, favDetails, true));
                 task.Wait(TimeSpan.FromSeconds(10));
             }
 
             var pd = FromHandle(hWnd);
-            Manipulation.MakeWindowBorderless(pd, _form, hWnd, screen.Bounds, favDetails ?? Favorite.FromWindow(pd));
+            await Manipulation.MakeWindowBorderless(pd, _form, hWnd, screen.Bounds, favDetails ?? Favorite.FromWindow(pd));
         }
 
         /// <summary>
         ///     remove the menu, resize the window, remove border, and maximize
         /// </summary>
-        public void RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorite favDetails = null,
+        public async Task RemoveBorder_ToSpecificRect(IntPtr hWnd, Rectangle targetFrame, Favorite favDetails = null,
             bool overrideTimeout = false)
         {
             if (favDetails != null && favDetails.DelayBorderless && overrideTimeout == false)
             {
                 //Wait 10 seconds before removing the border.
-                var task = new Task(() => RemoveBorder_ToSpecificRect(hWnd, targetFrame, favDetails, true));
+                var task = new Task(async () => await RemoveBorder_ToSpecificRect(hWnd, targetFrame, favDetails, true));
                 task.Wait(TimeSpan.FromSeconds(10));
             }
             var pd = FromHandle(hWnd);
-            Manipulation.MakeWindowBorderless(pd, _form, hWnd, targetFrame, favDetails ?? Favorite.FromWindow(pd));
+            await Manipulation.MakeWindowBorderless(pd, _form, hWnd, targetFrame, favDetails ?? Favorite.FromWindow(pd));
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace BorderlessGaming.Logic.Core
             }
         }
 
-        private void UpdateProcesses()
+        private async Task UpdateProcesses()
         {
             if (!AutoHandleFavorites)
             {
@@ -189,7 +189,7 @@ namespace BorderlessGaming.Logic.Core
 
                     if (!process.NoAccess)
                     {
-                        TaskUtilities.StartTaskAndWait(() => { currentTitle = Native.GetWindowTitle(process.WindowHandle); },
+                        await TaskUtilities.StartTaskAndWait(() => { currentTitle = Native.GetWindowTitle(process.WindowHandle); },
                             Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2); shouldBePruned = process.WindowTitle != currentTitle;
                     }
                 }

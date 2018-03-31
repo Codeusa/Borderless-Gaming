@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading.Tasks;
 using BorderlessGaming.Logic.System.Utilities;
 using BorderlessGaming.Logic.Windows;
 
@@ -28,10 +29,16 @@ namespace BorderlessGaming.Logic.Models
             Proc = p;
 
             WindowHandle = hWnd;
-            WindowTitle = "<error>";
-            TaskUtilities.StartTaskAndWait(() => { WindowTitle = Native.GetWindowTitle(WindowHandle); },
-                Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2);
+            WindowTitle = Native.GetWindowTitle(WindowHandle);
+          //  GetWindowTitle();
+
             //this.WindowClass = WindowsAPI.Native.GetWindowClassName(this.WindowHandle); // note: this isn't used, currently
+        }
+
+        private async void GetWindowTitle()
+        {
+           await TaskUtilities.StartTaskAndWait(() => { WindowTitle = Native.GetWindowTitle(WindowHandle); },
+                Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2);
         }
 
         // Automatically detects changes to the window handle
@@ -48,7 +55,7 @@ namespace BorderlessGaming.Logic.Models
 
                     if (!Native.IsWindow(_windowHandle))
                     {
-                        _windowHandle = Native.GetMainWindowForProcess(Proc);
+                        _windowHandle = Native.GetMainWindowForProcess(Proc).GetAwaiter().GetResult();
                     }
                 }
                 catch
@@ -112,22 +119,16 @@ namespace BorderlessGaming.Logic.Models
         private string BinaryNameForComparison => BinaryName.Trim().ToLower().Replace(" ", "").Replace("_", "");
 
         // Detect whether or not the window needs border changes
-        public bool WindowHasTargetableStyles
+        public async Task<bool> WindowHasTargetableStyles()
         {
-            get
-            {
-                var targetable = false;
-                TaskUtilities.StartTaskAndWait(() =>
-                {
-                    var styleCurrentWindowStandard = Native.GetWindowLong(WindowHandle, WindowLongIndex.Style);
-                    var styleCurrentWindowExtended = Native.GetWindowLong(WindowHandle, WindowLongIndex.ExtendedStyle);
-                    targetable = styleCurrentWindowStandard.HasTargetStyles() ||
-                                 styleCurrentWindowExtended.HasExtendedStyles();
-                }, Config.Instance.AppSettings.SlowWindowDetection
-                    ? 10
-                    : 2);
-                return targetable;
-            }
+            var targetable = false;
+            await TaskUtilities.StartTaskAndWait(() =>
+             {
+                 var styleCurrentWindowStandard = Native.GetWindowLong(WindowHandle, WindowLongIndex.Style);
+                 var styleCurrentWindowExtended = Native.GetWindowLong(WindowHandle, WindowLongIndex.ExtendedStyle);
+                 targetable = styleCurrentWindowStandard.HasTargetStyles() || styleCurrentWindowExtended.HasExtendedStyles();
+             }, Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2);
+            return targetable;
         }
 
         public override string ToString() // so that the ListView control knows how to display this object to the user
