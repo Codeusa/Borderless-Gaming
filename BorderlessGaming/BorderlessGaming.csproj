@@ -218,6 +218,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BorderlessGaming_new.ico" />
+    <EmbeddedResource Include="Resources\master-glyph.png" />
+    <None Include="Resources\RainwayLogo.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuildMacros">

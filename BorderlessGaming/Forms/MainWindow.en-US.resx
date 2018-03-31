@@ -724,9 +724,6 @@
   <data name="toolStripRunOnStartup.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
-  <data name="toolStripLanguages.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
   <data name="toolStripCheckForUpdates.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 22</value>
   </data>
@@ -793,7 +790,31 @@
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 27</value>
   </data>
-  <data name="toolStripRainway.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripUsageGuide.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 6</value>
+  </data>
+  <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripSupportUs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 6</value>
+  </data>
+  <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 27</value>
+  </data>
+  <data name="rainwayStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIQAAACWCAYAAAAfWiA3AAAABGdBTUEAALGPC/xhBQAAEwRJREFUeF7t
         nQuQHMV5x0WU2NhxiB0nIbGTWOXIpMKBAsaS7m7ndYY4ED+wU1wSP3iYGJy4wEGJ/CjAZGNLdzvds3c2
@@ -880,32 +901,11 @@
         fxxJPk72nkr8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripRainway.Text" xml:space="preserve">
-    <value>Rainway</value>
+  <data name="rainwayStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 27</value>
   </data>
-  <data name="toolStripUsageGuide.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripRegexReference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripMenuItem13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
-  </data>
-  <data name="toolStripReportBug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripSupportUs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
-  </data>
-  <data name="toolStripAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 27</value>
+  <data name="rainwayStrip.Text" xml:space="preserve">
+    <value>Check Out Raiway</value>
   </data>
   <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 31</value>

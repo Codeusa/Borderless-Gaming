@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using BorderlessGaming.Logic.Core;
 
 namespace BorderlessGaming.Logic.Models
@@ -22,6 +25,7 @@ namespace BorderlessGaming.Logic.Models
 
         internal string Data(string key)
         {
+          
             return LanguageData.ContainsKey(key) ? LanguageData[key] : null;
         }
 

@@ -1225,5 +1225,10 @@ fav.PositionX.ToString()), out int favPositionX);
             }
             RefreshFavoritesList(fav);
         }
+
+        private void checkOutRainwayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.GotoSite("https://rainway.io/?ref=borderlessgaming3");
+        }
     }
 }
