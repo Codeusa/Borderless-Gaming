@@ -617,7 +617,7 @@ namespace BorderlessGaming.Forms
             // rainwayStrip
             //
             resources.ApplyResources(this.rainwayStrip, "rainwayStrip");
-            this.rainwayStrip.Text = "Check Out Raiway";
+            this.rainwayStrip.Text = "Check Out Rainway";
             this.rainwayStrip.Image = Resources.master_glyph;
             this.rainwayStrip.Click += new System.EventHandler(this.checkOutRainwayToolStripMenuItem_Click);
             // 
