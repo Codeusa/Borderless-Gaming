@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Imposta la dimensione della finestra
+setWindowSizePixelPrompt|Posizione del pixel {0} dell'angolo in alto a sinistra (coordinata {0}):
+setWindowSizeWidthPrompt|Larghezza finestra (in pixel):
+setWindowSizeHeightPrompt|Altezza finestra (in pixel):
+setWindowSizeMouseTitle|Selezionare area?
+setWindowSizeMousePrompt|Vuoi selezionare l'area utilizzando il cursore del mouse? Rispondendo No, ti verranno chieste dimensioni specifiche in pixel.
+adjustWindowBoundsTitle|Regola i limiti della finestra
+adjustWindowBoundsPrompt|Regolazione in pixel per l'angolo della finestra {0} (0 pixel = nessun adattamento):
+adjustWindowBoundsLeft|sinistra
+adjustWindowBoundsRight|destra
+adjustWindowBoundsTop|alto
+adjustWindowBoundsBottom|basso
+settingConfirmationTitle|Conferma i cambiamenti
+settingConfirmationPrompt|Per rendere effettive le modifiche è necessario riavviare Borderless Gaming. Riavviare ora?
+setWindowTitleTitle|Imposta il titolo della finestra
+setWindowTitlePrompt|Scegli il nuovo titolo per la finestra:
+toggleMouseCursorVisibilityTitle|Nascondere il cursore del mouse?
+toggleMouseCursorVisibilityPrompt|Vuoi veramente nascondere il cursore del mouse? Potresti avere difficoltà nel ritrovare il mouse una volta nascosto. Se hai abilitato la scorciatoia globale per il cursore del mouse, puoi premere [Win + Scroll Lock] per mostrare\nascondere il cursore. Inoltre, uscendo da Borderless Gaming ripristinerà immediatamente il cursore del mouse.
+# Options Menu
+toolStripOptions|Opzioni
+toolStripRunOnStartup|Esegui all'avvio del sistema
+toolStripLanguages|Cambia lingua
+toolStripCheckForUpdates|Controllo aggiornamenti
+toolStripGlobalHotkey|Utilizza la scorciatoia globale
+toolStripMouseLock|Blocca il mouse
+toolStripMouseHide|Nascondi il mouse
+toolStripMinimizedToTray|Minimizza nell'area di notifica all'avvio
+toolStripCloseToTray|Minimizza nell'area di notifica alla chiusura
+toolStripHideBalloonTips|Nascondi i suggerimenti
+toolStripSlowWindowDetection|Rallenta il rilevamento delle finestre
+toolStripViewFullProcessDetails|Mostra più dettagli sui processi
+toolStripRestoreProcesses|Ripristina tutte le applicazioni nascoste
+# Tools Menu
+toolsToolStripMenuItem|Strumenti
+toolStripPauseAutomaticProcessing|Metti in pausa l'esecuzione automatica
+toolStripOpenDataFolder|Apri la cartella dei dati
+toolStripToggleMouseCursorVisibility|Mostra\Nascondi il cursore del mouse
+toolStripToggleWindowsTaskbar|Mostra\Nascondi l'icona dall'area di notifica
+toolStripFullApplicationRefresh|Aggiorna la lista delle applicazioni
+toolStripDisableSteamIntegration|Disabilita l'integrazione con Steam
+# Help Menu
+toolStripInfo|Aiuto
+toolStripUsageGuide|Manuale
+toolStripRegexReference|Riferimenti a Regex
+toolStripReportBug|Segnala un malfunzionamento
+toolStripSupportUs|Supportaci
+toolStripAbout|Informazioni
+# Process Context Menu
+contextAddToFavs|Aggiungi ai preferiti...
+toolStripByTheWindowTitle|... secondo il testo nel titolo della finestra
+toolStripByRegex|... secondo il testo nel titolo della finestra (regex)
+toolStripByProcess|... secondo il nome del processo
+contextBorderless|Rimuovi i bordi
+contextBorderlessOn|Rimuovi i bordi su...
+toolStripSetWindowTitle|Imposta il titolo della finestra
+toolStripHideProcess|Nascondi questo processo
+# Favorite Context Menu
+toolStripFullScreen|Schermo intero
+toolStripNoSizeChange|Nessun cambiamento
+toolStripSetSetWindowSize|Imposta la dimensione della finestra
+toolStripAutomaximize|Massimizza automaticamente
+toolStripAdjustWindowBounds|Regola i limiti della finestra
+toolStripAlwaysOnTop|Sempre in primo piano
+toolStripDelayBorderless|Ritarda la finestra senza bordi
+toolStripHideMouseCursor|Nascondi il cursore del mouse
+toolStripHideWindowsTaskbar|Nascondi la barra delle applicazioni di Windows
+toolStripRemoveMenus|Rimuovi i menu
+contextFavScreen|Seleziona lo schermo che preferisci...
+toolStripMuteInBackground|Silenzia quando ridotta ad icona
+contextRemoveFromFavs|Rimuovi dai preferiti
+# UI
+superSize|SuperSize!
+processLabel|Appliczioni:
+favoritesLabel|Preferiti (automatico):
+statusLabel|Caricamento...
+moreOptionsLabel|Fai click con il tasto destro su un elemento per mostrare più opzioni. Ultimo aggiornamento
+# Tool Tips
+steamHint|Impedisce di mostrarti come "In Applicazione" su Steam
+addFavorite|Aggiunge l'applicazione selezionata alla tua lista preferiti (secondo il titolo della finestra).
+removeFavorite|Rimuove l'applicazione selezionata dalla tua lista preferiti.
+makeBorderless|Rimuove i bordi alla finestra dell'applicazione selezionata.
+restoreBorders|Tenta di ripristinare i bordi della finestra.
