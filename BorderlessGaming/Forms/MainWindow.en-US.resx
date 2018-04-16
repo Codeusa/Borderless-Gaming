@@ -905,7 +905,7 @@
     <value>131, 27</value>
   </data>
   <data name="rainwayStrip.Text" xml:space="preserve">
-    <value>Check Out Raiway</value>
+    <value>Check Out Rainway</value>
   </data>
   <data name="mnuMain.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 31</value>
