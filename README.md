@@ -47,10 +47,6 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 
 **I have a new suggestion:** For feature requests please first check [the issues list](https://github.com/Codeusa/Borderless-Gaming/issues) to see if it's already there. If not, feel free to file it as an issue and to define the label **enhancement**.
 
-# Code of Conduct
-
-You are an adult and the expectation is that we all act like it.  This is not a "safe space"; it is programming, so present yourself how you want to be treated.  See the [NCoC](https://github.com/Codeusa/NCoC/blob/master/CODE_OF_CONDUCT.md)
-
 ## Contact info
 
 * **Twitter:** [@AndrewMD5](https://twitter.com/andrewmd5)
