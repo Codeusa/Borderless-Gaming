@@ -3,8 +3,8 @@ setWindowSizeTitle|Fenstertitel anpassen
 setWindowSizePixelPrompt|Pixel {0} Position für die obere linke Ecke ({0} Koordinate):
 setWindowSizeWidthPrompt|Fenster Breite (in Pixeln):
 setWindowSizeHeightPrompt|Fenster Höhe (in Pixeln):
-setWindowSizeMouseTitle|Zone auswählen?
-setWindowSizeMousePrompt|Willst Du die Zone mit dem Mauszeiger auswählen? Falls Du Nein antwortest, wirst Du nach pixlegenauen Angaben gefragt.
+setWindowSizeMouseTitle|Bereich auswählen?
+setWindowSizeMousePrompt|Willst du den Bereich mit dem Mauszeiger auswählen? Falls du Nein antwortest, wirst du nach pixelgenauen Angaben gefragt.
 adjustWindowBoundsTitle|Fensterrand anpassen
 adjustWindowBoundsPrompt|Pixel Anpassung für den {0} Fensterrand (0 Pixel = keine Anpassung):
 adjustWindowBoundsLeft|linken
@@ -16,7 +16,7 @@ settingConfirmationPrompt|Du musst Borderless Gaming neu starten, damit Deine Ä
 setWindowTitleTitle|Fenstertitel anpassen
 setWindowTitlePrompt|Neuen Fenstertitel eingeben:
 toggleMouseCursorVisibilityTitle|Mauszeiger wirklich verstecken?
-toggleMouseCursorVisibilityPrompt|Willst Du den Mauszeiger wirklich verstecken? Möglicherweise wirst Du Schwierigkeiten haben den Mauszeiger wiederzufinden. Wenn Du den globalen Hotkey zum Umschalten der Mauszeiger Sichtbarkeit aktiviert hast, kannst Du mit [Win + Scroll Lock] den Mauszeiger sichtbar machen. Außerdem stellt Borderless Gaming den Mauszeiger sofort wieder her, wenn es beendet wird.
+toggleMouseCursorVisibilityPrompt|Willst du den Mauszeiger wirklich verstecken? Möglicherweise wirst du Schwierigkeiten haben den Mauszeiger wiederzufinden. Wenn du den globalen Hotkey zum Umschalten der Mauszeiger Sichtbarkeit aktiviert hast, kannst du mit [Win + Scroll Lock] den Mauszeiger sichtbar machen. Außerdem stellt Borderless Gaming den Mauszeiger sofort wieder her, wenn es beendet wird.
 # Options Menu
 toolStripOptions|Optionen
 toolStripRunOnStartup|Mit Computer starten
@@ -44,13 +44,13 @@ toolStripInfo|Hilfe
 toolStripUsageGuide|Anleitung
 toolStripRegexReference|Regex Hinweis
 toolStripReportBug|Fehler melden
-toolStripSupportUs|Unterstütze Uns
+toolStripSupportUs|Unterstütze uns
 toolStripAbout|Über
 # Process Context Menu
 contextAddToFavs|Zu Favoriten hinzufügen...
 toolStripByTheWindowTitle|... durch Fenstertitel
 toolStripByRegex|... durch Fenstertitel (regex)
-toolStripByProcess|... durch den Anwendungs Dateinamen
+toolStripByProcess|... durch den Anwendungsnamen des Prozesses
 contextBorderless|Randlos machen
 contextBorderlessOn|Randlos machen auf...
 toolStripSetWindowTitle|Fenstertitel anpassen
@@ -66,7 +66,7 @@ toolStripDelayBorderless|Randloses Fenster verzögern
 toolStripHideMouseCursor|Mauszeiger verstecken
 toolStripHideWindowsTaskbar|Windows Taskleiste verstecken
 toolStripRemoveMenus|Menüs entfernen
-contextFavScreen|Bevorzugten Bildschrim auswählen...
+contextFavScreen|Bevorzugten Bildschirm auswählen...
 toolStripMuteInBackground|Im Hintergrund stummschalten
 contextRemoveFromFavs|Aus Favoriten entfernen
 # UI
@@ -74,10 +74,10 @@ superSize|ExtraGroß!
 processLabel|Anwendungen:
 favoritesLabel|Favoriten (automatisch):
 statusLabel|Lade...
-moreOptionsLabel|Rechts-Klick für weitere Optionen. Zuletzt aktualisiert
+moreOptionsLabel|Rechtsklicken für weitere Optionen. Zuletzt aktualisiert
 # Tool Tips
 steamHint|Verhindert "In Anwendung" auf Steam
-addFavorite|Fügt ausgewählte Anwendung den Favoriten hinzu (durch den Fenstertitel)
-removeFavorite|Entfernt ausgewählten Favorit von der Liste
-makeBorderless|Macht ausgewählte Anwendung randlos
-restoreBorders|Versucht den Rand eines Fensters wiederherzustellen
+addFavorite|Fügt ausgewählte Anwendung den Favoriten hinzu (durch den Fenstertitel).
+removeFavorite|Entfernt ausgewählten Favorit von der Liste.
+makeBorderless|Macht ausgewählte Anwendung randlos.
+restoreBorders|Versucht den Rand eines Fensters wiederherzustellen.
