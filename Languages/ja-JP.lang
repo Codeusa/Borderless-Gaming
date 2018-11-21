@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|ウィンドウサイズ設定
+setWindowSizePixelPrompt|ピクセル {0} の左上の位置 ({0} 座標):
+setWindowSizeWidthPrompt|ウィンドウの幅 (単位:ピクセル):
+setWindowSizeHeightPrompt|ウィンドウの高さ (単位:ピクセル):
+setWindowSizeMouseTitle|エリア選択
+setWindowSizeMousePrompt|マウスでウィンドウのサイズを指定しますか？\r\n\r\n[いいえ]を選択した場合、直接サイズ指定を行います
+adjustWindowBoundsTitle|ウィンドウの端を微調整する
+adjustWindowBoundsPrompt|{0} からの距離 (0 pixels = 調整しない):
+adjustWindowBoundsLeft|左端
+adjustWindowBoundsRight|右端
+adjustWindowBoundsTop|上端
+adjustWindowBoundsBottom|下端
+settingConfirmationTitle|変更の適用
+settingConfirmationPrompt|設定を適用するには[Borderless Gaming]を再起動する必要があります。 今すぐ再起動しますか？
+setWindowTitleTitle|タイトルの変更
+setWindowTitlePrompt|変更後のタイトル:
+toggleMouseCursorVisibilityTitle|本当にマウスカーソルを非表示にしますか?
+toggleMouseCursorVisibilityPrompt|本当にマウスカーソルを非表示にしますか?\r\n\r\n非表示にした場合、マウスの位置を見つける事が困難になります。\r\n\r\nホットキーを有効にしている場合、[Win + Scroll Lock]を利用してマウスカーソルの表示を切り替える事ができます。\r\n\r\n[Borderless Gaming]を終了すると、マウスカーソルが復元されます。
+# Options Menu
+toolStripOptions|設定
+toolStripRunOnStartup|PCの起動時に自動で起動する
+toolStripLanguages|言語設定
+toolStripCheckForUpdates|更新を確認
+toolStripGlobalHotkey|グローバルホットキーを利用する
+toolStripMouseLock|マウスカーソル固定切替のホットキーを利用する
+toolStripMouseHide|マウスカーソル表示切替のホットキーを利用する
+toolStripMinimizedToTray|起動時にタスクトレイに格納する
+toolStripCloseToTray|[閉じる]ボタンでタスクトレイに格納する
+toolStripHideBalloonTips|バルーンチップを非表示にする
+toolStripSlowWindowDetection|ウィンドウ検出を遅くする
+toolStripViewFullProcessDetails|プロセスの詳細を表示する
+toolStripRestoreProcesses|非表示にしたすべてのプロセスを再表示する
+# Tools Menu
+toolsToolStripMenuItem|ツール
+toolStripPauseAutomaticProcessing|自動処理を一時停止する
+toolStripOpenDataFolder|データフォルダを開く
+toolStripToggleMouseCursorVisibility|マウスカーソルの表示を切り替える
+toolStripToggleWindowsTaskbar|タスクバーの表示を切り替える
+toolStripFullApplicationRefresh|アプリケーション一覧を再読み込みする
+toolStripDisableSteamIntegration|Steamとの統合を無効にする
+# Help Menu
+toolStripInfo|ヘルプ
+toolStripUsageGuide|使用方法
+toolStripRegexReference|正規表現ガイド
+toolStripReportBug|バグを報告
+toolStripSupportUs|Support Us
+toolStripAbout|このツールについて
+# Process Context Menu
+contextAddToFavs|お気に入りへ追加
+toolStripByTheWindowTitle|... ウィンドウタイトルを利用する
+toolStripByRegex|... ウィンドウタイトルを利用する(正規表現)
+toolStripByProcess|... プロセスのバイナリ名を利用する
+contextBorderless|ボーダーレス化
+contextBorderlessOn|指定した画面でボーダーレス化する
+toolStripSetWindowTitle|ウィンドウのタイトルを変更する
+toolStripHideProcess|プロセスを非表示化する
+# Favorite Context Menu
+toolStripFullScreen|フルスクリーン
+toolStripNoSizeChange|サイズを変更しない
+toolStripSetSetWindowSize|サイズを指定する
+toolStripAutomaximize|自動で最大化する
+toolStripAdjustWindowBounds|ウィンドウの端を微調整する
+toolStripAlwaysOnTop|常に最前面
+toolStripDelayBorderless|ボーダーレス化を遅延させる
+toolStripHideMouseCursor|マウスカーソルを非表示にする
+toolStripHideWindowsTaskbar|タスクバーを非表示にする
+toolStripRemoveMenus|メニューを削除
+contextFavScreen|利用するディスプレイを選択
+toolStripMuteInBackground|非アクティブ時にミュートする
+contextRemoveFromFavs|お気に入りから削除
+# UI
+superSize|モニタを跨いで全画面化する
+processLabel|アプリケーション:
+favoritesLabel|お気に入り (自動化):
+statusLabel|読み込み中...
+moreOptionsLabel|右クリックで詳細なオプションを表示します。 最終更新:
+# Tool Tips
+steamHint|Steamの"In-App"を抑制
+addFavorite|選択中のアプリケーションをお気に入りへ追加 (ウィンドウタイトルを利用)
+removeFavorite|選択中のアプリケーションをお気に入りから削除
+makeBorderless|選択中のアプリケーションをボーダーレス化
+restoreBorders|選択中のアプリケーションのボーダーレス化を解除
