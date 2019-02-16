@@ -84,8 +84,8 @@ namespace BorderlessGaming.Logic.System
                     var logT = new LogonTrigger {Delay = new TimeSpan(0, 0, 0, 10)};
                     td.Triggers.Add(logT);
                     td.Actions.Add(new ExecAction(AppEnvironment.Path, silentMinimize, null));
-                    task.Settings.DisallowStartIfOnBatteries = false;
-                    task.Settings.StopIfGoingOnBatteries = false;
+                    td.Settings.DisallowStartIfOnBatteries = false;
+                    td.Settings.StopIfGoingOnBatteries = false;
                     TaskService.Instance.RootFolder.RegisterTaskDefinition(_taskName, td);
                     Console.WriteLine("Task Registered");
                 }
