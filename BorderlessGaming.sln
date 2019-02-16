@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderlessGaming.Logic", "BorderlessGaming.Logic\BorderlessGaming.Logic.csproj", "{F5AF80A6-F3F4-4855-A620-22FA5737D019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BorderlessGaming.Logic", "BorderlessGaming.Logic\BorderlessGaming.Logic.csproj", "{F5AF80A6-F3F4-4855-A620-22FA5737D019}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderlessGaming", "BorderlessGaming\BorderlessGaming.csproj", "{E389C332-9BF5-4BB7-A131-7E230EEB2AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BorderlessGaming", "BorderlessGaming\BorderlessGaming.csproj", "{E389C332-9BF5-4BB7-A131-7E230EEB2AE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +44,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A642E75-EF69-439E-82AE-FA9033979FA5}
 	EndGlobalSection
 EndGlobal

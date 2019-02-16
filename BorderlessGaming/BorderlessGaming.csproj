@@ -57,9 +57,6 @@
     </ItemGroup>
   </Target>
   <ItemGroup>
-    <None Remove="Languages.zip" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
     <PackageReference Include="Microsoft.CSharp" Version="4.*" />
     <PackageReference Include="System.Net.Http" Version="4.*" />
@@ -153,6 +150,9 @@
     <None Include="..\BGKey.pfx">
       <Link>BGKey.pfx</Link>
     </None>
+    <Content Include="..\Languages\Languages.zip" Link="Languages.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -195,9 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BorderlessGaming_new.ico" />
-    <Content Include="Languages.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Resources\master-glyph.png" />
     <None Include="Resources\RainwayLogo.bmp" />
   </ItemGroup>
