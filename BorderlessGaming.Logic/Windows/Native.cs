@@ -217,11 +217,17 @@ namespace BorderlessGaming.Logic.Windows
         public static string GetWindowTitle(IntPtr hWnd)
         {
             // Allocate correct string length first
-            var length = (int) SendMessage(hWnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
-            var sbWindowTitle = new StringBuilder(length + 1);
-            SendMessage(hWnd, WM_GETTEXT, (IntPtr) sbWindowTitle.Capacity, sbWindowTitle);
-            Console.WriteLine(sbWindowTitle.ToString());
-            return sbWindowTitle.ToString();
+            try
+            {
+                var length = (int)SendMessage(hWnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+                var sbWindowTitle = new StringBuilder(length + 1);
+                SendMessage(hWnd, WM_GETTEXT, (IntPtr)sbWindowTitle.Capacity, sbWindowTitle);
+                return sbWindowTitle.ToString();
+            }
+            catch (Exception)
+            {
+                return "<error>";
+            }
         }
 
         [DllImport("user32.dll", SetLastError = true)]
