@@ -1,0 +1,83 @@
+# Popups
+setWindowSizeTitle|Definir Tamanho da Janela
+setWindowSizePixelPrompt|Localização do pixel {0} para o canto superior esquerdo (coordenada {0}):
+setWindowSizeWidthPrompt|Largura da janela (em pixels):
+setWindowSizeHeightPrompt|Altura da janela (em pixels):
+setWindowSizeMouseTitle|Selecionar Área?
+setWindowSizeMousePrompt|Utilizar o cursor do mouse para selecionar a área?\r\n\r\nCaso contrário, será necessário fornecer as dimensões específicas em pixels.
+adjustWindowBoundsTitle|Definir Limites da Janela
+adjustWindowBoundsPrompt|Ajuste de pixel para a borda da janela {0} (0 pixels = sem ajuste):
+adjustWindowBoundsLeft|esquerda
+adjustWindowBoundsRight|direita
+adjustWindowBoundsTop|superior
+adjustWindowBoundsBottom|inferior
+settingConfirmationTitle|Confirmar Alterações
+settingConfirmationPrompt|É necessário reiniciar o Borderless Gaming para que as alterações passem a funcionar. Reiniciar agora?
+setWindowTitleTitle|Definir Título da Janela
+setWindowTitlePrompt|Definir o título da nova janela:
+toggleMouseCursorVisibilityTitle|Esconder o Cursor do Mouse?
+toggleMouseCursorVisibilityPrompt|Deseja realmente esconder o cursor do mouse?\r\n\r\nCaso escondido, pode ser difícil encontrá-lo novamente.\r\n\r\nCaso o atalho para alternar a visibilidade do mouse esteja habilitado, pressione [Win + Scroll Lock] para visualizá-lo novamente.\r\n\r\nAo fechar o Borderless Gaming, o mouse voltará a ficar visível automaticamente.
+# Options Menu
+toolStripOptions|Opções
+toolStripRunOnStartup|Executar ao Iniciar
+toolStripLanguages|Selecionar Idioma
+toolStripCheckForUpdates|Verificar Atualiações
+toolStripGlobalHotkey|Habilitar Atalhos Globais
+toolStripMouseLock|Habilitar Atalho para Bloquear o Mouse
+toolStripMouseHide|Habilitar Atalho para Esconder o Mouse
+toolStripMinimizedToTray|Iniciar Minimizado na Bandeija
+toolStripCloseToTray|Fechar para a Bandeija
+toolStripHideBalloonTips|Esconder Balões de Dicas
+toolStripSlowWindowDetection|Habilitar Detecção Lenta de Janelas
+toolStripViewFullProcessDetails|Exibir Todos os Detalhes do Processo
+toolStripRestoreProcesses|Restaurar Todos os Aplicativos Escondidos
+# Tools Menu
+toolsToolStripMenuItem|Ferramentas
+toolStripPauseAutomaticProcessing|Pausar Processamento Automático
+toolStripOpenDataFolder|Abrir Pasta de Configuração
+toolStripToggleMouseCursorVisibility|Alternar Visibilidade do Cursor do Mouse
+toolStripToggleWindowsTaskbar|Alternar Visibilidade da Barra de Tarefas
+toolStripFullApplicationRefresh|Recarregar Aplicações
+toolStripDisableSteamIntegration|Desabilitar Integração com a Steam
+# Help Menu
+toolStripInfo|Ajuda
+toolStripUsageGuide|Guia de Uso
+toolStripRegexReference|Referência de RegEx
+toolStripReportBug|Reportar Bug
+toolStripSupportUs|Apoie-nos
+toolStripAbout|Sobre
+# Process Context Menu
+contextAddToFavs|Adicionar aos Favoritos ...
+toolStripByTheWindowTitle|... pelo Título da Janela
+toolStripByRegex|... pelo Título da Janela (RegEx)
+toolStripByProcess|... pelo Nome do Processo
+contextBorderless|Remover Bordas
+contextBorderlessOn|Remover Bordas ao ...
+toolStripSetWindowTitle|Definir Título da Janela
+toolStripHideProcess|Esconder Processo
+# Favorite Context Menu
+toolStripFullScreen|Tela Cheia
+toolStripNoSizeChange|Não Alterar o Tamanho
+toolStripSetSetWindowSize|Definir Tamanho da Janela
+toolStripAutomaximize|Auto-Maximizar
+toolStripAdjustWindowBounds|Definir Limites da Janela
+toolStripAlwaysOnTop|Sempre no Topo
+toolStripDelayBorderless|Atrasar Remoção das Bordas
+toolStripHideMouseCursor|Esconder Cursor do Mouse
+toolStripHideWindowsTaskbar|Esconder Barra de Tarefas
+toolStripRemoveMenus|Remover Menus
+contextFavScreen|Selecionar Tela Favorita...
+toolStripMuteInBackground|Silenciar em Segundo Plano
+contextRemoveFromFavs|Remover dos Favoritos
+# UI
+superSize|Super Tamanho!
+processLabel|Aplicações:
+favoritesLabel|Favoritos (automático):
+statusLabel|Carregando...
+moreOptionsLabel|Botão direito para mais opções. Última atualização
+# Tool Tips
+steamHint|Prevenir "Em Aplicação" na Steam
+addFavorite|Adicionar aplicação selecionada aos favoritos (pelo título da janela).
+removeFavorite|Remover aplicação selecionada dos favoritos.
+makeBorderless|Remover bordas da aplicação selecionada.
+restoreBorders|Tentar restaurar a janela para seu estado original.
