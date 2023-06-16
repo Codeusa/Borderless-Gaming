@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
-using BorderlessGaming.Logic.System;
+using BorderlessGaming.Logic.Misc;
 
 namespace BorderlessGaming.Forms
 {
@@ -23,7 +23,7 @@ namespace BorderlessGaming.Forms
 
         private void OpenBlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Tools.GotoSite("http://blog.andrew.im/");
+            Tools.GotoSite("https://andrew.im/");
         }
 
         private void OpenSteamGroup(object sender, LinkLabelLinkClickedEventArgs e)
@@ -33,7 +33,7 @@ namespace BorderlessGaming.Forms
 
         private void OpenOwnerGithub(object sender, EventArgs e)
         {
-            Tools.GotoSite("https://github.com/Codeusa/");
+            Tools.GotoSite("https://github.com/andrewmd5/");
         }
 
         private void OpenOwnerSteam(object sender, EventArgs e)

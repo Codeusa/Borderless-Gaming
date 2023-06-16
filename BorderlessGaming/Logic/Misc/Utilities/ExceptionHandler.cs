@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace BorderlessGaming.Logic.System.Utilities
+namespace BorderlessGaming.Logic.Misc.Utilities
 {
     public static class ExceptionHandler
     {
@@ -16,7 +16,7 @@ namespace BorderlessGaming.Logic.System.Utilities
                 Directory.CreateDirectory(LogsPath);
             }
             var filePath = Path.Combine(LogsPath,
-                       $"Exception_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
+                       $"Exception_{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.crash");
             File.WriteAllBytes(filePath, new Models.RuntimeException
             {
                 Reason = ex.Message,
@@ -38,7 +38,7 @@ namespace BorderlessGaming.Logic.System.Utilities
                     }
 
                     var filePath = Path.Combine(LogsPath,
-                        $"UnhandledException_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
+                        $"UnhandledException_{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.crash");
 
                     var exception = (Exception)args.ExceptionObject;
                     File.WriteAllBytes(filePath, new Models.RuntimeException
@@ -68,7 +68,7 @@ namespace BorderlessGaming.Logic.System.Utilities
                     }
 
                     var filePath = Path.Combine(LogsPath,
-                        $"ThreadException_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
+                        $"ThreadException_{DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss")}.crash");
 
                     var exception = args.Exception;
                     File.WriteAllBytes(filePath, new Models.RuntimeException

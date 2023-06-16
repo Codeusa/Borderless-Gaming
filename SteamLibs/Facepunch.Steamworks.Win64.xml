@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Facepunch.Steamworks.Win32</name>
+        <name>Facepunch.Steamworks.Win64</name>
     </assembly>
     <members>
         <member name="T:Steamworks.CallResult`1">

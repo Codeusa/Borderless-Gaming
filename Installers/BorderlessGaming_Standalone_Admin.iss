@@ -1,5 +1,5 @@
 [Setup]
-#define MainProg "../BorderlessGaming/bin/Release/BorderlessGaming.exe"
+#define MainProg "../BorderlessGaming/bin/Release/net8.0-windows/win-x64/publish/BorderlessGaming.exe"
 #define Major
 #define Minor
 #define Rev
@@ -54,7 +54,7 @@ BeveledLabel=Borderless Gaming {#AppVersion} Setup
 Name: english; MessagesFile: compiler:Default.isl
 
 [Files]
-Source: ../BorderlessGaming/bin/Release/*; DestDir: {app}; Flags: ignoreversion recursesubdirs
+Source: ../BorderlessGaming/bin/Release/net8.0-windows/win-x64/publish/*; DestDir: {app}; Flags: ignoreversion recursesubdirs
 
 Source: ../LICENSE; DestName: License.txt; DestDir: {app}
 Source: ../README.md; DestName: Read Me.txt; DestDir: {app}
@@ -78,9 +78,12 @@ Description: Start Borderless Gaming; Filename: {app}\BorderlessGaming.exe; Flag
 Type: files; Name: {app}\License.txt
 Type: files; Name: {app}\Read Me.txt
 Type: files; Name: {app}\BorderlessGaming.exe
-Type: files; Name: {app}\Interop.IWshRuntimeLibrary.dll
-Type: files; Name: {app}\Newtonsoft.Json.dll
 Type: files; Name: {app}\uninstall.ico
+Type: files; Name: {app}\Languages.zip
+Type: files; Name: {app}\BorderlessGaming.pdb
+Type: files; Name: {app}\Facepunch.Steamworks.Win64.pdb
+Type: files; Name: {app}\Facepunch.Steamworks.Win64.xml
+Type: files; Name: {app}\steam_appid.txt
 
 [Code]
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
@@ -88,7 +91,7 @@ begin
   if CurUninstallStep = usUninstall then begin
     if MsgBox('Do you want to delete your Borderless Gaming settings and preferences as well?', mbConfirmation, MB_YESNO) = IDYES 
     then begin
-      DelTree(ExpandConstant('{app}'), True, True, True)
+      DelTree(ExpandConstant('{userappdata}\borderless-gaming'), True, True, True)
     end;
   end;
 end;

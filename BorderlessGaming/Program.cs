@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
+using BorderlessGaming.Logic.Misc;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.System;
 using BorderlessGaming.Logic.Windows;
 
 namespace BorderlessGaming
@@ -13,20 +14,24 @@ namespace BorderlessGaming
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
-          
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+
             Tools.Setup();
             //use github updating for non-steam
-           /*if (!UserPreferences.Instance.StartupOptions.IsSteam && UserPreferences.Instance.Settings.CheckForUpdates is true)
+            if (UserPreferences.Instance.StartupOptions.IsSteam is false && UserPreferences.Instance.Settings.CheckForUpdates is true)
             {
-                Tools.CheckForUpdates();
-            }*/
-         //   ForegroundManager.Subscribe();
-          //  Application.Run(new MainWindow());
-          
+                await Tools.CheckForUpdates();
+            }
+
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+
+            ForegroundManager.Subscribe();
+            Application.Run(new MainWindow());
+
         }
     }
 }

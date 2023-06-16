@@ -1,25 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <SelfContained>true</SelfContained>
+    <AssemblyVersion>9.5.6</AssemblyVersion>
+    <FileVersion>9.5.6</FileVersion>
+    <Version>9.5.6</Version>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>BorderlessGaming_new.ico</ApplicationIcon>
@@ -28,7 +21,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BorderlessGaming.Logic\BorderlessGaming.Logic.csproj" />
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>..\SteamLibs\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BorderlessGaming_new.ico" />
@@ -41,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="bebop" Version="2.7.4" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="TaskScheduler" Version="2.10.1" />
   </ItemGroup>
   <Target Name="PostBuildMacros">
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
@@ -50,18 +47,32 @@
       <VersionNumber Include="$([System.Text.RegularExpressions.Regex]::Replace(&quot;%(Targets.Version)&quot;, &quot;^([^\.]+)\.([^\.]+)\.([^\.]+)(.*)$&quot;, &quot;$1.$2.$3&quot;))" />
     </ItemGroup>
   </Target>
-  <!--
+  <ItemGroup>
+    <Content Include="../SteamLibs/steam_api64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>runtimes/win-x64/native/steam_api64.dll</PackagePath>
+    </Content>
+    <Content Include="../SteamLibs/steam_appid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>runtimes/win-x64/native/steam_appid.txt</PackagePath>
+    </Content>
+  </ItemGroup>
+  <Target Name="ZipLanguages" BeforeTargets="Build">
+    <ZipDirectory SourceDirectory="$(SolutionDir)\Languages" DestinationFile="$(OutputPath)\Languages.zip" />
+  </Target>
+  <Target Name="ZipLanguages" BeforeTargets="Publish">
+    <ZipDirectory SourceDirectory="$(SolutionDir)\Languages" DestinationFile="$(PublishDir)\Languages.zip" />
+  </Target>
+  <!-- 
   <PropertyGroup>
     <PostBuildEventDependsOn>
       $(PostBuildEventDependsOn);
       PostBuildMacros;
     </PostBuildEventDependsOn>
-    <PostBuildEvent>call signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /as /sha1 3BD5BE571287FE2052F137C44198AE7BAB38B037 "$(ProjectDir)$(OutDir)$(TargetFileName)"
-call iscc /Qp "$(SolutionDir)\Installers\BorderlessGaming_Standalone_Admin.iss"
-call signtool sign /tr http://timestamp.digicert.com /td sha256 /fd sha256 /as /sha1 3BD5BE571287FE2052F137C44198AE7BAB38B037 "$(SolutionDir)Installers\BorderlessGaming@(VersionNumber)_admin_setup.exe"</PostBuildEvent>
+    <PostBuildEvent>
+      call iscc /Qp "$(SolutionDir)\Installers\BorderlessGaming_Standalone_Admin.iss"</PostBuildEvent>
   </PropertyGroup>
-   -->
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy ..\SteamLibs\* $(ProjectDir)$(OutDir)" />
-</Target>
+-->
 </Project>

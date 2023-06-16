@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.Properties;
 using BorderlessGaming.Logic.Steam;
-using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Misc.Utilities;
+using BorderlessGaming.Properties;
 
 namespace BorderlessGaming.Logic.Windows
 {

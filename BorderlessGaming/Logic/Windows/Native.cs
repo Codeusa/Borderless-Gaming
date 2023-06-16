@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Misc.Utilities;
 using BorderlessGaming.Logic.Windows.Audio;
 
 namespace BorderlessGaming.Logic.Windows

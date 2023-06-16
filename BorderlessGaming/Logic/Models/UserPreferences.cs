@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using BorderlessGaming.Logic.System;
+using BorderlessGaming.Logic.Misc;
 using CommandLine;
 
 
@@ -26,7 +26,7 @@ namespace BorderlessGaming.Logic.Models
                     HiddenProcesses = Array.Empty<string>(),
                     Settings = AppSettings.CreateDefault()
                 };
-                Save();
+                File.WriteAllBytes(AppEnvironment.ConfigPath, preferences.Encode());
                 return preferences;
             }
             preferences = Decode(File.ReadAllBytes(AppEnvironment.ConfigPath));

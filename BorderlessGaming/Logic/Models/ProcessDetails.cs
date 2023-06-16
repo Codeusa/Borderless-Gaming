@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
-using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Misc.Utilities;
 using BorderlessGaming.Logic.Windows;
 
 namespace BorderlessGaming.Logic.Models

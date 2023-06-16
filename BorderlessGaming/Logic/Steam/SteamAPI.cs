@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Forms;
 using BorderlessGaming.Logic.Extensions;
-using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Misc.Utilities;
 using Steamworks;
 using Steamworks.Data;
 
@@ -30,7 +31,7 @@ namespace BorderlessGaming.Logic.Steam
             }
             catch (Exception ex)
             {   
-                Debug.WriteLine("Failed to load Steam.");
+                Console.WriteLine("Failed to load Steam.");
                 ExceptionHandler.LogException(ex);
             }
         }

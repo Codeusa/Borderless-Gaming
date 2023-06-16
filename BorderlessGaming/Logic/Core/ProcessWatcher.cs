@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.System.Utilities;
+using BorderlessGaming.Logic.Misc.Utilities;
 using BorderlessGaming.Logic.Windows;
 
 namespace BorderlessGaming.Logic.Core

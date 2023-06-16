@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.System;
+using BorderlessGaming.Logic.Misc;
 
 namespace BorderlessGaming.Logic.Core
 {
@@ -55,7 +55,8 @@ namespace BorderlessGaming.Logic.Core
         public static void Load()
         {
             Languages = new Dictionary<string, Language>();
-            if (File.Exists(_archiveName))
+            var languageArchive = Path.Combine(AppEnvironment.ExecutableDirectory, _archiveName);
+            if (File.Exists(languageArchive))
             {
                 try
                 {
@@ -64,8 +65,8 @@ namespace BorderlessGaming.Logic.Core
                         Directory.Delete(AppEnvironment.LanguagePath, true);
                         Directory.CreateDirectory(AppEnvironment.LanguagePath);
                     }
-                    Tools.ExtractZipFile(_archiveName, string.Empty, AppEnvironment.LanguagePath);
-                    File.Delete(_archiveName);
+                    Tools.ExtractZipFile(languageArchive, string.Empty, AppEnvironment.LanguagePath);
+                    File.Delete(languageArchive);
                 }
                 catch (Exception e)
                 {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32.TaskScheduler;
 
-namespace BorderlessGaming.Logic.System
+namespace BorderlessGaming.Logic.Misc
 {
     public static class AutoStart
     {
@@ -83,7 +83,7 @@ namespace BorderlessGaming.Logic.System
                     //wait 10 seconds until after login is complete to boot
                     var logT = new LogonTrigger {Delay = new TimeSpan(0, 0, 0, 10)};
                     td.Triggers.Add(logT);
-                    td.Actions.Add(new ExecAction(AppEnvironment.Path, silentMinimize, null));
+                    td.Actions.Add(new ExecAction(AppEnvironment.ExecutablePath, silentMinimize, null));
                     td.Settings.DisallowStartIfOnBatteries = false;
                     td.Settings.StopIfGoingOnBatteries = false;
                     TaskService.Instance.RootFolder.RegisterTaskDefinition(_taskName, td);

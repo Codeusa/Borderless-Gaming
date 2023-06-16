@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace BorderlessGaming.Logic.System
+namespace BorderlessGaming.Logic.Misc
 {
     public class StartupOptions
     {

@@ -180,7 +180,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static int __EncodeInto(global::BorderlessGaming.Logic.Models.RuntimeException record, ref global::Bebop.Runtime.BebopWriter writer) {
       var before = writer.Length;
       writer.WriteString(record.Reason);
@@ -195,7 +195,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static global::BorderlessGaming.Logic.Models.RuntimeException __DecodeFrom(ref global::Bebop.Runtime.BebopReader reader) {
 
       string field0;
@@ -517,11 +517,11 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static int __EncodeInto(global::BorderlessGaming.Logic.Models.Favorite record, ref global::Bebop.Runtime.BebopWriter writer) {
       var before = writer.Length;
-      writer.WriteByte(global::System.Runtime.CompilerServices.Unsafe.As<global::BorderlessGaming.Logic.Models.FavoriteType, byte>(ref global::System.Runtime.CompilerServices.Unsafe.AsRef(record.Type)));
-      writer.WriteByte(global::System.Runtime.CompilerServices.Unsafe.As<global::BorderlessGaming.Logic.Models.FavoriteSize, byte>(ref global::System.Runtime.CompilerServices.Unsafe.AsRef(record.Size)));
+      writer.WriteByte(System.Runtime.CompilerServices.Unsafe.As<global::BorderlessGaming.Logic.Models.FavoriteType, byte>(ref System.Runtime.CompilerServices.Unsafe.AsRef(record.Type)));
+      writer.WriteByte(System.Runtime.CompilerServices.Unsafe.As<global::BorderlessGaming.Logic.Models.FavoriteSize, byte>(ref System.Runtime.CompilerServices.Unsafe.AsRef(record.Size)));
       writer.WriteString(record.SearchText);
       global::BorderlessGaming.Logic.Models.ProcessRectangle.__EncodeInto(record.Screen, ref writer);
       writer.WriteInt32(record.OffsetLeft);
@@ -547,13 +547,13 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static global::BorderlessGaming.Logic.Models.Favorite __DecodeFrom(ref global::Bebop.Runtime.BebopReader reader) {
 
       global::BorderlessGaming.Logic.Models.FavoriteType field0;
-      field0 = global::System.Runtime.CompilerServices.Unsafe.As<byte, global::BorderlessGaming.Logic.Models.FavoriteType>(ref global::System.Runtime.CompilerServices.Unsafe.AsRef(reader.ReadByte()));
+      field0 = System.Runtime.CompilerServices.Unsafe.As<byte, global::BorderlessGaming.Logic.Models.FavoriteType>(ref System.Runtime.CompilerServices.Unsafe.AsRef(reader.ReadByte()));
       global::BorderlessGaming.Logic.Models.FavoriteSize field1;
-      field1 = global::System.Runtime.CompilerServices.Unsafe.As<byte, global::BorderlessGaming.Logic.Models.FavoriteSize>(ref global::System.Runtime.CompilerServices.Unsafe.AsRef(reader.ReadByte()));
+      field1 = System.Runtime.CompilerServices.Unsafe.As<byte, global::BorderlessGaming.Logic.Models.FavoriteSize>(ref System.Runtime.CompilerServices.Unsafe.AsRef(reader.ReadByte()));
       string field2;
       field2 = reader.ReadString();
       global::BorderlessGaming.Logic.Models.ProcessRectangle field3;
@@ -839,7 +839,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static int __EncodeInto(global::BorderlessGaming.Logic.Models.UserPreferences record, ref global::Bebop.Runtime.BebopWriter writer) {
       var before = writer.Length;
       {
@@ -865,7 +865,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static global::BorderlessGaming.Logic.Models.UserPreferences __DecodeFrom(ref global::Bebop.Runtime.BebopReader reader) {
 
       global::BorderlessGaming.Logic.Models.Favorite[] field0;
@@ -1091,7 +1091,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static int __EncodeInto(global::BorderlessGaming.Logic.Models.ProcessRectangle record, ref global::Bebop.Runtime.BebopWriter writer) {
       var before = writer.Length;
       writer.WriteInt32(record.X);
@@ -1106,7 +1106,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static global::BorderlessGaming.Logic.Models.ProcessRectangle __DecodeFrom(ref global::Bebop.Runtime.BebopReader reader) {
 
       int field0;
@@ -1445,7 +1445,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static int __EncodeInto(global::BorderlessGaming.Logic.Models.AppSettings record, ref global::Bebop.Runtime.BebopWriter writer) {
       var before = writer.Length;
       var pos = writer.ReserveRecordLength();
@@ -1521,7 +1521,7 @@ namespace BorderlessGaming.Logic.Models {
     /// <summary>DO NOT CALL THIS METHOD DIRECTLY!</summary>
     [global::System.Runtime.CompilerServices.MethodImpl(global::Bebop.Runtime.BebopConstants.HotPath)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+    [global::System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
     internal static global::BorderlessGaming.Logic.Models.AppSettings __DecodeFrom(ref global::Bebop.Runtime.BebopReader reader) {
 
       var record = new global::BorderlessGaming.Logic.Models.AppSettings();

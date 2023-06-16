@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BorderlessGaming.Properties {
+namespace BorderlessGaming.Properties
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,166 +23,230 @@ namespace BorderlessGaming.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
-        
+    internal class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BorderlessGaming.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add {
-            get {
+        internal static System.Drawing.Bitmap add
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bordered {
-            get {
+        internal static System.Drawing.Bitmap bordered
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("bordered", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap borderless {
-            get {
+        internal static System.Drawing.Bitmap borderless
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("borderless", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Unable to save favorites. Do you have permission?\r\n\r\nDetailed Error: {0}.
         /// </summary>
-        internal static string ErrorFavoritesSave {
-            get {
+        internal static string ErrorFavoritesSave
+        {
+            get
+            {
                 return ResourceManager.GetString("ErrorFavoritesSave", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string ErrorHeader {
-            get {
+        internal static string ErrorHeader
+        {
+            get
+            {
                 return ResourceManager.GetString("ErrorHeader", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Borderless Gaming encountered an error checking for updates. Restart the program to try again..
         /// </summary>
-        internal static string ErrorUpdates {
-            get {
+        internal static string ErrorUpdates
+        {
+            get
+            {
                 return ResourceManager.GetString("ErrorUpdates", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap globe_green {
-            get {
+        internal static System.Drawing.Bitmap globe_green
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("globe_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to A new version of Borderless Gaming is available. Would you like to go to the release page?.
         /// </summary>
-        internal static string InfoUpdateAvailable {
-            get {
+        internal static string InfoUpdateAvailable
+        {
+            get
+            {
                 return ResourceManager.GetString("InfoUpdateAvailable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update available.
         /// </summary>
-        internal static string InfoUpdatesHeader {
-            get {
+        internal static string InfoUpdatesHeader
+        {
+            get
+            {
                 return ResourceManager.GetString("InfoUpdatesHeader", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap master_glyph {
-            get {
+        internal static System.Drawing.Bitmap master_glyph
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("master_glyph", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap remove {
-            get {
+        internal static System.Drawing.Bitmap remove
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap steam {
-            get {
+        internal static System.Drawing.Bitmap steam
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("steam", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} is minimized..
         /// </summary>
-        internal static string TrayMinimized {
-            get {
+        internal static string TrayMinimized
+        {
+            get
+            {
                 return ResourceManager.GetString("TrayMinimized", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to hide the mouse cursor?
+        ///
+        ///You may have a difficult time finding the mouse again once it&apos;s hidden.
+        ///
+        ///If you have enabled the global hotkey to toggle the mouse cursor visibility, you can press [Win + Scroll Lock] to toggle the mouse cursor on.
+        ///
+        ///Also, exiting Borderless Gaming will immediately restore your mouse cursor..
+        /// </summary>
+        internal static string MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_
+        {
+            get
+            {
+                return ResourceManager.GetString("MainWindow_toggleMouseCursorVisibilityToolStripMenuItem_Click_", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] blank
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("blank", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+
     }
 }

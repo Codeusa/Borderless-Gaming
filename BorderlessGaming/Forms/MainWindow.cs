@@ -9,7 +9,7 @@ using BorderlessGaming.Logic.Core;
 using BorderlessGaming.Logic.Extensions;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.Steam;
-using BorderlessGaming.Logic.System;
+using BorderlessGaming.Logic.Misc;
 using BorderlessGaming.Logic.Windows;
 using BorderlessGaming.Properties;
 
@@ -228,10 +228,6 @@ namespace BorderlessGaming.Forms
             //clear the process list and repopulate it
             lstProcesses.Items.Clear();
             await _watcher.Refresh();
-        }
-        private void rainwayToolStrip_Click(object sender, EventArgs e)
-        {
-            Tools.GotoSite("https://rainway.io/?ref=borderlessgaming");
         }
 
         private void usageGuideToolStripMenuItem_Click(object sender, EventArgs e)
@@ -954,15 +950,7 @@ fav.PositionX.ToString()), out int favPositionX);
             if (UserPreferences.Instance.Settings.StartMinimized.GetValueOrDefault() || UserPreferences.Instance.StartupOptions.Minimize)
             {
                 Hide();
-            } else {
-             //   if (UserPreferences.Instance.Settings.ShowAdOnStart)
-               // {
-                //    var rainway = new Rainway { StartPosition = this.StartPosition, TopMost = true };
-                 //   rainway.ShowDialog(this);
-                 //   rainway.BringToFront();
-
-               // }
-            }
+            } 
             // initialize favorite list
             foreach (var ni in UserPreferences.Instance.Favorites)
             {
@@ -1224,11 +1212,6 @@ fav.PositionX.ToString()), out int favPositionX);
                 }
             }
             RefreshFavoritesList(fav);
-        }
-
-        private void checkOutRainwayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Tools.GotoSite("https://rainway.io/?ref=borderlessgaming3");
         }
     }
 }

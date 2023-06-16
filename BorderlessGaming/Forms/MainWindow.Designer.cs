@@ -98,7 +98,6 @@ namespace BorderlessGaming.Forms
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripFullApplicationRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.rainwayStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripUsageGuide = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRegexReference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
@@ -435,8 +434,7 @@ namespace BorderlessGaming.Forms
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripOptions,
             this.toolsToolStripMenuItem,
-            this.toolStripInfo,
-             this.rainwayStrip
+            this.toolStripInfo
             });
             this.mnuMain.Name = "mnuMain";
             // 
@@ -613,13 +611,6 @@ namespace BorderlessGaming.Forms
             this.toolStripToggleWindowsTaskbar.Name = "toolStripToggleWindowsTaskbar";
             this.toolStripToggleWindowsTaskbar.Text =  LanguageManager.Data("toolStripToggleWindowsTaskbar");
             this.toolStripToggleWindowsTaskbar.Click += new System.EventHandler(this.toggleWindowsTaskbarVisibilityToolStripMenuItem_Click);
-            //
-            // rainwayStrip
-            //
-            resources.ApplyResources(this.rainwayStrip, "rainwayStrip");
-            this.rainwayStrip.Text = "Check Out Rainway";
-            this.rainwayStrip.Image = Resources.master_glyph;
-            this.rainwayStrip.Click += new System.EventHandler(this.checkOutRainwayToolStripMenuItem_Click);
             // 
             // toolStripMenuItem12
             // 
@@ -787,7 +778,6 @@ namespace BorderlessGaming.Forms
         private System.Windows.Forms.ToolStripMenuItem toolStripOptions;
         private System.Windows.Forms.ToolStripMenuItem toolStripRunOnStartup;
         private System.Windows.Forms.ToolStripMenuItem toolStripInfo;
-        private System.Windows.Forms.ToolStripMenuItem rainwayStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripReportBug;
         private System.Windows.Forms.ToolStripMenuItem toolStripSupportUs;
         private System.Windows.Forms.ToolStripMenuItem toolStripRegexReference;

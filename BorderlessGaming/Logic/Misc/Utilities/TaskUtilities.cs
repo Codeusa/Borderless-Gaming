@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BorderlessGaming.Logic.System.Utilities
+namespace BorderlessGaming.Logic.Misc.Utilities
 {
     public static class TaskUtilities
     {
