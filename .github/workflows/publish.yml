@@ -1,6 +1,6 @@
 name: publish Borderless Gaming
 
-on: workflow_dispatch
+on: [push, pull_request]
 #on:
 #  push:
 #    tags:
