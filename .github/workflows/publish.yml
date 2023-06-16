@@ -17,7 +17,7 @@ jobs:
         with:
             fetch-depth: 0
       - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
       - name: Test
         run: |
           echo $RELEASE_VERSION
