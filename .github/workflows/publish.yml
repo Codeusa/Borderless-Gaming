@@ -20,7 +20,6 @@ jobs:
         run: echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
       - name: Test
         run: |
-          echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
 
       - name: Setup .NET
