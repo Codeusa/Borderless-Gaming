@@ -1,88 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using ProtoBuf;
 
 namespace BorderlessGaming.Logic.Models
 {
-    public enum FavoriteSize
+    public partial class Favorite
     {
-        FullScreen = 0,
-        SpecificSize = 1,
-        NoChange = 2
-    }
-
-    public enum FavoriteType
-    {
-        Process = 0,
-        Title = 1,
-        Regex = 2
-    }
-
-    [ProtoContract]
-    public class Favorite
-    {
-        [ProtoMember(1)]
-        [DefaultValue(FavoriteType.Process)]
-        public FavoriteType Type { get; set; } = FavoriteType.Process;
-
-        [ProtoMember(2)]
-        [DefaultValue(FavoriteSize.FullScreen)]
-        public FavoriteSize Size { get; set; } = FavoriteSize.FullScreen;
-
-        [ProtoMember(3)]
-        [DefaultValue("")]
-        public string SearchText { get; set; } = "";
-
-        [ProtoMember(4)]
-        public PRectangle FavScreen { get; set; }
-
-        [ProtoMember(5)]
-        public int OffsetL { get; set; }
-
-        [ProtoMember(6)]
-        public int OffsetT { get; set; }
-
-        [ProtoMember(7)]
-        public int OffsetR { get; set; }
-
-        [ProtoMember(8)]
-        public int OffsetB { get; set; }
-
-        [ProtoMember(9)]
-        [DefaultValue(true)]
-        public bool ShouldMaximize { get; set; } = true;
-
-        [ProtoMember(10)]
-        public int PositionX { get; set; }
-
-        [ProtoMember(11)]
-        public int PositionY { get; set; }
-
-        [ProtoMember(12)]
-        public int PositionW { get; set; }
-
-        [ProtoMember(13)]
-        public int PositionH { get; set; }
-
-        [ProtoMember(14)]
-        public bool RemoveMenus { get; set; }
-
-        [ProtoMember(15)]
-        public bool TopMost { get; set; }
-
-        [ProtoMember(16)]
-        public bool HideWindowsTaskbar { get; set; }
-
-        [ProtoMember(17)]
-        public bool HideMouseCursor { get; set; }
-
-        [ProtoMember(18)]
-        public bool DelayBorderless { get; set; }
-
-        [ProtoMember(19)]
-        public bool MuteInBackground { get; set; }
-
-
         /// <summary>
         ///     Return a string representation of the favorite
         /// </summary>
@@ -99,13 +21,13 @@ namespace BorderlessGaming.Logic.Models
             var muted = MuteInBackground ? "[Muted]" : string.Empty;
             var offset = string.Empty;
             var position = string.Empty;
-            if (OffsetL != 0 || OffsetR != 0 || OffsetT != 0 || OffsetB != 0)
+            if (OffsetLeft != 0 || OffsetRight != 0 || OffsetTop != 0 || OffsetBottom != 0)
             {
-                offset = $"[{OffsetL}L,{OffsetR}R,{OffsetT}T,{OffsetB}B]";
+                offset = $"[{OffsetLeft}L,{OffsetRight}R,{OffsetTop}T,{OffsetBottom}B]";
             }
-            if (PositionX != 0 || PositionY != 0 || PositionW != 0 || PositionH != 0)
+            if (PositionX != 0 || PositionY != 0 || PositionWidth != 0 || PositionHeight != 0)
             {
-                position = $"[{PositionX}x{PositionY}-{PositionX + PositionW}x{PositionY + PositionH}]";
+                position = $"[{PositionX}x{PositionY}-{PositionX + PositionWidth}x{PositionY + PositionHeight}]";
             }
             return $"{SearchText} [{Type}] {max}{muted}{mode}{top}{menus}{taskbar}{mouse}{delay}{offset}{position}";
         }

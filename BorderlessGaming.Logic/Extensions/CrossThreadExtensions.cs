@@ -1,26 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BorderlessGaming.Logic.Extensions
 {
     public static class CrossThreadExtensions
     {
-
-        public static List<T> CloneList<T>(List<T> oldList)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, oldList);
-            stream.Position = 0;
-            return (List<T>)formatter.Deserialize(stream);
-        }
-
         public static void PerformSafely(this Control target, Action action)
         {
             if (target.InvokeRequired)

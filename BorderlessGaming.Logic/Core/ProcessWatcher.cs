@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BorderlessGaming.Logic.Extensions;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.System.Utilities;
 using BorderlessGaming.Logic.Windows;
@@ -66,7 +64,7 @@ namespace BorderlessGaming.Logic.Core
                     {
                         try
                         {
-                            foreach (var favProcess in Config.Instance.Favorites)
+                            foreach (var favProcess in UserPreferences.Instance.Favorites)
                             {
 
                                 if (favProcess.Matches(pd))
@@ -83,7 +81,7 @@ namespace BorderlessGaming.Logic.Core
                         }
                     }
                 }
-                await Task.Delay(TimeSpan.FromSeconds((Config.Instance.AppSettings.SlowWindowDetection ? 10 : 3)));
+                await Task.Delay(TimeSpan.FromSeconds(UserPreferences.Instance.Settings.SlowWindowDetection is true ? 10 : 3));
             }
         }
 
@@ -100,9 +98,9 @@ namespace BorderlessGaming.Logic.Core
             }
 
             // If a Favorite screen exists, use the Rect from that, instead
-            if (favDetails?.FavScreen != null)
+            if (favDetails?.Screen != null)
             {
-                await RemoveBorder_ToSpecificRect(pd, PRectangle.ToRectangle(favDetails.FavScreen), favDetails,
+                await RemoveBorder_ToSpecificRect(pd, ProcessRectangle.ToRectangle(favDetails.Screen), favDetails,
                     overrideTimeout);
                 return;
             }
@@ -150,7 +148,7 @@ namespace BorderlessGaming.Logic.Core
         {
             // If we made this process borderless at some point, then check for a favorite that matches and undo
             // some stuff to Windows.
-            foreach (var fav in Config.Instance.Favorites)
+            foreach (var fav in UserPreferences.Instance.Favorites)
             {
                 if (fav.Matches(pd))
                 {
@@ -190,7 +188,7 @@ namespace BorderlessGaming.Logic.Core
                     if (!process.NoAccess)
                     {
                         await TaskUtilities.StartTaskAndWait(() => { currentTitle = Native.GetWindowTitle(process.WindowHandle); },
-                            Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2); shouldBePruned = process.WindowTitle != currentTitle;
+                            UserPreferences.Instance.Settings.SlowWindowDetection is true ? 10 : 2); shouldBePruned = process.WindowTitle != currentTitle;
                     }
                 }
                 if (shouldBePruned)
@@ -209,7 +207,7 @@ namespace BorderlessGaming.Logic.Core
                 {
                     if (!string.IsNullOrWhiteSpace(pd?.Proc?.ProcessName))
                     {
-                        if (Config.Instance.IsHidden(pd?.Proc?.ProcessName))
+                        if (UserPreferences.Instance.IsHidden(pd?.Proc?.ProcessName))
                         {
                             return;
                         }

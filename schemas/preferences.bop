@@ -1,0 +1,9 @@
+
+import "settings.bop"
+import "favorite.bop"
+
+struct UserPreferences {
+    Favorite[] favorites;
+    string[] hiddenProcesses;
+    AppSettings settings;
+}

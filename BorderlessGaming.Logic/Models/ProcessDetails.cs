@@ -37,8 +37,10 @@ namespace BorderlessGaming.Logic.Models
 
         private async void GetWindowTitle()
         {
-           await TaskUtilities.StartTaskAndWait(() => { WindowTitle = Native.GetWindowTitle(WindowHandle); },
-                Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2);
+            await TaskUtilities.StartTaskAndWait(() =>
+            {
+                WindowTitle = Native.GetWindowTitle(WindowHandle);
+            }, UserPreferences.Instance.DetectionDelay);
         }
 
         // Automatically detects changes to the window handle
@@ -127,7 +129,7 @@ namespace BorderlessGaming.Logic.Models
                  var styleCurrentWindowStandard = Native.GetWindowLong(WindowHandle, WindowLongIndex.Style);
                  var styleCurrentWindowExtended = Native.GetWindowLong(WindowHandle, WindowLongIndex.ExtendedStyle);
                  targetable = styleCurrentWindowStandard.HasTargetStyles() || styleCurrentWindowExtended.HasExtendedStyles();
-             }, Config.Instance.AppSettings.SlowWindowDetection ? 10 : 2);
+             }, UserPreferences.Instance.DetectionDelay);
             return targetable;
         }
 
@@ -140,7 +142,7 @@ namespace BorderlessGaming.Logic.Models
                     return DescriptionOverride;
                 }
 
-                if (Config.Instance.AppSettings.ViewAllProcessDetails)
+                if (UserPreferences.Instance.Settings.ViewAllProcessDetails is true)
                 {
                     var styleCurrentWindowStandard = Native.GetWindowLong(WindowHandle, WindowLongIndex.Style);
                     var styleCurrentWindowExtended = Native.GetWindowLong(WindowHandle, WindowLongIndex.ExtendedStyle);
@@ -162,7 +164,7 @@ namespace BorderlessGaming.Logic.Models
                 {
                     if (BinaryNameForComparison.Length >= 5)
                     {
-                        if (BinaryNameForComparison.Substring(0, 5) == WindowTitleForComparison.Substring(0, 5))
+                        if (BinaryNameForComparison[..5] == WindowTitleForComparison[..5])
                         {
                             processNameIsDissimilarToWindowTitle = false;
                         }

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using ProtoBuf;
 
 namespace BorderlessGaming.Logic.Models
 {
-    [ProtoContract]
-    public class HiddenProcess
+    public partial class UserPreferences
     {
         /// <summary>
         ///     AlwaysHiddenProcesses is used to keep processes from showing up in the list no matter what
@@ -44,8 +42,5 @@ namespace BorderlessGaming.Logic.Models
 
             // Let them hide the rest manually
         };
-
-        [ProtoMember(1)]
-        public string Name { get; set; }
     }
 }

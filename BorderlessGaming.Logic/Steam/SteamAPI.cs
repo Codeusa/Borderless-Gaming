@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.ExceptionServices;
 using BorderlessGaming.Logic.Extensions;
-using Facepunch.Steamworks;
+using BorderlessGaming.Logic.System.Utilities;
+using Steamworks;
+using Steamworks.Data;
 
 namespace BorderlessGaming.Logic.Steam
 {
@@ -13,9 +14,6 @@ namespace BorderlessGaming.Logic.Steam
         ///The Borderless Gaming AppID
         private static readonly uint _appId = 388080;
 
-        private static Client _client;
-        private static Auth.Ticket _ticket;
-
         public static bool LaunchedBySteam()
         {
             var parentName = Process.GetCurrentProcess().Parent()?.ProcessName;
@@ -23,29 +21,23 @@ namespace BorderlessGaming.Logic.Steam
         }
 
         //I noticed if the API dll is messed up the process just crashes.
-        [HandleProcessCorruptedStateExceptions]
         public static void Init()
         {
             try
             {
-                _client = new Client(_appId);
-                if (_client == null)
-                {
-                    IsLoaded = false;
-                    return;
-                }
-                _ticket = _client.Auth.GetAuthSessionTicket();
-                IsLoaded = _ticket != null;
+                SteamClient.Init(_appId);
+                IsLoaded = true;
             }
-            catch (Exception)
-            {
+            catch (Exception ex)
+            {   
                 Debug.WriteLine("Failed to load Steam.");
+                ExceptionHandler.LogException(ex);
             }
         }
 
         public static bool UnlockAchievement(string identifier)
         {
-            var achievement = new Achievement(_client, 0);
+            var achievement = new Achievement(identifier);
             return !achievement.State && achievement.Trigger();
         }
     }

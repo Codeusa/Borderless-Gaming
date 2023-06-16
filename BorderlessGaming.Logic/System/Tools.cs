@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Windows.Forms;
@@ -11,7 +12,6 @@ using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.Properties;
 using BorderlessGaming.Logic.Steam;
 using BorderlessGaming.Logic.System.Utilities;
-using Ionic.Zip;
 
 
 namespace BorderlessGaming.Logic.System
@@ -67,9 +67,9 @@ namespace BorderlessGaming.Logic.System
             {
                 ExceptionHandler.AddGlobalHandlers();
             }
-            Config.Load();
             LanguageManager.Load();
-            if (!Config.Instance.AppSettings.DisableSteamIntegration)
+            var disableSteamIntegration = UserPreferences.Instance.Settings.DisableSteamIntegration;
+            if (disableSteamIntegration.HasValue && disableSteamIntegration.Value is false)
             {
                 SteamApi.Init();
             }
@@ -107,10 +107,8 @@ namespace BorderlessGaming.Logic.System
 
         public static void ExtractZipFile(string archiveFilenameIn, string password, string outFolder)
         {
-            using (var zip = ZipFile.Read(archiveFilenameIn))
-            {
-                zip.ExtractAll(outFolder, ExtractExistingFileAction.OverwriteSilently);
-            }
+            using var zip = ZipFile.Open(archiveFilenameIn, ZipArchiveMode.Read);
+            zip.ExtractToDirectory(outFolder, true);
         }
 
         public static void CheckForUpdates()

@@ -1,0 +1,16 @@
+const string defaultCulture = "en-US";
+
+message AppSettings {
+    1 -> bool slowWindowDetection;
+    2 -> bool viewAllProcessDetails;
+    3 -> bool runOnStartup;
+    4 -> bool useGlobalHotkey;
+    5 -> bool useMouseLockHotKey;
+    6 -> bool useMouseHideHotKey;
+    7 -> bool startMinimized;
+    8 -> bool hideBalloonTips;
+    9 -> bool closeToTray;
+    10 -> bool checkForUpdates;
+    11 -> bool disableSteamIntegration;
+    12 -> string culture;
+}

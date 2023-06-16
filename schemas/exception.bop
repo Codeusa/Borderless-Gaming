@@ -1,0 +1,6 @@
+readonly struct RuntimeException {
+    string reason;
+    string innerReason;
+    string type;
+    string stackTrace;
+}

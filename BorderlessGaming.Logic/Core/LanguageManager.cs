@@ -96,7 +96,7 @@ namespace BorderlessGaming.Logic.Core
                MessageBox.Show($"No Langauges have been loaded! Ensure {AppEnvironment.LanguagePath} exist with at least one .lang file.");
                Environment.Exit(0);
             }
-            var defaultLang = Languages.Values.FirstOrDefault(lang => lang.Culture.Equals(Config.Instance.AppSettings.DefaultCulture));
+            var defaultLang = Languages.Values.FirstOrDefault(lang => lang.Culture.Equals(UserPreferences.Instance.Settings.Culture));
             defaultLang?.Set();
         }
 
@@ -148,7 +148,7 @@ namespace BorderlessGaming.Logic.Core
         {
             try
             {
-                var defaultCulture = Config.Instance.AppSettings.DefaultCulture;
+                var defaultCulture = UserPreferences.Instance.Settings.Culture;
                 var langauge = Languages.Values.FirstOrDefault(lang => lang.DisplayName.Equals(displayName));
                 return langauge != null && langauge.Culture.Equals(defaultCulture);
             }
@@ -164,8 +164,8 @@ namespace BorderlessGaming.Logic.Core
             var langauge = Languages.Values.FirstOrDefault(lang => lang.DisplayName.Equals(tsiText));
             if (langauge != null)
             {
-                Config.Instance.AppSettings.DefaultCulture = langauge.Culture;
-                Config.Save();
+                UserPreferences.Instance.Settings.Culture = langauge.Culture;
+                UserPreferences.Save();
                 langauge.Set();
                 var dialogResult = MessageBox.Show(Data("settingConfirmationPrompt"), Data("settingConfirmationTitle"),
                     MessageBoxButtons.YesNo);

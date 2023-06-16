@@ -148,18 +148,18 @@ namespace BorderlessGaming.Logic.Windows
                 // update window position
                 if (favDetails.Size != FavoriteSize.NoChange)
                 {
-                    if (favDetails.Size == FavoriteSize.FullScreen || favDetails.PositionW == 0 ||
-                        favDetails.PositionH == 0)
+                    if (favDetails.Size == FavoriteSize.FullScreen || favDetails.PositionWidth == 0 ||
+                        favDetails.PositionHeight == 0)
                     {
                         // Set the window size to the biggest possible, using bounding adjustments
                         Native.SetWindowPos
                         (
                             targetWindow,
                             0,
-                            targetFrame.X + favDetails.OffsetL,
-                            targetFrame.Y + favDetails.OffsetT,
-                            targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
-                            targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
+                            targetFrame.X + favDetails.OffsetLeft,
+                            targetFrame.Y + favDetails.OffsetTop,
+                            targetFrame.Width - favDetails.OffsetLeft + favDetails.OffsetRight,
+                            targetFrame.Height - favDetails.OffsetTop + favDetails.OffsetBottom,
                             SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder |
                             SetWindowPosFlags.NoSendChanging
                         );
@@ -179,8 +179,8 @@ namespace BorderlessGaming.Logic.Windows
                             0,
                             favDetails.PositionX,
                             favDetails.PositionY,
-                            favDetails.PositionW,
-                            favDetails.PositionH,
+                            favDetails.PositionWidth,
+                            favDetails.PositionHeight,
                             SetWindowPosFlags.ShowWindow | SetWindowPosFlags.NoOwnerZOrder |
                             SetWindowPosFlags.NoSendChanging
                         );
@@ -326,18 +326,18 @@ namespace BorderlessGaming.Logic.Windows
             // update window position
             if (favDetails.Size != FavoriteSize.NoChange)
             {
-                if (favDetails.Size == FavoriteSize.FullScreen || favDetails.PositionW == 0 ||
-                    favDetails.PositionH == 0)
+                if (favDetails.Size == FavoriteSize.FullScreen || favDetails.PositionWidth == 0 ||
+                    favDetails.PositionHeight == 0)
                 {
                     // Set the window size to the biggest possible, using bounding adjustments
                     Native.SetWindowPos
                     (
                         targetWindow,
                         0,
-                        targetFrame.X + favDetails.OffsetL,
-                        targetFrame.Y + favDetails.OffsetT,
-                        targetFrame.Width - favDetails.OffsetL + favDetails.OffsetR,
-                        targetFrame.Height - favDetails.OffsetT + favDetails.OffsetB,
+                        targetFrame.X + favDetails.OffsetLeft,
+                        targetFrame.Y + favDetails.OffsetTop,
+                        targetFrame.Width - favDetails.OffsetLeft + favDetails.OffsetRight,
+                        targetFrame.Height - favDetails.OffsetTop + favDetails.OffsetBottom,
                         SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow |
                         SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );
@@ -351,8 +351,8 @@ namespace BorderlessGaming.Logic.Windows
                         0,
                         favDetails.PositionX,
                         favDetails.PositionY,
-                        favDetails.PositionW,
-                        favDetails.PositionH,
+                        favDetails.PositionWidth,
+                        favDetails.PositionHeight,
                         SetWindowPosFlags.FrameChanged | SetWindowPosFlags.ShowWindow |
                         SetWindowPosFlags.NoOwnerZOrder | SetWindowPosFlags.NoSendChanging
                     );

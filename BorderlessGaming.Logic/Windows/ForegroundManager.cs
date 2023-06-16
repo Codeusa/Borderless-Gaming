@@ -26,14 +26,14 @@ namespace BorderlessGaming.Logic.Windows
    
         public static void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
-            if (Config.Instance.Favorites != null)
+            if (UserPreferences.Instance.Favorites is not null)
             {
                 try
                 {
                     var handle = Native.GetForegroundWindow();
                     Native.GetWindowThreadProcessId(handle, out uint processId);
                     var details = new ProcessDetails(Process.GetProcessById((int)processId), handle);
-                    foreach (var fav in Config.Instance.Favorites.Where(favorite => favorite.IsRunning && favorite.MuteInBackground))
+                    foreach (var fav in UserPreferences.Instance.Favorites.Where(favorite => favorite.IsRunning && favorite.MuteInBackground))
                     {
                      
                         if (fav.Matches(details))

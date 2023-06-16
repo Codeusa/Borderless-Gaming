@@ -1,0 +1,38 @@
+import "rect.bop"
+
+enum FavoriteSize : byte {
+    Invalid = 0;
+    FullScreen = 1;
+    SpecificSize = 2;
+    NoChange = 3;
+}
+
+enum FavoriteType : byte {
+    Invalid = 0;
+    Process = 1;
+    Title = 2;
+    Regex = 3;
+}
+
+
+struct Favorite {
+    FavoriteType type;
+    FavoriteSize size;
+    string searchText;
+    ProcessRectangle screen;
+    int32 offsetLeft;
+    int32 offsetTop;
+    int32 offsetRight;
+    int32 offsetBottom;
+    bool shouldMaximize;
+    int32 positionX;
+    int32 positionY;
+    int32 positionWidth;
+    int32 positionHeight;
+    bool removeMenus;
+    bool topMost;
+    bool hideWindowsTaskbar;
+    bool hideMouseCursor;
+    bool delayBorderless;
+    bool muteInBackground;
+}

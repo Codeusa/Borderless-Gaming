@@ -2,23 +2,29 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using ProtoBuf;
 
 namespace BorderlessGaming.Logic.System.Utilities
 {
-    [ProtoContract]
-    internal class ExceptionModel
-    {
-        [ProtoMember(1)]
-     public string Message { get; set; }   
-        [ProtoMember(2)]
-        public string Type { get; set; }
-        [ProtoMember(3)]
-        public string StackTrace { get; set; }
-    }
     public static class ExceptionHandler
     {
         private static readonly string LogsPath = Path.Combine(AppEnvironment.DataPath, "Logs");
+
+        public static void LogException(Exception ex)
+        {
+            if (!Directory.Exists(LogsPath))
+            {
+                Directory.CreateDirectory(LogsPath);
+            }
+            var filePath = Path.Combine(LogsPath,
+                       $"Exception_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
+            File.WriteAllBytes(filePath, new Models.RuntimeException
+            {
+                Reason = ex.Message,
+                InnerReason = ex.InnerException?.Message ?? string.Empty,
+                StackTrace = ex.StackTrace,
+                Type = ex.GetType().Name
+            }.Encode());
+        }
 
         public static void AddGlobalHandlers()
         {
@@ -34,16 +40,14 @@ namespace BorderlessGaming.Logic.System.Utilities
                     var filePath = Path.Combine(LogsPath,
                         $"UnhandledException_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
 
-                    var exception = (Exception) args.ExceptionObject;
-                    using (var file = File.Create(filePath))
+                    var exception = (Exception)args.ExceptionObject;
+                    File.WriteAllBytes(filePath, new Models.RuntimeException
                     {
-                        Serializer.Serialize(file, new ExceptionModel
-                        {
-                            Message = exception.Message,
-                            StackTrace = exception.StackTrace,
-                            Type = exception.GetType().Name
-                        });
-                    }
+                        Reason = exception.Message,
+                        InnerReason = exception.InnerException?.Message ?? string.Empty,
+                        StackTrace = exception.StackTrace,
+                        Type = exception.GetType().Name
+                    }.Encode());
                     MessageBox.Show($"An Unhandled Exception was Caught and Logged to:\r\n{filePath}", "Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch
@@ -67,15 +71,13 @@ namespace BorderlessGaming.Logic.System.Utilities
                         $"ThreadException_{DateTime.Now.ToShortDateString().Replace("/", "-")}.crash");
 
                     var exception = args.Exception;
-                    using (var file = File.Create(filePath))
+                    File.WriteAllBytes(filePath, new Models.RuntimeException
                     {
-                        Serializer.Serialize(file, new ExceptionModel
-                        {
-                            Message = exception.Message,
-                            StackTrace = exception.StackTrace,
-                            Type = exception.GetType().Name
-                        });
-                    }
+                        Reason = exception.Message,
+                        InnerReason = exception.InnerException?.Message ?? string.Empty,
+                        StackTrace = exception.StackTrace,
+                        Type = exception.GetType().Name
+                    }.Encode());
                     MessageBox.Show(
                         $"An Unhandled Thread Exception was Caught and Logged to:\r\n{filePath}",
                         "Thread Exception Caught", MessageBoxButtons.OK, MessageBoxIcon.Error);

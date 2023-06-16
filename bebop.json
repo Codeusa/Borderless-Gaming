@@ -1,0 +1,11 @@
+{
+    "include": ["./schemas/*.bop"],
+    "namespace": "BorderlessGaming.Logic.Models",
+    "generators": [
+        {
+            "alias": "cs",
+            "outFile": "./BorderlessGaming.Logic/Models/Models.g.cs",
+            "services": "none"
+        }
+    ]
+}

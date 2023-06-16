@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BorderlessGaming.Forms;
 using BorderlessGaming.Logic.Models;
@@ -23,12 +20,12 @@ namespace BorderlessGaming
             Application.SetCompatibleTextRenderingDefault(false);
             Tools.Setup();
             //use github updating for non-steam
-            if (!Config.Instance.StartupOptions.IsSteam && Config.Instance.AppSettings.CheckForUpdates)
+           /*if (!UserPreferences.Instance.StartupOptions.IsSteam && UserPreferences.Instance.Settings.CheckForUpdates is true)
             {
                 Tools.CheckForUpdates();
-            }
-            ForegroundManager.Subscribe();
-            Application.Run(new MainWindow());
+            }*/
+         //   ForegroundManager.Subscribe();
+          //  Application.Run(new MainWindow());
           
         }
     }
