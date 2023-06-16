@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using BorderlessGaming.Logic.Misc;
 using CommandLine;
+using BorderlessGaming.Logic.Misc.Utilities;
 
 
 namespace BorderlessGaming.Logic.Models
@@ -35,9 +36,14 @@ namespace BorderlessGaming.Logic.Models
             return preferences;
         }
 
-        public static void Save()
+        public void Save()
         {
-            File.WriteAllBytes(AppEnvironment.ConfigPath, Instance.Encode());
+            try {
+                File.WriteAllBytes(AppEnvironment.ConfigPath, Encode());
+            } catch (Exception e) {
+               ExceptionHandler.LogException(e);
+               Environment.FailFast("Failed to save user preferences", e);
+            }
         }
 
         public bool CanAddFavorite(string item)
@@ -54,6 +60,7 @@ namespace BorderlessGaming.Logic.Models
                 Favorites = tmp;
                 Save();
                 callback();
+             
             }
         }
 

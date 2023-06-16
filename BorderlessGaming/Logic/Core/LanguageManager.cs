@@ -166,7 +166,7 @@ namespace BorderlessGaming.Logic.Core
             if (langauge != null)
             {
                 UserPreferences.Instance.Settings.Culture = langauge.Culture;
-                UserPreferences.Save();
+                UserPreferences.Instance.Save();
                 langauge.Set();
                 var dialogResult = MessageBox.Show(Data("settingConfirmationPrompt"), Data("settingConfirmationTitle"),
                     MessageBoxButtons.YesNo);

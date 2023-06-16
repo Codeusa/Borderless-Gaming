@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 $root = (get-item $PSScriptRoot ).parent.FullName
 $csproj = "$root\BorderlessGaming\BorderlessGaming.csproj"
 
@@ -8,5 +9,7 @@ $projectXml.Project.PropertyGroup[0].FileVersion = "$($versionXml.borderlessgami
 $projectXml.Project.PropertyGroup[0].Version = "$($versionXml.borderlessgaming.version)"
 $projectXml.Save($csproj)
 
-& dotnet publish $csproj
+& bebopc
+& dotnet restore "$cjproj"
+& dotnet publish "$csproj"
 & iscc "$root\Installers\BorderlessGaming_Standalone_Admin.iss"

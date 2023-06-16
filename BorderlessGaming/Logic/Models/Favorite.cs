@@ -34,6 +34,7 @@ namespace BorderlessGaming.Logic.Models
 
         public bool Matches(ProcessDetails pd)
         {
+            
             return Type == FavoriteType.Process && pd.BinaryName == SearchText ||
                    Type == FavoriteType.Title && pd.WindowTitle == SearchText ||
                    Type == FavoriteType.Regex && Regex.IsMatch(pd.WindowTitle, SearchText);
@@ -41,7 +42,7 @@ namespace BorderlessGaming.Logic.Models
 
         public static Favorite FromWindow(ProcessDetails pd)
         {
-            return new Favorite {SearchText = pd.BinaryName};
+            return new Favorite {SearchText = pd.BinaryName, Screen = ProcessRectangle.Empty};
         }
 
         public bool IsRunning { get; set; }

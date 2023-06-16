@@ -4,6 +4,10 @@ namespace BorderlessGaming.Logic.Models
 {
     public partial class ProcessRectangle
     {
+        public static ProcessRectangle Empty => new (-1, -1, -1, -1);
+        public static bool IsEmpty(ProcessRectangle rectangle) => rectangle.Height == -1 && rectangle.Width == -1 && rectangle.X == -1 && rectangle.Y == -1;
+
+
         public static ProcessRectangle ToProcessRectangle(Rectangle rectangle)
         {
             return new ProcessRectangle

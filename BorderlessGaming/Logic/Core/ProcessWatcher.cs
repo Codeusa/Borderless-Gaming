@@ -98,7 +98,7 @@ namespace BorderlessGaming.Logic.Core
             }
 
             // If a Favorite screen exists, use the Rect from that, instead
-            if (favDetails?.Screen != null)
+            if (favDetails?.Screen != null && !ProcessRectangle.IsEmpty(favDetails.Screen))
             {
                 await RemoveBorder_ToSpecificRect(pd, ProcessRectangle.ToRectangle(favDetails.Screen), favDetails,
                     overrideTimeout);

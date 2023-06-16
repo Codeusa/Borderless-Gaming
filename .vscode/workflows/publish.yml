@@ -1,0 +1,65 @@
+name: publish Borderless Gaming
+
+#on:
+#  push:
+#    tags:
+#      - "*.*.*"
+
+jobs:
+  publish:
+    name: Publish Release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "8.0.x" # SDK Version to use; x will use the latest version of the 7.0 channel
+          include-prerelease: true
+
+      - name: Install bebopc
+        shell: pwsh
+        run: irm https://bebop.sh | iex
+
+      - name: Build release
+        shell: pwsh
+        run: ./scripts/build-release.ps1
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: installer
+          path: ./Installers/BorderlessGaming${{ env.RELEASE_VERSION }}_admin_setup.exe
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Borderless Gaming ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload installer
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Installers/BorderlessGaming${{ env.RELEASE_VERSION }}_admin_setup.exe
+          asset_name: installer-win64.exe
+          asset_content_type: application/octet-stream
+        

@@ -38,7 +38,7 @@ namespace BorderlessGaming.Forms
         private void toolStripCheckForUpdates_CheckedChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.CheckForUpdates = toolStripCheckForUpdates.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         #region Local data
@@ -81,59 +81,59 @@ namespace BorderlessGaming.Forms
         {
             AutoStart.Setup(toolStripRunOnStartup.Checked, "--silent --minimize");
             UserPreferences.Instance.Settings.RunOnStartup = toolStripRunOnStartup.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private void toolStripGlobalHotkey_CheckChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.UseGlobalHotkey = toolStripGlobalHotkey.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
             RegisterHotkeys();
         }
 
         private void toolStripMouseLock_CheckChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.UseMouseLockHotKey = toolStripMouseLock.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
             RegisterHotkeys();
         }
 
         private void useMouseHideHotkeyWinScrollLockToolStripMenuItem_CheckChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.UseMouseHideHotKey = toolStripMouseHide.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
             RegisterHotkeys();
         }
 
         private void startMinimizedToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.StartMinimized = toolStripMinimizedToTray.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private void hideBalloonTipsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.HideBalloonTips = toolStripHideBalloonTips.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private void closeToTrayToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.CloseToTray = toolStripCloseToTray.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private void useSlowerWindowDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.SlowWindowDetection = toolStripSlowWindowDetection.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private async void viewFullProcessDetailsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
 
         {
             UserPreferences.Instance.Settings.ViewAllProcessDetails = toolStripViewFullProcessDetails.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
             await RefreshProcesses();
         }
 
@@ -351,7 +351,8 @@ namespace BorderlessGaming.Forms
             var favorite = new Favorite
             {
                 Type = FavoriteType.Title,
-                SearchText = pd.WindowTitle
+                SearchText = pd.WindowTitle,
+                Screen = ProcessRectangle.Empty
             };
             UserPreferences.Instance.AddFavorite(favorite, () =>
             {
@@ -379,7 +380,8 @@ namespace BorderlessGaming.Forms
           var favorite = new Favorite
           {
               Type = FavoriteType.Process,
-              SearchText = pd.BinaryName
+              SearchText = pd.BinaryName,
+              Screen = ProcessRectangle.Empty
           };
             UserPreferences.Instance.AddFavorite(favorite, () =>
             {
@@ -410,7 +412,8 @@ namespace BorderlessGaming.Forms
                 var favorite = new Favorite
                 {
                     Type = FavoriteType.Regex,
-                    SearchText = res
+                    SearchText = res,
+                    Screen = ProcessRectangle.Empty
                 };
                 UserPreferences.Instance.AddFavorite(favorite, () =>
                 {
@@ -806,7 +809,7 @@ fav.PositionX.ToString()), out int favPositionX);
                     {
                         var tt = (ToolStripMenuItem)s;
                         fav.Screen = tt.Checked ? ProcessRectangle.ToProcessRectangle(screen.Bounds) : new ProcessRectangle();
-                        UserPreferences.Save();
+                        UserPreferences.Instance.Save();
                     };
                 }
                 // add supersize Option
@@ -819,7 +822,7 @@ fav.PositionX.ToString()), out int favPositionX);
                 contextFavScreen.DropDownItems[superIndex].Click += (s, ea) =>
                 {
                     fav.Screen = ProcessRectangle.ToProcessRectangle(superSize);
-                    UserPreferences.Save();
+                    UserPreferences.Instance.Save();
                 };
             }
         }
@@ -941,7 +944,7 @@ fav.PositionX.ToString()), out int favPositionX);
         private void ToolStripDisableSteamIntegrationCheckChanged(object sender, EventArgs e)
         {
             UserPreferences.Instance.Settings.DisableSteamIntegration = _toolStripDisableSteamIntegration.Checked;
-            UserPreferences.Save();
+            UserPreferences.Instance.Save();
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
