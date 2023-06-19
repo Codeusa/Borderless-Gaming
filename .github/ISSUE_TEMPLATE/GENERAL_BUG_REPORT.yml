@@ -1,5 +1,5 @@
 name: Bug Report
-description: Create a report to help improve Borderless-Gaming
+description: Report a general issue encountered Borderless-Gaming
 title: Short description of the bug
 labels: ["bug"]
 body:

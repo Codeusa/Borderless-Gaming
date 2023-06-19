@@ -1,5 +1,5 @@
-name: Game-specific Bug Report
-description: Create a report to help improve Borderless-Gaming for a specific game
+name: Game-compatibility Bug Report
+description: Report an issue experienced with a particular game
 title: "[Game]: Game name - short description of bug"
 labels: ["game-specific", "bug"]
 body:
