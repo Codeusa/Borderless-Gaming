@@ -1,6 +1,6 @@
 name: Feature request
 description: Suggest an idea for a feature that improves Borderless gaming
-title: A concise title that best describes the feature
+title: A short concise title
 labels: ["enhancement"]
 body:
   - type: checkboxes
@@ -10,7 +10,7 @@ body:
       options:
         - label: This issue doesn't already exist
           required: true
-        - label: This is only a single feature request (Otherwise create a second separate issue)
+        - label: This is only a single feature request (Otherwise create a separate issue)
           required: true
   - type: textarea
     id: problem
