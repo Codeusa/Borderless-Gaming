@@ -12,12 +12,9 @@ body:
       label: Requirements
       description: Before you report this bug, please consider the following.
       options:
-        - label: Did you check to see whether this issue already exists?
-          required: true
-        - label: Is this bug only related to a single game?
-          required: true
-        - label: Did you fill out the title?
-          required: true
+        - label: This issue doesn't already exists
+        - label: This bug is only related to a single game
+        - label: Filled out the title with template
   - type: textarea
     id: summary
     attributes:
@@ -51,6 +48,6 @@ body:
     attributes:
       label: version
       description: Which version of Borderless Gaming were you using? Visible in Help->About-menu.
-      placeholder: ex. 9.5.6.1328
+      placeholder: ex. 9.5.6.1328 or N/A
     validations:
       required: true
