@@ -51,7 +51,7 @@ body:
     id: version
     attributes:
       label: version
-      description: Which version of Borderless Gaming were you using? {Insert description of where to find version number}
-      placeholder: ex. 9.5.6
+      description: Which version of Borderless Gaming were you using? Visible in Help->About-menu.
+      placeholder: ex. 9.5.6.1328
     validations:
       required: true
