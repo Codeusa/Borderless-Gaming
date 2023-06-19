@@ -1,6 +1,6 @@
 name: Game-specific Bug Report
 description: Create a report to help improve Borderless-Gaming for a specific game
-title: "[Game] Game name - short description of bug"
+title: "[Game]: Game name - short description of bug"
 labels: ["game-specific", "bug"]
 body:
   - type: markdown
@@ -46,7 +46,7 @@ body:
         - Game version number:
         - Anything else?
     validations:
-      required: true
+      required: false
   - type: input
     id: version
     attributes:
