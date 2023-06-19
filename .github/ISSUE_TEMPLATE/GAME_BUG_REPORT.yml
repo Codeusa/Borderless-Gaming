@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         Found a bug for a specific game? Please fill out the sections below.
-        Thanks for taking the time to fill out this bug report!
   - type: checkboxes
     attributes:
       label: Requirements
@@ -21,6 +20,7 @@ body:
           required: true
   - type: textarea
     id: summary
+    attributes:
       label: Summary
       description: A summary of the bug.
     validations:
@@ -45,8 +45,6 @@ body:
       description: |
         - Game version number:
         - Anything else?
-    validations:
-      required: false
   - type: input
     id: version
     attributes:
