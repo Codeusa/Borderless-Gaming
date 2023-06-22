@@ -1,0 +1,38 @@
+name: Feature Request
+description: Suggest an idea for a feature that improves Borderless gaming
+title: A short concise title
+labels: ["enhancement"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Requirements
+      description: Before you create a suggestion, please consider the following
+      options:
+        - label: This issue doesn't already exist
+          required: true
+        - label: This is only a single feature request (Otherwise create a separate issue)
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is this proposal related to a problem?
+      description: |
+        Provide a concise description of what the problem is
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: |
+        Provide a concise description of what solution you're proposing.
+        Have you thought of alternative solutions?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: |
+        Is there anything else worth mentioning, that is related to this issue?
+        Maybe there are related issues that can be mistaken for duplicates, describe why they aren't
