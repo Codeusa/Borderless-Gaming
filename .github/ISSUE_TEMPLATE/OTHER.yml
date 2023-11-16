@@ -1,0 +1,12 @@
+name: Other
+description: Do you have some other type of contribution not compatable with the templates?
+body:
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Summary
+      description: |
+        Please write your contribution here
+    validations:
+      required: true
+      
