@@ -30,7 +30,7 @@ namespace BorderlessGaming.Logic.Steam
                 IsLoaded = true;
             }
             catch (Exception ex)
-            {   
+            {
                 Console.WriteLine("Failed to load Steam.");
                 ExceptionHandler.LogException(ex);
             }

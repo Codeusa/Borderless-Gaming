@@ -1,10 +1,10 @@
 name: publish Borderless Gaming
 
-on: [push, pull_request]
-#on:
-#  push:
-#    tags:
-#      - "*.*.*"
+
+on:
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   publish:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Install bebopc
         shell: pwsh
-        run: irm https://bebop.sh | iex
+        run: $version = '2.7.4'; $script = irm "https://bebop.sh"; & ([scriptblock]::Create($script)) -bebopcVersion $version
 
       - name: Build release
         shell: pwsh

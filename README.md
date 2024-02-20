@@ -50,7 +50,7 @@ or if you're suffering from crashes or bugs submit information [here](https://gi
 ## Contact info
 
 * **Twitter:** [@AndrewMD5](https://twitter.com/andrewmd5)
-* **Blog:** [blog.andrew.im](http://blog.andrew.im)
+* **Website:** [andrew.im](https://andrew.im)
 
 # Join our Steam Group!
 [Borderless Gaming on Steam](https://steamcommunity.com/app/388080/discussions/)

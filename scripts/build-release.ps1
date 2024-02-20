@@ -11,5 +11,5 @@ $projectXml.Save($csproj)
 
 & bebopc
 & dotnet restore "$cjproj"
-& dotnet publish "$csproj"
+& dotnet publish "$csproj" -c Release -r win-x64
 & iscc "$root\Installers\BorderlessGaming_Standalone_Admin.iss"

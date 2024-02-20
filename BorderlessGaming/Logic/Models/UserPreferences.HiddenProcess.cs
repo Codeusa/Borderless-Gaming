@@ -38,7 +38,8 @@ namespace BorderlessGaming.Logic.Models
             "iw4 console",
             "steam",
             "origin",
-            "uplay"
+            "uplay",
+            "msedge"
 
             // Let them hide the rest manually
         };

@@ -10,9 +10,10 @@
     <PublishSingleFile>true</PublishSingleFile>
     <PublishReadyToRun>true</PublishReadyToRun>
     <SelfContained>true</SelfContained>
-    <AssemblyVersion>9.5.6</AssemblyVersion>
-    <FileVersion>9.5.6</FileVersion>
-    <Version>9.5.6</Version>
+    <AssemblyVersion>10.0.0</AssemblyVersion>
+    <FileVersion>10.0.0</FileVersion>
+    <Version>10.0.0</Version>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>BorderlessGaming_new.ico</ApplicationIcon>
