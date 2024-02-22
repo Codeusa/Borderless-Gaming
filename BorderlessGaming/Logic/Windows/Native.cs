@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BorderlessGaming.Logic.Models;
 using BorderlessGaming.Logic.Misc.Utilities;
 using BorderlessGaming.Logic.Windows.Audio;
+using BorderlessGaming.Logic.Extensions;
 
 namespace BorderlessGaming.Logic.Windows
 {
@@ -340,7 +341,7 @@ namespace BorderlessGaming.Logic.Windows
                 {
                     if (IsWindowVisible(hWndEnumerated))
                     {
-                        if ((uint) styleCurrentWindow_standard != 0)
+                        if ((uint)styleCurrentWindow_standard != 0)
                         {
                             GetMainWindowForProcess_Value = hWndEnumerated;
                             return false;
@@ -440,7 +441,12 @@ namespace BorderlessGaming.Logic.Windows
                     }
                     uint processId;
                     GetWindowThreadProcessId(ptr, out processId);
-                    callback(new ProcessDetails(Process.GetProcessById((int)processId), ptr)
+                    var process = ProcessExtensions.GetProcessById((int)processId);
+                    if (process == null)
+                    {
+                        continue;
+                    }
+                    callback(new ProcessDetails(process, ptr)
                     {
                         Manageable = true
                     });
@@ -637,18 +643,18 @@ namespace BorderlessGaming.Logic.Windows
             {
                 if (obj is Rect)
                 {
-                    return Equals((Rect) obj);
+                    return Equals((Rect)obj);
                 }
                 if (obj is Rectangle)
                 {
-                    return Equals(new Rect((Rectangle) obj));
+                    return Equals(new Rect((Rectangle)obj));
                 }
                 return false;
             }
 
             public override int GetHashCode()
             {
-                return ((Rectangle) this).GetHashCode();
+                return ((Rectangle)this).GetHashCode();
             }
 
             public override string ToString()
@@ -666,6 +672,6 @@ namespace BorderlessGaming.Logic.Windows
         public static extern uint GetProcessIdOfThread(IntPtr handle);
 
         [DllImport("user32.dll")]
-       public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+        public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
     }
 }
