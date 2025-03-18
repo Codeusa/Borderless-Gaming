@@ -12,7 +12,7 @@ adjustWindowBoundsRight|右
 adjustWindowBoundsTop|上
 adjustWindowBoundsBottom|下
 settingConfirmationTitle|変更の適用
-settingConfirmationPrompt|設定を適用するには、Borderless Gaming を再起動する必要があります。再起動をしますか?
+settingConfirmationPrompt|設定を適用するには、Borderless Gaming を再起動する必要があります。再起動をしますか？
 setWindowTitleTitle|ウィンドウタイトルを設定
 setWindowTitlePrompt|新しいウィンドウタイトルを設定します:
 toggleMouseCursorVisibilityTitle|マウスカーソルを非表示にしてもよろしいですか？
@@ -37,7 +37,7 @@ toolStripPauseAutomaticProcessing|自動処理を一時停止
 toolStripOpenDataFolder|データフォルダーを開く
 toolStripToggleMouseCursorVisibility|マウスカーソルの表示を切り替える
 toolStripToggleWindowsTaskbar|タスクバーの表示を切り替える
-toolStripFullApplicationRefresh|すべてのアプリケーションを更新
+toolStripFullApplicationRefresh|すべてのアプリを更新
 toolStripDisableSteamIntegration|Steam の統合を無効化
 # Help Menu
 toolStripInfo|ヘルプ
@@ -71,13 +71,13 @@ toolStripMuteInBackground|バックグラウンド時にミュート
 contextRemoveFromFavs|お気に入りから削除
 # UI
 superSize|スーパーサイズ！(ディスプレイを跨いで全画面表示)
-processLabel|アプリケーション:
+processLabel|アプリ:
 favoritesLabel|お気に入り (自動化):
 statusLabel|読み込み中...
 moreOptionsLabel|右クリックで詳細なオプションを表示します。 最終更新
 # Tool Tips
-steamHint|Steam の In-App を抑制
-addFavorite|選択をされているアプリケーションをお気に入りリストに追加をします (ウィンドウタイトルを使用)。
+steamHint|Steam の In-App を抑制する
+addFavorite|選択をされているアプリをお気に入りリストに追加をします (ウィンドウタイトルを使用)。
 removeFavorite|選択されているお気に入りをリストから削除します。
-makeBorderless|選択されているアプリケーションをボーダーレスにします。
-restoreBorders|選択されているアプリケーションのボーダーレスを解除します。
+makeBorderless|選択されているアプリをボーダーレスにします。
+restoreBorders|選択されているアプリのボーダーレスを解除します。
