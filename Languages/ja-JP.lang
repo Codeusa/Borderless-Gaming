@@ -25,7 +25,7 @@ toolStripCheckForUpdates|更新を確認
 toolStripGlobalHotkey|グローバルホットキーを使用
 toolStripMouseLock|マウスカーソル固定切替えのホットキーを使用
 toolStripMouseHide|マウスカーソル表示切替えのホットキーを使用
-toolStripMinimizedToTray|起動時に通知領域に最小化
+toolStripMinimizedToTray|起動時にタスクトレイに最小化
 toolStripCloseToTray|閉じるで最小化
 toolStripHideBalloonTips|バルーンチップを非表示
 toolStripSlowWindowDetection|ウィンドウの検出を遅くする
