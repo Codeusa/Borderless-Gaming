@@ -1,62 +1,18 @@
-﻿using System;
+﻿using BorderlessGaming.Logic.Core;
+using BorderlessGaming.Logic.Models;
+using BorderlessGaming.Logic.System.Utilities;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Net.NetworkInformation;
-using System.Reflection;
-using System.Windows.Forms;
-using System.Xml;
-using BorderlessGaming.Logic.Core;
-using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.Properties;
-using BorderlessGaming.Logic.Steam;
-using BorderlessGaming.Logic.System.Utilities;
-using Ionic.Zip;
+using System.IO.Compression;
+using System.Text;
+
 
 
 namespace BorderlessGaming.Logic.System
 {
     public static class Tools
     {
-        private static bool HasInternetConnection
-        {
-            // There is no way you can reliably check if there is an internet connection, but we can come close
-            get
-            {
-                var result = false;
-
-                try
-                {
-                    if (NetworkInterface.GetIsNetworkAvailable())
-                    {
-                        using (var p = new Ping())
-                        {
-                            var pingReply = p.Send("8.8.4.4", 15000);
-                            if (pingReply != null)
-                            {
-                                var reply = p.Send("8.8.8.8", 15000);
-                                if (reply != null)
-                                {
-                                    var send = p.Send("4.2.2.1", 15000);
-                                    if (send != null)
-                                    {
-                                        result = reply.Status == IPStatus.Success ||
-                                                 pingReply.Status == IPStatus.Success ||
-                                                 send.Status == IPStatus.Success;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-                return result;
-            }
-        }
-
         public static void Setup()
         {
             if (!Directory.Exists(AppEnvironment.DataPath))
@@ -69,10 +25,6 @@ namespace BorderlessGaming.Logic.System
             }
             Config.Load();
             LanguageManager.Load();
-            if (!Config.Instance.AppSettings.DisableSteamIntegration)
-            {
-                SteamApi.Init();
-            }
         }
 
         public static Rectangle GetContainingRectangle(Rectangle a, Rectangle b)
@@ -107,77 +59,25 @@ namespace BorderlessGaming.Logic.System
 
         public static void ExtractZipFile(string archiveFilenameIn, string password, string outFolder)
         {
-            using (var zip = ZipFile.Read(archiveFilenameIn))
+            using (ZipArchive archive = ZipFile.Open(archiveFilenameIn, ZipArchiveMode.Read, Encoding.UTF8))
             {
-                zip.ExtractAll(outFolder, ExtractExistingFileAction.OverwriteSilently);
-            }
-        }
-
-        public static void CheckForUpdates()
-        {
-            if (HasInternetConnection)
-            {
-                try
+                foreach (ZipArchiveEntry entry in archive.Entries)
                 {
-                    var releasePageUrl = "";
-                    Version newVersion = null;
-                    const string versionConfig = "https://raw.github.com/Codeusa/Borderless-Gaming/master/version.xml";
-                    var reader = new XmlTextReader(versionConfig);
-                    reader.MoveToContent();
-                    var elementName = "";
-                    try
+                    string destinationPath = Path.Combine(outFolder, entry.FullName);
+                    string destinationDirectory = Path.GetDirectoryName(destinationPath);
+
+                    if (!Directory.Exists(destinationDirectory))
                     {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "borderlessgaming")
-                        {
-                            while (reader.Read())
-                            {
-                                switch (reader.NodeType)
-                                {
-                                    case XmlNodeType.Element:
-                                        elementName = reader.Name;
-                                        break;
-                                    default:
-                                        if (reader.NodeType == XmlNodeType.Text && reader.HasValue)
-                                        {
-                                            switch (elementName)
-                                            {
-                                                case "version":
-                                                    newVersion = new Version(reader.Value);
-                                                    break;
-                                                case "url":
-                                                    releasePageUrl = reader.Value;
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(Resources.ErrorUpdates, Resources.ErrorHeader, MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        reader.Close();
+                        Directory.CreateDirectory(destinationDirectory);
                     }
 
-                    var applicationVersion = Assembly.GetEntryAssembly().GetName().Version;
-                    if (applicationVersion.CompareTo(newVersion) < 0)
+                    if (!string.IsNullOrEmpty(Path.GetFileName(destinationPath))) // Skip directories
                     {
-                        if (MessageBox.Show(Resources.InfoUpdateAvailable, Resources.InfoUpdatesHeader,
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                        {
-                            GotoSite(releasePageUrl);
-                        }
+                        entry.ExtractToFile(destinationPath, overwrite: true);
                     }
-                }
-                catch
-                {
                 }
             }
         }
+
     }
 }

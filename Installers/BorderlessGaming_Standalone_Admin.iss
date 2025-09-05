@@ -9,7 +9,7 @@
 AppName=Borderless Gaming
 AppPublisher=Andrew Sampson
 AppCopyright=Copyright (C) 2014-2018 Andrew Sampson
-DefaultDirName={pf}\Borderless Gaming
+DefaultDirName={commonpf}\Borderless Gaming
 DefaultGroupName=Borderless Gaming
 OutputDir=./
 DisableReadyMemo=yes

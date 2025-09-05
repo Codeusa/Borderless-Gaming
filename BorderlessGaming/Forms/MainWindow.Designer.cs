@@ -613,13 +613,6 @@ namespace BorderlessGaming.Forms
             this.toolStripToggleWindowsTaskbar.Name = "toolStripToggleWindowsTaskbar";
             this.toolStripToggleWindowsTaskbar.Text =  LanguageManager.Data("toolStripToggleWindowsTaskbar");
             this.toolStripToggleWindowsTaskbar.Click += new System.EventHandler(this.toggleWindowsTaskbarVisibilityToolStripMenuItem_Click);
-            //
-            // rainwayStrip
-            //
-            resources.ApplyResources(this.rainwayStrip, "rainwayStrip");
-            this.rainwayStrip.Text = "Check Out Rainway";
-            this.rainwayStrip.Image = Resources.master_glyph;
-            this.rainwayStrip.Click += new System.EventHandler(this.checkOutRainwayToolStripMenuItem_Click);
             // 
             // toolStripMenuItem12
             // 

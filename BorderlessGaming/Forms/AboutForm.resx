@@ -544,7 +544,7 @@
     <value>True</value>
   </data>
   <data name="_viewBlogLinkLabel.Text" xml:space="preserve">
-    <value>http://blog.andrew.im</value>
+    <value>https://andrew.im</value>
   </data>
   <data name="&gt;&gt;_ownerLabel.Parent" xml:space="preserve">
     <value>$this</value>

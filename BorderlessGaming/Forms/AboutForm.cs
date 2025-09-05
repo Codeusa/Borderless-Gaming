@@ -23,7 +23,7 @@ namespace BorderlessGaming.Forms
 
         private void OpenBlog(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Tools.GotoSite("http://blog.andrew.im/");
+            Tools.GotoSite("https://andrew.im/");
         }
 
         private void OpenSteamGroup(object sender, LinkLabelLinkClickedEventArgs e)
@@ -44,11 +44,6 @@ namespace BorderlessGaming.Forms
         private void OpenGithubRepo(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Tools.GotoSite("https://github.com/Codeusa/Borderless-Gaming");
-        }
-
-        private void _impulserNameTag_Click(object sender, EventArgs e)
-        {
-            Tools.GotoSite("https://www.indiegogo.com/projects/the-mad-scientist-scholarship/x/3590458");
         }
 
         #endregion

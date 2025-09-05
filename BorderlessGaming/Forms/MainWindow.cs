@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using BorderlessGaming.Logic.Core;
 using BorderlessGaming.Logic.Extensions;
 using BorderlessGaming.Logic.Models;
-using BorderlessGaming.Logic.Steam;
 using BorderlessGaming.Logic.System;
 using BorderlessGaming.Logic.Windows;
 using BorderlessGaming.Properties;
@@ -890,7 +889,6 @@ fav.PositionX.ToString()), out int favPositionX);
             }
         }
 
-        private ToolStripMenuItem _toolStripDisableSteamIntegration;
 
         /// <summary>
         ///     Sets up the form
@@ -922,30 +920,6 @@ fav.PositionX.ToString()), out int favPositionX);
             {
                 WindowState = FormWindowState.Normal;
             }
-
-            if (SteamApi.IsLoaded && _toolStripDisableSteamIntegration == null)
-            {
-                _toolStripDisableSteamIntegration =
-                    new ToolStripMenuItem
-                    {
-                        Name = "toolStripDisableSteamIntegration",
-                        Size = new Size(254, 22),
-                        Text = LanguageManager.Data("toolStripDisableSteamIntegration"),
-                        ToolTipText = LanguageManager.Data("steamHint"),
-                        Checked = settings.DisableSteamIntegration,
-                        CheckOnClick = true
-                    };
-                // let's do this before registering the CheckedChanged event
-                _toolStripDisableSteamIntegration.CheckedChanged +=
-                    ToolStripDisableSteamIntegrationCheckChanged;
-                toolsToolStripMenuItem.DropDownItems.Insert(0, _toolStripDisableSteamIntegration);
-            }
-        }
-
-        private void ToolStripDisableSteamIntegrationCheckChanged(object sender, EventArgs e)
-        {
-            Config.Instance.AppSettings.DisableSteamIntegration = _toolStripDisableSteamIntegration.Checked;
-            Config.Save();
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
